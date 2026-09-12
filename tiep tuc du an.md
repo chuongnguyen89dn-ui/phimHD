@@ -22,3 +22,14 @@
 - Đưa baseline `rophim_catalog.json` thực tế lên nơi service có thể dùng bền vững.
 - Cấu hình job/server chạy `rophim_catalog_crawler_taxonomy_v5.py` tự động, không phụ thuộc PC người dùng.
 - Kiểm tra taxonomy mapping thực tế sau lần chạy v5 đầu tiên và nối catalog cập nhật vào addon.
+
+## Cập nhật 12/09/2026 - Ivy❤️
+
+- Đổi phần hiển thị addon sang `Ivy❤️`, manifest id `community.ivy.catalog`.
+- Thêm catalog Phim Lẻ, Phim Bộ, Thể loại và Quốc gia.
+- Nối resolver HLS HTTP vào endpoint stream; chỉ trả link thực tìm thấy từ trang phim, không đoán link.
+- Thêm workflow tự cập nhật catalog và tối ưu crawler taxonomy chạy song song.
+- Tạo workflow seed khẩn cấp 48 workers để đưa dữ liệu lên server mà không cần PC.
+- Seed hoàn tất thành công: 6.168/6.168 phim, lỗi 0; catalog thực 5.374.169 bytes đã được commit lên `main` tại commit `c79af738072e314e1d436f6673f4f6d526d16483`.
+- Render service `phimHD` đã auto-deploy commit catalog mới và trạng thái `live` tại deploy `dep-daij6j0jo6nc73blbpv0`.
+- Từ thời điểm này dữ liệu phim đã nằm trên server; bước kế tiếp là kiểm tra catalog/stream thực tế trong Nuvio và tiếp tục làm taxonomy giàu dữ liệu hơn bằng job v5.x.
