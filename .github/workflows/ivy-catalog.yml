@@ -1,6 +1,10 @@
 name: Ivy catalog update
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'rophim_catalog.json'
   schedule:
     - cron: '15 19 * * *'
 permissions:
