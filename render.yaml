@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ivy-addon
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
+    autoDeploy: true
+    envVars:
+      - key: IVY_CATALOG
+        value: rophim_catalog.json
