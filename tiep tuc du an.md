@@ -13,10 +13,12 @@
 - Tạo `app.py` làm addon catalog/meta cho Nuvio/Stremio với hai catalog Movies và Series, hỗ trợ poster, description, year, runtime, genres và website.
 - Tạo `requirements.txt`, `README.md` và một `rophim_catalog.json` placeholder để repo có thể chạy ngay trước khi dữ liệu crawler thật được upload.
 - Scanner local trước đó đã xác nhận một trang phim RoPhim phát HLS trực tiếp và playlist/segments trả HTTP 200; playback chưa được nối vào addon ở giai đoạn hiện tại.
+- Crawler taxonomy v4 chạy thực tế trên Windows đã phát hiện 6.167 URL phim và tạo baseline catalog lớn; xác nhận taxonomy có phân trang sâu cho Phim Bộ, Phim Lẻ, Hoạt Hình và Lịch Chiếu.
+- Thêm `rophim_catalog_crawler_taxonomy_v5.py`: dùng catalog hiện có làm cache, chỉ crawl chi tiết phim mới; mỗi lần cập nhật vẫn quét taxonomy/menu để cập nhật `genres`, `countries`, `sections`, `schedules`, tránh quét lại toàn bộ hàng nghìn trang phim.
+- v5 ghi file theo cơ chế temporary + atomic replace để catalog cũ không bị mất nếu lần crawl mới thất bại trước khi hoàn tất.
 
 ## Việc tiếp theo
 
-- Nhận file `rophim_catalog.json` hoàn chỉnh từ crawler Windows.
-- Kiểm tra số lượng sitemap, URL, phim/series, metadata thiếu và lỗi crawl.
-- Thay placeholder catalog bằng dữ liệu thật.
-- Deploy addon và kiểm tra manifest/catalog/meta trên Nuvio.
+- Đưa baseline `rophim_catalog.json` thực tế lên nơi service có thể dùng bền vững.
+- Cấu hình job/server chạy `rophim_catalog_crawler_taxonomy_v5.py` tự động, không phụ thuộc PC người dùng.
+- Kiểm tra taxonomy mapping thực tế sau lần chạy v5 đầu tiên và nối catalog cập nhật vào addon.
