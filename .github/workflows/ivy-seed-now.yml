@@ -1,0 +1,35 @@
+name: Ivy seed now
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ivy_seed_now.py'
+      - '.github/workflows/ivy-seed-now.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ivy-seed-now
+  cancel-in-progress: true
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Seed Ivy movies immediately
+        env:
+          ROPHIM_CATALOG: rophim_catalog.json
+          IVY_SEED_WORKERS: '48'
+        run: python ivy_seed_now.py
+      - name: Commit catalog
+        run: |
+          git config user.name "ivy-catalog-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add rophim_catalog.json
+          git diff --cached --quiet || git commit -m "Seed Ivy catalog now"
+          git pull --rebase
+          git push
