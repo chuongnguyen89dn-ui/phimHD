@@ -1,8 +1,12 @@
 import json, os, base64, re
 from urllib.parse import unquote
+from urllib.request import Request, urlopen
 from flask import Flask, jsonify, request
 
 CATALOG=os.environ.get("IVY_CATALOG",os.environ.get("ROPHIM_CATALOG","rophim_catalog.json"))
+SOURCE_BASE=os.environ.get("IVY_SOURCE_BASE","https://rophim.loan").rstrip('/')
+UA="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1"
+HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 app=Flask(__name__)
 
 def load():
@@ -51,9 +55,8 @@ def options(key):
     return sorted(v for v in vals if v)
 
 def manifest_data():
-    genres=options("genres")
-    countries=options("countries")
-    return {"id":"community.ivy.catalog","version":"0.6.0","name":"Ivy❤️","description":"Ivy❤️ • Phim Lẻ, Phim Bộ, Thể loại và Quốc gia","resources":["catalog","meta","stream"],"types":["movie","series"],"idPrefixes":["ivy_"],"catalogs":[
+    genres=options("genres");countries=options("countries")
+    return {"id":"community.ivy.catalog","version":"0.7.0","name":"Ivy❤️","description":"Ivy❤️ • Phim Lẻ, Phim Bộ, Thể loại và Quốc gia","resources":["catalog","meta","stream"],"types":["movie","series"],"idPrefixes":["ivy_"],"catalogs":[
       {"type":"movie","id":"ivy_movies","name":"❤️ Ivy • Phim Lẻ","extra":[{"name":"skip","isRequired":False},{"name":"search","isRequired":False}]},
       {"type":"series","id":"ivy_series","name":"❤️ Ivy • Phim Bộ","extra":[{"name":"skip","isRequired":False},{"name":"search","isRequired":False}]},
       {"type":"movie","id":"ivy_genres","name":"❤️ Ivy • Thể loại","extra":[{"name":"genre","isRequired":False,"options":genres},{"name":"skip","isRequired":False},{"name":"search","isRequired":False}]},
@@ -81,8 +84,7 @@ def catalog(typ,catalog_id,extra=""):
     ex=extras_from_path(extra);q=(ex.get("search") or "").lower().strip()
     try:skip=max(0,int(ex.get("skip") or 0))
     except:skip=0
-    genre=ex.get("genre") or "";country=ex.get("country") or ""
-    out=[]
+    genre=ex.get("genre") or "";country=ex.get("country") or "";out=[]
     for x in load().get("movies",[]):
         m=meta(x)
         if catalog_id=="ivy_movies" and m["type"]!="movie":continue
@@ -107,9 +109,33 @@ def get_meta(typ,item_id):
         if x.get("url")==u:return jsonify({"meta":meta(x)})
     return jsonify({"meta":None})
 
+def choose_master(urls):
+    urls=list(dict.fromkeys(urls))
+    masters=[u for u in urls if "master.m3u8" in u.lower()]
+    if masters:return sorted(masters,key=len)[0]
+    indexes=[u for u in urls if u.lower().split('?')[0].endswith('/index.m3u8')]
+    return sorted(indexes,key=len)[0] if indexes else (urls[0] if urls else "")
+
+def resolve_http(source_url):
+    try:
+        req=Request(source_url,headers={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,*/*;q=0.8","Referer":SOURCE_BASE+"/"})
+        with urlopen(req,timeout=15) as r:text=r.read().decode("utf-8","replace").replace("\\/","/")
+        found=list(dict.fromkeys(HLS_RE.findall(text)))
+        return choose_master(found),found
+    except Exception:return "",[]
+
 @app.get("/stream/<typ>/<path:item_id>.json")
 def stream(typ,item_id):
-    # Playback resolver is added separately; never return stale or guessed streams.
-    return jsonify({"streams":[]})
+    if not item_id.startswith("ivy_"):return jsonify({"streams":[]})
+    source_url=dec(item_id[4:])
+    if not source_url.startswith(SOURCE_BASE+"/"):return jsonify({"streams":[]})
+    master,found=resolve_http(source_url)
+    if not master:return jsonify({"streams":[]})
+    streams=[{"name":"Ivy❤️","title":"Ivy❤️ • Auto HLS","url":master,"behaviorHints":{"notWebReady":True}}]
+    # Additional playlists are kept as backups without duplicating the selected master.
+    for i,u in enumerate(found[:8],1):
+        if u==master:continue
+        streams.append({"name":"Ivy❤️","title":f"Ivy❤️ • Backup {i}","url":u,"behaviorHints":{"notWebReady":True}})
+    return jsonify({"streams":streams})
 
 if __name__=="__main__":app.run(host="0.0.0.0",port=int(os.environ.get("PORT","10000")))
