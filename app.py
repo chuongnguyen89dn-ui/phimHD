@@ -4,16 +4,29 @@ from urllib.request import Request, urlopen
 from flask import Flask, jsonify, request
 
 CATALOG=os.environ.get('IVY_CATALOG',os.environ.get('ROPHIM_CATALOG','rophim_catalog.json'))
+REMOTE_CATALOG=os.environ.get('IVY_REMOTE_CATALOG','https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json')
 BASE=os.environ.get('IVY_SOURCE_BASE','https://rophim.loan').rstrip('/')
 UA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1'
 HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 app=Flask(__name__)
-_page_cache={};_order_cache={}
+_page_cache={};_order_cache={};_catalog_cache={'at':0,'data':None}
 
-def load():
+def _local_catalog():
     try:
         with open(CATALOG,encoding='utf-8') as f:return json.load(f)
     except:return {'movies':[]}
+def load():
+    now=time.time()
+    if _catalog_cache['data'] is not None and now-_catalog_cache['at']<900:return _catalog_cache['data']
+    fallback=_catalog_cache['data'] or _local_catalog()
+    try:
+        req=Request(REMOTE_CATALOG+'?t='+str(int(now//900)),headers={'User-Agent':UA,'Accept':'application/json'})
+        with urlopen(req,timeout=8) as r:data=json.loads(r.read().decode('utf-8'))
+        if isinstance(data,dict) and len(data.get('movies',[]))>100:
+            _catalog_cache.update(at=now,data=data);return data
+    except:pass
+    _catalog_cache.update(at=now,data=fallback)
+    return fallback
 def enc(s):return base64.urlsafe_b64encode(s.encode()).decode().rstrip('=')
 def dec(s):
     try:s+='='*((4-len(s)%4)%4);return base64.urlsafe_b64decode(s.encode()).decode()
@@ -136,19 +149,19 @@ def genre_options(data):
 
 def manifest_data():
     data,_=data_index();genres=genre_options(data);common=[{'name':'genre','isRequired':False,'options':genres},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
-    return {'id':'community.ivy.catalog','version':'1.3.0','name':'Ivy❤️','description':'Ivy❤️ • latest movies, latest series and franchises','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':[
+    return {'id':'community.ivy.catalog','version':'1.3.1','name':'Ivy❤️','description':'Ivy❤️ • latest movies, latest series and franchises','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':[
       {'type':'movie','id':'ivy_latest_movies','name':'❤️ Ivy • Phim Lẻ Mới Cập Nhật','extra':common},
       {'type':'series','id':'ivy_latest_series','name':'❤️ Ivy • Phim Bộ Mới Cập Nhật','extra':common},
       {'type':'series','id':'ivy_franchises','name':'❤️ Ivy • Loạt Phim','extra':common}
     ]}
 
 @app.get('/')
-def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.3.0','manifest':'/manifest.json'})
+def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.3.1','manifest':'/manifest.json'})
 @app.get('/manifest.json')
 def manifest():return jsonify(manifest_data())
 @app.get('/health')
 def health():
-    d=load();return jsonify({'ok':True,'version':'1.3.0','movies':len(d.get('movies',[])),'movieOrder':len(source_order('/phim-le')),'seriesOrder':len(source_order('/phim-bo'))})
+    d=load();return jsonify({'ok':True,'version':'1.3.1','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'movieOrder':len(source_order('/phim-le')),'seriesOrder':len(source_order('/phim-bo'))})
 
 def extras(path=''):
     o={}
