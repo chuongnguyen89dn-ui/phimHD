@@ -11,7 +11,7 @@ permissions:
   contents: write
 concurrency:
   group: ivy-catalog
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
       - name: Update Ivy catalog
         env:
           ROPHIM_CATALOG: rophim_catalog.json
-          ROPHIM_WORKERS: '12'
+          ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
       - name: Commit changed catalog
         run: |
