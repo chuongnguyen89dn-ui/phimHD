@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request
 
 CATALOG=os.environ.get("IVY_CATALOG",os.environ.get("ROPHIM_CATALOG","rophim_catalog.json"))
 SOURCE_BASE=os.environ.get("IVY_SOURCE_BASE","https://rophim.loan").rstrip('/')
+SEED_TOKEN=os.environ.get("IVY_SEED_TOKEN","")
 UA="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1"
 HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 app=Flask(__name__)
@@ -56,7 +57,7 @@ def options(key):
 
 def manifest_data():
     genres=options("genres");countries=options("countries")
-    return {"id":"community.ivy.catalog","version":"0.7.0","name":"Ivy❤️","description":"Ivy❤️ • Phim Lẻ, Phim Bộ, Thể loại và Quốc gia","resources":["catalog","meta","stream"],"types":["movie","series"],"idPrefixes":["ivy_"],"catalogs":[
+    return {"id":"community.ivy.catalog","version":"0.7.1","name":"Ivy❤️","description":"Ivy❤️ • Phim Lẻ, Phim Bộ, Thể loại và Quốc gia","resources":["catalog","meta","stream"],"types":["movie","series"],"idPrefixes":["ivy_"],"catalogs":[
       {"type":"movie","id":"ivy_movies","name":"❤️ Ivy • Phim Lẻ","extra":[{"name":"skip","isRequired":False},{"name":"search","isRequired":False}]},
       {"type":"series","id":"ivy_series","name":"❤️ Ivy • Phim Bộ","extra":[{"name":"skip","isRequired":False},{"name":"search","isRequired":False}]},
       {"type":"movie","id":"ivy_genres","name":"❤️ Ivy • Thể loại","extra":[{"name":"genre","isRequired":False,"options":genres},{"name":"skip","isRequired":False},{"name":"search","isRequired":False}]},
@@ -70,6 +71,21 @@ def health():
     d=load();return jsonify({"ok":True,"service":"Ivy❤️","version":manifest_data()["version"],"movies":len(d.get("movies",[])),"generatedAt":d.get("generatedAt"),"stats":d.get("stats",{})})
 @app.get("/manifest.json")
 def manifest():return jsonify(manifest_data())
+
+@app.post("/admin/seed-catalog")
+def seed_catalog():
+    if not SEED_TOKEN or request.headers.get("X-Ivy-Seed-Token")!=SEED_TOKEN:
+        return jsonify({"ok":False,"error":"unauthorized"}),403
+    raw=request.get_data(cache=False)
+    if not raw:return jsonify({"ok":False,"error":"empty"}),400
+    try:data=json.loads(raw.decode("utf-8"))
+    except Exception as e:return jsonify({"ok":False,"error":"invalid json","detail":str(e)}),400
+    movies=data.get("movies") if isinstance(data,dict) else None
+    if not isinstance(movies,list) or len(movies)<1000:return jsonify({"ok":False,"error":"catalog too small","movies":len(movies or [])}),400
+    tmp=CATALOG+".seed.tmp"
+    with open(tmp,"wb") as f:f.write(raw)
+    os.replace(tmp,CATALOG)
+    return jsonify({"ok":True,"movies":len(movies),"generatedAt":data.get("generatedAt")})
 
 def extras_from_path(extra=""):
     out={}
@@ -132,7 +148,6 @@ def stream(typ,item_id):
     master,found=resolve_http(source_url)
     if not master:return jsonify({"streams":[]})
     streams=[{"name":"Ivy❤️","title":"Ivy❤️ • Auto HLS","url":master,"behaviorHints":{"notWebReady":True}}]
-    # Additional playlists are kept as backups without duplicating the selected master.
     for i,u in enumerate(found[:8],1):
         if u==master:continue
         streams.append({"name":"Ivy❤️","title":f"Ivy❤️ • Backup {i}","url":u,"behaviorHints":{"notWebReady":True}})
