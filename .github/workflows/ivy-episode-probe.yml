@@ -1,0 +1,41 @@
+name: Ivy episode probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['ivy_episode_probe.py','.github/workflows/ivy-episode-probe.yml']
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Find likely series URLs
+        run: |
+          python - <<'PY'
+          import json,re
+          d=json.load(open('rophim_catalog.json',encoding='utf8'))
+          a=[]
+          for x in d.get('movies',[]):
+            s=' '.join(map(str,[x.get('title',''),x.get('duration',''),x.get('description','')]))
+            if re.search(r'(?i)(phần|season|tập|series)',s): a.append(x.get('url'))
+            if len(a)>=8:break
+          open('/tmp/urls','w').write('\n'.join(filter(None,a)))
+          print('\n'.join(filter(None,a)))
+          PY
+      - name: Probe series pages
+        run: |
+          mapfile -t URLS < /tmp/urls
+          python ivy_episode_probe.py "${URLS[@]}" > ivy_episode_probe_result.json
+      - name: Commit probe result
+        run: |
+          git config user.name ivy-catalog-bot
+          git config user.email actions@users.noreply.github.com
+          git add ivy_episode_probe_result.json
+          git diff --cached --quiet || git commit -m 'Probe Ivy season episode structure'
+          git pull --rebase
+          git push
