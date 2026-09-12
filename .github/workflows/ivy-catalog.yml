@@ -10,7 +10,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: ivy-catalog
+  group: ivy-catalog-fast
   cancel-in-progress: true
 jobs:
   update:
