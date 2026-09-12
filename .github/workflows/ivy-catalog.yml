@@ -25,6 +25,12 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.json
           ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
+      - name: Enrich objective rankings from TMDB
+        if: ${{ secrets.TMDB_BEARER_TOKEN != '' }}
+        env:
+          ROPHIM_CATALOG: rophim_catalog.json
+          TMDB_BEARER_TOKEN: ${{ secrets.TMDB_BEARER_TOKEN }}
+        run: python tmdb_enrich.py
       - name: Publish catalog to data branch only
         run: |
           git config user.name "ivy-catalog-bot"
