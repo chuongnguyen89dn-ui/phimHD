@@ -112,17 +112,15 @@ def base_meta(x,full=False):
 
 def data_index():
     d=load().get('movies',[]);return d,{x.get('url'):x for x in d if x.get('url')}
-def sort_newest(items,rank=None):
-    rank=rank or {}
-    return sorted(items,key=lambda x:(-(year(x) or 0),rank.get(x.get('url'),10**9),clean(x.get('title','')).lower()))
 def ordered_items(path,predicate=None):
-    data,by=data_index();src=source_order(path);rank={u:i for i,u in enumerate(src)};seen=set();items=[]
+    data,by=data_index();src=source_order(path);seen=set();out=[]
     for u in src:
         x=by.get(u)
-        if x and (predicate is None or predicate(x)) and u not in seen:items.append(x);seen.add(u)
-    for x in data:
-        if x.get('url') not in seen and (predicate is None or predicate(x)):items.append(x)
-    return sort_newest(items,rank)
+        if x and (predicate is None or predicate(x)) and u not in seen:out.append(x);seen.add(u)
+    tail=[x for x in data if x.get('url') not in seen and (predicate is None or predicate(x))]
+    tail.sort(key=lambda x:(-(year(x) or 0),clean(x.get('title','')).lower()))
+    out.extend(tail)
+    return out
 
 def genre_options(data):
     preferred=['Hành Động','Action','Phiêu Lưu','Adventure','Hoạt Hình','Animation','Hài','Comedy','Chính Kịch','Drama','Kinh Dị','Horror','Bí Ẩn','Mystery','Hình Sự','Crime','Tình Cảm','Romance','Khoa Học','Science Fiction','Gia Đình','Family','Chiến Tranh','War','Lịch Sử','History','Tài Liệu','Documentary']
@@ -138,19 +136,19 @@ def genre_options(data):
 
 def manifest_data():
     data,_=data_index();genres=genre_options(data);common=[{'name':'genre','isRequired':False,'options':genres},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
-    return {'id':'community.ivy.catalog','version':'1.2.0','name':'Ivy❤️','description':'Ivy❤️ • newest movies and series with seasons and episodes','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':[
-      {'type':'movie','id':'ivy_latest','name':'❤️ Ivy • Phim Mới Cập Nhật','extra':common},
-      {'type':'movie','id':'ivy_movies','name':'❤️ Ivy • Phim Lẻ','extra':common},
+    return {'id':'community.ivy.catalog','version':'1.3.0','name':'Ivy❤️','description':'Ivy❤️ • latest movies, latest series and franchises','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':[
+      {'type':'movie','id':'ivy_latest_movies','name':'❤️ Ivy • Phim Lẻ Mới Cập Nhật','extra':common},
+      {'type':'series','id':'ivy_latest_series','name':'❤️ Ivy • Phim Bộ Mới Cập Nhật','extra':common},
       {'type':'series','id':'ivy_franchises','name':'❤️ Ivy • Loạt Phim','extra':common}
     ]}
 
 @app.get('/')
-def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.2.0','manifest':'/manifest.json'})
+def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.3.0','manifest':'/manifest.json'})
 @app.get('/manifest.json')
 def manifest():return jsonify(manifest_data())
 @app.get('/health')
 def health():
-    d=load();return jsonify({'ok':True,'version':'1.2.0','movies':len(d.get('movies',[])),'latest':len(source_order('/phimhay')),'movieOrder':len(source_order('/phim-le')),'seriesOrder':len(source_order('/phim-bo'))})
+    d=load();return jsonify({'ok':True,'version':'1.3.0','movies':len(d.get('movies',[])),'movieOrder':len(source_order('/phim-le')),'seriesOrder':len(source_order('/phim-bo'))})
 
 def extras(path=''):
     o={}
@@ -162,9 +160,9 @@ def extras(path=''):
     return o
 def catalog(cid,path=''):
     e=extras(path);q=(e.get('search') or '').lower().strip()
-    if cid=='ivy_latest':items=ordered_items('/phimhay')
-    elif cid=='ivy_movies':items=ordered_items('/phim-le',lambda x:typ(x)=='movie')
-    elif cid=='ivy_franchises':items=ordered_items('/phim-bo',lambda x:typ(x)=='series')
+    if cid=='ivy_latest_movies':items=ordered_items('/phim-le',lambda x:typ(x)=='movie')
+    elif cid=='ivy_latest_series':items=ordered_items('/phim-bo',lambda x:typ(x)=='series')
+    elif cid=='ivy_franchises':items=ordered_items('/phim-bo',lambda x:typ(x)=='series' and re.search(r'(?i)(phần|season)\s*\d+',clean(x.get('title',''))))
     else:items=[]
     out=[]
     for x in items:
