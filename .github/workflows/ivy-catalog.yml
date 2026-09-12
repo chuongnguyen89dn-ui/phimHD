@@ -2,7 +2,7 @@ name: Ivy catalog update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0,8,16 * * *'
 permissions:
   contents: write
 concurrency:
