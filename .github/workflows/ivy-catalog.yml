@@ -1,12 +1,8 @@
 name: Ivy catalog update
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths-ignore:
-      - 'rophim_catalog.json'
   schedule:
-    - cron: '15 19 * * *'
+    - cron: '0 0 * * *'
 permissions:
   contents: write
 concurrency:
@@ -18,18 +14,25 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Update Ivy catalog
+      - name: Update Ivy catalog from source web
         env:
           ROPHIM_CATALOG: rophim_catalog.json
           ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
-      - name: Commit changed catalog
+      - name: Publish catalog to data branch only
         run: |
           git config user.name "ivy-catalog-bot"
           git config user.email "actions@users.noreply.github.com"
           git add rophim_catalog.json
-          git diff --cached --quiet || git commit -m "Update Ivy catalog"
-          git push
+          if git diff --cached --quiet; then
+            echo "Catalog unchanged"
+            exit 0
+          fi
+          git commit -m "Update Ivy catalog data"
+          git push --force origin HEAD:catalog-data
