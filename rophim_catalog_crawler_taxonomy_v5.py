@@ -9,7 +9,7 @@ from rophim_catalog_crawler import parse_movie
 BASE=os.environ.get('ROPHIM_BASE','https://rophim.loan').rstrip('/')
 OUT=os.environ.get('ROPHIM_CATALOG','rophim_catalog.json')
 WORKERS=int(os.environ.get('ROPHIM_WORKERS','32'))
-UA='Mozilla/5.0 (compatible; IvyCatalog/5.2)'
+UA='Mozilla/5.0 (compatible; IvyCatalog/5.3)'
 TAX_PREFIXES={'/the-loai/':'genres','/quoc-gia/':'countries','/phim-le':'sections','/phim-bo':'sections','/hoat-hinh':'sections','/tv-shows':'sections','/phim-chieu-rap':'sections','/lich-chieu':'schedules'}
 
 def norm(u):
@@ -35,6 +35,13 @@ def bucket(u):
 def scan_page(u):
  final,h=fetch(u);final=norm(final);ls=links(h,final);ms={x for x in ls if movie(x)}
  return final,title(h,final),bucket(final),ms,{x for x in ls if tax(x)}
+def source_order(path):
+ try:
+  final,h=fetch(BASE+path);out=[]
+  for u in links(h,final):
+   if movie(u) and u not in out:out.append(u)
+  return out
+ except Exception:return []
 def crawl_taxonomy():
  pending={BASE+'/'};seen=set();memberships=defaultdict(lambda:defaultdict(set));cats=[];errors=[]
  with ThreadPoolExecutor(max_workers=WORKERS) as ex:
@@ -72,14 +79,16 @@ def main():
     try:x=f.result();oldmap[norm(x['url'])]=x
     except Exception as e:errors.append({'url':u,'stage':'detail','error':str(e)})
     if i%100==0 or i==len(todo):print(f'[details] {i}/{len(todo)}',flush=True)
+ movie_order=source_order('/phim-le');series_order=source_order('/phim-bo');home_order=source_order('/phimhay')
+ rank={u:i for i,u in enumerate(movie_order+series_order+home_order)}
  movies=[]
  for u,x in oldmap.items():
   mm=mem.get(u,{});taxonomy={b:sorted(mm.get(b,set())) for b in ('genres','countries','sections','schedules','categories')};oldtax=x.get('taxonomy') if isinstance(x.get('taxonomy'),dict) else {}
   for b in taxonomy:
    if not taxonomy[b] and oldtax.get(b):taxonomy[b]=oldtax[b]
   if not taxonomy['genres'] and x.get('genres'):taxonomy['genres']=x.get('genres')
-  x['taxonomy']=taxonomy;x['categoryMembership']=sorted(set(sum((taxonomy[b] for b in taxonomy),[])));x['genres']=taxonomy['genres'] or x.get('genres') or [];x['countries']=taxonomy['countries'];x['sections']=taxonomy['sections'];x['schedules']=taxonomy['schedules'];x['categories']=taxonomy['categories'];movies.append(x)
- movies.sort(key=lambda x:(str(x.get('title','')).lower(),str(x.get('slug',''))))
- data={'generatedAt':datetime.now(timezone.utc).isoformat(),'startedAt':started,'baseUrl':BASE,'crawlerVersion':'ivy-taxonomy-cache-v5.2','categories':cats,'stats':{'cachedMovieCount':len(old.get('movies',[])),'taxonomyMovieCount':len(mem),'newMovieCount':len(new),'refreshedMovieCount':len(stale),'movieCount':len(movies),'categoryPageCount':len(cats),'errorCount':len(errors)},'movies':movies,'errors':errors}
+  x['taxonomy']=taxonomy;x['categoryMembership']=sorted(set(sum((taxonomy[b] for b in taxonomy),[])));x['genres']=taxonomy['genres'] or x.get('genres') or [];x['countries']=taxonomy['countries'];x['sections']=taxonomy['sections'];x['schedules']=taxonomy['schedules'];x['categories']=taxonomy['categories'];x['sourceLatestRank']=rank.get(u);movies.append(x)
+ movies.sort(key=lambda x:(x.get('sourceLatestRank') is None,x.get('sourceLatestRank') if x.get('sourceLatestRank') is not None else 10**9,str(x.get('title','')).lower()))
+ data={'generatedAt':datetime.now(timezone.utc).isoformat(),'startedAt':started,'baseUrl':BASE,'crawlerVersion':'ivy-taxonomy-cache-v5.3','sourceOrders':{'movies':movie_order,'series':series_order,'home':home_order},'categories':cats,'stats':{'cachedMovieCount':len(old.get('movies',[])),'taxonomyMovieCount':len(mem),'newMovieCount':len(new),'refreshedMovieCount':len(stale),'movieCount':len(movies),'categoryPageCount':len(cats),'errorCount':len(errors),'movieOrderCount':len(movie_order),'seriesOrderCount':len(series_order)},'movies':movies,'errors':errors}
  tmp=OUT+'.tmp';json.dump(data,open(tmp,'w',encoding='utf-8'),ensure_ascii=False,indent=2);os.replace(tmp,OUT);print('DONE',json.dumps(data['stats'],ensure_ascii=False),flush=True)
 if __name__=='__main__':main()
