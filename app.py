@@ -25,8 +25,8 @@ def load():
         if isinstance(data,dict) and len(data.get('movies',[]))>100:
             _catalog_cache.update(at=now,data=data);return data
     except:pass
-    _catalog_cache.update(at=now,data=fallback)
-    return fallback
+    _catalog_cache.update(at=now,data=fallback);return fallback
+
 def enc(s):return base64.urlsafe_b64encode(s.encode()).decode().rstrip('=')
 def dec(s):
     try:s+='='*((4-len(s)%4)%4);return base64.urlsafe_b64decode(s.encode()).decode()
@@ -52,7 +52,7 @@ def fetch_text(u,ttl=300):
         with urlopen(Request(u,headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Referer':BASE+'/'}),timeout=18) as r:s=r.read().decode('utf-8','replace').replace('\\/','/')
         _page_cache[u]=(now,s);return s
     except:return ''
-def source_order(path):
+def live_source_order(path):
     u=BASE+path;now=time.time();c=_order_cache.get(u)
     if c and now-c[0]<600:return c[1]
     h=fetch_text(u,300);out=[]
@@ -62,6 +62,11 @@ def source_order(path):
         if v not in out:out.append(v)
     if out:_order_cache[u]=(now,out)
     return out
+def source_order(kind):
+    d=load();stored=(d.get('sourceOrders') or {}).get(kind) or []
+    if stored:return stored
+    path={'home':'/phimhay','movies':'/phim-le','series':'/phim-bo'}.get(kind,'/phimhay')
+    return live_source_order(path)
 
 def infer_season(x,h=''):
     text=' '.join([clean(x.get('title','')),clean(h[:20000])])
@@ -95,8 +100,8 @@ def episode_servers(x):
     if isinstance(arr,list):
         for srv in arr:
             if not isinstance(srv,dict):continue
-            name=clean(srv.get('server_name') or srv.get('name') or 'Nguồn');data=srv.get('server_data') or []
-            if isinstance(data,list):out.append((name,data))
+            data=srv.get('server_data') or []
+            if isinstance(data,list):out.append((clean(srv.get('server_name') or srv.get('name') or 'Nguồn'),data))
     return h,out
 def episode_rows(x):
     h,servers=episode_servers(x);season=infer_season(x,h);by={}
@@ -119,8 +124,7 @@ def base_meta(x,full=False):
     if x.get('duration'):m['runtime']=x['duration']
     tm=x.get('tmdb') or {}
     if tm.get('voteAverage') is not None:
-        m['rating']=round(float(tm['voteAverage']),1)
-        m['voteCount']=tm.get('voteCount')
+        m['rating']=round(float(tm['voteAverage']),1);m['voteCount']=tm.get('voteCount')
     if full and m['type']=='series':
         season,eps=episode_rows(x);videos=[]
         for e in eps:videos.append({'id':f"{m['id']}:{season}:{e['episode']}",'title':e['title'],'season':season,'episode':e['episode'],'overview':clean(x.get('description')),'thumbnail':x.get('backdrop') or x.get('poster')})
@@ -129,15 +133,19 @@ def base_meta(x,full=False):
 
 def data_index():
     d=load().get('movies',[]);return d,{x.get('url'):x for x in d if x.get('url')}
-def ordered_items(path,predicate=None):
-    data,by=data_index();src=source_order(path);seen=set();out=[]
-    for u in src:
+def ordered_from_urls(urls,predicate=None,include_tail=True):
+    data,by=data_index();seen=set();out=[]
+    for u in urls:
         x=by.get(u)
         if x and (predicate is None or predicate(x)) and u not in seen:out.append(x);seen.add(u)
-    tail=[x for x in data if x.get('url') not in seen and (predicate is None or predicate(x))]
-    tail.sort(key=lambda x:(-(year(x) or 0),clean(x.get('title','')).lower()))
-    out.extend(tail)
+    if include_tail:
+        tail=[x for x in data if x.get('url') not in seen and (predicate is None or predicate(x))]
+        tail.sort(key=lambda x:(-(year(x) or 0),clean(x.get('title','')).lower()));out.extend(tail)
     return out
+def latest_items(kind):
+    # "Mới cập nhật" follows the source's /phimhay update feed, then filters movie/series.
+    pred=(lambda x:typ(x)==kind)
+    return ordered_from_urls(source_order('home'),pred,True)
 def ranked_items(key,kind=None):
     d=load();by={x.get('url'):x for x in d.get('movies',[]) if x.get('url')};out=[]
     for u in (d.get('tmdbRankings') or {}).get(key,[]):
@@ -151,34 +159,30 @@ def genre_options(data):
     for x in data:
         for g in tax(x,'genres'):
             if g and g not in found:found.append(g)
-    out=[]
-    for p in preferred:
-        if p in found and p not in out:out.append(p)
-    out.extend(sorted(g for g in found if g not in out))
-    return out
+    out=[p for p in preferred if p in found];out.extend(sorted(g for g in found if g not in out));return out
 
 def manifest_data():
-    data,_=data_index();genres=genre_options(data);common=[{'name':'genre','isRequired':False,'options':genres},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
-    return {'id':'community.ivy.catalog','version':'1.4.0','name':'Ivy❤️','description':'Ivy❤️ • source playback with objective TMDB discovery','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':[
+    d=load();data=d.get('movies',[]);genres=genre_options(data);common=[{'name':'genre','isRequired':False,'options':genres},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
+    cats=[
       {'type':'movie','id':'ivy_latest_movies','name':'❤️ Ivy • Phim Lẻ Mới Cập Nhật','extra':common},
-      {'type':'series','id':'ivy_latest_series','name':'❤️ Ivy • Phim Bộ Mới Cập Nhật','extra':common},
-      {'type':'movie','id':'ivy_trending_movies','name':'🔥 Ivy • Phim Đang Thịnh Hành','extra':common},
-      {'type':'series','id':'ivy_trending_series','name':'🔥 Ivy • Series Đang Thịnh Hành','extra':common},
-      {'type':'movie','id':'ivy_popular_movies','name':'🎬 Ivy • Phim Phổ Biến','extra':common},
-      {'type':'series','id':'ivy_popular_series','name':'📺 Ivy • Series Phổ Biến','extra':common},
-      {'type':'movie','id':'ivy_top_movies','name':'⭐ Ivy • Phim Đánh Giá Cao','extra':common},
-      {'type':'series','id':'ivy_top_series','name':'⭐ Ivy • Series Đánh Giá Cao','extra':common},
-      {'type':'series','id':'ivy_franchises','name':'❤️ Ivy • Loạt Phim','extra':common}
-    ]}
+      {'type':'series','id':'ivy_latest_series','name':'❤️ Ivy • Phim Bộ Mới Cập Nhật','extra':common}]
+    ranks=d.get('tmdbRankings') or {}
+    if ranks.get('trendingMovies'):cats.append({'type':'movie','id':'ivy_trending_movies','name':'🔥 Ivy • Phim Đang Thịnh Hành','extra':common})
+    if ranks.get('trendingSeries'):cats.append({'type':'series','id':'ivy_trending_series','name':'🔥 Ivy • Series Đang Thịnh Hành','extra':common})
+    if ranks.get('popularMovies'):cats.append({'type':'movie','id':'ivy_popular_movies','name':'🎬 Ivy • Phim Phổ Biến','extra':common})
+    if ranks.get('popularSeries'):cats.append({'type':'series','id':'ivy_popular_series','name':'📺 Ivy • Series Phổ Biến','extra':common})
+    if ranks.get('topRatedMovies'):cats.append({'type':'movie','id':'ivy_top_movies','name':'⭐ Ivy • Phim Đánh Giá Cao','extra':common})
+    if ranks.get('topRatedSeries'):cats.append({'type':'series','id':'ivy_top_series','name':'⭐ Ivy • Series Đánh Giá Cao','extra':common})
+    cats.append({'type':'series','id':'ivy_franchises','name':'❤️ Ivy • Loạt Phim','extra':common})
+    return {'id':'community.ivy.catalog','version':'1.4.1','name':'Ivy❤️','description':'Ivy❤️ • source playback with objective discovery','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 @app.get('/')
-def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.4.0','manifest':'/manifest.json'})
+def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.4.1','manifest':'/manifest.json'})
 @app.get('/manifest.json')
 def manifest():return jsonify(manifest_data())
 @app.get('/health')
 def health():
-    d=load();return jsonify({'ok':True,'version':'1.4.0','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbMatchedCount':d.get('tmdbMatchedCount',0),'movieOrder':len(source_order('/phim-le')),'seriesOrder':len(source_order('/phim-bo'))})
-
+    d=load();return jsonify({'ok':True,'version':'1.4.1','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbMatchedCount':d.get('tmdbMatchedCount',0),'homeOrder':len(source_order('home'))})
 def extras(path=''):
     o={}
     for p in path.split('/'):
@@ -189,15 +193,15 @@ def extras(path=''):
     return o
 def catalog(cid,path=''):
     e=extras(path);q=(e.get('search') or '').lower().strip()
-    if cid=='ivy_latest_movies':items=ordered_items('/phim-le',lambda x:typ(x)=='movie')
-    elif cid=='ivy_latest_series':items=ordered_items('/phim-bo',lambda x:typ(x)=='series')
+    if cid=='ivy_latest_movies':items=latest_items('movie')
+    elif cid=='ivy_latest_series':items=latest_items('series')
     elif cid=='ivy_trending_movies':items=ranked_items('trendingMovies','movie')
     elif cid=='ivy_trending_series':items=ranked_items('trendingSeries','series')
     elif cid=='ivy_popular_movies':items=ranked_items('popularMovies','movie')
     elif cid=='ivy_popular_series':items=ranked_items('popularSeries','series')
     elif cid=='ivy_top_movies':items=ranked_items('topRatedMovies','movie')
     elif cid=='ivy_top_series':items=ranked_items('topRatedSeries','series')
-    elif cid=='ivy_franchises':items=ordered_items('/phim-bo',lambda x:typ(x)=='series' and re.search(r'(?i)(phần|season)\s*\d+',clean(x.get('title',''))))
+    elif cid=='ivy_franchises':items=ordered_from_urls(source_order('series'),lambda x:typ(x)=='series' and re.search(r'(?i)(phần|season)\s*\d+',clean(x.get('title',''))),True)
     else:items=[]
     out=[]
     for x in items:
@@ -210,9 +214,9 @@ def catalog(cid,path=''):
     return jsonify({'metas':out[sk:sk+100]})
 
 @app.get('/catalog/<t>/<cid>.json')
-def cat_plain(t,cid):return catalog(cid)
+def cp(t,cid):return catalog(cid)
 @app.get('/catalog/<t>/<cid>/<path:p>.json')
-def cat_extra(t,cid,p):return catalog(cid,p)
+def ce(t,cid,p):return catalog(cid,p)
 @app.get('/meta/<t>/<path:item_id>.json')
 def meta_route(t,item_id):
     base=item_id.split(':',1)[0];u=dec(base[4:]) if base.startswith('ivy_') else '';x=next((x for x in load().get('movies',[]) if x.get('url')==u),None)
