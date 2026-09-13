@@ -7,6 +7,7 @@ on:
       - '.github/workflows/ivy-catalog.yml'
       - 'rophim_catalog_crawler_taxonomy_v5.py'
       - 'tmdb_enrich.py'
+      - 'ivy_playback_audit.py'
   schedule:
     - cron: '0 0,8,16 * * *'
 permissions:
@@ -33,6 +34,11 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.json
           ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
+      - name: Audit and cache playback sources
+        env:
+          ROPHIM_CATALOG: rophim_catalog.json
+          IVY_PLAYBACK_AUDIT_LIMIT: '120'
+        run: python ivy_playback_audit.py
       - name: Enrich objective rankings from TMDB when configured
         env:
           ROPHIM_CATALOG: rophim_catalog.json
