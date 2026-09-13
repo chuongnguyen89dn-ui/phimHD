@@ -1,6 +1,12 @@
 name: Ivy catalog update
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ivy-catalog.yml'
+      - 'rophim_catalog_crawler_taxonomy_v5.py'
+      - 'tmdb_enrich.py'
   schedule:
     - cron: '0 0,8,16 * * *'
 permissions:
@@ -12,6 +18,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      TMDB_BEARER_TOKEN: ${{ secrets.TMDB_BEARER_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,12 +33,15 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.json
           ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
-      - name: Enrich objective rankings from TMDB
-        if: ${{ secrets.TMDB_BEARER_TOKEN != '' }}
+      - name: Enrich objective rankings from TMDB when configured
         env:
           ROPHIM_CATALOG: rophim_catalog.json
-          TMDB_BEARER_TOKEN: ${{ secrets.TMDB_BEARER_TOKEN }}
-        run: python tmdb_enrich.py
+        run: |
+          if [ -n "$TMDB_BEARER_TOKEN" ]; then
+            python tmdb_enrich.py
+          else
+            echo "TMDB_BEARER_TOKEN not configured; skipping TMDB enrichment"
+          fi
       - name: Publish catalog to data branch only
         run: |
           git config user.name "ivy-catalog-bot"
