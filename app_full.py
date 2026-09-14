@@ -10,8 +10,9 @@ TMDB_API_KEY=os.environ.get("TMDB_API_KEY","").strip()
 TMDB_API="https://api.themoviedb.org/3"; TMDB_IMG="https://image.tmdb.org/t/p/"
 UA="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1"
 HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
+MEDIA_SRC_RE=re.compile(r'(?:src|file|source|url)\s*[:=]\s*["\']([^"\']+)["\']',re.I)
 app=Flask(__name__)
-_page_cache={}; _catalog_cache={"at":0,"data":None}; _tmdb_cache={}; _list_cache={}; _section_cache={"at":0,"data":{}}
+_page_cache={}; _catalog_cache={"at":0,"data":None}; _tmdb_cache={}; _list_cache={}; _section_cache={"at":0,"data":{}}; _resolve_cache={}
 
 def _local_catalog():
     try:
@@ -52,13 +53,50 @@ def norm(s):
     s=re.sub(r"\([^)]*(?:19|20)\d{2}[^)]*\)"," ",s); s=re.sub(r"\b(?:phan|season)\s*\d+\b"," ",s)
     return " ".join(re.sub(r"[^a-z0-9]+"," ",s).split())
 
-def fetch_text(u,ttl=300):
-    now=time.time(); c=_page_cache.get(u)
+def fetch_text(u,ttl=300,referer=None):
+    key=(u,referer or "");now=time.time(); c=_page_cache.get(key)
     if c and now-c[0]<ttl:return c[1]
     try:
-        with urlopen(Request(u,headers={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,*/*;q=0.8","Referer":BASE+"/"}),timeout=18) as r:s=r.read().decode("utf-8","replace").replace("\\/","/")
-        _page_cache[u]=(now,s);return s
+        headers={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,*/*;q=0.8","Referer":referer or BASE+"/"}
+        with urlopen(Request(u,headers=headers),timeout=18) as r:s=r.read().decode("utf-8","replace").replace("\\/","/")
+        _page_cache[key]=(now,s);return s
     except:return ""
+
+def resolve_media_url(raw,referer=None,depth=0):
+    raw=html.unescape(str(raw or "").replace("\\/","/")).strip()
+    if not raw:return []
+    u=urljoin(referer or BASE+"/",raw)
+    if ".m3u8" in u.lower():return [(u,referer or BASE+"/")]
+    key=(u,referer or "");now=time.time();c=_resolve_cache.get(key)
+    if c and now-c[0]<300:return c[1]
+    if depth>2:return []
+    page=fetch_text(u,120,referer or BASE+"/")
+    out=[]
+    for hls in HLS_RE.findall(page):
+        hls=html.unescape(hls.replace("\\/","/"))
+        pair=(urljoin(u,hls),u)
+        if pair not in out:out.append(pair)
+    if not out:
+        candidates=[]
+        for v in MEDIA_SRC_RE.findall(page):
+            v=html.unescape(v.replace("\\/","/"));absolute=urljoin(u,v)
+            if absolute!=u and absolute not in candidates:candidates.append(absolute)
+        for v in re.findall(r'<iframe[^>]+src=["\']([^"\']+)',page,re.I):
+            absolute=urljoin(u,html.unescape(v))
+            if absolute!=u and absolute not in candidates:candidates.append(absolute)
+        for child in candidates[:8]:
+            if ".m3u8" in child.lower():out.append((child,u));continue
+            if depth<2 and ("embed" in child.lower() or "player" in child.lower() or child.startswith("http")):
+                for pair in resolve_media_url(child,u,depth+1):
+                    if pair not in out:out.append(pair)
+            if len(out)>=8:break
+    _resolve_cache[key]=(now,out);return out
+
+def stream_obj(url,title,referer=None):
+    hints={"notWebReady":True}
+    if referer:
+        hints["proxyHeaders"]={"request":{"User-Agent":UA,"Referer":referer}}
+    return {"name":"Ivy❤️","title":title,"url":url,"behaviorHints":hints}
 
 def extract_movie_urls(h):
     out=[]
@@ -191,13 +229,15 @@ def extract_array_after(h,marker):
                 except:return None
     return None
 def episode_rows(x):
-    h=fetch_text(x.get("url",""),180);arr=extract_array_after(h,"var episodes =") or extract_array_after(h,"episodes =") or [];by={}
+    page_url=x.get("url","");h=fetch_text(page_url,180);arr=extract_array_after(h,"var episodes =") or extract_array_after(h,"episodes =") or [];by={}
     for srv in arr if isinstance(arr,list) else []:
         for item in (srv.get("server_data") or []) if isinstance(srv,dict) else []:
             slug=str(item.get("slug") or "");name=clean(item.get("name") or item.get("filename") or slug);m=re.search(r"(\d+)",slug+" "+name)
             if not m:continue
-            ep=int(m.group(1));row=by.setdefault(ep,{"episode":ep,"title":name or f"Tập {ep}","sources":[]});u=item.get("link_m3u8") or item.get("link_embed") or ""
-            if u:row["sources"].append({"name":clean(srv.get("server_name") or "Nguồn"),"url":u})
+            ep=int(m.group(1));row=by.setdefault(ep,{"episode":ep,"title":name or f"Tập {ep}","sources":[]})
+            direct=item.get("link_m3u8") or "";embed=item.get("link_embed") or ""
+            if direct:row["sources"].append({"name":clean(srv.get("server_name") or "Nguồn"),"url":direct,"referer":page_url})
+            elif embed:row["sources"].append({"name":clean(srv.get("server_name") or "Nguồn"),"url":embed,"referer":page_url})
     return infer_season(x,h),[by[k] for k in sorted(by)]
 
 def tmdb_get(path,params=None,ttl=21600):
@@ -205,7 +245,7 @@ def tmdb_get(path,params=None,ttl=21600):
     params=dict(params or {});params["api_key"]=TMDB_API_KEY;key=path+"?"+urlencode(sorted(params.items()));now=time.time();c=_tmdb_cache.get(key)
     if c and now-c[0]<ttl:return c[1]
     try:
-        with urlopen(Request(TMDB_API+path+"?"+urlencode(params),headers={"Accept":"application/json","User-Agent":"Ivy/1.9"}),timeout=8) as r:d=json.loads(r.read().decode())
+        with urlopen(Request(TMDB_API+path+"?"+urlencode(params),headers={"Accept":"application/json","User-Agent":"Ivy/1.9.1"}),timeout=8) as r:d=json.loads(r.read().decode())
         _tmdb_cache[key]=(now,d);return d
     except:return None
 def apply_tmdb(x):
@@ -251,14 +291,14 @@ def manifest_data():
     active=source_home_sections()
     for i,label in enumerate(SOURCE_SECTIONS):
         if active.get(label):cats.append({"type":"series" if label in SERIES_SECTIONS else "movie","id":f"ivy_src_{i}","name":f"❤️ Ivy • {label}","extra":common})
-    return {"id":"community.ivy.catalog","version":"1.9.0","name":"Ivy❤️","description":"Ivy❤️ • only source-site catalogs; full paginated source listings","resources":["catalog","meta","stream"],"types":["movie","series"],"idPrefixes":["ivy_"],"behaviorHints":{"configurable":False},"catalogs":cats}
+    return {"id":"community.ivy.catalog","version":"1.9.1","name":"Ivy❤️","description":"Ivy❤️ • source catalogs with paginated listings and web playback resolver","resources":["catalog","meta","stream"],"types":["movie","series"],"idPrefixes":["ivy_"],"behaviorHints":{"configurable":False},"catalogs":cats}
 
 @app.get("/")
-def root():return jsonify({"ok":True,"service":"Ivy❤️","version":"1.9.0","manifest":"/manifest.json"})
+def root():return jsonify({"ok":True,"service":"Ivy❤️","version":"1.9.1","manifest":"/manifest.json"})
 @app.get("/manifest.json")
 def manifest():return jsonify(manifest_data())
 @app.get("/health")
-def health():return jsonify({"ok":True,"version":"1.9.0","movies":len(load().get("movies",[])),"sourceSections":list(source_home_sections().keys()),"legacyFranchiseCatalog":False})
+def health():return jsonify({"ok":True,"version":"1.9.1","movies":len(load().get("movies",[])),"sourceSections":list(source_home_sections().keys()),"legacyFranchiseCatalog":False,"playbackResolver":"recursive-hls"})
 def extras(path=""):
     o={}
     for p in path.split("/"):
@@ -294,16 +334,36 @@ def meta_route(t,item_id):
 def stream(t,item_id):
     parts=item_id.split(":");base=parts[0];u=dec(base[4:]) if base.startswith("ivy_") else "";x=next((x for x in load().get("movies",[]) if x.get("url")==u),None)
     if not x:return jsonify({"streams":[]})
+    streams=[];seen=set()
     if len(parts)>=3 and typ(x)=="series":
         try:season=int(parts[-2]);ep=int(parts[-1])
         except:return jsonify({"streams":[]})
         src=family_seasons(x).get(season) or x;_,rows=episode_rows(src);row=next((r for r in rows if r["episode"]==ep),None)
         if not row:return jsonify({"streams":[]})
-        return jsonify({"streams":[{"name":"Ivy❤️","title":f"Ivy❤️ • Mùa {season} • {row['title']} • {s['name']}","url":s["url"],"behaviorHints":{"notWebReady":True}} for s in row["sources"]]})
-    hints=x.get("playbackHints") or {};urls=list(dict.fromkeys((hints.get("direct") or [])+HLS_RE.findall(fetch_text(u,120))))
-    if not urls:
-        for s in hints.get("episodeSources") or []:
-            if s.get("url"):urls.append(s["url"])
-    return jsonify({"streams":[{"name":"Ivy❤️","title":"Ivy❤️ • Phát" if i==0 else f"Ivy❤️ • Nguồn {i+1}","url":v,"behaviorHints":{"notWebReady":True}} for i,v in enumerate(dict.fromkeys(urls))]})
+        for source in row["sources"]:
+            pairs=resolve_media_url(source.get("url"),source.get("referer") or src.get("url"))
+            if not pairs and ".m3u8" in str(source.get("url","")).lower():pairs=[(source["url"],source.get("referer") or src.get("url"))]
+            for media,ref in pairs:
+                if media in seen:continue
+                seen.add(media);streams.append(stream_obj(media,f"Ivy❤️ • Mùa {season} • {row['title']} • {source['name']}",ref))
+        return jsonify({"streams":streams})
+    page_url=x.get("url","");page=fetch_text(page_url,120);candidates=[]
+    hints=x.get("playbackHints") or {}
+    for v in hints.get("direct") or []:candidates.append((v,page_url))
+    for v in HLS_RE.findall(page):candidates.append((v,page_url))
+    arr=extract_array_after(page,"var episodes =") or extract_array_after(page,"episodes =") or []
+    for srv in arr if isinstance(arr,list) else []:
+        for item in (srv.get("server_data") or []) if isinstance(srv,dict) else []:
+            if item.get("link_m3u8"):candidates.append((item["link_m3u8"],page_url))
+            elif item.get("link_embed"):candidates.append((item["link_embed"],page_url))
+    for s in hints.get("episodeSources") or []:
+        if s.get("url"):candidates.append((s["url"],page_url))
+    for raw,ref0 in candidates:
+        pairs=resolve_media_url(raw,ref0)
+        if not pairs and ".m3u8" in str(raw).lower():pairs=[(raw,ref0)]
+        for media,ref in pairs:
+            if media in seen:continue
+            seen.add(media);streams.append(stream_obj(media,"Ivy❤️ • Phát" if not streams else f"Ivy❤️ • Nguồn {len(streams)+1}",ref))
+    return jsonify({"streams":streams})
 
 if __name__=="__main__":app.run(host="0.0.0.0",port=int(os.environ.get("PORT","10000")))
