@@ -1,4 +1,4 @@
-from app_fast import app
+from app_trailer import app
 
 if __name__ == "__main__":
     import os
