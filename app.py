@@ -1,4 +1,5 @@
 from app_trailer import app
+import yttest_pot
 
 if __name__ == "__main__":
     import os
