@@ -33,3 +33,11 @@
 - Seed hoàn tất thành công: 6.168/6.168 phim, lỗi 0; catalog thực 5.374.169 bytes đã được commit lên `main` tại commit `c79af738072e314e1d436f6673f4f6d526d16483`.
 - Render service `phimHD` đã auto-deploy commit catalog mới và trạng thái `live` tại deploy `dep-daij6j0jo6nc73blbpv0`.
 - Từ thời điểm này dữ liệu phim đã nằm trên server; bước kế tiếp là kiểm tra catalog/stream thực tế trong Nuvio và tiếp tục làm taxonomy giàu dữ liệu hơn bằng job v5.x.
+
+## Cập nhật 14/09/2026 - Home bám web nguồn
+
+- Bỏ cách dùng TMDB để tự tạo các hàng Trending/Popular/Top Rated trên Home; TMDB chỉ còn dùng bổ sung poster/backdrop/rating cho phim đã có trong Ivy.
+- Home Ivy chuyển sang đọc trực tiếp cấu trúc editorial của trang `/phimhay` và chỉ hiện section khi section đó thực sự tồn tại trên web nguồn.
+- Bổ sung các section theo cấu trúc web nguồn: Điện ảnh Hàn Quốc, Mọt phim Hoa Ngữ, Thiên đường Phim Thái, Phim US-UK Mới, Phim Điện Ảnh Mới Cóng, Dấu ấn điện ảnh Việt, Đêm Kinh Hoàng, Mê Cung Phim Nhật, Phim Bộ Đã Hoàn Thành, Hành Động Nghẹt Thở, Trinh Thám & Bí Ẩn, Tinh Hoa Điện Ảnh Hồng Kông, Top 10 phim bộ hôm nay, Top 10 phim lẻ hôm nay, Thế giới Anime, Cổ Trang Trung Quốc, Mãn Nhãn với Phim Chiếu Rạp, Sắp Lên Sóng.
+- Thêm các catalog điều hướng gần với menu nguồn: Phim Lẻ Mới, Phim Bộ Mới, Phim Lẻ, Phim Bộ, Phim 4K, Chiếu Rạp; thể loại tiếp tục dùng filter catalog của Nuvio/Stremio.
+- Phiên bản addon tăng lên `1.7.0`, commit `ddf3e423613ada93fe4978b025e80c1ebd47646a`.
