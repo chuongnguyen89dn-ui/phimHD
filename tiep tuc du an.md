@@ -52,3 +52,13 @@
 - Thêm proxy trailer `/ytproxy/<youtube-id>.mp4`: Ivy dùng `yt-dlp` lấy progressive MP4 có cả hình và tiếng, chuyển tiếp Range/header qua Render rồi trả URL Ivy bình thường cho Nuvio.
 - `/stream` thêm nguồn `🎬 Trailer` trỏ vào proxy Ivy; mục tiêu là Nuvio phát như stream MP4 bình thường, không còn tự mở googlevideo bằng ffmpeg.
 - Phiên bản runtime hiện tại: `1.10.1`.
+
+## Cập nhật 14/09/2026 - Sắp Lên Sóng và YouTube proxy 1.10.3
+
+- Sửa `ivy_sitemap_crawler.py` để `Sắp Lên Sóng` không còn phụ thuộc 12 poster preview ở Home: ưu tiên link Xem thêm/Xem toàn bộ và fallback `/lich-chieu`, sau đó quét pagination tới khi hết dữ liệu.
+- Crawler mở từng phim trong `Sắp Lên Sóng`, lưu cờ Trailer và các YouTube ID tìm được vào `ivy_sitemap.json`; runtime ưu tiên dữ liệu này trước khi fallback trang chi tiết/TMDB.
+- Xác nhận log Render của bản cũ trả lỗi `Sign in to confirm you're not a bot` cho các YouTube ID, nên nguyên nhân 502 nằm ở resolver YouTube trên Render chứ không phải Nuvio.
+- Đổi YouTube resolver sang ưu tiên client `android_vr` + format `18` (H264+AAC premuxed), sau đó thử `web_embedded` và `tv` nếu cần.
+- Bắt buộc probe `Range: bytes=0-1` từ chính Render trước khi cache/trả stream cho Nuvio; URL 401/403/410 sẽ bị xoá cache và resolve lại, tránh đưa URL chết cho player.
+- Thêm log `youtube probe`, `youtube proxy hit`, upstream status/client/format để xác định chính xác đường phát đang dùng.
+- Runtime hiện tại: `1.10.3`; commit `9978c1c920aa3f0c7e1e50bcedece6916f788d3b`; Render deploy `dep-dajp2e2jnfac73f80d7g` đã `live`.
