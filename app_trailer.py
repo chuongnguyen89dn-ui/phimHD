@@ -17,6 +17,18 @@ def _youtube_ids_from_text(text):
             if y not in out:out.append(y)
     return out
 
+def _sitemap_trailer_ids(x):
+    u=(x or {}).get('url')
+    if not u:return []
+    for s in fast.sitemap().get('sections',[]):
+        if s.get('label')!='Sắp Lên Sóng':continue
+        info=(s.get('trailers') or {}).get(u) or {}
+        out=[]
+        for y in info.get('youtubeIds') or []:
+            if re.fullmatch(r'[A-Za-z0-9_-]{11}',str(y)) and y not in out:out.append(y)
+        return out[:3]
+    return []
+
 def _tmdb_trailer_ids(x):
     z=core.apply_tmdb(x);tm=z.get('tmdb') or {};tid=tm.get('tmdbId')
     if not tid:return []
@@ -34,13 +46,14 @@ def trailer_ids(x):
     if not x:return []
     key=x.get('url') or core.mid(x);now=time.time();c=_trailer_cache.get(key)
     if c and now-c[0]<3600:return c[1]
-    ids=[]
+    ids=_sitemap_trailer_ids(x)
     for k in ('trailer','trailerUrl','trailer_url','youtube','youtubeId','ytId'):
         for y in _youtube_ids_from_text(x.get(k)):
             if y not in ids:ids.append(y)
-    page=core.fetch_text(x.get('url',''),600) if x.get('url') else ''
-    for y in _youtube_ids_from_text(page):
-        if y not in ids:ids.append(y)
+    if not ids:
+        page=core.fetch_text(x.get('url',''),600) if x.get('url') else ''
+        for y in _youtube_ids_from_text(page):
+            if y not in ids:ids.append(y)
     if not ids:
         for y in _tmdb_trailer_ids(x):
             if y not in ids:ids.append(y)
@@ -51,29 +64,22 @@ def youtube_media(yid):
     if c and now-c[0]<600:return c[1]
     try:
         import yt_dlp
-        opts={
-            'quiet':True,'no_warnings':True,'noplaylist':True,'socket_timeout':15,'retries':1,
-            'format':'best[ext=mp4][vcodec!=none][acodec!=none]/best[vcodec!=none][acodec!=none]',
-        }
-        with yt_dlp.YoutubeDL(opts) as ydl:
-            info=ydl.extract_info('https://www.youtube.com/watch?v='+yid,download=False)
+        opts={'quiet':True,'no_warnings':True,'noplaylist':True,'socket_timeout':15,'retries':1,'format':'best[ext=mp4][vcodec!=none][acodec!=none]/best[vcodec!=none][acodec!=none]'}
+        with yt_dlp.YoutubeDL(opts) as ydl:info=ydl.extract_info('https://www.youtube.com/watch?v='+yid,download=False)
         url=info.get('url');headers=info.get('http_headers') or {}
         if url:
             obj={'url':url,'headers':{str(k):str(v) for k,v in headers.items() if v}}
             _youtube_media_cache[yid]=(now,obj);return obj
-    except Exception as e:
-        print('youtube proxy resolve failed',yid,type(e).__name__,str(e)[:240],flush=True)
+    except Exception as e:print('youtube proxy resolve failed',yid,type(e).__name__,str(e)[:240],flush=True)
     return None
 
 def youtube_proxy(yid):
     if not re.fullmatch(r'[A-Za-z0-9_-]{11}',yid):return Response('bad id',status=400)
     media=youtube_media(yid)
     if not media:return Response('youtube resolve failed',status=502)
-    headers=dict(media.get('headers') or {})
-    headers.setdefault('User-Agent',core.UA)
+    headers=dict(media.get('headers') or {});headers.setdefault('User-Agent',core.UA)
     if request.headers.get('Range'):headers['Range']=request.headers['Range']
-    try:
-        upstream=urlopen(UrlRequest(media['url'],headers=headers),timeout=20)
+    try:upstream=urlopen(UrlRequest(media['url'],headers=headers),timeout=20)
     except HTTPError as e:
         if e.code in (401,403,410):
             _youtube_media_cache.pop(yid,None);media=youtube_media(yid)
@@ -85,8 +91,7 @@ def youtube_proxy(yid):
             else:return Response('youtube resolve failed',status=502)
         else:return Response('youtube upstream error',status=502)
     except Exception:return Response('youtube upstream error',status=502)
-    status=getattr(upstream,'status',200)
-    out_headers={}
+    status=getattr(upstream,'status',200);out_headers={}
     for k in ('Content-Type','Content-Length','Content-Range','Accept-Ranges','Cache-Control'):
         v=upstream.headers.get(k)
         if v:out_headers[k]=v
@@ -121,9 +126,6 @@ def base_meta_with_trailer(x,full=False):
         country=_source_country(page)
         if country:m['country']=country
         else:m.pop('country',None)
-        # Deliberately do not expose meta.trailers on Nuvio Full iOS. Its built-in
-        # YouTube extractor hands a googlevideo URL to ffmpeg and can fail with 403.
-        # Trailer playback is provided as a normal Ivy stream through our proxy instead.
         m.pop('trailers',None);m.pop('trailerStreams',None)
     return m
 
@@ -140,13 +142,9 @@ def stream_with_trailer(t,item_id):
     except:return response
     x=_find_item(item_id)
     if x:
-        for i,y in enumerate(trailer_ids(x)):
-            streams.append({
-                'name':'Ivy❤️',
-                'title':'🎬 Trailer' if i==0 else f'🎬 Trailer {i+1}',
-                'url':f'https://phimhd.onrender.com/ytproxy/{y}.mp4',
-                'behaviorHints':{'notWebReady':True},
-            })
+        ids=trailer_ids(x);print('ivy stream',item_id,'trailers',ids,flush=True)
+        for i,y in enumerate(ids):
+            streams.append({'name':'Ivy❤️','title':'🎬 Trailer' if i==0 else f'🎬 Trailer {i+1}','url':f'https://phimhd.onrender.com/ytproxy/{y}.mp4','behaviorHints':{'notWebReady':True}})
     return jsonify({'streams':streams})
 
 core.base_meta=base_meta_with_trailer
@@ -155,8 +153,8 @@ core.app.view_functions['meta_route']=meta_route_with_trailer
 core.app.view_functions['stream']=stream_with_trailer
 _old_manifest=fast.manifest_fast
 def manifest_runtime():
-    m=_old_manifest();m['version']='1.10.1';m['description']='Ivy❤️ • source rows only • source country metadata • proxied YouTube trailer playback';return m
+    m=_old_manifest();m['version']='1.10.2';m['description']='Ivy❤️ • exact source rows • crawled source trailer IDs • proxied YouTube playback';return m
 core.app.view_functions['manifest']=lambda:jsonify(manifest_runtime())
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.10.1','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.10.1','movies':len(core.load().get('movies',[])),'pageSize':fast.PAGE_SIZE,'homeRows':fast.HOME_ROWS,'sitemapSections':len(fast.sitemap().get('sections',[])),'country':'source-detail','trailers':'ivy-youtube-proxy','playbackResolver':'recursive-hls'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.10.2','manifest':'/manifest.json'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.10.2','movies':len(core.load().get('movies',[])),'pageSize':fast.PAGE_SIZE,'homeRows':fast.HOME_ROWS,'sitemapSections':len(fast.sitemap().get('sections',[])),'country':'source-detail','trailers':'crawled-source-id+ivy-youtube-proxy','playbackResolver':'recursive-hls'})
 app=core.app
