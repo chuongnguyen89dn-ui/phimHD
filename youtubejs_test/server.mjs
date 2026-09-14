@@ -24,31 +24,66 @@ function originFromReq(req) {
   const host = String(req.headers['x-forwarded-host'] || req.headers.host || 'ivy-youtubejs-direct-test.onrender.com').split(',')[0].trim();
   return `${proto}://${host}`;
 }
-async function getFreshInfo(id) {
-  console.log('[yt-dlp] fresh', id);
-  return await youtubedl(`https://www.youtube.com/watch?v=${id}`, {
-    dumpSingleJson: true, noWarnings: true, noCacheDir: true, noPlaylist: true,
-    jsRuntimes: 'node', extractorArgs: 'generic:impersonate', ignoreNoFormatsError: true
+
+async function runClient(id, playerClient) {
+  console.log('[yt-dlp] client', playerClient, id);
+  const info = await youtubedl(`https://www.youtube.com/watch?v=${id}`, {
+    dumpSingleJson: true,
+    noWarnings: true,
+    noCacheDir: true,
+    noPlaylist: true,
+    jsRuntimes: 'node',
+    extractorArgs: `youtube:player_client=${playerClient}`,
+    ignoreNoFormatsError: true
   }, { timeout: 90000 });
+  console.log('[yt-dlp] client-result', playerClient, Array.isArray(info?.formats) ? info.formats.length : 0);
+  return info;
 }
+
+async function getFreshInfo(id) {
+  let last = null;
+  for (const playerClient of ['web_embedded', 'android_vr', 'ios']) {
+    try {
+      const info = await runClient(id, playerClient);
+      last = info;
+      if (Array.isArray(info?.formats) && info.formats.length > 0) {
+        info._ivyPlayerClient = playerClient;
+        return info;
+      }
+    } catch (e) {
+      console.error('[yt-dlp-client-fail]', playerClient, String(e).slice(0, 300));
+    }
+  }
+  return last || { formats: [] };
+}
+
 function pickMuxed360(info) {
   const formats = Array.isArray(info?.formats) ? info.formats : [];
   return formats.find(f => String(f.format_id) === '18' && f.url && f.vcodec !== 'none' && f.acodec !== 'none')
     || formats.find(f => f.url && f.ext === 'mp4' && f.vcodec !== 'none' && f.acodec !== 'none' && Number(f.height || 0) <= 480)
     || formats.find(f => f.url && f.vcodec !== 'none' && f.acodec !== 'none');
 }
+
 async function inspect(id) {
   const info = await getFreshInfo(id);
   const pick = pickMuxed360(info);
-  return { ok: Boolean(pick), id, title: info.title, picked: pick ? { format_id: pick.format_id, ext: pick.ext, height: pick.height, vcodec: pick.vcodec, acodec: pick.acodec, hasUrl: Boolean(pick.url) } : null, formatCount: (info.formats || []).length };
+  return {
+    ok: Boolean(pick),
+    id,
+    title: info.title,
+    playerClient: info._ivyPlayerClient || null,
+    picked: pick ? { format_id: pick.format_id, ext: pick.ext, height: pick.height, vcodec: pick.vcodec, acodec: pick.acodec, hasUrl: Boolean(pick.url) } : null,
+    formatCount: (info.formats || []).length
+  };
 }
+
 async function proxy360(req, res, id) {
   const info = await getFreshInfo(id);
   const muxed = pickMuxed360(info);
-  if (!muxed?.url) return send(res, 404, { error: 'No muxed YouTube format found' });
+  if (!muxed?.url) return send(res, 404, { error: 'No muxed YouTube format found', playerClient: info._ivyPlayerClient || null, formatCount: (info.formats || []).length });
   const ytHeaders = { Referer: 'https://www.youtube.com/', Origin: 'https://www.youtube.com', 'User-Agent': info.http_headers?.['User-Agent'] || 'Mozilla/5.0' };
   if (req.headers.range) ytHeaders.Range = String(req.headers.range);
-  console.log('[play] proxy', id, muxed.format_id, muxed.height, req.headers.range || 'full');
+  console.log('[play] proxy', id, info._ivyPlayerClient, muxed.format_id, muxed.height, req.headers.range || 'full');
   const upstream = await fetch(muxed.url, { headers: ytHeaders, redirect: 'follow' });
   console.log('[play] upstream', upstream.status, upstream.headers.get('content-type'), upstream.headers.get('content-length'), upstream.headers.get('content-range'));
   if (!upstream.ok && upstream.status !== 206) return send(res, 502, { error: `YouTube CDN ${upstream.status}` });
@@ -61,7 +96,7 @@ async function proxy360(req, res, id) {
   Readable.fromWeb(upstream.body).pipe(res);
 }
 
-const manifest = { id: ADDON_ID, version: '1.1.1', name: 'Ivy ❤️ YouTube Demo', description: 'YouTube demo using fresh yt-dlp muxed MP4 playback.', resources: ['catalog','meta','stream'], types: ['movie'], catalogs: [{ type:'movie', id:CATALOG_ID, name:'Ivy ❤️ YouTube Demo' }], idPrefixes:['yt:'] };
+const manifest = { id: ADDON_ID, version: '1.1.2', name: 'Ivy ❤️ YouTube Demo', description: 'YouTube demo using yt-dlp token-free player-client fallback and muxed MP4 playback.', resources: ['catalog','meta','stream'], types: ['movie'], catalogs: [{ type:'movie', id:CATALOG_ID, name:'Ivy ❤️ YouTube Demo' }], idPrefixes:['yt:'] };
 const meta = { id:`yt:${DEFAULT_ID}`, type:'movie', name:TITLE, poster:POSTER, background:`https://i.ytimg.com/vi/${DEFAULT_ID}/maxresdefault.jpg`, description:'Demo YouTube playback through fresh yt-dlp extraction and muxed MP4 proxy.', genres:['YouTube','Travel'], releaseInfo:'YouTube' };
 
 const server = http.createServer(async (req,res) => {
