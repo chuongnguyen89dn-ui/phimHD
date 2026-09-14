@@ -16,38 +16,33 @@ def _probe(obj):
             ok=getattr(r,'status',200) in (200,206) and bool(r.read(2));print('yttestpot probe',obj.get('format_id'),getattr(r,'status',200),ok,flush=True);return ok
     except Exception as e: print('yttestpot probe fail',obj.get('format_id'),type(e).__name__,str(e)[:220],flush=True);return False
 
-def _extract(yid):
+def formats(yid):
+    now=time.time();c=_formats.get(yid)
+    if c and now-c[0]<300:return c[1]
     import yt_dlp
-    # Try current clients individually. This avoids a URL/token from one client being
-    # accidentally paired with another client's context.
-    clients=['web_embedded','android_vr','mweb','web_safari']
-    errors=[]
+    clients=['web_embedded','android_vr','mweb','web_safari','tv']
+    errors=[];attempts=[];verified=[]
     for client in clients:
         opts={'quiet':True,'no_warnings':False,'noplaylist':True,'socket_timeout':20,'retries':1,'extract_flat':False,
               'extractor_args':{'youtube':{'player_client':[client]},'youtubepot-bgutilhttp':{'base_url':[POT_URL]}}}
         try:
-            with yt_dlp.YoutubeDL(opts) as ydl:
-                info=ydl.extract_info('https://www.youtube.com/watch?v='+yid,download=False)
-            n=len(info.get('formats') or []);print('yttestpot extract',client,'formats',n,flush=True)
-            if n:_diag[yid]={'client':client,'formatsSeen':n,'errors':errors};return info,client
-            errors.append(client+': no formats')
+            with yt_dlp.YoutubeDL(opts) as ydl:info=ydl.extract_info('https://www.youtube.com/watch?v='+yid,download=False)
+            fs=info.get('formats') or [];attempt={'client':client,'formatsSeen':len(fs),'verified':0};print('yttestpot extract',client,'formats',len(fs),flush=True)
+            rows=[]
+            for f in fs:
+                u=f.get('url')
+                if not u:continue
+                obj={'url':u,'headers':f.get('http_headers') or info.get('http_headers') or {},'format_id':str(f.get('format_id') or '')}
+                if _probe(obj):rows.append({'format_id':obj['format_id'],'height':f.get('height'),'ext':f.get('ext'),'vcodec':f.get('vcodec'),'acodec':f.get('acodec'),'fps':f.get('fps'),'filesize':f.get('filesize') or f.get('filesize_approx'),'client':client,'url':u,'headers':obj['headers']})
+            attempt['verified']=len(rows);attempts.append(attempt)
+            if rows:
+                verified=rows;break
+            errors.append(client+': extracted but 0 verified formats')
         except Exception as e:
-            msg=type(e).__name__+': '+str(e)[:260];errors.append(client+': '+msg);print('yttestpot extract fail',client,msg,flush=True)
-    _diag[yid]={'client':None,'formatsSeen':0,'errors':errors};raise RuntimeError('all clients failed')
-
-def formats(yid):
-    now=time.time();c=_formats.get(yid)
-    if c and now-c[0]<300:return c[1]
-    try:
-        info,client=_extract(yid);rows=[]
-        for f in info.get('formats') or []:
-            u=f.get('url')
-            if not u:continue
-            obj={'url':u,'headers':f.get('http_headers') or info.get('http_headers') or {},'format_id':str(f.get('format_id') or '')}
-            if _probe(obj):rows.append({'format_id':obj['format_id'],'height':f.get('height'),'ext':f.get('ext'),'vcodec':f.get('vcodec'),'acodec':f.get('acodec'),'fps':f.get('fps'),'filesize':f.get('filesize') or f.get('filesize_approx'),'client':client,'url':u,'headers':obj['headers']})
-        rows.sort(key=lambda x:(x.get('height') or 0,x.get('filesize') or 0),reverse=True);_formats[yid]=(now,rows)
-        _diag.setdefault(yid,{}).update({'verifiedCount':len(rows)});print('yttestpot verified formats',yid,[(x['format_id'],x['height'],x['ext']) for x in rows[:20]],flush=True);return rows
-    except Exception as e:print('yttestpot formats fail',yid,type(e).__name__,str(e)[:300],flush=True);return []
+            msg=type(e).__name__+': '+str(e)[:260];errors.append(client+': '+msg);attempts.append({'client':client,'formatsSeen':0,'verified':0,'error':msg});print('yttestpot extract fail',client,msg,flush=True)
+    verified.sort(key=lambda x:(x.get('height') or 0,x.get('filesize') or 0),reverse=True);_formats[yid]=(now,verified)
+    _diag[yid]={'client':verified[0]['client'] if verified else None,'verifiedCount':len(verified),'attempts':attempts,'errors':errors}
+    print('yttestpot verified formats',yid,[(x['client'],x['format_id'],x['height'],x['ext']) for x in verified[:20]],flush=True);return verified
 
 def _resolve(yid):
     now=time.time();c=_cache.get(yid)
@@ -85,7 +80,7 @@ def proxy(yid):
             except:pass
     return Response(stream_with_context(gen()),status=status_code,headers=oh,direct_passthrough=True)
 
-def manifest():return jsonify({'id':'community.ivy.youtube.pot.test','version':'1.3.0','name':'Ivy❤️ YouTube Test','description':'Isolated verified-format test only','resources':['catalog','meta','stream'],'types':['movie'],'catalogs':[{'type':'movie','id':'ivy_yt_pot_test','name':'🧪 Ivy • YouTube Test'}],'idPrefixes':['ivypot_']})
+def manifest():return jsonify({'id':'community.ivy.youtube.pot.test','version':'1.3.1','name':'Ivy❤️ YouTube Test','description':'Isolated verified-format test only','resources':['catalog','meta','stream'],'types':['movie'],'catalogs':[{'type':'movie','id':'ivy_yt_pot_test','name':'🧪 Ivy • YouTube Test'}],'idPrefixes':['ivypot_']})
 def catalog():return jsonify({'metas':[{'id':'ivypot_'+TEST_YT,'type':'movie','name':'YouTube Test • '+TEST_YT,'poster':'https://i.ytimg.com/vi/'+TEST_YT+'/hqdefault.jpg'}]})
 def meta(item_id):
     y=item_id[7:] if item_id.startswith('ivypot_') else TEST_YT
