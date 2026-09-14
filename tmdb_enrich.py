@@ -4,8 +4,10 @@ from urllib.request import Request, urlopen
 
 CATALOG=os.environ.get('ROPHIM_CATALOG','rophim_catalog.json')
 TOKEN=os.environ.get('TMDB_BEARER_TOKEN','').strip()
+API_KEY=os.environ.get('TMDB_API_KEY','').strip()
 API='https://api.themoviedb.org/3'
-UA='Ivy/1.0'
+IMG='https://image.tmdb.org/t/p/'
+UA='Ivy/1.1'
 
 
 def norm(s):
@@ -23,10 +25,14 @@ def yval(x):
     return int(m[-1]) if m else None
 
 def get(path,params=None):
-    if not TOKEN: raise RuntimeError('TMDB_BEARER_TOKEN missing')
+    if not TOKEN and not API_KEY: raise RuntimeError('TMDB credentials missing')
+    params=dict(params or {})
+    if API_KEY and not TOKEN: params['api_key']=API_KEY
     u=API+path
     if params:u+='?'+urlencode(params)
-    req=Request(u,headers={'Authorization':'Bearer '+TOKEN,'Accept':'application/json','User-Agent':UA})
+    headers={'Accept':'application/json','User-Agent':UA}
+    if TOKEN:headers['Authorization']='Bearer '+TOKEN
+    req=Request(u,headers=headers)
     with urlopen(req,timeout=20) as r:return json.loads(r.read().decode('utf-8'))
 
 def fetch_pages(path,pages=5):
@@ -54,7 +60,8 @@ def choose(cands,tm):
         if exact:return exact[0]
         near=[x for x in cands if yval(x) and abs(yval(x)-ty)<=1]
         if near:return near[0]
-    return cands[0]
+    # If year is unknown, only accept an unambiguous exact-title candidate.
+    return cands[0] if len(cands)==1 else None
 
 def match_list(results,idx,media):
     urls=[];matches=[]
@@ -72,6 +79,9 @@ def match_list(results,idx,media):
         urls.append(u)
         matches.append({'url':u,'tmdbId':r.get('id'),'mediaType':media,'voteAverage':r.get('vote_average'),'voteCount':r.get('vote_count'),'popularity':r.get('popularity'),'posterPath':r.get('poster_path'),'backdropPath':r.get('backdrop_path')})
     return urls,matches
+
+def tmdb_poster(path):return IMG+'w780'+path if path else None
+def tmdb_backdrop(path):return IMG+'w1280'+path if path else None
 
 def main():
     with open(CATALOG,encoding='utf-8') as f:d=json.load(f)
@@ -91,13 +101,23 @@ def main():
         rankings[key]=urls
         for m in matches:meta[m['url']]=m
         print(key,len(urls),flush=True)
+    image_updates=0
     for x in movies:
         m=meta.get(x.get('url'))
-        if m:x['tmdb']=m
+        if not m:continue
+        x['tmdb']=m
+        poster=tmdb_poster(m.get('posterPath'));backdrop=tmdb_backdrop(m.get('backdropPath'))
+        if poster:
+            if x.get('poster') and not x.get('sourcePoster'):x['sourcePoster']=x.get('poster')
+            x['poster']=poster;image_updates+=1
+        if backdrop:
+            if x.get('backdrop') and not x.get('sourceBackdrop'):x['sourceBackdrop']=x.get('backdrop')
+            x['backdrop']=backdrop
     d['tmdbRankings']=rankings
     d['tmdbMatchedCount']=len(meta)
+    d['tmdbImageUpdates']=image_updates
     with open(CATALOG+'.tmp','w',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,indent=2)
     os.replace(CATALOG+'.tmp',CATALOG)
-    print('DONE tmdbMatchedCount=',len(meta),flush=True)
+    print('DONE tmdbMatchedCount=',len(meta),'imageUpdates=',image_updates,flush=True)
 
 if __name__=='__main__':main()
