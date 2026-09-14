@@ -26,19 +26,14 @@ function cors() {
 
 function send(res, code, obj) {
   res.writeHead(code, cors());
-  res.end(JSON.stringify(obj, null, 2));
+  res.end(JSON.stringify(obj));
 }
 
 async function probe(url) {
   try {
     const r = await fetch(url, { headers: { Range: 'bytes=0-1' }, redirect: 'follow' });
     const b = await r.arrayBuffer();
-    return {
-      ok: (r.status === 200 || r.status === 206) && b.byteLength > 0,
-      status: r.status,
-      bytes: b.byteLength,
-      contentType: r.headers.get('content-type')
-    };
+    return { ok: (r.status === 200 || r.status === 206) && b.byteLength > 0, status: r.status, bytes: b.byteLength, contentType: r.headers.get('content-type') };
   } catch (e) {
     return { ok: false, error: String(e).slice(0, 240) };
   }
@@ -82,21 +77,19 @@ async function stremioStreams(id) {
   return candidates.slice(0, 6).map(f => ({
     name: `Ivy YouTube • ${f.quality || 'auto'}${f.hasAudio ? '' : ' • video-only'}`,
     title: `${TITLE}\nYouTube ID: ${id} • itag ${f.itag}`,
-    url: f.url,
-    behaviorHints: { notWebReady: false }
+    url: f.url
   }));
 }
 
 const manifest = {
   id: ADDON_ID,
-  version: '1.0.2',
+  version: '1.0.3',
   name: 'Ivy ❤️ YouTube Demo',
   description: 'Demo phát trực tiếp một video YouTube trong Nuvio qua URL media được resolve tại thời điểm Play.',
   resources: ['catalog', 'meta', 'stream'],
   types: ['movie'],
   catalogs: [{ type: 'movie', id: CATALOG_ID, name: 'Ivy ❤️ YouTube Demo' }],
-  idPrefixes: ['yt:'],
-  behaviorHints: { configurable: false, configurationRequired: false }
+  idPrefixes: ['yt:']
 };
 
 const meta = {
@@ -116,40 +109,46 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(204, cors());
       return res.end();
     }
-    const u = new URL(req.url, 'http://localhost');
 
-    if (u.pathname === '/') {
+    const u = new URL(req.url, 'http://localhost');
+    let path;
+    try { path = decodeURIComponent(u.pathname); }
+    catch { path = u.pathname; }
+
+    console.log(req.method, path);
+
+    if (path === '/') {
       return send(res, 200, {
         service: 'Ivy YouTube Nuvio demo addon',
         manifest: '/manifest.json',
         videoId: DEFAULT_ID,
         catalog: `/catalog/movie/${CATALOG_ID}.json`,
         meta: `/meta/movie/yt:${DEFAULT_ID}.json`,
-        stream: `/stream/movie/yt:${DEFAULT_ID}.json`,
-        inspect: `/inspect/${DEFAULT_ID}`
+        stream: `/stream/movie/yt:${DEFAULT_ID}.json`
       });
     }
 
-    if (u.pathname === '/manifest.json') return send(res, 200, manifest);
+    if (path === '/manifest.json') return send(res, 200, manifest);
 
-    if (u.pathname === `/catalog/movie/${CATALOG_ID}.json`) {
-      return send(res, 200, { metas: [meta] });
-    }
+    if (path === `/catalog/movie/${CATALOG_ID}.json`) return send(res, 200, { metas: [meta] });
 
-    if (u.pathname === `/meta/movie/yt:${DEFAULT_ID}.json`) {
+    const metaMatch = path.match(/^\/meta\/movie\/yt:([A-Za-z0-9_-]{11})\.json$/);
+    if (metaMatch) {
+      if (metaMatch[1] !== DEFAULT_ID) return send(res, 200, { meta: null });
       return send(res, 200, { meta });
     }
 
-    if (u.pathname === `/stream/movie/yt:${DEFAULT_ID}.json`) {
-      const streams = await stremioStreams(DEFAULT_ID);
-      return send(res, streams.length ? 200 : 502, { streams });
+    const streamMatch = path.match(/^\/stream\/movie\/yt:([A-Za-z0-9_-]{11})\.json$/);
+    if (streamMatch) {
+      const streams = await stremioStreams(streamMatch[1]);
+      return send(res, 200, { streams });
     }
 
-    const inspectMatch = u.pathname.match(/^\/inspect\/([A-Za-z0-9_-]{11})$/);
+    const inspectMatch = path.match(/^\/inspect\/([A-Za-z0-9_-]{11})$/);
     if (inspectMatch) return send(res, 200, await inspect(inspectMatch[1]));
-    if (u.pathname === '/test') return send(res, 200, await inspect(DEFAULT_ID));
+    if (path === '/test') return send(res, 200, await inspect(DEFAULT_ID));
 
-    return send(res, 404, { error: 'not found' });
+    return send(res, 404, { error: 'not found', path });
   } catch (e) {
     console.error(e);
     return send(res, 502, { ok: false, error: String(e), stack: String(e?.stack || '').split('\n').slice(0, 5) });
