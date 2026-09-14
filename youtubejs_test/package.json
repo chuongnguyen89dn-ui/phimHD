@@ -1,1 +1,1 @@
-{"name":"ivy-youtubejs-test","version":"1.0.0","type":"module","scripts":{"start":"node server.mjs"},"dependencies":{"youtubei.js":"latest"}}
+{"name":"ivy-youtubejs-test","version":"1.0.1","type":"module","scripts":{"start":"node server.mjs"},"dependencies":{"youtube-dl-exec":"latest"}}
