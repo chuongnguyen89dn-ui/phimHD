@@ -1,11 +1,11 @@
-import re, time
+import os, re, time
 from urllib.request import Request as UrlRequest, urlopen
 from urllib.error import HTTPError
 from flask import jsonify, Response, request, stream_with_context
 from app_trailer import app
 
 TEST_YT='AjSxpi8E9WE'
-POT_URL='https://ivy-pot-test.onrender.com'
+POT_URL=os.environ.get('YOUTUBE_POT_URL','https://ivy-pot-test.onrender.com')
 _cache={};_formats={}
 
 def _probe(obj):
@@ -15,13 +15,11 @@ def _probe(obj):
         with urlopen(UrlRequest(obj['url'],headers=h),timeout=15) as r:
             ok=getattr(r,'status',200) in (200,206) and bool(r.read(2))
             print('yttestpot probe',obj.get('format_id'),getattr(r,'status',200),ok,flush=True);return ok
-    except Exception as e:
-        print('yttestpot probe fail',obj.get('format_id'),type(e).__name__,str(e)[:220],flush=True);return False
+    except Exception as e: print('yttestpot probe fail',obj.get('format_id'),type(e).__name__,str(e)[:220],flush=True);return False
 
 def _extract(yid):
     import yt_dlp
-    opts={'quiet':True,'no_warnings':False,'noplaylist':True,'socket_timeout':20,'retries':1,'extract_flat':False,
-          'extractor_args':{'youtube':{'player_client':['mweb']},'youtubepot-bgutilhttp':{'base_url':[POT_URL]}}}
+    opts={'quiet':True,'no_warnings':False,'noplaylist':True,'socket_timeout':20,'retries':1,'extract_flat':False,'extractor_args':{'youtube':{'player_client':['mweb']},'youtubepot-bgutilhttp':{'base_url':[POT_URL]}}}
     with yt_dlp.YoutubeDL(opts) as ydl:return ydl.extract_info('https://www.youtube.com/watch?v='+yid,download=False)
 
 def formats(yid):
@@ -33,27 +31,22 @@ def formats(yid):
             u=f.get('url')
             if not u:continue
             obj={'url':u,'headers':f.get('http_headers') or info.get('http_headers') or {},'format_id':str(f.get('format_id') or '')}
-            if _probe(obj):
-                rows.append({'format_id':obj['format_id'],'height':f.get('height'),'ext':f.get('ext'),'vcodec':f.get('vcodec'),'acodec':f.get('acodec'),'fps':f.get('fps'),'filesize':f.get('filesize') or f.get('filesize_approx'),'url':u,'headers':obj['headers']})
-        rows.sort(key=lambda x:(x.get('height') or 0, x.get('filesize') or 0),reverse=True);_formats[yid]=(now,rows)
+            if _probe(obj):rows.append({'format_id':obj['format_id'],'height':f.get('height'),'ext':f.get('ext'),'vcodec':f.get('vcodec'),'acodec':f.get('acodec'),'fps':f.get('fps'),'filesize':f.get('filesize') or f.get('filesize_approx'),'url':u,'headers':obj['headers']})
+        rows.sort(key=lambda x:(x.get('height') or 0,x.get('filesize') or 0),reverse=True);_formats[yid]=(now,rows)
         print('yttestpot verified formats',yid,[(x['format_id'],x['height'],x['ext']) for x in rows[:20]],flush=True);return rows
-    except Exception as e:
-        print('yttestpot formats fail',yid,type(e).__name__,str(e)[:300],flush=True);return []
+    except Exception as e:print('yttestpot formats fail',yid,type(e).__name__,str(e)[:300],flush=True);return []
 
 def _resolve(yid):
     now=time.time();c=_cache.get(yid)
     if c and now-c[0]<300:return c[1]
-    rows=formats(yid)
-    # Prefer a progressive MP4 carrying both video and audio; otherwise highest verified media URL.
-    candidates=[x for x in rows if x.get('ext')=='mp4' and x.get('vcodec') not in (None,'none') and x.get('acodec') not in (None,'none')]
+    rows=formats(yid);candidates=[x for x in rows if x.get('ext')=='mp4' and x.get('vcodec') not in (None,'none') and x.get('acodec') not in (None,'none')]
     if not candidates:candidates=rows
     if not candidates:return None
     obj=candidates[0];_cache[yid]=(now,obj);return obj
 
 def status(yid):
-    rows=formats(yid)
-    safe=[{k:v for k,v in x.items() if k not in ('url','headers')} for x in rows]
-    return jsonify({'ok':bool(rows),'videoId':yid,'verifiedCount':len(rows),'formats':safe})
+    rows=formats(yid);safe=[{k:v for k,v in x.items() if k not in ('url','headers')} for x in rows]
+    return jsonify({'ok':bool(rows),'videoId':yid,'verifiedCount':len(rows),'potProvider':POT_URL,'formats':safe})
 
 def proxy(yid):
     if not re.fullmatch(r'[A-Za-z0-9_-]{11}',yid):return Response('bad id',400)
@@ -79,14 +72,13 @@ def proxy(yid):
             except:pass
     return Response(stream_with_context(gen()),status=status_code,headers=oh,direct_passthrough=True)
 
-def manifest():return jsonify({'id':'community.ivy.youtube.pot.test','version':'1.1.0','name':'Ivy❤️ YouTube Test','description':'Isolated verified-format test only','resources':['catalog','meta','stream'],'types':['movie'],'catalogs':[{'type':'movie','id':'ivy_yt_pot_test','name':'🧪 Ivy • YouTube Test'}],'idPrefixes':['ivypot_']})
+def manifest():return jsonify({'id':'community.ivy.youtube.pot.test','version':'1.2.0','name':'Ivy❤️ YouTube Test','description':'Isolated verified-format test only','resources':['catalog','meta','stream'],'types':['movie'],'catalogs':[{'type':'movie','id':'ivy_yt_pot_test','name':'🧪 Ivy • YouTube Test'}],'idPrefixes':['ivypot_']})
 def catalog():return jsonify({'metas':[{'id':'ivypot_'+TEST_YT,'type':'movie','name':'YouTube Test • '+TEST_YT,'poster':'https://i.ytimg.com/vi/'+TEST_YT+'/hqdefault.jpg'}]})
 def meta(item_id):
     y=item_id[7:] if item_id.startswith('ivypot_') else TEST_YT
     return jsonify({'meta':{'id':'ivypot_'+y,'type':'movie','name':'YouTube Test • '+y,'poster':'https://i.ytimg.com/vi/'+y+'/hqdefault.jpg'}})
 def stream(item_id):
-    y=item_id[7:] if item_id.startswith('ivypot_') else TEST_YT
-    base=request.host_url.rstrip('/')
+    y=item_id[7:] if item_id.startswith('ivypot_') else TEST_YT;base=request.host_url.rstrip('/')
     return jsonify({'streams':[{'name':'Ivy❤️ TEST','title':'🧪 Verified YouTube media','url':base+'/yttestpot/proxy/'+y+'.mp4','behaviorHints':{'notWebReady':True}}]})
 
 app.add_url_rule('/yttestpot/manifest.json','yttestpot_manifest',manifest)
