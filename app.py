@@ -61,7 +61,7 @@ def tmdb_get(path,params=None,ttl=21600):
     key=path+'?'+urlencode(sorted(params.items()));now=time.time();c=_tmdb_cache.get(key)
     if c and now-c[0]<ttl:return c[1]
     try:
-        req=Request(TMDB_API+path+'?'+urlencode(params),headers={'Accept':'application/json','User-Agent':'Ivy/1.6'})
+        req=Request(TMDB_API+path+'?'+urlencode(params),headers={'Accept':'application/json','User-Agent':'Ivy/1.7'})
         with urlopen(req,timeout=8) as r:d=json.loads(r.read().decode('utf-8'))
         _tmdb_cache[key]=(now,d);return d
     except:return None
@@ -78,17 +78,16 @@ def tmdb_match(x):
     d=tmdb_get('/search/'+media,params,21600) or {};rows=d.get('results') or []
     if not rows and x.get('originalTitle') and norm(x.get('originalTitle'))!=norm(q):
         params['query']=clean(x.get('originalTitle'));d=tmdb_get('/search/'+media,params,21600) or {};rows=d.get('results') or []
-    target_names={norm(q),norm(x.get('originalTitle'))};target_names.discard('')
-    best=None
+    target={norm(q),norm(x.get('originalTitle'))};target.discard('')
     for r in rows[:10]:
         names={norm(r.get('title')),norm(r.get('name')),norm(r.get('original_title')),norm(r.get('original_name'))};names.discard('')
-        if not target_names.intersection(names):continue
+        if not target.intersection(names):continue
         dt=r.get('release_date') or r.get('first_air_date') or '';ry=int(dt[:4]) if len(dt)>=4 and dt[:4].isdigit() else None
         if y and ry and abs(y-ry)>1:continue
-        best=r;break
-    return tmdb_meta_obj(best,media) or existing
-def apply_tmdb(x,tm=None):
-    tm=tm or tmdb_match(x)
+        return tmdb_meta_obj(r,media)
+    return existing
+def apply_tmdb(x):
+    tm=tmdb_match(x)
     if not tm:return x
     y=dict(x);y['tmdb']=tm
     if tm.get('posterPath'):y['poster']=TMDB_IMG+'w780'+tm['posterPath']
@@ -129,8 +128,7 @@ def series_key(x):
     s=re.sub(r'\([^)]*(?:phần|season)\s*\d+[^)]*\)',' ',s,flags=re.I)
     s=re.sub(r'[-–—:]?\s*(?:phần|season)\s*\d+\b',' ',s,flags=re.I)
     s=re.sub(r'\bS\d{1,2}\b',' ',s,flags=re.I)
-    s=re.sub(r'\s+',' ',s).strip(' -–—:()')
-    return s
+    return re.sub(r'\s+',' ',s).strip(' -–—:()')
 def series_name(x):
     s=clean(x.get('title') or x.get('slug') or 'Ivy❤️')
     s=re.sub(r'\s*\([^)]*(?:phần|season)\s*\d+[^)]*\)','',s,flags=re.I)
@@ -138,16 +136,13 @@ def series_name(x):
     return re.sub(r'\s+',' ',s).strip(' -–—:()') or clean(x.get('title'))
 def series_family(x):
     if not x or typ(x)!='series':return [x] if x else []
-    key=series_key(x);out=[]
-    for y in load().get('movies',[]):
-        if typ(y)=='series' and series_key(y)==key:out.append(y)
-    return out or [x]
+    k=series_key(x);return [y for y in load().get('movies',[]) if typ(y)=='series' and series_key(y)==k] or [x]
 def family_seasons(x):
-    by={}
+    out={}
     for y in series_family(x):
         s=infer_season(y)
-        if s not in by or y.get('url')==x.get('url'):by[s]=y
-    return by
+        if s not in out or y.get('url')==x.get('url'):out[s]=y
+    return out
 
 def extract_array_after(h,marker):
     p=h.find(marker)
@@ -192,124 +187,127 @@ def episode_rows(x):
 
 def base_meta(x,full=False):
     if full:x=apply_tmdb(x)
-    is_series=typ(x)=='series'
-    m={'id':mid(x),'type':typ(x),'name':series_name(x) if is_series else clean(x.get('title') or x.get('slug') or 'Ivy❤️'),'poster':x.get('poster') or None,'background':x.get('backdrop') or None,'description':clean(x.get('description')),'website':x.get('url'),'posterShape':'poster'}
+    is_series=typ(x)=='series';m={'id':mid(x),'type':typ(x),'name':series_name(x) if is_series else clean(x.get('title') or x.get('slug') or 'Ivy❤️'),'poster':x.get('poster') or None,'background':x.get('backdrop') or None,'description':clean(x.get('description')),'website':x.get('url'),'posterShape':'poster'}
     y=year(x)
     if y:m['releaseInfo']=str(y)
     if tax(x,'genres'):m['genres']=tax(x,'genres')
     if tax(x,'countries'):m['country']=', '.join(tax(x,'countries'))
     if x.get('duration'):m['runtime']=x['duration']
     tm=x.get('tmdb') or {}
-    if tm.get('voteAverage') is not None:
-        m['rating']=round(float(tm['voteAverage']),1);m['voteCount']=tm.get('voteCount')
+    if tm.get('voteAverage') is not None:m['rating']=round(float(tm['voteAverage']),1);m['voteCount']=tm.get('voteCount')
     if full and is_series:
         videos=[]
         for season,src in sorted(family_seasons(x).items()):
             _,eps=episode_rows(src)
-            for e in eps:
-                videos.append({'id':f"{m['id']}:{season}:{e['episode']}",'title':e['title'],'season':season,'episode':e['episode'],'overview':clean(src.get('description') or x.get('description')),'thumbnail':src.get('backdrop') or src.get('poster') or x.get('backdrop') or x.get('poster')})
+            for e in eps:videos.append({'id':f"{m['id']}:{season}:{e['episode']}",'title':e['title'],'season':season,'episode':e['episode'],'overview':clean(src.get('description') or x.get('description')),'thumbnail':src.get('backdrop') or src.get('poster') or x.get('backdrop') or x.get('poster')})
         if videos:m['videos']=videos
     return m
 
 def data_index():
-    d=load().get('movies',[]);return d,{x.get('url'):x for x in d if x.get('url')}
-def ordered_from_urls(urls,predicate=None,include_tail=True):
+    d=load().get('movies',[]);return d,{str(x.get('url','')).rstrip('/'):x for x in d if x.get('url')}
+def ordered_from_urls(urls,predicate=None,include_tail=False):
     data,by=data_index();seen=set();out=[]
     for u in urls:
-        x=by.get(u)
-        if x and (predicate is None or predicate(x)) and u not in seen:out.append(x);seen.add(u)
+        x=by.get(str(u).rstrip('/'))
+        if x and (predicate is None or predicate(x)) and x.get('url') not in seen:out.append(x);seen.add(x.get('url'))
     if include_tail:
-        tail=[x for x in data if x.get('url') not in seen and (predicate is None or predicate(x))]
-        tail.sort(key=lambda x:(-(year(x) or 0),clean(x.get('title','')).lower()));out.extend(tail)
+        for x in data:
+            if x.get('url') not in seen and (predicate is None or predicate(x)):out.append(x)
     return out
 def dedupe_series(items):
     out=[];seen=set()
     for x in items:
         k=series_key(x)
-        if k in seen:continue
-        seen.add(k);out.append(x)
+        if k not in seen:seen.add(k);out.append(x)
     return out
-def latest_items(kind):
-    pred=(lambda x:typ(x)==kind)
-    items=ordered_from_urls(source_order('home'),pred,True)
-    return dedupe_series(items) if kind=='series' else items
 
+# Home rows follow the source site's current editorial structure.
 SOURCE_SECTIONS=[
- 'Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Phim US-UK Mới','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng',
+ 'Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Thiên đường Phim Thái','Phim US-UK Mới',
+ 'Phim Điện Ảnh Mới Cóng','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng','Mê Cung Phim Nhật',
  'Phim Bộ Đã Hoàn Thành','Hành Động Nghẹt Thở','Trinh Thám & Bí Ẩn','Tinh Hoa Điện Ảnh Hồng Kông',
- 'Top 10 phim lẻ hôm nay','Thế giới Anime','Top 10 phim bộ hôm nay','Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng'
+ 'Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay','Thế giới Anime','Cổ Trang Trung Quốc',
+ 'Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng'
 ]
+SERIES_SECTIONS={'Phim Bộ Đã Hoàn Thành','Top 10 phim bộ hôm nay'}
 
 def _section_pos(h,label,start=0):
-    vals=[label,html.escape(label,quote=False)]
-    found=[h.find(v,start) for v in vals if h.find(v,start)>=0]
-    return min(found) if found else -1
+    variants=[label,html.escape(label,quote=False)]
+    pos=[h.find(v,start) for v in variants if h.find(v,start)>=0]
+    return min(pos) if pos else -1
 def source_home_sections():
     now=time.time();key='__home_sections__';c=_order_cache.get(key)
     if c and now-c[0]<600:return c[1]
-    h=fetch_text(BASE+'/phimhay',300)
-    anchor=_section_pos(h,'Bạn đang quan tâm gì?')
-    start=max(0,anchor)
-    positions=[]
+    h=fetch_text(BASE+'/phimhay',300);start=max(0,_section_pos(h,'Bạn đang quan tâm gì?'));positions=[]
     for i,label in enumerate(SOURCE_SECTIONS):
         p=_section_pos(h,label,start)
         if p>=0:positions.append((p,i,label))
     positions.sort();out={}
     for n,(p,i,label) in enumerate(positions):
-        end=positions[n+1][0] if n+1<len(positions) else len(h)
-        seg=h[p:end];urls=[]
+        end=positions[n+1][0] if n+1<len(positions) else len(h);seg=h[p:end];urls=[]
         for href in re.findall(r'href=["\']([^"\']+)',seg,re.I):
             if '/phim/' not in href:continue
             u=urljoin(BASE+'/',html.unescape(href)).split('#')[0]
             if u not in urls:urls.append(u)
         if urls:out[label]=urls
     _order_cache[key]=(now,out);return out
-def source_section_items(label):
-    urls=source_home_sections().get(label) or []
-    data=load().get('movies',[]);by={str(x.get('url','')).rstrip('/'):x for x in data if x.get('url')};out=[];seen=set()
-    for u in urls:
-        x=by.get(u.rstrip('/'))
-        if x and x.get('url') not in seen:out.append(x);seen.add(x.get('url'))
-    return out
-def source_latest_items():
-    return ordered_from_urls(source_order('home'),None,False)
+def source_section_items(label):return ordered_from_urls(source_home_sections().get(label) or [])
+def source_latest(kind):
+    items=ordered_from_urls(source_order('home'),lambda x:typ(x)==kind)
+    return dedupe_series(items) if kind=='series' else items
+def source_menu(kind):
+    items=ordered_from_urls(source_order(kind),lambda x:typ(x)==kind)
+    return dedupe_series(items) if kind=='series' else items
+def filtered_special(mode):
+    items=ordered_from_urls(source_order('home'))
+    if mode=='4k':return [x for x in items if '4k' in (' '.join(tax(x,'sections'))+' '+str(x.get('quality',''))+' '+clean(x.get('title'))).lower()]
+    if mode=='cinema':return [x for x in items if 'chiếu rạp' in (' '.join(tax(x,'sections'))+' '+clean(x.get('title'))).lower()]
+    return []
 
 def genre_options(data):
-    found=[]
+    out=[]
     for x in data:
         for g in tax(x,'genres'):
-            if g and g not in found:found.append(g)
-    return sorted(found)
+            if g and g not in out:out.append(g)
+    return sorted(out)
 def manifest_data():
     d=load();common=[{'name':'genre','isRequired':False,'options':genre_options(d.get('movies',[]))},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
-    cats=[{'type':'movie','id':'ivy_source_latest','name':'❤️ Ivy • Phim Hay Mới Nhất','extra':common}]
+    cats=[
+      {'type':'movie','id':'ivy_latest_movies','name':'❤️ Ivy • Phim Lẻ Mới','extra':common},
+      {'type':'series','id':'ivy_latest_series','name':'❤️ Ivy • Phim Bộ Mới','extra':common},
+      {'type':'movie','id':'ivy_movies','name':'❤️ Ivy • Phim Lẻ','extra':common},
+      {'type':'series','id':'ivy_series','name':'❤️ Ivy • Phim Bộ','extra':common}]
+    if filtered_special('4k'):cats.append({'type':'movie','id':'ivy_4k','name':'❤️ Ivy • Phim 4K','extra':common})
+    if filtered_special('cinema'):cats.append({'type':'movie','id':'ivy_cinema','name':'❤️ Ivy • Chiếu Rạp','extra':common})
     active=source_home_sections()
     for i,label in enumerate(SOURCE_SECTIONS):
-        if not active.get(label):continue
-        ctype='series' if label in ('Phim Bộ Đã Hoàn Thành','Top 10 phim bộ hôm nay') else 'movie'
-        cats.append({'type':ctype,'id':f'ivy_src_{i}','name':f'❤️ Ivy • {label}','extra':common})
-    return {'id':'community.ivy.catalog','version':'1.6.0','name':'Ivy❤️','description':'Ivy❤️ • home follows the current source homepage; TMDB only enriches matched detail metadata','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+        if active.get(label):cats.append({'type':'series' if label in SERIES_SECTIONS else 'movie','id':f'ivy_src_{i}','name':f'❤️ Ivy • {label}','extra':common})
+    return {'id':'community.ivy.catalog','version':'1.7.0','name':'Ivy❤️','description':'Ivy❤️ • source-style home, source categories and playback; TMDB only enriches matched detail metadata','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 @app.get('/')
-def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.6.0','manifest':'/manifest.json'})
+def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.7.0','manifest':'/manifest.json'})
 @app.get('/manifest.json')
 def manifest():return jsonify(manifest_data())
 @app.get('/health')
 def health():
-    d=load();return jsonify({'ok':True,'version':'1.6.0','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbRuntime':bool(TMDB_API_KEY),'sourceSections':list(source_home_sections().keys()),'homeOrder':len(source_order('home'))})
+    d=load();return jsonify({'ok':True,'version':'1.7.0','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbRuntime':bool(TMDB_API_KEY),'sourceSections':list(source_home_sections().keys()),'homeOrder':len(source_order('home'))})
 def extras(path=''):
     o={}
     for p in path.split('/'):
-        if '=' in p:
-            k,v=p.split('=',1);o[k]=unquote(v)
+        if '=' in p:k,v=p.split('=',1);o[k]=unquote(v)
     for k in ('skip','search','genre'):
         if request.args.get(k)!=None:o[k]=request.args[k]
     return o
 def catalog(cid,path=''):
     e=extras(path);q=(e.get('search') or '').lower().strip()
-    if cid=='ivy_source_latest':items=source_latest_items()
+    if cid=='ivy_latest_movies':items=source_latest('movie')
+    elif cid=='ivy_latest_series':items=source_latest('series')
+    elif cid=='ivy_movies':items=source_menu('movies')
+    elif cid=='ivy_series':items=source_menu('series')
+    elif cid=='ivy_4k':items=filtered_special('4k')
+    elif cid=='ivy_cinema':items=filtered_special('cinema')
     elif cid.startswith('ivy_src_'):
-        try:i=int(cid.rsplit('_',1)[1]);label=SOURCE_SECTIONS[i]
+        try:label=SOURCE_SECTIONS[int(cid.rsplit('_',1)[1])]
         except:return jsonify({'metas':[]})
         items=source_section_items(label)
     else:items=[]
@@ -338,8 +336,7 @@ def stream(t,item_id):
     if len(parts)>=3 and typ(x)=='series':
         try:season=int(parts[-2]);ep=int(parts[-1])
         except:return jsonify({'streams':[]})
-        src=family_seasons(x).get(season) or x
-        _,rows=episode_rows(src);row=next((r for r in rows if r['episode']==ep),None)
+        src=family_seasons(x).get(season) or x;_,rows=episode_rows(src);row=next((r for r in rows if r['episode']==ep),None)
         if not row:return jsonify({'streams':[]})
         return jsonify({'streams':[{'name':'Ivy❤️','title':f"Ivy❤️ • Mùa {season} • {row['title']} • {s['name']}",'url':s['url'],'behaviorHints':{'notWebReady':True}} for s in row['sources']]})
     hints=x.get('playbackHints') or {};urls=list(dict.fromkeys((hints.get('direct') or [])+HLS_RE.findall(fetch_text(u,120))))
