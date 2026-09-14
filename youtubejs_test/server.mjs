@@ -2,8 +2,8 @@ import http from 'node:http';
 
 const PORT = Number(process.env.PORT || 10000);
 const DEFAULT_ID = 'AjSxpi8E9WE';
-const ADDON_ID = 'community.ivy.youtube.demo';
-const CATALOG_ID = 'ivy-youtube-demo';
+const ADDON_ID = 'community.ivy.youtube.external.demo';
+const CATALOG_ID = 'ivy-youtube-external-demo';
 const TITLE = 'Hành trình xuyên đảo núi lửa Iceland P5 - Du lịch Châu Âu';
 const POSTER = `https://i.ytimg.com/vi/${DEFAULT_ID}/hqdefault.jpg`;
 
@@ -23,12 +23,12 @@ function send(res, code, body) {
 
 const manifest = {
   id: ADDON_ID,
-  version: '2.0.0',
-  name: 'Ivy ❤️ YouTube Demo',
-  description: 'YouTube demo using Nuvio native ytId stream support.',
+  version: '3.0.0',
+  name: 'Ivy ❤️ YouTube External Demo',
+  description: 'YouTube demo using externalUrl, matching the trailer-addon playback approach.',
   resources: ['catalog', 'meta', 'stream'],
   types: ['movie'],
-  catalogs: [{ type: 'movie', id: CATALOG_ID, name: 'Ivy ❤️ YouTube Demo' }],
+  catalogs: [{ type: 'movie', id: CATALOG_ID, name: 'Ivy ❤️ YouTube External' }],
   idPrefixes: ['yt:']
 };
 
@@ -38,7 +38,7 @@ const meta = {
   name: TITLE,
   poster: POSTER,
   background: `https://i.ytimg.com/vi/${DEFAULT_ID}/maxresdefault.jpg`,
-  description: 'YouTube native playback test in Nuvio.',
+  description: 'Demo mở video YouTube bằng externalUrl.',
   genres: ['YouTube', 'Travel'],
   releaseInfo: 'YouTube'
 };
@@ -54,7 +54,7 @@ const server = http.createServer((req, res) => {
     try { path = decodeURIComponent(u.pathname); } catch { path = u.pathname; }
     console.log(req.method, path);
 
-    if (path === '/') return send(res, 200, { service: 'Ivy YouTube Nuvio native ytId demo', version: manifest.version, manifest: '/manifest.json' });
+    if (path === '/') return send(res, 200, { service: manifest.name, version: manifest.version, manifest: '/manifest.json' });
     if (path === '/manifest.json') return send(res, 200, manifest);
     if (path === `/catalog/movie/${CATALOG_ID}.json`) return send(res, 200, { metas: [meta] });
 
@@ -65,11 +65,11 @@ const server = http.createServer((req, res) => {
     if (sm) {
       const id = sm[1];
       const streams = [{
-        name: 'YouTube • Nuvio Native',
-        title: 'Built-in YouTube player',
-        ytId: id
+        name: '▶️ Watch on YouTube',
+        title: 'Open YouTube',
+        externalUrl: `https://www.youtube.com/watch?v=${id}`
       }];
-      console.log('[stream]', JSON.stringify(streams));
+      console.log('[stream-external]', JSON.stringify(streams));
       return send(res, 200, { streams });
     }
 
@@ -80,4 +80,4 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(PORT, '0.0.0.0', () => console.log('Ivy YouTube native ytId demo listening', PORT));
+server.listen(PORT, '0.0.0.0', () => console.log('Ivy YouTube externalUrl demo listening', PORT));
