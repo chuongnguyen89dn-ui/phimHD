@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/ivy-catalog.yml'
       - 'rophim_catalog_crawler_taxonomy_v5.py'
+      - 'ivy_sitemap_crawler.py'
       - 'ivy_playback_audit.py'
   schedule:
     - cron: '0 0,8,16 * * *'
@@ -31,19 +32,23 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.json
           ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
+      - name: Crawl exact source sitemap and pagination
+        env:
+          IVY_SITEMAP_OUT: ivy_sitemap.json
+        run: python ivy_sitemap_crawler.py
       - name: Audit and cache playback sources
         env:
           ROPHIM_CATALOG: rophim_catalog.json
           IVY_PLAYBACK_AUDIT_LIMIT: '120'
         run: python ivy_playback_audit.py
-      - name: Publish catalog to data branch only
+      - name: Publish catalog and sitemap to data branch
         run: |
           git config user.name "ivy-catalog-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add rophim_catalog.json
+          git add rophim_catalog.json ivy_sitemap.json
           if git diff --cached --quiet; then
-            echo "Catalog unchanged"
+            echo "Catalog and sitemap unchanged"
             exit 0
           fi
-          git commit -m "Update Ivy catalog data"
+          git commit -m "Update Ivy catalog and source sitemap"
           git push --force origin HEAD:catalog-data
