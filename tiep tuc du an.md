@@ -41,3 +41,14 @@
 - Bổ sung các section theo cấu trúc web nguồn: Điện ảnh Hàn Quốc, Mọt phim Hoa Ngữ, Thiên đường Phim Thái, Phim US-UK Mới, Phim Điện Ảnh Mới Cóng, Dấu ấn điện ảnh Việt, Đêm Kinh Hoàng, Mê Cung Phim Nhật, Phim Bộ Đã Hoàn Thành, Hành Động Nghẹt Thở, Trinh Thám & Bí Ẩn, Tinh Hoa Điện Ảnh Hồng Kông, Top 10 phim bộ hôm nay, Top 10 phim lẻ hôm nay, Thế giới Anime, Cổ Trang Trung Quốc, Mãn Nhãn với Phim Chiếu Rạp, Sắp Lên Sóng.
 - Thêm các catalog điều hướng gần với menu nguồn: Phim Lẻ Mới, Phim Bộ Mới, Phim Lẻ, Phim Bộ, Phim 4K, Chiếu Rạp; thể loại tiếp tục dùng filter catalog của Nuvio/Stremio.
 - Phiên bản addon tăng lên `1.7.0`, commit `ddf3e423613ada93fe4978b025e80c1ebd47646a`.
+
+## Cập nhật 14/09/2026 - Search, metadata và trailer
+
+- Sửa search để kết quả của từng hàng catalog không bị nhân sang Hàn Quốc/Hoa Ngữ/Thái khi Nuvio gửi cùng từ khóa cho tất cả catalog.
+- Gỡ hai hàng tự thêm `Tìm toàn bộ phim lẻ/phim bộ`; Home chỉ giữ các hàng lấy từ web nguồn.
+- Trường Quốc gia ở trang chi tiết ưu tiên đọc trực tiếp từ trang phim nguồn; không dùng nhãn taxonomy kiểu `Phim Âu Mỹ Mới Nhất` làm quốc gia.
+- Kiểm tra mã nguồn Nuvio iOS Full và xác nhận trailer YouTube nội bộ có thể resolve ra `googlevideo.com` nhưng ffmpeg phát lại bị HTTP 403.
+- Bỏ đường phát trailer native `meta.trailers` cho Ivy để tránh lỗi 403 của extractor Nuvio iOS Full.
+- Thêm proxy trailer `/ytproxy/<youtube-id>.mp4`: Ivy dùng `yt-dlp` lấy progressive MP4 có cả hình và tiếng, chuyển tiếp Range/header qua Render rồi trả URL Ivy bình thường cho Nuvio.
+- `/stream` thêm nguồn `🎬 Trailer` trỏ vào proxy Ivy; mục tiêu là Nuvio phát như stream MP4 bình thường, không còn tự mở googlevideo bằng ffmpeg.
+- Phiên bản runtime hiện tại: `1.10.1`.
