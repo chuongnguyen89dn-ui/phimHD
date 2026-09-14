@@ -14,6 +14,9 @@ SECTIONS=[
  'Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng'
 ]
 TOP10={'Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay'}
+MAX_PAGES=180
+BATCH=12
+
 
 def fetch(u,timeout=20):
     try:
@@ -21,6 +24,7 @@ def fetch(u,timeout=20):
         with urlopen(req,timeout=timeout) as r:return r.read().decode('utf-8','replace').replace('\\/','/')
     except Exception as e:
         print('fetch failed',u,type(e).__name__,e);return ''
+
 
 def movie_urls(txt):
     out=[]
@@ -30,12 +34,14 @@ def movie_urls(txt):
         if u not in out:out.append(u)
     return out
 
+
 def pos(txt,label,start=0):
     vals=(label,html.escape(label,quote=False));ps=[]
     for v in vals:
         p=txt.find(v,start)
         if p>=0:ps.append(p)
     return min(ps) if ps else -1
+
 
 def listing_link(seg):
     for m in re.finditer(r'<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>',seg,re.I|re.S):
@@ -45,53 +51,49 @@ def listing_link(seg):
             if '/phim/' not in u:return u
     return None
 
+
 def page_num(u):
     q=parse_qs(urlparse(u).query)
     if q.get('page') and str(q['page'][0]).isdigit():return int(q['page'][0])
     m=re.search(r'/(?:page|trang)[-/](\d+)',u,re.I)
     return int(m.group(1)) if m else None
 
-def discover_last(listing,first_html):
-    nums=[1]
-    for href in re.findall(r'href=["\']([^"\']+)',first_html,re.I):
-        u=urljoin(listing,html.unescape(href))
-        n=page_num(u)
-        if n:nums.append(n)
-    return max(nums)
 
 def page_url(seed,n):
     if n<=1:return seed
     if re.search(r'([?&])page=\d+',seed):return re.sub(r'([?&])page=\d+',r'\1page='+str(n),seed)
     return seed+('&' if '?' in seed else '?')+'page='+str(n)
 
+
 def crawl_listing(seed):
     first=fetch(seed)
     if not first:return [],0
-    last=discover_last(seed,first)
-    urls=movie_urls(first)
-    # Most RoPhim list pages expose the last-page number in first-page pagination.
-    # When they do not, probe forward until two consecutive empty/duplicate pages.
-    if last<=1:
-        seen=set(urls);empty=0;n=2
-        while n<=180 and empty<2:
-            h=fetch(page_url(seed,n));rows=movie_urls(h)
-            new=[u for u in rows if u not in seen]
-            if not rows or not new:empty+=1
-            else:
-                empty=0;urls.extend(new);seen.update(new)
-            n+=1
-        return urls,max(1,n-empty-1)
-    if last>1:
-        workers=min(24,last-1)
-        with ThreadPoolExecutor(max_workers=workers) as ex:
-            futs={ex.submit(fetch,page_url(seed,n)):n for n in range(2,last+1)}
-            pages={1:first}
+    urls=movie_urls(first);seen=set(urls);last_good=1
+    # Source only exposes nearby page links (1,2,...) on page 1. Do not treat 2 as the last page.
+    # Probe in parallel batches until two consecutive pages contain no new movie URLs.
+    consecutive_empty=0
+    start=2
+    while start<=MAX_PAGES and consecutive_empty<2:
+        nums=list(range(start,min(MAX_PAGES+1,start+BATCH)))
+        pages={}
+        with ThreadPoolExecutor(max_workers=len(nums)) as ex:
+            futs={ex.submit(fetch,page_url(seed,n)):n for n in nums}
             for f in as_completed(futs):pages[futs[f]]=f.result()
-        urls=[];seen=set()
-        for n in range(1,last+1):
-            for u in movie_urls(pages.get(n,'')):
-                if u not in seen:seen.add(u);urls.append(u)
-    return urls,last
+        stop=False
+        for n in nums:
+            rows=movie_urls(pages.get(n,''))
+            new=[u for u in rows if u not in seen]
+            if new:
+                consecutive_empty=0;last_good=n
+                urls.extend(new);seen.update(new)
+            else:
+                consecutive_empty+=1
+                if consecutive_empty>=2:
+                    stop=True;break
+        if stop:break
+        start+=BATCH
+    return urls,last_good
+
 
 def main():
     home=fetch(BASE+'/phimhay')
