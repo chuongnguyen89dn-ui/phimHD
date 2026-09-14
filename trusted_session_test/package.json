@@ -1,0 +1,1 @@
+{"name":"ivy-trusted-session-test","version":"1.0.0","private":true,"scripts":{"start":"node server.js"},"dependencies":{"youtube-trusted-session-generator":"github:idMJA/youtube-trusted-session-generator"}}
