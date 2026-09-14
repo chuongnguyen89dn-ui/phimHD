@@ -4,7 +4,6 @@ import youtubedl from 'youtube-dl-exec';
 
 const PORT=Number(process.env.PORT||10000);
 const ORIGIN='https://ivy-youtubejs-direct-test.onrender.com';
-const MUX='https://ivy-ytmux-backend.onrender.com';
 const DEFAULT_ID='AjSxpi8E9WE';
 const CHANNEL_HANDLE='KhoaiLangThang';
 const CHANNEL_ID='UCZE88kYvCKUKjM-G0uc8Duw';
@@ -38,21 +37,16 @@ async function doResolve(id,q){const cdn=await discoverCdn();const c=await getCt
 async function resolveMedia(id,q){const key=`${id}:${q}`;const hit=mediaCache.get(key);if(hit&&hit.expires>Date.now()){console.log('[CACHE-HIT]',key,hit.provider);return hit.url;}const neg=negativeCache.get(key);if(neg&&neg>Date.now())throw new Error(`Recent ${q}p failure`);if(inFlight.has(key))return inFlight.get(key);const p=doResolve(id,q).catch(e=>{negativeCache.set(key,Date.now()+30000);throw e;}).finally(()=>inFlight.delete(key));inFlight.set(key,p);return p;}
 async function resolveAuto(id){for(const q of ['720','360']){try{return{url:await resolveMedia(id,q),q};}catch(e){console.log('[AUTO-MISS]',id,q,String(e));}}throw new Error('No AUTO media URL');}
 
-const manifest={id:ADDON_ID,version:'8.7.0',name:'Ivy ❤️ Khoai Lang Thang',description:'Full Khoai Lang Thang channel with residential YouTube extraction and server-side high-quality muxing.',resources:['catalog','meta','stream'],types:['movie'],catalogs:[{type:'movie',id:CATALOG_ID,name:'Khoai Lang Thang • Full Channel'}],idPrefixes:['yt:']};
+const manifest={id:ADDON_ID,version:'8.6.1',name:'Ivy ❤️ Khoai Lang Thang',description:'Restored proven safe playback path: SaveTube AUTO 720p then 360p, no background probes.',resources:['catalog','meta','stream'],types:['movie'],catalogs:[{type:'movie',id:CATALOG_ID,name:'Khoai Lang Thang • Full Channel'}],idPrefixes:['yt:']};
 
 const server=http.createServer(async(req,res)=>{try{if(req.method==='OPTIONS'){res.writeHead(204,jh());return res.end();}const u=new URL(req.url,'http://localhost');let path;try{path=decodeURIComponent(u.pathname)}catch{path=u.pathname}console.log(req.method,path);
-if(path==='/')return send(res,200,{service:manifest.name,version:manifest.version,videos:videoMap.size,loading:catalogLoading,mux:MUX,mediaCache:mediaCache.size});
+if(path==='/')return send(res,200,{service:manifest.name,version:manifest.version,videos:videoMap.size,loading:catalogLoading,mediaCache:mediaCache.size,inFlight:inFlight.size});
 if(path==='/manifest.json')return send(res,200,manifest);
 if(path===`/catalog/movie/${CATALOG_ID}.json`){void refreshCatalog(false);return send(res,200,{metas:[...videoMap.values()].map(metaFromVideo)});}
-if(path==='/diag.json')return send(res,200,{videos:videoMap.size,catalogLoading,catalogLoadedAt,mux:MUX,mediaCache:[...mediaCache.entries()].map(([k,v])=>({key:k,provider:v.provider}))});
+if(path==='/diag.json')return send(res,200,{videos:videoMap.size,catalogLoading,catalogLoadedAt,mediaCache:[...mediaCache.entries()].map(([k,v])=>({key:k,provider:v.provider})),verified:[...verified.entries()].map(([id,s])=>({id,qualities:[...s]})),inFlight:[...inFlight.keys()]});
 const mm=path.match(/^\/meta\/movie\/yt:([A-Za-z0-9_-]{11})\.json$/);if(mm){const v=videoMap.get(mm[1]);return send(res,200,{meta:v?metaFromVideo(v):null});}
-const sm=path.match(/^\/stream\/movie\/yt:([A-Za-z0-9_-]{11})\.json$/);if(sm){const id=sm[1];const streams=[
-{name:'Ivy YouTube • MAX',title:'Khoai Lang Thang • up to 4K',url:`${MUX}/stream/${id}/max.mp4`},
-{name:'Ivy YouTube • 1080p',title:'Khoai Lang Thang • H.264/AAC preferred',url:`${MUX}/stream/${id}/1080.mp4`},
-{name:'Ivy YouTube • 720p',title:'Khoai Lang Thang • stable HD',url:`${MUX}/stream/${id}/720.mp4`},
-{name:'Ivy YouTube • SaveTube Backup',title:'Khoai Lang Thang • fallback',url:`${ORIGIN}/play/${id}/auto.mp4`}
-];console.log('[STREAM-MUX]',id,streams.length);return send(res,200,{streams});}
+const sm=path.match(/^\/stream\/movie\/yt:([A-Za-z0-9_-]{11})\.json$/);if(sm){const id=sm[1];const known=[...(verified.get(id)||new Set())].sort((a,b)=>Number(b)-Number(a));const streams=[{name:'Ivy YouTube • AUTO',title:'Khoai Lang Thang • stable fallback',url:`${ORIGIN}/play/${id}/auto.mp4`},...known.map(q=>({name:`Ivy YouTube • ${q}p ✓`,title:`Khoai Lang Thang • verified ${q}p`,url:`${ORIGIN}/play/${id}/${q}.mp4`}))];console.log('[STREAM-SAFE]',id,known);return send(res,200,{streams});}
 const am=path.match(/^\/play\/([A-Za-z0-9_-]{11})\/auto\.mp4$/);if(am){const r=await resolveAuto(am[1]);console.log('[AUTO-RESOLVED]',am[1],r.q);res.writeHead(302,{Location:r.url,'Cache-Control':'no-store','Access-Control-Allow-Origin':'*'});return res.end();}
 const pm=path.match(/^\/play\/([A-Za-z0-9_-]{11})\/(2160|1440|1080|720|480|360)\.mp4$/);if(pm){const [,id,q]=pm;const target=await resolveMedia(id,q);res.writeHead(302,{Location:target,'Cache-Control':'no-store','Access-Control-Allow-Origin':'*'});return res.end();}
 return send(res,404,{error:'not found',path});}catch(e){console.error('[request-error]',String(e));return send(res,502,{error:String(e)})}});
-server.listen(PORT,'0.0.0.0',()=>{console.log('Ivy Khoai Lang Thang residential mux addon listening',PORT);void refreshCatalog(true);});
+server.listen(PORT,'0.0.0.0',()=>{console.log('Ivy Khoai Lang Thang restored safe fallback listening',PORT);void refreshCatalog(true);});
