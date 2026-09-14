@@ -14,6 +14,7 @@ HOME_ROWS=[
  'Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng'
 ]
 SERIES_ROWS={'Phim Bộ Đã Hoàn Thành','Top 10 phim bộ hôm nay'}
+CATEGORY_OPTIONS=['Tất cả']+HOME_ROWS
 
 def sitemap():
     now=time.time()
@@ -40,22 +41,44 @@ def section(label):
 def items(label):
     return core.ordered(section(label).get('urls') or section(label).get('home') or [])
 
+def genre_options():
+    out=[]
+    for x in core.load().get('movies',[]):
+        for g in core.tax(x,'genres'):
+            g=core.clean(g)
+            if g and g not in out:out.append(g)
+    return ['Tất cả thể loại']+sorted(out,key=lambda s:core.norm(s))
+
+def search_extras():
+    return [
+        {'name':'search','isRequired':False},
+        {'name':'category','isRequired':False,'options':CATEGORY_OPTIONS},
+        {'name':'genre','isRequired':False,'options':genre_options()},
+        {'name':'skip','isRequired':False},
+    ]
+
+def row_extras():
+    return [
+        {'name':'genre','isRequired':False,'options':genre_options()},
+        {'name':'skip','isRequired':False},
+        {'name':'search','isRequired':False},
+    ]
+
 def manifest_fast():
-    common=[{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
     cats=[
-        {'type':'movie','id':'ivy_search_movies','name':'❤️ Ivy • Tìm toàn bộ phim lẻ','extra':common},
-        {'type':'series','id':'ivy_search_series','name':'❤️ Ivy • Tìm toàn bộ phim bộ','extra':common},
+        {'type':'movie','id':'ivy_search_movies','name':'❤️ Ivy • Tìm toàn bộ phim lẻ','extra':search_extras()},
+        {'type':'series','id':'ivy_search_series','name':'❤️ Ivy • Tìm toàn bộ phim bộ','extra':search_extras()},
     ]
     for i,label in enumerate(HOME_ROWS):
-        cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':common})
-    return {'id':'community.ivy.catalog','version':'1.9.6','name':'Ivy❤️','description':'Ivy❤️ • full-library search • exact source home rows • full source pagination cached offline','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+        cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
+    return {'id':'community.ivy.catalog','version':'1.9.7','name':'Ivy❤️','description':'Ivy❤️ • native Nuvio search filters • category + genre • full-library search','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 def extras(path=''):
     o={}
     for p in path.split('/'):
         if '=' in p:
             k,v=p.split('=',1);o[k]=core.unquote(v)
-    for k in ('skip','search'):
+    for k in ('skip','search','genre','category'):
         if request.args.get(k) is not None:o[k]=request.args[k]
     return o
 
@@ -74,19 +97,31 @@ def all_library(kind):
         seen.add(u);rows.append(x)
     return core.dedupe_series(rows) if kind=='series' else rows
 
+def filter_rows(rows,e):
+    cat=(e.get('category') or '').strip()
+    if cat and cat!='Tất cả':
+        allowed={x.get('url') for x in items(cat)}
+        rows=[x for x in rows if x.get('url') in allowed]
+    genre=(e.get('genre') or '').strip()
+    if genre and genre!='Tất cả thể loại':
+        ng=core.norm(genre)
+        rows=[x for x in rows if any(core.norm(g)==ng for g in core.tax(x,'genres'))]
+    q=core.norm(e.get('search') or '')
+    if q:rows=[x for x in rows if q in searchable_text(x)]
+    return rows
+
 def catalog(cid,path=''):
-    e=extras(path);q=core.norm(e.get('search') or '');rows=[]
-    if cid=='ivy_search_movies':rows=all_library('movie')
-    elif cid=='ivy_search_series':rows=all_library('series')
+    e=extras(path);rows=[]
+    if cid=='ivy_search_movies':rows=filter_rows(all_library('movie'),e)
+    elif cid=='ivy_search_series':rows=filter_rows(all_library('series'),e)
     elif cid.startswith('ivy_home_'):
-        try:rows=items(HOME_ROWS[int(cid.rsplit('_',1)[1])])
+        try:
+            label=HOME_ROWS[int(cid.rsplit('_',1)[1])];rows=items(label)
         except:rows=[]
-    # Nuvio sends the same search query to addon catalogs. For every catalog request
-    # carrying search=, search the complete matching media library rather than only
-    # the currently selected home row.
-    if q:
-        kind='series' if cid=='ivy_search_series' or (cid.startswith('ivy_home_') and HOME_ROWS[int(cid.rsplit('_',1)[1])] in SERIES_ROWS) else 'movie'
-        rows=[x for x in all_library(kind) if q in searchable_text(x)]
+        # Search in a home-row catalog still searches the full media type, matching Nuvio's search UI behavior.
+        if e.get('search'):
+            kind='series' if label in SERIES_ROWS else 'movie';rows=all_library(kind)
+        rows=filter_rows(rows,e)
     try:sk=max(0,int(e.get('skip',0)))
     except:sk=0
     return jsonify({'metas':[core.base_meta(x) for x in rows[sk:sk+PAGE_SIZE]]})
@@ -94,6 +129,6 @@ def catalog(cid,path=''):
 core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.9.6','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.9.6','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':HOME_ROWS,'sitemapSections':len(sitemap().get('sections',[])),'searchScope':'full-library','playbackResolver':'recursive-hls'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.9.7','manifest':'/manifest.json'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.9.7','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':HOME_ROWS,'sitemapSections':len(sitemap().get('sections',[])),'searchScope':'full-library','searchFilters':['category','genre'],'playbackResolver':'recursive-hls'})
 app=core.app
