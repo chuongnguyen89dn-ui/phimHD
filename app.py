@@ -1,15 +1,18 @@
-import json, os, base64, re, time, html
-from urllib.parse import unquote, urljoin
+import json, os, base64, re, time, html, unicodedata
+from urllib.parse import unquote, urljoin, urlencode
 from urllib.request import Request, urlopen
 from flask import Flask, jsonify, request
 
 CATALOG=os.environ.get('IVY_CATALOG',os.environ.get('ROPHIM_CATALOG','rophim_catalog.json'))
 REMOTE_CATALOG=os.environ.get('IVY_REMOTE_CATALOG','https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json')
 BASE=os.environ.get('IVY_SOURCE_BASE','https://rophim.loan').rstrip('/')
+TMDB_API_KEY=os.environ.get('TMDB_API_KEY','').strip()
+TMDB_API='https://api.themoviedb.org/3'
+TMDB_IMG='https://image.tmdb.org/t/p/'
 UA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1'
 HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 app=Flask(__name__)
-_page_cache={};_order_cache={};_catalog_cache={'at':0,'data':None}
+_page_cache={};_order_cache={};_catalog_cache={'at':0,'data':None};_tmdb_cache={};_tmdb_rank_cache={'at':0,'data':{}}
 
 def _local_catalog():
     try:
@@ -44,6 +47,53 @@ def year(x):
     if ys:return int(ys[-1])
     y=x.get('year');y=int(y) if str(y).isdigit() else 0
     return y if 1900<=y<=2100 and y!=2026 else None
+
+def norm(s):
+    s=unicodedata.normalize('NFKD',str(s or ''))
+    s=''.join(c for c in s if not unicodedata.combining(c)).lower()
+    s=re.sub(r'\([^)]*(?:19|20)\d{2}[^)]*\)',' ',s)
+    s=re.sub(r'\b(?:phan|season)\s*\d+\b',' ',s)
+    s=re.sub(r'[^a-z0-9]+',' ',s)
+    return ' '.join(s.split())
+def tmdb_get(path,params=None,ttl=21600):
+    if not TMDB_API_KEY:return None
+    params=dict(params or {});params['api_key']=TMDB_API_KEY
+    key=path+'?'+urlencode(sorted(params.items()));now=time.time();c=_tmdb_cache.get(key)
+    if c and now-c[0]<ttl:return c[1]
+    try:
+        req=Request(TMDB_API+path+'?'+urlencode(params),headers={'Accept':'application/json','User-Agent':'Ivy/1.5'})
+        with urlopen(req,timeout=8) as r:d=json.loads(r.read().decode('utf-8'))
+        _tmdb_cache[key]=(now,d);return d
+    except:return None
+def tmdb_meta_obj(r,media):
+    if not r:return None
+    return {'tmdbId':r.get('id'),'mediaType':media,'voteAverage':r.get('vote_average'),'voteCount':r.get('vote_count'),'popularity':r.get('popularity'),'posterPath':r.get('poster_path'),'backdropPath':r.get('backdrop_path')}
+def tmdb_match(x):
+    existing=x.get('tmdb') or {}
+    if existing.get('tmdbId'):return existing
+    if not TMDB_API_KEY:return existing
+    media='tv' if typ(x)=='series' else 'movie';q=series_name(x) if media=='tv' else clean(x.get('title') or x.get('originalTitle') or '')
+    params={'query':q,'language':'vi-VN','include_adult':'false'};y=year(x)
+    if y:params['first_air_date_year' if media=='tv' else 'year']=y
+    d=tmdb_get('/search/'+media,params,21600) or {};rows=d.get('results') or []
+    if not rows and x.get('originalTitle') and norm(x.get('originalTitle'))!=norm(q):
+        params['query']=clean(x.get('originalTitle'));d=tmdb_get('/search/'+media,params,21600) or {};rows=d.get('results') or []
+    target_names={norm(q),norm(x.get('originalTitle'))};target_names.discard('')
+    best=None
+    for r in rows[:10]:
+        names={norm(r.get('title')),norm(r.get('name')),norm(r.get('original_title')),norm(r.get('original_name'))};names.discard('')
+        if not target_names.intersection(names):continue
+        dt=r.get('release_date') or r.get('first_air_date') or '';ry=int(dt[:4]) if len(dt)>=4 and dt[:4].isdigit() else None
+        if y and ry and abs(y-ry)>1:continue
+        best=r;break
+    return tmdb_meta_obj(best,media) or existing
+def apply_tmdb(x,tm=None):
+    tm=tm or tmdb_match(x)
+    if not tm:return x
+    y=dict(x);y['tmdb']=tm
+    if tm.get('posterPath'):y['poster']=TMDB_IMG+'w780'+tm['posterPath']
+    if tm.get('backdropPath'):y['backdrop']=TMDB_IMG+'w1280'+tm['backdropPath']
+    return y
 
 def fetch_text(u,ttl=300):
     now=time.time();c=_page_cache.get(u)
@@ -141,6 +191,7 @@ def episode_rows(x):
     return season,[by[k] for k in sorted(by)]
 
 def base_meta(x,full=False):
+    if full:x=apply_tmdb(x)
     is_series=typ(x)=='series'
     m={'id':mid(x),'type':typ(x),'name':series_name(x) if is_series else clean(x.get('title') or x.get('slug') or 'Ivy❤️'),'poster':x.get('poster') or None,'background':x.get('backdrop') or None,'description':clean(x.get('description')),'website':x.get('url'),'posterShape':'poster'}
     y=year(x)
@@ -182,7 +233,38 @@ def latest_items(kind):
     pred=(lambda x:typ(x)==kind)
     items=ordered_from_urls(source_order('home'),pred,True)
     return dedupe_series(items) if kind=='series' else items
+
+def runtime_tmdb_rankings():
+    now=time.time()
+    if _tmdb_rank_cache['data'] and now-_tmdb_rank_cache['at']<21600:return _tmdb_rank_cache['data']
+    if not TMDB_API_KEY:return load().get('tmdbRankings') or {}
+    data=load().get('movies',[]);idx={}
+    for x in data:
+        for n in [x.get('title'),x.get('originalTitle'),series_name(x) if typ(x)=='series' else None]:
+            k=norm(n)
+            if k:idx.setdefault(k,[]).append(x)
+    specs={'trendingMovies':('/trending/movie/day','movie'),'trendingSeries':('/trending/tv/day','tv'),'popularMovies':('/movie/popular','movie'),'popularSeries':('/tv/popular','tv'),'topRatedMovies':('/movie/top_rated','movie'),'topRatedSeries':('/tv/top_rated','tv')};out={}
+    for key,(path,media) in specs.items():
+        d=tmdb_get(path,{'language':'vi-VN','page':1},21600) or {};matched=[]
+        for r in d.get('results') or []:
+            names=[r.get('title'),r.get('name'),r.get('original_title'),r.get('original_name')];x=None
+            for n in names:
+                cands=idx.get(norm(n),[])
+                for c in cands:
+                    if ('series' if media=='tv' else 'movie')!=typ(c):continue
+                    cy=year(c);dt=r.get('release_date') or r.get('first_air_date') or '';ry=int(dt[:4]) if len(dt)>=4 and dt[:4].isdigit() else None
+                    if cy and ry and abs(cy-ry)>1:continue
+                    x=c;break
+                if x:break
+            if x:
+                z=apply_tmdb(x,tmdb_meta_obj(r,media));matched.append(z)
+        out[key]=matched
+    _tmdb_rank_cache.update(at=now,data=out);return out
 def ranked_items(key,kind=None):
+    runtime=runtime_tmdb_rankings()
+    if runtime and isinstance(runtime.get(key),list) and runtime.get(key) and isinstance(runtime[key][0],dict):
+        out=[x for x in runtime[key] if kind is None or typ(x)==kind]
+        return dedupe_series(out) if kind=='series' else out
     d=load();by={x.get('url'):x for x in d.get('movies',[]) if x.get('url')};out=[]
     for u in (d.get('tmdbRankings') or {}).get(key,[]):
         x=by.get(u)
@@ -203,22 +285,22 @@ def manifest_data():
       {'type':'movie','id':'ivy_latest_movies','name':'❤️ Ivy • Phim Lẻ Mới Cập Nhật','extra':common},
       {'type':'series','id':'ivy_latest_series','name':'❤️ Ivy • Phim Bộ Mới Cập Nhật','extra':common}]
     ranks=d.get('tmdbRankings') or {}
-    if ranks.get('trendingMovies'):cats.append({'type':'movie','id':'ivy_trending_movies','name':'🔥 Ivy • Phim Đang Thịnh Hành','extra':common})
-    if ranks.get('trendingSeries'):cats.append({'type':'series','id':'ivy_trending_series','name':'🔥 Ivy • Series Đang Thịnh Hành','extra':common})
-    if ranks.get('popularMovies'):cats.append({'type':'movie','id':'ivy_popular_movies','name':'🎬 Ivy • Phim Phổ Biến','extra':common})
-    if ranks.get('popularSeries'):cats.append({'type':'series','id':'ivy_popular_series','name':'📺 Ivy • Series Phổ Biến','extra':common})
-    if ranks.get('topRatedMovies'):cats.append({'type':'movie','id':'ivy_top_movies','name':'⭐ Ivy • Phim Đánh Giá Cao','extra':common})
-    if ranks.get('topRatedSeries'):cats.append({'type':'series','id':'ivy_top_series','name':'⭐ Ivy • Series Đánh Giá Cao','extra':common})
+    if TMDB_API_KEY or ranks.get('trendingMovies'):cats.append({'type':'movie','id':'ivy_trending_movies','name':'🔥 Ivy • Phim Đang Thịnh Hành','extra':common})
+    if TMDB_API_KEY or ranks.get('trendingSeries'):cats.append({'type':'series','id':'ivy_trending_series','name':'🔥 Ivy • Series Đang Thịnh Hành','extra':common})
+    if TMDB_API_KEY or ranks.get('popularMovies'):cats.append({'type':'movie','id':'ivy_popular_movies','name':'🎬 Ivy • Phim Phổ Biến','extra':common})
+    if TMDB_API_KEY or ranks.get('popularSeries'):cats.append({'type':'series','id':'ivy_popular_series','name':'📺 Ivy • Series Phổ Biến','extra':common})
+    if TMDB_API_KEY or ranks.get('topRatedMovies'):cats.append({'type':'movie','id':'ivy_top_movies','name':'⭐ Ivy • Phim Đánh Giá Cao','extra':common})
+    if TMDB_API_KEY or ranks.get('topRatedSeries'):cats.append({'type':'series','id':'ivy_top_series','name':'⭐ Ivy • Series Đánh Giá Cao','extra':common})
     cats.append({'type':'series','id':'ivy_franchises','name':'❤️ Ivy • Loạt Phim','extra':common})
-    return {'id':'community.ivy.catalog','version':'1.4.2','name':'Ivy❤️','description':'Ivy❤️ • grouped seasons, source playback and objective discovery','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    return {'id':'community.ivy.catalog','version':'1.5.0','name':'Ivy❤️','description':'Ivy❤️ • source playback with Render-side TMDB discovery and metadata','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 @app.get('/')
-def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.4.2','manifest':'/manifest.json'})
+def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.5.0','manifest':'/manifest.json'})
 @app.get('/manifest.json')
 def manifest():return jsonify(manifest_data())
 @app.get('/health')
 def health():
-    d=load();return jsonify({'ok':True,'version':'1.4.2','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbMatchedCount':d.get('tmdbMatchedCount',0),'homeOrder':len(source_order('home'))})
+    d=load();return jsonify({'ok':True,'version':'1.5.0','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbRuntime':bool(TMDB_API_KEY),'tmdbMatchedCount':d.get('tmdbMatchedCount',0),'homeOrder':len(source_order('home'))})
 def extras(path=''):
     o={}
     for p in path.split('/'):
