@@ -12,7 +12,7 @@ TMDB_IMG='https://image.tmdb.org/t/p/'
 UA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1'
 HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 app=Flask(__name__)
-_page_cache={};_order_cache={};_catalog_cache={'at':0,'data':None};_tmdb_cache={};_tmdb_rank_cache={'at':0,'data':{}}
+_page_cache={};_order_cache={};_catalog_cache={'at':0,'data':None};_tmdb_cache={}
 
 def _local_catalog():
     try:
@@ -61,7 +61,7 @@ def tmdb_get(path,params=None,ttl=21600):
     key=path+'?'+urlencode(sorted(params.items()));now=time.time();c=_tmdb_cache.get(key)
     if c and now-c[0]<ttl:return c[1]
     try:
-        req=Request(TMDB_API+path+'?'+urlencode(params),headers={'Accept':'application/json','User-Agent':'Ivy/1.5'})
+        req=Request(TMDB_API+path+'?'+urlencode(params),headers={'Accept':'application/json','User-Agent':'Ivy/1.6'})
         with urlopen(req,timeout=8) as r:d=json.loads(r.read().decode('utf-8'))
         _tmdb_cache[key]=(now,d);return d
     except:return None
@@ -234,73 +234,69 @@ def latest_items(kind):
     items=ordered_from_urls(source_order('home'),pred,True)
     return dedupe_series(items) if kind=='series' else items
 
-def runtime_tmdb_rankings():
-    now=time.time()
-    if _tmdb_rank_cache['data'] and now-_tmdb_rank_cache['at']<21600:return _tmdb_rank_cache['data']
-    if not TMDB_API_KEY:return load().get('tmdbRankings') or {}
-    data=load().get('movies',[]);idx={}
-    for x in data:
-        for n in [x.get('title'),x.get('originalTitle'),series_name(x) if typ(x)=='series' else None]:
-            k=norm(n)
-            if k:idx.setdefault(k,[]).append(x)
-    specs={'trendingMovies':('/trending/movie/day','movie'),'trendingSeries':('/trending/tv/day','tv'),'popularMovies':('/movie/popular','movie'),'popularSeries':('/tv/popular','tv'),'topRatedMovies':('/movie/top_rated','movie'),'topRatedSeries':('/tv/top_rated','tv')};out={}
-    for key,(path,media) in specs.items():
-        d=tmdb_get(path,{'language':'vi-VN','page':1},21600) or {};matched=[]
-        for r in d.get('results') or []:
-            names=[r.get('title'),r.get('name'),r.get('original_title'),r.get('original_name')];x=None
-            for n in names:
-                cands=idx.get(norm(n),[])
-                for c in cands:
-                    if ('series' if media=='tv' else 'movie')!=typ(c):continue
-                    cy=year(c);dt=r.get('release_date') or r.get('first_air_date') or '';ry=int(dt[:4]) if len(dt)>=4 and dt[:4].isdigit() else None
-                    if cy and ry and abs(cy-ry)>1:continue
-                    x=c;break
-                if x:break
-            if x:
-                z=apply_tmdb(x,tmdb_meta_obj(r,media));matched.append(z)
-        out[key]=matched
-    _tmdb_rank_cache.update(at=now,data=out);return out
-def ranked_items(key,kind=None):
-    runtime=runtime_tmdb_rankings()
-    if runtime and isinstance(runtime.get(key),list) and runtime.get(key) and isinstance(runtime[key][0],dict):
-        out=[x for x in runtime[key] if kind is None or typ(x)==kind]
-        return dedupe_series(out) if kind=='series' else out
-    d=load();by={x.get('url'):x for x in d.get('movies',[]) if x.get('url')};out=[]
-    for u in (d.get('tmdbRankings') or {}).get(key,[]):
-        x=by.get(u)
-        if x and (kind is None or typ(x)==kind):out.append(x)
-    return dedupe_series(out) if kind=='series' else out
+SOURCE_SECTIONS=[
+ 'Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Phim US-UK Mới','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng',
+ 'Phim Bộ Đã Hoàn Thành','Hành Động Nghẹt Thở','Trinh Thám & Bí Ẩn','Tinh Hoa Điện Ảnh Hồng Kông',
+ 'Top 10 phim lẻ hôm nay','Thế giới Anime','Top 10 phim bộ hôm nay','Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng'
+]
+
+def _section_pos(h,label,start=0):
+    vals=[label,html.escape(label,quote=False)]
+    found=[h.find(v,start) for v in vals if h.find(v,start)>=0]
+    return min(found) if found else -1
+def source_home_sections():
+    now=time.time();key='__home_sections__';c=_order_cache.get(key)
+    if c and now-c[0]<600:return c[1]
+    h=fetch_text(BASE+'/phimhay',300)
+    anchor=_section_pos(h,'Bạn đang quan tâm gì?')
+    start=max(0,anchor)
+    positions=[]
+    for i,label in enumerate(SOURCE_SECTIONS):
+        p=_section_pos(h,label,start)
+        if p>=0:positions.append((p,i,label))
+    positions.sort();out={}
+    for n,(p,i,label) in enumerate(positions):
+        end=positions[n+1][0] if n+1<len(positions) else len(h)
+        seg=h[p:end];urls=[]
+        for href in re.findall(r'href=["\']([^"\']+)',seg,re.I):
+            if '/phim/' not in href:continue
+            u=urljoin(BASE+'/',html.unescape(href)).split('#')[0]
+            if u not in urls:urls.append(u)
+        if urls:out[label]=urls
+    _order_cache[key]=(now,out);return out
+def source_section_items(label):
+    urls=source_home_sections().get(label) or []
+    data=load().get('movies',[]);by={str(x.get('url','')).rstrip('/'):x for x in data if x.get('url')};out=[];seen=set()
+    for u in urls:
+        x=by.get(u.rstrip('/'))
+        if x and x.get('url') not in seen:out.append(x);seen.add(x.get('url'))
+    return out
+def source_latest_items():
+    return ordered_from_urls(source_order('home'),None,False)
 
 def genre_options(data):
-    preferred=['Hành Động','Action','Phiêu Lưu','Adventure','Hoạt Hình','Animation','Hài','Comedy','Chính Kịch','Drama','Kinh Dị','Horror','Bí Ẩn','Mystery','Hình Sự','Crime','Tình Cảm','Romance','Khoa Học','Science Fiction','Gia Đình','Family','Chiến Tranh','War','Lịch Sử','History','Tài Liệu','Documentary']
     found=[]
     for x in data:
         for g in tax(x,'genres'):
             if g and g not in found:found.append(g)
-    out=[p for p in preferred if p in found];out.extend(sorted(g for g in found if g not in out));return out
-
+    return sorted(found)
 def manifest_data():
-    d=load();data=d.get('movies',[]);genres=genre_options(data);common=[{'name':'genre','isRequired':False,'options':genres},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
-    cats=[
-      {'type':'movie','id':'ivy_latest_movies','name':'❤️ Ivy • Phim Lẻ Mới Cập Nhật','extra':common},
-      {'type':'series','id':'ivy_latest_series','name':'❤️ Ivy • Phim Bộ Mới Cập Nhật','extra':common}]
-    ranks=d.get('tmdbRankings') or {}
-    if TMDB_API_KEY or ranks.get('trendingMovies'):cats.append({'type':'movie','id':'ivy_trending_movies','name':'🔥 Ivy • Phim Đang Thịnh Hành','extra':common})
-    if TMDB_API_KEY or ranks.get('trendingSeries'):cats.append({'type':'series','id':'ivy_trending_series','name':'🔥 Ivy • Series Đang Thịnh Hành','extra':common})
-    if TMDB_API_KEY or ranks.get('popularMovies'):cats.append({'type':'movie','id':'ivy_popular_movies','name':'🎬 Ivy • Phim Phổ Biến','extra':common})
-    if TMDB_API_KEY or ranks.get('popularSeries'):cats.append({'type':'series','id':'ivy_popular_series','name':'📺 Ivy • Series Phổ Biến','extra':common})
-    if TMDB_API_KEY or ranks.get('topRatedMovies'):cats.append({'type':'movie','id':'ivy_top_movies','name':'⭐ Ivy • Phim Đánh Giá Cao','extra':common})
-    if TMDB_API_KEY or ranks.get('topRatedSeries'):cats.append({'type':'series','id':'ivy_top_series','name':'⭐ Ivy • Series Đánh Giá Cao','extra':common})
-    cats.append({'type':'series','id':'ivy_franchises','name':'❤️ Ivy • Loạt Phim','extra':common})
-    return {'id':'community.ivy.catalog','version':'1.5.0','name':'Ivy❤️','description':'Ivy❤️ • source playback with Render-side TMDB discovery and metadata','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    d=load();common=[{'name':'genre','isRequired':False,'options':genre_options(d.get('movies',[]))},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
+    cats=[{'type':'movie','id':'ivy_source_latest','name':'❤️ Ivy • Phim Hay Mới Nhất','extra':common}]
+    active=source_home_sections()
+    for i,label in enumerate(SOURCE_SECTIONS):
+        if not active.get(label):continue
+        ctype='series' if label in ('Phim Bộ Đã Hoàn Thành','Top 10 phim bộ hôm nay') else 'movie'
+        cats.append({'type':ctype,'id':f'ivy_src_{i}','name':f'❤️ Ivy • {label}','extra':common})
+    return {'id':'community.ivy.catalog','version':'1.6.0','name':'Ivy❤️','description':'Ivy❤️ • home follows the current source homepage; TMDB only enriches matched detail metadata','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 @app.get('/')
-def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.5.0','manifest':'/manifest.json'})
+def root():return jsonify({'ok':True,'service':'Ivy❤️','version':'1.6.0','manifest':'/manifest.json'})
 @app.get('/manifest.json')
 def manifest():return jsonify(manifest_data())
 @app.get('/health')
 def health():
-    d=load();return jsonify({'ok':True,'version':'1.5.0','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbRuntime':bool(TMDB_API_KEY),'tmdbMatchedCount':d.get('tmdbMatchedCount',0),'homeOrder':len(source_order('home'))})
+    d=load();return jsonify({'ok':True,'version':'1.6.0','movies':len(d.get('movies',[])),'catalogGeneratedAt':d.get('generatedAt'),'tmdbRuntime':bool(TMDB_API_KEY),'sourceSections':list(source_home_sections().keys()),'homeOrder':len(source_order('home'))})
 def extras(path=''):
     o={}
     for p in path.split('/'):
@@ -311,15 +307,11 @@ def extras(path=''):
     return o
 def catalog(cid,path=''):
     e=extras(path);q=(e.get('search') or '').lower().strip()
-    if cid=='ivy_latest_movies':items=latest_items('movie')
-    elif cid=='ivy_latest_series':items=latest_items('series')
-    elif cid=='ivy_trending_movies':items=ranked_items('trendingMovies','movie')
-    elif cid=='ivy_trending_series':items=ranked_items('trendingSeries','series')
-    elif cid=='ivy_popular_movies':items=ranked_items('popularMovies','movie')
-    elif cid=='ivy_popular_series':items=ranked_items('popularSeries','series')
-    elif cid=='ivy_top_movies':items=ranked_items('topRatedMovies','movie')
-    elif cid=='ivy_top_series':items=ranked_items('topRatedSeries','series')
-    elif cid=='ivy_franchises':items=dedupe_series(ordered_from_urls(source_order('series'),lambda x:typ(x)=='series' and re.search(r'(?i)(phần|season)\s*\d+',clean(x.get('title',''))),True))
+    if cid=='ivy_source_latest':items=source_latest_items()
+    elif cid.startswith('ivy_src_'):
+        try:i=int(cid.rsplit('_',1)[1]);label=SOURCE_SECTIONS[i]
+        except:return jsonify({'metas':[]})
+        items=source_section_items(label)
     else:items=[]
     out=[]
     for x in items:
