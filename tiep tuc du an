@@ -19,7 +19,7 @@ Tien trinh tu ngay tiep nhan hien tai:
 - Direct yt-dlp tren Render da duoc test lai bang nhieu YouTube player client. Web Safari, TV embedded, iOS, web bi `Sign in to confirm you’re not a bot`; Android VR chi lay duoc toi da 360p. Ket luan: IP datacenter Render la nguyen nhan goc, khong the dua vao plain yt-dlp de lay 4K.
 - Tim duoc huong moi qua project Krainium/YouTube-Downloader / youtubeone.vercel.app. Backend cua ho dung residential VLESS exit de vuot YouTube datacenter bot block, va `/api/stream` giu cung exit IP voi URL Googlevideo da duoc ky.
 - Hard evidence tren chinh Render cua ta: POST youtubeone `/api/info` cho AjSxpi8E9WE tra 31 formats, heights [2160,1440,1080,720,480,360,240,144], maxHeight 2160, proxied=true. Day la provider thu hai ngoai SaveTube da xac nhan format 4K that tu Render.
-- Backend commit 2c4ff9bff868dd971b472c7d7fc0e8f5ae566fbe dung youtubeone lam source va FFmpeg mux server-side. Startup probe da xac nhan bytes thuc te 2160 VP9 + AAC va 1080 AVC1 + AAC.
+- Backend commit 2c4ff9bff868dd5fce044945b6f1545c36b58cee8 dung youtubeone lam source va FFmpeg mux server-side. Startup probe da xac nhan bytes thuc te 2160 VP9 + AAC va 1080 AVC1 + AAC.
 - Addon v8.7 loi phat vi backend kill FFmpeg tren request close. Da rollback v8.6.1 va sua premature kill backend.
 - Theo yeu cau nguoi dung, da quay lai engine phat cua commit 902d1880d2bc155d1f3df6ec9837254f6deb5656, giu full catalog 286 video.
 - V9.1 da sua route residential metadata va xac nhan source co 2160/1440/1080..., nhung FFmpeg-static mo URL HTTPS truc tiep bi SIGSEGV bytes 0.
@@ -27,3 +27,6 @@ Tien trinh tu ngay tiep nhan hien tai:
 - Backend v0.5.1 commit 0e27713593a827306468f84052f60694edb6f95d: bat error tren video/audio input, FFmpeg pipe/stdout/stderr va process-level handlers de mot stream reset khong lam ca service chet. Empty playable cache chi 30 giay.
 - Addon v9.2.1 commit 0c1b8db14154ebfe2554d0ac1f5889fc538b9df9: khong negative-cache ket qua rong; khi user bam lai mot stream SaveTube da het/mat in-memory cache thi `/play` tu resolve + byte-probe lai dung quality thay vi tra 503 ngay. Residential timeout tang 18s. Muc tieu sua loi vua xem duoc, vao lai thi mat nguon.
 - Van con viec bat buoc: SaveTube quality label chi moi byte-verified, chua ffprobe width x height. Khong duoc coi 2160/1440/1080 SaveTube la do phan giai that cho den khi doc metadata frame. Can them media dimension validation truoc khi hien quality cao.
+- 15/09/2026: Nguoi dung yeu cau TAM DUNG nhanh SaveFrom; chi tiep tuc khi nguoi dung noi `start`.
+- 15/09/2026: Bat dau test doc lap M3U/EPG theo y tuong URL YouTube goc. Da tao `m3u_youtube_test/test.m3u` chi chua video XwY9ysGXkI4 va URL goc `https://www.youtube.com/watch?v=XwY9ysGXkI4`.
+- 15/09/2026: Da tao isolated addon `m3u_youtube_test/server.mjs`, KHONG dung SaveTube/SaveFrom/yt-dlp/resolver; stream tra nguyen URL YouTube de test Nuvio co tu resolve hay khong. Render service `ivy-m3u-youtube-original-test`, ID `srv-dakacv8u01pc73edt070`, URL `https://ivy-m3u-youtube-original-test.onrender.com`, deploy dau `dep-dakad08u01pc73edt4cg`.
