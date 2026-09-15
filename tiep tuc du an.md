@@ -62,3 +62,16 @@
 - Bắt buộc probe `Range: bytes=0-1` từ chính Render trước khi cache/trả stream cho Nuvio; URL 401/403/410 sẽ bị xoá cache và resolve lại, tránh đưa URL chết cho player.
 - Thêm log `youtube probe`, `youtube proxy hit`, upstream status/client/format để xác định chính xác đường phát đang dùng.
 - Runtime hiện tại: `1.10.3`; commit `9978c1c920aa3f0c7e1e50bcedece6916f788d3b`; Render deploy `dep-dajp2e2jnfac73f80d7g` đã `live`.
+
+## Cập nhật 15/09/2026 - Crawler web gốc và baseline đối chiếu
+
+- Phạm vi công việc hiện tại chuyển về web gốc RoPhim và addon phim Ivy❤️; mọi cập nhật catalog phải lấy web nguồn làm chuẩn về membership, thứ tự và nội dung hiển thị.
+- Workflow `Ivy catalog update` có một lần chạy thất bại: taxonomy không phát hiện được phim mới (`pages=1`, `movies=0`) và sitemap dừng ở lỗi `cannot fetch source home`. Không coi kết quả `new=0` của lần này là bằng chứng web không có phim mới.
+- Sửa `ivy_sitemap_crawler.py` để request web nguồn có retry, luân phiên browser User-Agent và xử lý trường hợp `/phimhay` tạm thời không phản hồi. Commit sửa crawler: `5c03d1ca78484860b7c13a15dad643d62ec1bc2a`.
+- Workflow #38 sau sửa đã chạy thành công và publish snapshot mới lên nhánh `catalog-data`; commit snapshot `19002d1d2c7b4b6236aa906b39ffa47e5548d8d7`.
+- Lần crawl thành công này quét được 6.703 URL taxonomy; 708 URL chưa có trong cache cũ và catalog tăng từ 6.167 lên 6.865 phim. 708 URL này là URL mới được crawler phát hiện, KHÔNG mặc định coi là 708 phim mới trong ngày vì có thể gồm phim cũ crawler trước đó bỏ sót.
+- Playback audit của lần chạy thành công đạt 120/120 mẫu phát được.
+- Đã xác định nguyên tắc kiểm tra phim mới: không dựa vào vị trí vài poster đầu Home và không dựa riêng vào `newMovieCount`; phải đối chiếu URL của snapshot với web gốc, kiểm tra URL đã tồn tại trước đó và phân biệt phim mới với phim/tập chỉ vừa cập nhật.
+- Snapshot ngày 15/09 hiện được dùng làm baseline ổn định cho các lần crawl tiếp theo để diff URL chính xác. Khi phát hiện thay đổi phải báo riêng: phim mới, tập mới/cập nhật và thay đổi section nếu có.
+- Cần tiếp tục tăng độ an toàn crawler: nếu `/phimhay` không lấy được dữ liệu hợp lệ thì không được âm thầm coi trang `/` là tương đương; ưu tiên giữ snapshot cũ hoặc fail workflow để tránh publish membership sai.
+- Cần kiểm tra đủ 18 section của `/phimhay`, toàn bộ pagination và số URL thực tế của từng section; runtime không được làm rơi URL chỉ vì URL đó chưa có metadata trong `rophim_catalog.json`.
