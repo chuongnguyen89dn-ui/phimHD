@@ -27,11 +27,54 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Load previous catalog snapshot
+        run: |
+          git fetch origin catalog-data || true
+          git show origin/catalog-data:rophim_catalog.json > /tmp/rophim_catalog_previous.json 2>/dev/null || echo '{"movies":[]}' > /tmp/rophim_catalog_previous.json
+
       - name: Update Ivy catalog from source web
         env:
           ROPHIM_CATALOG: rophim_catalog.json
           ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
+
+      - name: Build catalog change report
+        run: |
+          python - <<'PY'
+          import json, datetime, os
+          oldp='/tmp/rophim_catalog_previous.json'
+          newp='rophim_catalog.json'
+          def load(p):
+              try:
+                  with open(p,encoding='utf-8') as f: return json.load(f)
+              except Exception: return {}
+          def movies(x):
+              if isinstance(x,list): return x
+              for k in ('movies','items','data'):
+                  if isinstance(x.get(k),list): return x[k]
+              return []
+          def key(x):
+              if not isinstance(x,dict): return str(x)
+              return x.get('url') or x.get('slug') or x.get('id') or x.get('title') or json.dumps(x,sort_keys=True,ensure_ascii=False)
+          def title(x):
+              if not isinstance(x,dict): return str(x)
+              return x.get('title') or x.get('name') or x.get('slug') or x.get('url') or '(unknown)'
+          old,new=movies(load(oldp)),movies(load(newp))
+          om={key(x):x for x in old}; nm={key(x):x for x in new}
+          added=[nm[k] for k in nm.keys()-om.keys()]
+          removed=[om[k] for k in om.keys()-nm.keys()]
+          now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          report={'generatedAt':now,'previousTotal':len(om),'currentTotal':len(nm),'netChange':len(nm)-len(om),'addedCount':len(added),'removedCount':len(removed),'added':[{'title':title(x),'url':x.get('url','') if isinstance(x,dict) else ''} for x in added],'removed':[{'title':title(x),'url':x.get('url','') if isinstance(x,dict) else ''} for x in removed]}
+          with open('catalog_changes_latest.json','w',encoding='utf-8') as f: json.dump(report,f,ensure_ascii=False,indent=2)
+          os.makedirs('catalog-history',exist_ok=True)
+          fn=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H-%M-%SZ')+'.json'
+          with open(os.path.join('catalog-history',fn),'w',encoding='utf-8') as f: json.dump(report,f,ensure_ascii=False,indent=2)
+          print(f"CATALOG_DIFF previous={len(om)} current={len(nm)} net={len(nm)-len(om)} added={len(added)} removed={len(removed)}")
+          for x in added: print("ADDED:",title(x))
+          for x in removed: print("REMOVED:",title(x))
+          PY
+
       - name: Crawl exact source sitemap and pagination
         env:
           IVY_SITEMAP_OUT: ivy_sitemap.json
@@ -41,14 +84,14 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.json
           IVY_PLAYBACK_AUDIT_LIMIT: '120'
         run: python ivy_playback_audit.py
-      - name: Publish catalog and sitemap to data branch
+      - name: Publish catalog, sitemap and change history to data branch
         run: |
           git config user.name "ivy-catalog-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add rophim_catalog.json ivy_sitemap.json
+          git add rophim_catalog.json ivy_sitemap.json catalog_changes_latest.json catalog-history/
           if git diff --cached --quiet; then
             echo "Catalog and sitemap unchanged"
             exit 0
           fi
-          git commit -m "Update Ivy catalog and source sitemap"
+          git commit -m "Update Ivy catalog, source sitemap and change report"
           git push --force origin HEAD:catalog-data
