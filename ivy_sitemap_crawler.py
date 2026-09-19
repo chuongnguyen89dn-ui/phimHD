@@ -12,7 +12,6 @@ UAS=[
 SECTIONS=['Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Thiên đường Phim Thái','Phim US-UK Mới','Phim Điện Ảnh Mới Cóong','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng','Mê Cung Phim Nhật','Phim Bộ Đã Hoàn Thành','Hành Động Nghẹt Thở','Trinh Thám & Bí Ẩn','Tinh Hoa Điện Ảnh Hồng Kông','Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay','Thế giới Anime','Cổ Trang Trung Quốc','Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng']
 TOP10={'Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay'}
 MAX_PAGES=180;BATCH=12
-YT_PATTERNS=[r'(?:youtube\.com/(?:watch\?v=|embed/|shorts/)|youtu\.be/)([A-Za-z0-9_-]{11})',r'["\'](?:youtube_id|youtubeId|ytId|trailer_key|trailerKey)["\']\s*[:=]\s*["\']([A-Za-z0-9_-]{11})']
 
 def fetch(u,timeout=20):
  for attempt in range(4):
@@ -80,27 +79,6 @@ def crawl_listing(seed):
   start+=BATCH
  return urls,last_good
 
-def youtube_ids(txt):
- txt=html.unescape(str(txt or '').replace('\\/','/'));out=[]
- for pat in YT_PATTERNS:
-  for y in re.findall(pat,txt,re.I):
-   if y not in out:out.append(y)
- return out[:3]
-
-def trailer_info(u):
- page=fetch(u,20);ids=youtube_ids(page);visible=html.unescape(re.sub('<[^>]+>',' ',page)) if page else ''
- return u,{'marked':bool(re.search(r'(?i)\btrailer\b',visible)),'youtubeIds':ids}
-
-def enrich_trailers(urls):
- out={}
- with ThreadPoolExecutor(max_workers=min(16,len(urls) or 1)) as ex:
-  fs={ex.submit(trailer_info,u):u for u in urls}
-  for f in as_completed(fs):
-   u=fs[f]
-   try:k,v=f.result();out[k]=v
-   except Exception as e:out[u]={'marked':False,'youtubeIds':[],'error':str(e)[:120]}
- return out
-
 def main():
  home=fetch(BASE+'/phimhay')
  if not home:
@@ -119,8 +97,6 @@ def main():
    for u in home_urls+crawled:
     if u not in all_urls:all_urls.append(u)
   row={'label':label,'home':home_urls,'listing':listing,'pages':pages,'count':len(all_urls),'urls':all_urls}
-  if label=='Sắp Lên Sóng':
-   row['trailers']=enrich_trailers(all_urls);row['trailerCount']=sum(1 for v in row['trailers'].values() if v.get('youtubeIds'));row['markedTrailerCount']=sum(1 for v in row['trailers'].values() if v.get('marked'))
   out['sections'].append(row);print(label,'home=',len(home_urls),'pages=',pages,'items=',len(all_urls),'listing=',listing,flush=True)
  with open(OUT,'w',encoding='utf-8') as f:json.dump(out,f,ensure_ascii=False,separators=(',',':'))
  print('wrote',OUT,'sections=',len(out['sections']))
