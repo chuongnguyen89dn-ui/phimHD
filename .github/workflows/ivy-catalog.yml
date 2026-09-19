@@ -8,6 +8,7 @@ on:
       - 'rophim_catalog_crawler_taxonomy_v5.py'
       - 'ivy_sitemap_crawler.py'
       - 'ivy_playback_audit.py'
+      - 'ivy_sitewide_verify.py'
   schedule:
     - cron: '0 0,8,16 * * *'
 permissions:
@@ -79,6 +80,13 @@ jobs:
         env:
           IVY_SITEMAP_OUT: ivy_sitemap.json
         run: python ivy_sitemap_crawler.py
+      - name: Verify whole-site count and exact section ordering
+        env:
+          ROPHIM_CATALOG: rophim_catalog.json
+          IVY_SITEMAP_OUT: ivy_sitemap.json
+          IVY_SITE_VERIFY_OUT: sitewide_verification.json
+        run: python ivy_sitewide_verify.py
+
       - name: Audit and cache playback sources
         env:
           ROPHIM_CATALOG: rophim_catalog.json
@@ -88,7 +96,7 @@ jobs:
         run: |
           git config user.name "ivy-catalog-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add rophim_catalog.json ivy_sitemap.json catalog_changes_latest.json catalog-history/
+          git add rophim_catalog.json ivy_sitemap.json sitewide_verification.json catalog_changes_latest.json catalog-history/
           if git diff --cached --quiet; then
             echo "Catalog and sitemap unchanged"
             exit 0
