@@ -1,6 +1,6 @@
-import json, os, re
+import json, os, re\nfrom xml.etree import ElementTree as ET
 from datetime import datetime, timezone
-from urllib.parse import urljoin, urlparse, parse_qsl, urlencode, urlunparse
+from urllib.parse import urljoin, urlparse, parse_qsl, urlencode, urlunparse, unquote
 from urllib.request import Request, urlopen
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -9,7 +9,7 @@ from rophim_catalog_crawler import parse_movie
 BASE=os.environ.get('ROPHIM_BASE','https://rophim.loan').rstrip('/')
 OUT=os.environ.get('ROPHIM_CATALOG','rophim_catalog.json')
 WORKERS=int(os.environ.get('ROPHIM_WORKERS','32'))
-UA='Mozilla/5.0 (compatible; IvyCatalog/5.3)'
+UA='Mozilla/5.0 (compatible; IvyCatalog/5.4)'
 TAX_PREFIXES={'/the-loai/':'genres','/quoc-gia/':'countries','/phim-le':'sections','/phim-bo':'sections','/hoat-hinh':'sections','/tv-shows':'sections','/phim-chieu-rap':'sections','/lich-chieu':'schedules'}
 
 def norm(u):
@@ -60,6 +60,23 @@ def crawl_taxonomy():
     except Exception as e:errors.append({'url':u,'stage':'taxonomy','error':str(e)})
    if len(seen)%100<WORKERS*4:print(f'[taxonomy] pages={len(seen)} queued={len(pending)} movies={len(memberships)}',flush=True)
  return memberships,cats,errors
+def sitemap_movies():
+ roots=[BASE+'/sitemap.xml'];seen=set();movies=set();errors=[]
+ while roots:
+  u=roots.pop(0)
+  if u in seen:continue
+  seen.add(u)
+  try:
+   _,raw=fetch(u);root=ET.fromstring(raw)
+   locs=[(e.text or '').strip() for e in root.iter() if e.tag.lower().endswith('loc')]
+   for loc in locs:
+    n=norm(unquote(loc))
+    if not n:continue
+    if movie(n):movies.add(n)
+    elif 'sitemap' in urlparse(n).path.lower() and n not in seen:roots.append(n)
+  except Exception as e:errors.append({'url':u,'stage':'sitemap','error':str(e)})
+ print(f'[sitemap] checked={len(seen)} movies={len(movies)} errors={len(errors)}',flush=True)
+ return movies,errors
 def load_old():
  try:
   with open(OUT,'r',encoding='utf-8') as f:return json.load(f)
@@ -69,8 +86,8 @@ def parse_detail(u):
  final,h=fetch(u);x=parse_movie(final,h);x['url']=norm(x.get('url') or final);x['source']='ivy-source';return x
 def main():
  started=datetime.now(timezone.utc).isoformat();old=load_old();oldmap={norm(x.get('url','')):x for x in old.get('movies',[]) if isinstance(x,dict) and x.get('url')}
- mem,cats,errors=crawl_taxonomy();urls=set(oldmap)|set(mem);new=set(urls)-set(oldmap);stale={u for u,x in oldmap.items() if needs_refresh(x)};todo=sorted(new|stale)
- print(f'[discover] cached={len(oldmap)} taxonomy={len(mem)} new={len(new)} stale={len(stale)} detail={len(todo)}',flush=True)
+ mem,cats,errors=crawl_taxonomy();smap,serr=sitemap_movies();errors.extend(serr);urls=set(oldmap)|set(mem)|set(smap);new=set(urls)-set(oldmap);stale={u for u,x in oldmap.items() if needs_refresh(x)};todo=sorted(new|stale)
+ print(f'[discover] cached={len(oldmap)} taxonomy={len(mem)} sitemap={len(smap)} new={len(new)} stale={len(stale)} detail={len(todo)}',flush=True)
  if todo:
   with ThreadPoolExecutor(max_workers=WORKERS) as ex:
    fs={ex.submit(parse_detail,u):u for u in todo}
@@ -89,6 +106,6 @@ def main():
   if not taxonomy['genres'] and x.get('genres'):taxonomy['genres']=x.get('genres')
   x['taxonomy']=taxonomy;x['categoryMembership']=sorted(set(sum((taxonomy[b] for b in taxonomy),[])));x['genres']=taxonomy['genres'] or x.get('genres') or [];x['countries']=taxonomy['countries'];x['sections']=taxonomy['sections'];x['schedules']=taxonomy['schedules'];x['categories']=taxonomy['categories'];x['sourceLatestRank']=rank.get(u);movies.append(x)
  movies.sort(key=lambda x:(x.get('sourceLatestRank') is None,x.get('sourceLatestRank') if x.get('sourceLatestRank') is not None else 10**9,str(x.get('title','')).lower()))
- data={'generatedAt':datetime.now(timezone.utc).isoformat(),'startedAt':started,'baseUrl':BASE,'crawlerVersion':'ivy-taxonomy-cache-v5.3','sourceOrders':{'movies':movie_order,'series':series_order,'home':home_order},'categories':cats,'stats':{'cachedMovieCount':len(old.get('movies',[])),'taxonomyMovieCount':len(mem),'newMovieCount':len(new),'refreshedMovieCount':len(stale),'movieCount':len(movies),'categoryPageCount':len(cats),'errorCount':len(errors),'movieOrderCount':len(movie_order),'seriesOrderCount':len(series_order)},'movies':movies,'errors':errors}
+ data={'generatedAt':datetime.now(timezone.utc).isoformat(),'startedAt':started,'baseUrl':BASE,'crawlerVersion':'ivy-taxonomy-cache-v5.4','sourceOrders':{'movies':movie_order,'series':series_order,'home':home_order},'categories':cats,'stats':{'cachedMovieCount':len(old.get('movies',[])),'taxonomyMovieCount':len(mem),'sitemapMovieCount':len(smap),'newMovieCount':len(new),'refreshedMovieCount':len(stale),'movieCount':len(movies),'categoryPageCount':len(cats),'errorCount':len(errors),'movieOrderCount':len(movie_order),'seriesOrderCount':len(series_order)},'movies':movies,'errors':errors}
  tmp=OUT+'.tmp';json.dump(data,open(tmp,'w',encoding='utf-8'),ensure_ascii=False,indent=2);os.replace(tmp,OUT);print('DONE',json.dumps(data['stats'],ensure_ascii=False),flush=True)
 if __name__=='__main__':main()
