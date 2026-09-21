@@ -61,7 +61,8 @@ def main():
         u=x.get('url')
         if u and u not in ordered:ordered.append(u)
     ok=0;bad=[]
-    targets=ordered if LIMIT<=0 else ordered[:LIMIT]\n    for i,u in enumerate(targets,1):
+    targets=ordered if LIMIT<=0 else ordered[:LIMIT]
+    for i,u in enumerate(targets,1):
         x=by[u];p=probe(x);x['playbackHints']=p
         if p['hasPlayback']:ok+=1
         else:bad.append({'title':x.get('title'),'url':u})
