@@ -135,8 +135,11 @@ def ordered(urls,pred=None):
     return out
 
 def infer_season(x,h=""):
-    text=" ".join([clean(x.get("title","")),clean(h[:20000])])
-    for pat in [r"(?i)(?:phần|season)\s*(\d+)",r"(?i)S(\d{1,2})(?:E\d+)?"]:
+    # Season must come from this catalog item's own identity, never arbitrary page HTML
+    # (recommendations/navigation can contain "Phần 2" and previously caused false seasons).
+    vals=[clean(x.get("title","")),clean(x.get("originalTitle","")),str(x.get("slug") or ""),str(x.get("url") or "").rsplit("/",1)[-1]]
+    text=" ".join(vals)
+    for pat in [r"(?i)(?:phần|season)[-_ ]*(\d+)",r"(?i)(?:^|[-_ ])S(\d{1,2})(?:E\d+)?(?:$|[-_ ])"]:
         m=re.search(pat,text)
         if m:return max(1,int(m.group(1)))
     return 1
