@@ -1,4 +1,5 @@
-import json, os, re\nfrom xml.etree import ElementTree as ET
+import json, os, re
+from xml.etree import ElementTree as ET
 from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse, parse_qsl, urlencode, urlunparse, unquote
 from urllib.request import Request, urlopen
