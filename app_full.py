@@ -230,14 +230,29 @@ def extract_array_after(h,marker):
     return None
 def episode_rows(x):
     page_url=x.get("url","");h=fetch_text(page_url,180);arr=extract_array_after(h,"var episodes =") or extract_array_after(h,"episodes =") or [];by={}
+    def add(ep,name,server,url):
+        if not ep or not url:return
+        row=by.setdefault(ep,{"episode":ep,"title":name or f"Tập {ep}","sources":[]})
+        src={"name":clean(server or "Nguồn"),"url":html.unescape(str(url).replace("\\/","/")),"referer":page_url}
+        if not any(s.get("url")==src["url"] and s.get("name")==src["name"] for s in row["sources"]):row["sources"].append(src)
     for srv in arr if isinstance(arr,list) else []:
-        for item in (srv.get("server_data") or []) if isinstance(srv,dict) else []:
+        if not isinstance(srv,dict):continue
+        for item in srv.get("server_data") or []:
+            if not isinstance(item,dict):continue
             slug=str(item.get("slug") or "");name=clean(item.get("name") or item.get("filename") or slug);m=re.search(r"(\d+)",slug+" "+name)
-            if not m:continue
-            ep=int(m.group(1));row=by.setdefault(ep,{"episode":ep,"title":name or f"Tập {ep}","sources":[]})
-            direct=item.get("link_m3u8") or "";embed=item.get("link_embed") or ""
-            if direct:row["sources"].append({"name":clean(srv.get("server_name") or "Nguồn"),"url":direct,"referer":page_url})
-            elif embed:row["sources"].append({"name":clean(srv.get("server_name") or "Nguồn"),"url":embed,"referer":page_url})
+            if m:add(int(m.group(1)),name, srv.get("server_name"), item.get("link_m3u8") or item.get("link_embed"))
+    # RoPhim may serialize episode/server data in Next/app JSON instead of "var episodes".
+    # Scan only structured objects carrying an episode number plus a playback URL.
+    for obj in re.findall(r'\{[^{}]{0,2500}\}',h,re.S):
+        if not re.search(r'(?i)(?:link_m3u8|link_embed|m3u8)',obj):continue
+        def val(k):
+            m=re.search(r'["\']'+k+r'["\']\s*:\s*["\']([^"\']*)',obj,re.I);return html.unescape(m.group(1)) if m else ""
+        slug=val("slug");name=clean(val("name") or val("filename") or slug);m=re.search(r"(\d+)",slug+" "+name)
+        if not m:continue
+        u=val("link_m3u8") or val("link_embed")
+        if not u:
+            z=HLS_RE.search(obj.replace("\\/","/"));u=z.group(0) if z else ""
+        add(int(m.group(1)),name,val("server_name") or val("serverName"),u)
     return infer_season(x,h),[by[k] for k in sorted(by)]
 
 def tmdb_get(path,params=None,ttl=21600):
