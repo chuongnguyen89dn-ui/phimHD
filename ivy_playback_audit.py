@@ -5,7 +5,7 @@ CATALOG=os.environ.get('ROPHIM_CATALOG','rophim_catalog.json')
 UA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1'
 HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 URL_RE=re.compile(r'https?://[^"\'<>\\\s]+',re.I)
-LIMIT=int(os.environ.get('IVY_PLAYBACK_AUDIT_LIMIT','80'))
+LIMIT=int(os.environ.get('IVY_PLAYBACK_AUDIT_LIMIT','0'))
 
 def fetch(u):
     try:
@@ -61,13 +61,13 @@ def main():
         u=x.get('url')
         if u and u not in ordered:ordered.append(u)
     ok=0;bad=[]
-    for i,u in enumerate(ordered[:LIMIT],1):
+    targets=ordered if LIMIT<=0 else ordered[:LIMIT]\n    for i,u in enumerate(targets,1):
         x=by[u];p=probe(x);x['playbackHints']=p
         if p['hasPlayback']:ok+=1
         else:bad.append({'title':x.get('title'),'url':u})
-        print(f"[playback] {i}/{min(LIMIT,len(ordered))} {'OK' if p['hasPlayback'] else 'NO-LINK'} {x.get('title','')}",flush=True)
+        print(f"[playback] {i}/{len(targets)} {'OK' if p['hasPlayback'] else 'NO-LINK'} {x.get('title','')}",flush=True)
         time.sleep(.03)
-    d['playbackAudit']={'checked':min(LIMIT,len(ordered)),'playable':ok,'missing':len(bad),'missingItems':bad[:50]}
+    d['playbackAudit']={'checked':len(targets),'playable':ok,'missing':len(bad),'missingItems':bad[:50]}
     tmp=CATALOG+'.tmp'
     with open(tmp,'w',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,indent=2)
     os.replace(tmp,CATALOG)
