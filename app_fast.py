@@ -81,8 +81,10 @@ def row_extras():return [{'name':'genre','isRequired':False,'options':genre_opti
 def manifest_fast():
     cats=[]
     for i,label in enumerate(home_rows()):
-        cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
-    return {'id':'community.ivy.catalog','version':'1.10.2','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+        # Keep every source section on the same Nuvio Home surface.
+        # Each returned meta still preserves its true movie/series type.
+        cats.append({'type':'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
+    return {'id':'community.ivy.catalog','version':'1.10.3','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 def extras(path=''):
     o={}
