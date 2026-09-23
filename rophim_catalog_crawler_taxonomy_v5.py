@@ -10,6 +10,7 @@ from rophim_catalog_crawler import parse_movie
 BASE=os.environ.get('ROPHIM_BASE','https://rophims.team').rstrip('/')
 OUT=os.environ.get('ROPHIM_CATALOG','rophim_catalog.json')
 WORKERS=int(os.environ.get('ROPHIM_WORKERS','32'))
+FULL_REBUILD=os.environ.get('ROPHIM_FULL_REBUILD','0').strip().lower() in ('1','true','yes','on')
 UA='Mozilla/5.0 (compatible; IvyCatalog/5.4)'
 TAX_PREFIXES={'/the-loai/':'genres','/quoc-gia/':'countries','/phim-le':'sections','/phim-bo':'sections','/hoat-hinh':'sections','/tv-shows':'sections','/phim-chieu-rap':'sections','/lich-chieu':'schedules'}
 
@@ -80,6 +81,7 @@ def sitemap_movies():
  print(f'[sitemap] checked={len(seen)} movies={len(movies)} errors={len(errors)}',flush=True)
  return movies,errors
 def load_old():
+ if FULL_REBUILD:return {'movies':[]}
  try:
   with open(OUT,'r',encoding='utf-8') as f:return json.load(f)
  except:return {'movies':[]}
@@ -88,6 +90,7 @@ def parse_detail(u):
  final,h=fetch(u);x=parse_movie(final,h);x['url']=norm(x.get('url') or final);x['source']='ivy-source';return x
 def main():
  started=datetime.now(timezone.utc).isoformat();old=load_old();oldmap={}
+ if FULL_REBUILD:print('[full-rebuild] ignoring cached catalog; refreshing every discovered detail page',flush=True)
  for x in old.get('movies',[]):
   if not isinstance(x,dict) or not x.get('url'):continue
   k=norm(x.get('url',''))
@@ -114,6 +117,6 @@ def main():
   if not taxonomy['genres'] and x.get('genres'):taxonomy['genres']=x.get('genres')
   x['taxonomy']=taxonomy;x['categoryMembership']=sorted(set(sum((taxonomy[b] for b in taxonomy),[])));x['genres']=taxonomy['genres'] or x.get('genres') or [];x['countries']=taxonomy['countries'];x['sections']=taxonomy['sections'];x['schedules']=taxonomy['schedules'];x['categories']=taxonomy['categories'];x['sourceLatestRank']=rank.get(u);movies.append(x)
  movies.sort(key=lambda x:(x.get('sourceLatestRank') is None,x.get('sourceLatestRank') if x.get('sourceLatestRank') is not None else 10**9,str(x.get('title','')).lower()))
- data={'generatedAt':datetime.now(timezone.utc).isoformat(),'startedAt':started,'baseUrl':BASE,'crawlerVersion':'ivy-taxonomy-cache-v5.4','sourceOrders':{'movies':movie_order,'series':series_order,'home':home_order},'categories':cats,'stats':{'cachedMovieCount':len(old.get('movies',[])),'taxonomyMovieCount':len(mem),'sitemapMovieCount':len(smap),'newMovieCount':len(new),'refreshedMovieCount':len(stale),'movieCount':len(movies),'categoryPageCount':len(cats),'errorCount':len(errors),'movieOrderCount':len(movie_order),'seriesOrderCount':len(series_order)},'movies':movies,'errors':errors}
+ data={'generatedAt':datetime.now(timezone.utc).isoformat(),'startedAt':started,'baseUrl':BASE,'crawlerVersion':'ivy-taxonomy-full-v5.5' if FULL_REBUILD else 'ivy-taxonomy-cache-v5.5','sourceOrders':{'movies':movie_order,'series':series_order,'home':home_order},'categories':cats,'stats':{'cachedMovieCount':len(old.get('movies',[])),'taxonomyMovieCount':len(mem),'sitemapMovieCount':len(smap),'newMovieCount':len(new),'refreshedMovieCount':len(stale),'movieCount':len(movies),'categoryPageCount':len(cats),'errorCount':len(errors),'movieOrderCount':len(movie_order),'seriesOrderCount':len(series_order)},'movies':movies,'errors':errors}
  tmp=OUT+'.tmp';json.dump(data,open(tmp,'w',encoding='utf-8'),ensure_ascii=False,indent=2);os.replace(tmp,OUT);print('DONE',json.dumps(data['stats'],ensure_ascii=False),flush=True)
 if __name__=='__main__':main()
