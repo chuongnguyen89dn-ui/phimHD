@@ -1,11 +1,13 @@
 import json, os, re, html, time
 from urllib.request import Request, urlopen
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 CATALOG=os.environ.get('ROPHIM_CATALOG','rophim_catalog.json')
 UA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1'
 HLS_RE=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 URL_RE=re.compile(r'https?://[^"\'<>\\\s]+',re.I)
 LIMIT=int(os.environ.get('IVY_PLAYBACK_AUDIT_LIMIT','0'))
+PLAYBACK_WORKERS=int(os.environ.get('IVY_PLAYBACK_WORKERS','24'))
 
 def fetch(u):
     headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'vi-VN,vi;q=0.9,en;q=0.8','Referer':'https://rophims.team/'}
@@ -76,17 +78,24 @@ def main():
     for x in movies:
         u=x.get('url')
         if u and u not in ordered:ordered.append(u)
-    ok=0;bad=[]
     targets=ordered if LIMIT<=0 else ordered[:LIMIT]
-    for i,u in enumerate(targets,1):
-        x=by[u];p=probe(x)
+    results={};done=0
+    with ThreadPoolExecutor(max_workers=PLAYBACK_WORKERS) as ex:
+        fs={ex.submit(probe,by[u]):u for u in targets}
+        for f in as_completed(fs):
+            u=fs[f];done+=1
+            try:p=f.result()
+            except Exception as e:p={'direct':[],'episodeSources':[],'hasPlayback':False,'fetchOk':False,'watchUrl':'','error':str(e)}
+            results[u]=p
+            print(f"[playback] {done}/{len(targets)} {'OK' if p.get('hasPlayback') else 'NO-LINK'} {by[u].get('title','')}",flush=True)
+    ok=0;bad=[]
+    for u in targets:
+        x=by[u];p=results.get(u) or {}
         if p.get('fetchOk'):
             x['playbackHints']={k:v for k,v in p.items() if k!='fetchOk'}
-        if p['hasPlayback']:ok+=1
-        else:bad.append({'title':x.get('title'),'url':u,'fetchOk':p.get('fetchOk',False)})
-        print(f"[playback] {i}/{len(targets)} {'OK' if p['hasPlayback'] else 'NO-LINK'} {x.get('title','')}",flush=True)
-        time.sleep(.03)
-    d['playbackAudit']={'checked':len(targets),'playable':ok,'missing':len(bad),'missingItems':bad[:50]}
+        if p.get('hasPlayback'):ok+=1
+        else:bad.append({'title':x.get('title'),'url':u,'fetchOk':p.get('fetchOk',False),'error':p.get('error','')})
+    d['playbackAudit']={'checked':len(targets),'playable':ok,'missing':len(bad),'workers':PLAYBACK_WORKERS,'missingItems':bad[:100]}
     tmp=CATALOG+'.tmp'
     with open(tmp,'w',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,indent=2)
     os.replace(tmp,CATALOG)
