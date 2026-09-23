@@ -52,21 +52,28 @@ def materialize_urls(urls,label):
 
 def items(label):
     s=section(label)
-    if label=='Top 10 phim lẻ hôm nay':
-        home=s.get('home') or []
-        listing=s.get('listing') or core.BASE+'/phim-le'
-        urls=list(home)
-        for u in core.crawl_listing(listing,max_pages=60):
-            if u not in urls:urls.append(u)
-        return materialize_urls(urls,label)
-    if label=='Top 10 phim bộ hôm nay':
-        home=s.get('home') or []
-        listing=s.get('listing') or core.BASE+'/phim-bo'
-        urls=list(home)
-        for u in core.crawl_listing(listing,max_pages=60):
-            if u not in urls:urls.append(u)
-        return materialize_urls(urls,label)
-    return materialize_urls(s.get('urls') or s.get('home') or [],label)
+    urls=list(s.get('urls') or s.get('home') or [])
+    # Never crawl dozens of source pages during a Nuvio catalog request.
+    # Keep the live Home Top 10 first, then extend instantly from the already
+    # downloaded catalog snapshot when the sitemap has not yet published the
+    # full paginated listing.
+    if label=='Top 10 phim lẻ hôm nay' and len(urls)<=10:
+        seen={core.canonical_movie_url(u) for u in urls}
+        for x in core.load().get('movies',[]):
+            if core.typ(x)!='movie':continue
+            u=x.get('url')
+            k=core.canonical_movie_url(u)
+            if u and k not in seen:
+                urls.append(u);seen.add(k)
+    elif label=='Top 10 phim bộ hôm nay' and len(urls)<=10:
+        seen={core.canonical_movie_url(u) for u in urls}
+        for x in core.load().get('movies',[]):
+            if core.typ(x)!='series':continue
+            u=x.get('url')
+            k=core.canonical_movie_url(u)
+            if u and k not in seen:
+                urls.append(u);seen.add(k)
+    return materialize_urls(urls,label)
 
 def genre_options():
     out=[]
@@ -84,7 +91,7 @@ def manifest_fast():
         # Keep every source section on the same Nuvio Home surface.
         # Each returned meta still preserves its true movie/series type.
         cats.append({'type':'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
-    return {'id':'community.ivy.catalog','version':'1.10.3','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    return {'id':'community.ivy.catalog','version':'1.10.4','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 def extras(path=''):
     o={}
