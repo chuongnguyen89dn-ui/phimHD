@@ -444,8 +444,21 @@ def stream(t,item_id):
     if len(parts)>=3 and typ(x)=="series":
         try:season=int(parts[-2]);ep=int(parts[-1])
         except:return jsonify({"streams":[]})
-        src=family_seasons(x).get(season) or x;_,rows=episode_rows(src);row=next((r for r in rows if r["episode"]==ep),None)
-        if not row:return jsonify({"streams":[]})
+        src=family_seasons(x).get(season) or x
+        harvested=(src.get("playbackHints") or {}).get("episodeSources") or []
+        cached=[]
+        for s in harvested:
+            if s.get("episode")==ep:
+                cached.append({
+                    "name":clean(s.get("server") or "Nguồn"),
+                    "url":s.get("link_m3u8") or s.get("link_embed") or s.get("url"),
+                    "referer":(src.get("playbackHints") or {}).get("watchUrl") or src.get("url")
+                })
+        if cached:
+            row={"episode":ep,"title":f"Tập {ep}","sources":cached}
+        else:
+            _,rows=episode_rows(src);row=next((r for r in rows if r["episode"]==ep),None)
+            if not row:return jsonify({"streams":[]})
         expanded=[]
         for source in row["sources"]:
             raw=source.get("url")
