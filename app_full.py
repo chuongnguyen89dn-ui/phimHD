@@ -139,13 +139,30 @@ def crawl_listing(seed,max_pages=30):
             if probe not in seen_pages and probe not in queue and (before<len(urls) or len(seen_pages)==1):queue.append(probe)
     _list_cache[seed]=(now,urls);return urls
 
+def canonical_movie_url(u):
+    s=str(u or "").strip()
+    if not s:return ""
+    try:
+        p=re.sub(r"^https?://(?:www\.)?(?:rophim\.loan|rophims\.team)","",s,flags=re.I)
+        if p.startswith("/"):return p.rstrip("/") or "/"
+    except:pass
+    return s.rstrip("/")
+
 def data_index():
-    data=load().get("movies",[]);return data,{str(x.get("url","" )).rstrip("/"):x for x in data if x.get("url")}
+    data=load().get("movies",[]);by={}
+    for x in data:
+        u=x.get("url")
+        if not u:continue
+        by[str(u).rstrip("/")]=x
+        by[canonical_movie_url(u)]=x
+    return data,by
 def ordered(urls,pred=None):
     _,by=data_index();out=[];seen=set()
     for u in urls:
-        x=by.get(str(u).rstrip("/"))
-        if x and (pred is None or pred(x)) and x.get("url") not in seen:out.append(x);seen.add(x.get("url"))
+        x=by.get(str(u).rstrip("/")) or by.get(canonical_movie_url(u))
+        if x and (pred is None or pred(x)):
+            k=canonical_movie_url(x.get("url"))
+            if k not in seen:out.append(x);seen.add(k)
     return out
 
 def infer_season(x,h=""):
