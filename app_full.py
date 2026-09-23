@@ -256,6 +256,25 @@ def extract_array_after(h,marker):
                 try:return json.loads(h[p:i+1])
                 except:return None
     return None
+def exact_watch_episode_sources(watch_url,episode,referer=None):
+    page=fetch_text(watch_url,120,referer or BASE+"/")
+    arr=extract_array_after(page,"var episodes =") or extract_array_after(page,"episodes =") or []
+    out=[];seen=set()
+    for srv in arr if isinstance(arr,list) else []:
+        if not isinstance(srv,dict):continue
+        server=clean(srv.get("server_name") or "Nguồn")
+        for item in srv.get("server_data") or []:
+            if not isinstance(item,dict):continue
+            text=(str(item.get("slug") or "")+" "+str(item.get("name") or "")+" "+str(item.get("filename") or ""))
+            m=re.search(r"(?i)(?:tập|tap|episode)[-_ ]*(\d+)",text)
+            if not m or int(m.group(1))!=int(episode):continue
+            media=item.get("link_m3u8") or item.get("link_embed")
+            if not media:continue
+            media=html.unescape(str(media).replace("\\/","/"))
+            if media in seen:continue
+            seen.add(media);out.append({"name":server,"url":media,"referer":watch_url})
+    return out
+
 def episode_rows(x):
     page_url=x.get("url","");h=fetch_text(page_url,180);arr=extract_array_after(h,"var episodes =") or extract_array_after(h,"episodes =") or [];by={}
     def add(ep,name,server,url,referer=page_url):
@@ -382,19 +401,23 @@ def stream(t,item_id):
         except:return jsonify({"streams":[]})
         src=family_seasons(x).get(season) or x;_,rows=episode_rows(src);row=next((r for r in rows if r["episode"]==ep),None)
         if not row:return jsonify({"streams":[]})
+        expanded=[]
         for source in row["sources"]:
             raw=source.get("url")
             ref0=source.get("referer") or src.get("url")
-            # A direct HLS entry in server_data is already the exact stream for
-            # this episode/server. Do not re-scan the whole watch page because
-            # that page can contain HLS URLs for every episode in the season.
+            if "/xem-phim/" in str(raw or "") and ".m3u8" not in str(raw or "").lower():
+                exact=exact_watch_episode_sources(raw,ep,ref0)
+                if exact:
+                    expanded.extend(exact)
+                    continue
+            expanded.append(source)
+        for source in expanded:
+            raw=source.get("url")
+            ref0=source.get("referer") or src.get("url")
             if ".m3u8" in str(raw or "").lower():
                 pairs=[(raw,ref0)]
             else:
                 pairs=resolve_media_url(raw,ref0)
-                # Fallback watch pages may expose the full episodes array.
-                # Keep only the first resolved media for that source instead of
-                # turning every episode HLS found in the page into a stream.
                 if pairs:pairs=pairs[:1]
             for media,ref in pairs:
                 if media in seen:continue
