@@ -1,6 +1,12 @@
 name: Ivy catalog update
 on:
   workflow_dispatch:
+    inputs:
+      full_rebuild:
+        description: 'Rebuild catalog, poster and playback links from RoPhim from scratch'
+        required: false
+        default: false
+        type: boolean
   push:
     branches: [main]
     paths:
@@ -39,18 +45,22 @@ jobs:
 
       - name: Update Ivy catalog from source web
         env:
-          ROPHIM_CATALOG: rophim_catalog.json
+          ROPHIM_CATALOG: rophim_catalog.staging.json
           ROPHIM_BASE: https://rophims.team
           ROPHIM_WORKERS: '32'
-          ROPHIM_FULL_REBUILD: '1'
-        run: python rophim_catalog_crawler_taxonomy_v5.py
+          ROPHIM_FULL_REBUILD: ${{ github.event_name == 'workflow_dispatch' && inputs.full_rebuild && '1' || '0' }}
+        run: |
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] || [ "${{ inputs.full_rebuild }}" != "true" ]; then
+            cp /tmp/rophim_catalog_previous.json rophim_catalog.staging.json
+          fi
+          python rophim_catalog_crawler_taxonomy_v5.py
 
       - name: Build catalog change report
         run: |
           python - <<'PY'
           import json, datetime, os
           oldp='/tmp/rophim_catalog_previous.json'
-          newp='rophim_catalog.json'
+          newp='rophim_catalog.staging.json'
           def load(p):
               try:
                   with open(p,encoding='utf-8') as f: return json.load(f)
@@ -83,22 +93,75 @@ jobs:
 
       - name: Crawl exact source sitemap and pagination
         env:
-          IVY_SITEMAP_OUT: ivy_sitemap.json
+          IVY_SITEMAP_OUT: ivy_sitemap.staging.json
           IVY_SOURCE_BASE: https://rophims.team
         run: python ivy_sitemap_crawler.py
       - name: Verify whole-site count and exact section ordering
         env:
-          ROPHIM_CATALOG: rophim_catalog.json
-          IVY_SITEMAP_OUT: ivy_sitemap.json
-          IVY_SITE_VERIFY_OUT: sitewide_verification.json
+          ROPHIM_CATALOG: rophim_catalog.staging.json
+          IVY_SITEMAP_OUT: ivy_sitemap.staging.json
+          IVY_SITE_VERIFY_OUT: sitewide_verification.staging.json
         run: python ivy_sitewide_verify.py
 
       - name: Audit and cache playback sources
         env:
-          ROPHIM_CATALOG: rophim_catalog.json
+          ROPHIM_CATALOG: rophim_catalog.staging.json
           IVY_PLAYBACK_AUDIT_LIMIT: '0'
           IVY_PLAYBACK_WORKERS: '24'
         run: python ivy_playback_audit.py
+
+      - name: Validate staging snapshot before production publish
+        run: |
+          python - <<'PY'
+          import json, re, sys
+          from urllib.parse import urlparse
+
+          def load(p):
+              with open(p,encoding='utf-8') as f:return json.load(f)
+          old=load('/tmp/rophim_catalog_previous.json')
+          new=load('rophim_catalog.staging.json')
+          sm=load('ivy_sitemap.staging.json')
+
+          old_movies=old.get('movies') or []
+          movies=new.get('movies') or []
+          sections=sm.get('sections') or []
+
+          def key(x):
+              u=str(x.get('url') or '')
+              p=urlparse(u)
+              return p.path.rstrip('/').lower()
+
+          keys=[key(x) for x in movies if key(x)]
+          dup=len(keys)-len(set(keys))
+          posters=sum(1 for x in movies if str(x.get('poster') or '').startswith(('http://','https://')))
+          poster_ratio=(posters/len(movies)) if movies else 0
+          old_count=len(old_movies);new_count=len(movies)
+          minimum=max(1000,int(old_count*0.80)) if old_count else 1000
+          harvest=new.get('playbackHarvest') or {}
+          with_links=int(harvest.get('withLinks') or 0)
+          checked=int(harvest.get('checked') or 0)
+
+          print(f'VALIDATE old={old_count} new={new_count} minimum={minimum} duplicates={dup} posters={posters}/{new_count} sections={len(sections)} playback={with_links}/{checked}')
+
+          errors=[]
+          if new_count < minimum:errors.append(f'catalog shrank too much: {new_count} < {minimum}')
+          if dup:errors.append(f'duplicate canonical movie paths: {dup}')
+          if poster_ratio < 0.85:errors.append(f'poster coverage too low: {poster_ratio:.1%}')
+          if len(sections) < 15:errors.append(f'too few homepage sections: {len(sections)}')
+          if checked and with_links == 0:errors.append('playback harvest found zero source links')
+          if errors:
+              print('STAGING REJECTED:')
+              for e in errors:print(' -',e)
+              sys.exit(1)
+          print('STAGING ACCEPTED')
+          PY
+
+      - name: Promote validated staging snapshot atomically
+        run: |
+          cp rophim_catalog.staging.json rophim_catalog.json
+          cp ivy_sitemap.staging.json ivy_sitemap.json
+          cp sitewide_verification.staging.json sitewide_verification.json
+
       - name: Publish catalog, sitemap and change history to data branch
         run: |
           git config user.name "ivy-catalog-bot"
