@@ -76,14 +76,16 @@ def items(label):
                 urls.append(u);seen.add(k)
     return materialize_urls(urls,label)
 
+GENRE_OPTIONS=[
+    'Tất cả thể loại','Hành Động','Tình Cảm','Hài Hước','Kinh Dị','Bí Ẩn',
+    'Trinh Thám','Cổ Trang','Phiêu Lưu','Khoa Học Viễn Tưởng','Tâm Lý',
+    'Gia Đình','Chiến Tranh','Tài Liệu','Hình Sự','Võ Thuật','Thể Thao',
+    'Âm Nhạc','Hoạt Hình','Chính Kịch','Giả Tưởng'
+]
+
 def genre_options(kind=None):
-    out=[]
-    for x in core.load().get('movies',[]):
-        if kind and core.typ(x)!=kind:continue
-        for g in core.tax(x,'genres'):
-            g=core.clean(g)
-            if g and g not in out:out.append(g)
-    return ['Tất cả thể loại']+sorted(out,key=lambda s:core.norm(s))
+    # Manifest must stay instant. Do not scan the full remote catalog here.
+    return GENRE_OPTIONS
 
 def row_extras(kind):
     return [
@@ -111,7 +113,7 @@ def manifest_fast():
             })
     return {
         'id':'community.ivy.catalog',
-        'version':'1.11.0',
+        'version':'1.11.1',
         'name':'Ivy❤️',
         'description':'Ivy❤️ • Phim/Loạt phim → Danh mục → Thể loại → Tìm kiếm',
         'resources':['catalog','meta','stream'],
