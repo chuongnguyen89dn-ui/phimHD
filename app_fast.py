@@ -95,27 +95,24 @@ def row_extras(kind):
     ]
 
 def manifest_fast():
-    cats=[]
-    for kind in ('movie','series'):
-        label='Phim' if kind=='movie' else 'Loạt phim'
+    cats=[{
+        'type':'movie',
+        'id':'ivy_all',
+        'name':'❤️ Ivy • Tất cả danh mục',
+        'extra':row_extras(None)
+    }]
+    for i,row in enumerate(home_rows()):
         cats.append({
-            'type':kind,
-            'id':f'ivy_all_{kind}',
-            'name':'❤️ Ivy • Tất cả danh mục',
-            'extra':row_extras(kind)
+            'type':'movie',
+            'id':f'ivy_home_{i}',
+            'name':f'❤️ Ivy • {row}',
+            'extra':row_extras(None)
         })
-        for i,row in enumerate(home_rows()):
-            cats.append({
-                'type':kind,
-                'id':f'ivy_home_{kind}_{i}',
-                'name':f'❤️ Ivy • {row}',
-                'extra':row_extras(kind)
-            })
     return {
         'id':'community.ivy.catalog',
-        'version':'1.11.1',
+        'version':'1.11.2',
         'name':'Ivy❤️',
-        'description':'Ivy❤️ • Phim/Loạt phim → Danh mục → Thể loại → Tìm kiếm',
+        'description':'Ivy❤️ • Danh mục nguồn → Thể loại → Tìm kiếm',
         'resources':['catalog','meta','stream'],
         'types':['movie','series'],
         'idPrefixes':['ivy_'],
@@ -170,27 +167,29 @@ def all_items(kind):
     return out
 
 def catalog(cid,path=''):
-    e=extras(path);rows=[];kind=None
-    if cid in ('ivy_all_movie','ivy_all_series'):
-        kind='movie' if cid.endswith('_movie') else 'series'
-        rows=all_items(kind)
-    elif cid.startswith('ivy_home_movie_') or cid.startswith('ivy_home_series_'):
-        kind='movie' if cid.startswith('ivy_home_movie_') else 'series'
-        prefix=f'ivy_home_{kind}_'
-        try:
-            idx=int(cid[len(prefix):])
-            label=home_rows()[idx]
-            rows=items(label)
-        except:
-            rows=[]
-    # Compatibility with old cached catalog IDs.
+    e=extras(path);rows=[]
+    if cid=='ivy_all':
+        rows=all_items('movie')+all_items('series')
     elif cid.startswith('ivy_home_'):
         try:
             idx=int(cid[len('ivy_home_'):])
             rows=items(home_rows()[idx])
         except:
             rows=[]
-    rows=filter_rows(rows,e,kind)
+    # Compatibility with the temporary duplicated IDs from 1.11.0/1.11.1.
+    elif cid.startswith('ivy_all_'):
+        kind='series' if cid.endswith('_series') else 'movie'
+        rows=all_items(kind)
+    elif cid.startswith('ivy_home_movie_') or cid.startswith('ivy_home_series_'):
+        kind='movie' if cid.startswith('ivy_home_movie_') else 'series'
+        prefix=f'ivy_home_{kind}_'
+        try:
+            idx=int(cid[len(prefix):])
+            rows=items(home_rows()[idx])
+        except:
+            rows=[]
+        rows=[x for x in rows if core.typ(x)==kind]
+    rows=filter_rows(rows,e,None)
     try:sk=max(0,int(e.get('skip',0)))
     except:sk=0
     return jsonify({'metas':[core.base_meta(x) for x in rows[sk:sk+PAGE_SIZE]]})
@@ -198,6 +197,6 @@ def catalog(cid,path=''):
 core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.11.0','manifest':'/manifest.json'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.11.2','manifest':'/manifest.json'})
 core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.10.1','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
 app=core.app
