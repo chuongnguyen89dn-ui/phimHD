@@ -98,10 +98,31 @@ jobs:
         run: python ivy_sitemap_crawler.py
       - name: Verify whole-site count and exact section ordering
         env:
+          IVY_SOURCE_BASE: https://rophims.team
           ROPHIM_CATALOG: rophim_catalog.staging.json
           IVY_SITEMAP_OUT: ivy_sitemap.staging.json
           IVY_SITE_VERIFY_OUT: sitewide_verification.staging.json
         run: python ivy_sitewide_verify.py
+
+      - name: Validate catalog completeness before playback harvest
+        run: |
+          python - <<'PY'
+          import json,sys
+          with open('rophim_catalog.staging.json',encoding='utf-8') as f:d=json.load(f)
+          s=d.get('stats') or {}
+          movies=len(d.get('movies') or [])
+          sitemap=int(s.get('sitemapMovieCount') or 0)
+          unresolved=int(s.get('detailUnresolvedCount') or 0)
+          print(f'PRE_HARVEST_CHECK movies={movies} sitemap={sitemap} unresolved={unresolved}')
+          errors=[]
+          if unresolved:errors.append(f'{unresolved} detail URLs still unresolved')
+          if sitemap and movies < sitemap:errors.append(f'catalog incomplete: {movies} < sitemap {sitemap}')
+          if errors:
+              print('PRE_HARVEST_REJECTED')
+              for e in errors:print(' -',e)
+              sys.exit(1)
+          print('PRE_HARVEST_ACCEPTED')
+          PY
 
       - name: Audit and cache playback sources
         env:
