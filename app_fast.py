@@ -35,19 +35,38 @@ def section(label):
         if s.get('label')==label:return s
     return {'label':label,'urls':[],'pages':1}
 
-def items(label):
-    s=section(label);home=core.ordered(s.get('home') or [])
-    if label=='Top 10 phim lẻ hôm nay':
-        full=core.source_menu('movie')
-    elif label=='Top 10 phim bộ hôm nay':
-        full=core.source_menu('series')
-    else:
-        return core.ordered(s.get('urls') or s.get('home') or [])
-    out=[];seen=set()
-    for x in home+full:
-        u=x.get('url')
-        if u and u not in seen:seen.add(u);out.append(x)
+def _stub(u,label):
+    slug=str(u or '').rstrip('/').split('/')[-1]
+    name=slug.replace('-',' ').strip().title() or 'Ivy❤️'
+    return {'url':u,'slug':slug,'title':name,'type':'series' if label in SERIES_ROWS else 'movie','source':'runtime-fallback'}
+
+def materialize_urls(urls,label):
+    urls=[u for u in (urls or []) if u]
+    known=core.ordered(urls)
+    by={core.canonical_movie_url(x.get('url')):x for x in known if x.get('url')}
+    out=[]
+    for u in urls:
+        k=core.canonical_movie_url(u)
+        out.append(by.get(k) or _stub(u,label))
     return out
+
+def items(label):
+    s=section(label)
+    if label=='Top 10 phim lẻ hôm nay':
+        home=s.get('home') or []
+        listing=s.get('listing') or core.BASE+'/phim-le'
+        urls=list(home)
+        for u in core.crawl_listing(listing,max_pages=60):
+            if u not in urls:urls.append(u)
+        return materialize_urls(urls,label)
+    if label=='Top 10 phim bộ hôm nay':
+        home=s.get('home') or []
+        listing=s.get('listing') or core.BASE+'/phim-bo'
+        urls=list(home)
+        for u in core.crawl_listing(listing,max_pages=60):
+            if u not in urls:urls.append(u)
+        return materialize_urls(urls,label)
+    return materialize_urls(s.get('urls') or s.get('home') or [],label)
 
 def genre_options():
     out=[]
@@ -63,7 +82,7 @@ def manifest_fast():
     cats=[]
     for i,label in enumerate(home_rows()):
         cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
-    return {'id':'community.ivy.catalog','version':'1.10.1','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    return {'id':'community.ivy.catalog','version':'1.10.2','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 def extras(path=''):
     o={}
