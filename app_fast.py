@@ -77,7 +77,7 @@ def items(label):
     return materialize_urls(urls,label)
 
 GENRE_OPTIONS=[
-    'Tất cả thể loại','Hành Động','Tình Cảm','Hài Hước','Kinh Dị','Bí Ẩn',
+    'Hành Động','Tình Cảm','Hài Hước','Kinh Dị','Bí Ẩn',
     'Trinh Thám','Cổ Trang','Phiêu Lưu','Khoa Học Viễn Tưởng','Tâm Lý',
     'Gia Đình','Chiến Tranh','Tài Liệu','Hình Sự','Võ Thuật','Thể Thao',
     'Âm Nhạc','Hoạt Hình','Chính Kịch','Giả Tưởng'
@@ -102,7 +102,7 @@ def manifest_fast():
         'type':'movie',
         'id':'ivy_search_all',
         'name':'❤️ Ivy • Tất cả danh mục',
-        'extra':row_extras(None,True)
+        'extra':row_extras(None,False)
     })
     # Home stays exactly equal to the 17 source sections.
     for i,row in enumerate(home_rows()):
@@ -114,7 +114,7 @@ def manifest_fast():
         })
     return {
         'id':'community.ivy.catalog',
-        'version':'1.11.3',
+        'version':'1.11.4',
         'name':'Ivy❤️',
         'description':'Ivy❤️ • 17 danh mục nguồn; Tất cả danh mục chỉ dùng khi tìm kiếm',
         'resources':['catalog','meta','stream'],
@@ -173,7 +173,8 @@ def all_items(kind):
 def catalog(cid,path=''):
     e=extras(path);rows=[]
     if cid=='ivy_search_all':
-        rows=all_items('movie')+all_items('series')
+        q=core.norm(e.get('search') or '')
+        rows=(all_items('movie')+all_items('series')) if q else []
     elif cid=='ivy_all':
         # Compatibility only for clients that cached the temporary 1.11.2 ID.
         rows=all_items('movie')+all_items('series')
@@ -205,5 +206,5 @@ core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
 core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.11.3','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.10.1','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.11.4','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
 app=core.app
