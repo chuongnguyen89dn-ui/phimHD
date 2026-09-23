@@ -55,7 +55,7 @@ def episode_no(item):
 
 def collect_sources(arr,out):
     if not isinstance(arr,list):return
-    seen={(x.get('server'),x.get('episode'),x.get('url')) for x in out}
+    seen={(str(x.get('server') or '').strip().lower(),x.get('episode'),str(x.get('url') or '').strip()) for x in out}
     for srv in arr:
         if not isinstance(srv,dict):continue
         sname=str(srv.get('server_name') or srv.get('name') or 'Nguồn')
@@ -75,7 +75,7 @@ def collect_sources(arr,out):
                 'link_embed':embed,
                 'url':u
             }
-            k=(row['server'],row['episode'],row['url'])
+            k=(row['server'].strip().lower(),row['episode'],row['url'].strip())
             if k not in seen:
                 seen.add(k);out.append(row)
 
@@ -92,7 +92,8 @@ def probe(x):
     sources=[]
     for body in bodies:
         for hls in HLS_RE.findall(body or ''):
-            if hls not in direct:direct.append(hls)
+            hls=hls.strip()
+            if hls and hls not in direct:direct.append(hls)
         arr=extract_array_after(body or '','var episodes =') or extract_array_after(body or '','episodes =') or []
         collect_sources(arr,sources)
 
