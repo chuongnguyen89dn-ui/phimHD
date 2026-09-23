@@ -88,6 +88,16 @@ def load_old():
 def needs_refresh(x):return not isinstance(x,dict) or not x.get('poster') or not x.get('description') or x.get('year') in (None,'')
 def parse_detail(u):
  final,h=fetch(u);x=parse_movie(final,h);x['url']=norm(x.get('url') or final);x['source']='ivy-source';return x
+def dedupe_movies(rows):
+ seen=set();out=[]
+ for x in rows:
+  if not isinstance(x,dict):continue
+  k=norm(x.get('url') or '')
+  if not k:continue
+  if k in seen:continue
+  seen.add(k);x['url']=k;out.append(x)
+ return out
+
 def main():
  started=datetime.now(timezone.utc).isoformat();old=load_old();oldmap={}
  if FULL_REBUILD:print('[full-rebuild] ignoring cached catalog; refreshing every discovered detail page',flush=True)
@@ -116,6 +126,7 @@ def main():
    if not taxonomy[b] and oldtax.get(b):taxonomy[b]=oldtax[b]
   if not taxonomy['genres'] and x.get('genres'):taxonomy['genres']=x.get('genres')
   x['taxonomy']=taxonomy;x['categoryMembership']=sorted(set(sum((taxonomy[b] for b in taxonomy),[])));x['genres']=taxonomy['genres'] or x.get('genres') or [];x['countries']=taxonomy['countries'];x['sections']=taxonomy['sections'];x['schedules']=taxonomy['schedules'];x['categories']=taxonomy['categories'];x['sourceLatestRank']=rank.get(u);movies.append(x)
+ movies=dedupe_movies(movies)
  movies.sort(key=lambda x:(x.get('sourceLatestRank') is None,x.get('sourceLatestRank') if x.get('sourceLatestRank') is not None else 10**9,str(x.get('title','')).lower()))
  data={'generatedAt':datetime.now(timezone.utc).isoformat(),'startedAt':started,'baseUrl':BASE,'crawlerVersion':'ivy-taxonomy-full-v5.5' if FULL_REBUILD else 'ivy-taxonomy-cache-v5.5','sourceOrders':{'movies':movie_order,'series':series_order,'home':home_order},'categories':cats,'stats':{'cachedMovieCount':len(old.get('movies',[])),'taxonomyMovieCount':len(mem),'sitemapMovieCount':len(smap),'newMovieCount':len(new),'refreshedMovieCount':len(stale),'movieCount':len(movies),'categoryPageCount':len(cats),'errorCount':len(errors),'movieOrderCount':len(movie_order),'seriesOrderCount':len(series_order)},'movies':movies,'errors':errors}
  tmp=OUT+'.tmp';json.dump(data,open(tmp,'w',encoding='utf-8'),ensure_ascii=False,indent=2);os.replace(tmp,OUT);print('DONE',json.dumps(data['stats'],ensure_ascii=False),flush=True)
