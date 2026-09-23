@@ -76,21 +76,50 @@ def items(label):
                 urls.append(u);seen.add(k)
     return materialize_urls(urls,label)
 
-def genre_options():
+def genre_options(kind=None):
     out=[]
     for x in core.load().get('movies',[]):
+        if kind and core.typ(x)!=kind:continue
         for g in core.tax(x,'genres'):
             g=core.clean(g)
             if g and g not in out:out.append(g)
     return ['Tất cả thể loại']+sorted(out,key=lambda s:core.norm(s))
 
-def row_extras():return [{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
+def row_extras(kind):
+    return [
+        {'name':'genre','isRequired':False,'options':genre_options(kind)},
+        {'name':'skip','isRequired':False},
+        {'name':'search','isRequired':False}
+    ]
 
 def manifest_fast():
-    cats=[{'type':'movie','id':'ivy_search_all','name':'❤️ Ivy • Tìm toàn bộ','extra':row_extras()}]
-    for i,label in enumerate(home_rows()):
-        cats.append({'type':'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
-    return {'id':'community.ivy.catalog','version':'1.10.4','name':'Ivy❤️','description':'Ivy❤️ • source rows + global search • exact source membership','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    cats=[]
+    for kind in ('movie','series'):
+        label='Phim' if kind=='movie' else 'Loạt phim'
+        cats.append({
+            'type':kind,
+            'id':f'ivy_all_{kind}',
+            'name':'❤️ Ivy • Tất cả danh mục',
+            'extra':row_extras(kind)
+        })
+        for i,row in enumerate(home_rows()):
+            cats.append({
+                'type':kind,
+                'id':f'ivy_home_{kind}_{i}',
+                'name':f'❤️ Ivy • {row}',
+                'extra':row_extras(kind)
+            })
+    return {
+        'id':'community.ivy.catalog',
+        'version':'1.11.0',
+        'name':'Ivy❤️',
+        'description':'Ivy❤️ • Phim/Loạt phim → Danh mục → Thể loại → Tìm kiếm',
+        'resources':['catalog','meta','stream'],
+        'types':['movie','series'],
+        'idPrefixes':['ivy_'],
+        'behaviorHints':{'configurable':False},
+        'catalogs':cats
+    }
 
 def extras(path=''):
     o={}
@@ -116,45 +145,50 @@ def search_rank(x,q):
     if q in slug:return 3
     return 4
 
-def filter_rows(rows,e,apply_search=True):
+def filter_rows(rows,e,kind=None):
+    if kind:
+        rows=[x for x in rows if core.typ(x)==kind]
     genre=(e.get('genre') or '').strip()
     if genre and genre!='Tất cả thể loại':
-        ng=core.norm(genre);rows=[x for x in rows if any(core.norm(g)==ng for g in core.tax(x,'genres'))]
+        ng=core.norm(genre)
+        rows=[x for x in rows if any(core.norm(g)==ng for g in core.tax(x,'genres'))]
     q=core.norm(e.get('search') or '')
-    if apply_search and q:rows=[x for x in rows if q in searchable_text(x)]
+    if q:
+        rows=[x for x in rows if q in searchable_text(x)]
+        rows.sort(key=lambda x:(search_rank(x,q),core.norm(x.get('title') or x.get('slug') or '')))
     return rows
 
-def global_search(e):
-    q=core.norm(e.get('search') or '')
-    if not q:return []
-    rows=[];seen=set()
+def all_items(kind):
+    out=[];seen=set()
     for x in core.load().get('movies',[]):
-        if q not in searchable_text(x):continue
+        if core.typ(x)!=kind:continue
         k=core.canonical_movie_url(x.get('url'))
-        if k in seen:continue
-        seen.add(k);rows.append(x)
-    rows=filter_rows(rows,e,apply_search=False)
-    rows.sort(key=lambda x:(search_rank(x,q),core.norm(x.get('title') or x.get('slug') or '')))
-    return rows
+        if not k or k in seen:continue
+        seen.add(k);out.append(x)
+    return out
 
 def catalog(cid,path=''):
-    e=extras(path);rows=[]
-    q=core.norm(e.get('search') or '')
-    if cid=='ivy_search_all':
-        rows=global_search(e)
-    elif cid.startswith('ivy_home_'):
-        # Nuvio sends the same search query to every catalog. During a search,
-        # only the dedicated global-search catalog responds, preventing duplicates.
-        if q:
+    e=extras(path);rows=[];kind=None
+    if cid in ('ivy_all_movie','ivy_all_series'):
+        kind='movie' if cid.endswith('_movie') else 'series'
+        rows=all_items(kind)
+    elif cid.startswith('ivy_home_movie_') or cid.startswith('ivy_home_series_'):
+        kind='movie' if cid.startswith('ivy_home_movie_') else 'series'
+        prefix=f'ivy_home_{kind}_'
+        try:
+            idx=int(cid[len(prefix):])
+            label=home_rows()[idx]
+            rows=items(label)
+        except:
             rows=[]
-        else:
-            token=cid[len('ivy_home_'):]
-            try:
-                label=home_rows()[int(token)]
-                rows=items(label)
-            except:
-                rows=[]
-            rows=filter_rows(rows,e,apply_search=False)
+    # Compatibility with old cached catalog IDs.
+    elif cid.startswith('ivy_home_'):
+        try:
+            idx=int(cid[len('ivy_home_'):])
+            rows=items(home_rows()[idx])
+        except:
+            rows=[]
+    rows=filter_rows(rows,e,kind)
     try:sk=max(0,int(e.get('skip',0)))
     except:sk=0
     return jsonify({'metas':[core.base_meta(x) for x in rows[sk:sk+PAGE_SIZE]]})
@@ -162,6 +196,6 @@ def catalog(cid,path=''):
 core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.10.1','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.10.1','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'source-row','searchFilters':['genre'],'playbackResolver':'recursive-hls'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.11.0','manifest':'/manifest.json'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.10.1','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
 app=core.app
