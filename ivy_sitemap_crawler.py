@@ -52,6 +52,8 @@ def listing_link(seg,label=''):
   for u,text in links:
    if re.search(r'(?i)(lich[-_/ ]?chieu|sap[-_/ ]?len[-_/ ]?song|upcoming|coming)',u+' '+text):return u
   return BASE+'/lich-chieu'
+ if label=='Top 10 phim lẻ hôm nay':return BASE+'/phim-le'
+ if label=='Top 10 phim bộ hôm nay':return BASE+'/phim-bo'
  return None
 
 def page_url(seed,n):
@@ -91,12 +93,14 @@ def main():
  found.sort();out={'source':BASE,'generatedAt':int(time.time()),'sections':[]}
  for idx,(p,i,label) in enumerate(found):
   end=found[idx+1][0] if idx+1<len(found) else len(home);seg=home[p:end];home_urls=movie_urls(seg);listing=listing_link(seg,label)
-  if label in TOP10 or not listing:all_urls=home_urls;pages=1
+  if not listing:all_urls=home_urls;pages=1
   else:
    crawled,pages=crawl_listing(listing);all_urls=[]
+   # Keep the exact homepage order first (Top 10 stays first), then append the
+   # full paginated listing so "See all" in Nuvio opens the complete catalog.
    for u in home_urls+crawled:
     if u not in all_urls:all_urls.append(u)
-  row={'label':label,'home':home_urls,'listing':listing,'pages':pages,'count':len(all_urls),'urls':all_urls}
+  row={'label':label,'home':home_urls,'homeCount':len(home_urls),'listing':listing,'pages':pages,'count':len(all_urls),'urls':all_urls}
   out['sections'].append(row);print(label,'home=',len(home_urls),'pages=',pages,'items=',len(all_urls),'listing=',listing,flush=True)
  with open(OUT,'w',encoding='utf-8') as f:json.dump(out,f,ensure_ascii=False,separators=(',',':'))
  print('wrote',OUT,'sections=',len(out['sections']))
