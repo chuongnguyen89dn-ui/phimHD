@@ -5,7 +5,15 @@ BASE='https://rophim.loan';UA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac 
 HLS=re.compile(r'https?://[^"\'<>\\\s]+?\.m3u8(?:\?[^"\'<>\\\s]*)?',re.I)
 PATTERNS=[r'(?i)(?:season|mùa)\s*(\d+)',r'(?i)(?:episode|tập)\s*(\d+)',r'(?i)S(\d{1,2})E(\d{1,3})']
 def fetch(u):
- with urlopen(Request(u,headers={'User-Agent':UA,'Referer':BASE+'/'}),timeout=20) as r:return r.read().decode('utf-8','replace').replace('\\/','/')
+ headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'vi-VN,vi;q=0.9,en;q=0.8','Referer':BASE+'/'}
+ try:
+  from curl_cffi import requests as curl_requests
+  r=curl_requests.get(u,headers=headers,timeout=20,impersonate='chrome',allow_redirects=True)
+  print('FETCH',r.status_code,len(r.text),r.url,file=sys.stderr,flush=True)
+  if r.status_code < 400 and r.text:return r.text.replace('\\/','/')
+ except Exception as e:
+  print('CURL_FAIL',type(e).__name__,str(e)[:180],file=sys.stderr,flush=True)
+ with urlopen(Request(u,headers=headers),timeout=20) as r:return r.read().decode('utf-8','replace').replace('\\/','/')
 def probe(u):
  h=fetch(u);links=[]
  for href,text in re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>',h,re.I|re.S):
