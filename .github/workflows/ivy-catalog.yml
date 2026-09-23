@@ -19,7 +19,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,6 +42,7 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.json
           ROPHIM_BASE: https://rophims.team
           ROPHIM_WORKERS: '32'
+          ROPHIM_FULL_REBUILD: '1'
         run: python rophim_catalog_crawler_taxonomy_v5.py
 
       - name: Build catalog change report
@@ -95,7 +96,8 @@ jobs:
       - name: Audit and cache playback sources
         env:
           ROPHIM_CATALOG: rophim_catalog.json
-          IVY_PLAYBACK_AUDIT_LIMIT: '100'
+          IVY_PLAYBACK_AUDIT_LIMIT: '0'
+          IVY_PLAYBACK_WORKERS: '24'
         run: python ivy_playback_audit.py
       - name: Publish catalog, sitemap and change history to data branch
         run: |
