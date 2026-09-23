@@ -35,7 +35,19 @@ def section(label):
         if s.get('label')==label:return s
     return {'label':label,'urls':[],'pages':1}
 
-def items(label):return core.ordered(section(label).get('urls') or section(label).get('home') or [])
+def items(label):
+    s=section(label);home=core.ordered(s.get('home') or [])
+    if label=='Top 10 phim lẻ hôm nay':
+        full=core.source_menu('movie')
+    elif label=='Top 10 phim bộ hôm nay':
+        full=core.source_menu('series')
+    else:
+        return core.ordered(s.get('urls') or s.get('home') or [])
+    out=[];seen=set()
+    for x in home+full:
+        u=x.get('url')
+        if u and u not in seen:seen.add(u);out.append(x)
+    return out
 
 def genre_options():
     out=[]
