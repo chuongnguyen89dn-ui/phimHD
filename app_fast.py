@@ -59,10 +59,12 @@ def genre_options():
 
 def row_extras():return [{'name':'genre','isRequired':False,'options':genre_options()},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
 
+def catalog_id(label):return 'ivy_home_'+core.enc(label)
+
 def manifest_fast():
     cats=[]
-    for i,label in enumerate(home_rows()):cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
-    return {'id':'community.ivy.catalog','version':'1.9.9','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    for label in home_rows():cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':catalog_id(label),'name':f'❤️ Ivy • {label}','extra':row_extras()})
+    return {'id':'community.ivy.catalog','version':'1.10.0','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 def extras(path=''):
     o={}
@@ -89,8 +91,16 @@ def filter_rows(rows,e):
 def catalog(cid,path=''):
     e=extras(path);rows=[]
     if cid.startswith('ivy_home_'):
-        try:rows=items(home_rows()[int(cid.rsplit('_',1)[1])])
-        except:rows=[]
+        token=cid[len('ivy_home_'):]
+        label=None
+        # Backward compatibility for old index-based catalog IDs already cached by Nuvio.
+        if token.isdigit():
+            try:label=home_rows()[int(token)]
+            except:label=None
+        else:
+            try:label=core.dec(token)
+            except:label=None
+        if label in home_rows():rows=items(label)
         rows=filter_rows(rows,e)
     try:sk=max(0,int(e.get('skip',0)))
     except:sk=0
@@ -99,6 +109,6 @@ def catalog(cid,path=''):
 core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.9.9','manifest':'/manifest.json'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.10.0','manifest':'/manifest.json'})
 core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.9.9','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'source-row','searchFilters':['genre'],'playbackResolver':'recursive-hls'})
 app=core.app
