@@ -57,10 +57,12 @@ def fetch_text(u,ttl=300,referer=None):
     key=(u,referer or "");now=time.time(); c=_page_cache.get(key)
     if c and now-c[0]<ttl:return c[1]
     try:
-        headers={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,*/*;q=0.8","Referer":referer or BASE+"/"}
+        headers={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,*/*;q=0.8","Accept-Language":"vi-VN,vi;q=0.9,en;q=0.8","Referer":referer or BASE+"/"}
         with urlopen(Request(u,headers=headers),timeout=18) as r:s=r.read().decode("utf-8","replace").replace("\\/","/")
         _page_cache[key]=(now,s);return s
-    except:return ""
+    except Exception as e:
+        print("[fetch_text]",u,type(e).__name__,str(e)[:180],flush=True)
+        return ""
 
 def resolve_media_url(raw,referer=None,depth=0):
     raw=html.unescape(str(raw or "").replace("\\/","/")).strip()
