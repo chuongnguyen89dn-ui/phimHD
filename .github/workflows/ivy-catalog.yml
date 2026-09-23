@@ -48,7 +48,7 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.staging.json
           ROPHIM_BASE: https://rophims.team
           ROPHIM_WORKERS: '32'
-          ROPHIM_FULL_REBUILD: ${{ github.event_name == 'workflow_dispatch' && inputs.full_rebuild && '1' || '0' }}
+          ROPHIM_FULL_REBUILD: ${{ (github.event_name == 'workflow_dispatch' && inputs.full_rebuild) || contains(github.event.head_commit.message, '[full-rebuild]') && '1' || '0' }}
         run: |
           if [ "${{ github.event_name }}" != "workflow_dispatch" ] || [ "${{ inputs.full_rebuild }}" != "true" ]; then
             cp /tmp/rophim_catalog_previous.json rophim_catalog.staging.json
