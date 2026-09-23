@@ -96,15 +96,17 @@ def row_extras(kind,search_required=False):
 
 def manifest_fast():
     cats=[]
-    # Search-only catalog: available in Nuvio's search catalog selector but does
-    # not create a Home row because search is required.
+
+    # Movie search: "Tất cả danh mục" plus the 17 normal Home rows.
+    # The all-movie catalog returns nothing until a search query is present.
     cats.append({
         'type':'movie',
-        'id':'ivy_search_all',
+        'id':'ivy_search_movie_all',
         'name':'❤️ Ivy • Tất cả danh mục',
         'extra':row_extras(None,False)
     })
-    # Home stays exactly equal to the 17 source sections.
+
+    # The 17 real source rows remain the only populated Home rows.
     for i,row in enumerate(home_rows()):
         cats.append({
             'type':'movie',
@@ -112,11 +114,29 @@ def manifest_fast():
             'name':f'❤️ Ivy • {row}',
             'extra':row_extras(None,False)
         })
+
+    # Series search-only mirrors. They exist so Nuvio can expose
+    # "Loạt phim" + the same category selector, but they stay empty on Home
+    # until the user actually enters a search query.
+    cats.append({
+        'type':'series',
+        'id':'ivy_search_series_all',
+        'name':'❤️ Ivy • Tất cả danh mục',
+        'extra':row_extras(None,False)
+    })
+    for i,row in enumerate(home_rows()):
+        cats.append({
+            'type':'series',
+            'id':f'ivy_search_series_{i}',
+            'name':f'❤️ Ivy • {row}',
+            'extra':row_extras(None,False)
+        })
+
     return {
         'id':'community.ivy.catalog',
-        'version':'1.11.4',
+        'version':'1.12.0',
         'name':'Ivy❤️',
-        'description':'Ivy❤️ • 17 danh mục nguồn; Tất cả danh mục chỉ dùng khi tìm kiếm',
+        'description':'Ivy❤️ • Search: Phim/Loạt phim → Danh mục → Thể loại',
         'resources':['catalog','meta','stream'],
         'types':['movie','series'],
         'idPrefixes':['ivy_'],
@@ -172,22 +192,40 @@ def all_items(kind):
 
 def catalog(cid,path=''):
     e=extras(path);rows=[]
-    if cid=='ivy_search_all':
-        q=core.norm(e.get('search') or '')
-        rows=(all_items('movie')+all_items('series')) if q else []
-    elif cid=='ivy_all':
-        # Compatibility only for clients that cached the temporary 1.11.2 ID.
-        rows=all_items('movie')+all_items('series')
+    q=core.norm(e.get('search') or '')
+
+    if cid=='ivy_search_movie_all':
+        rows=all_items('movie') if q else []
+    elif cid=='ivy_search_series_all':
+        rows=all_items('series') if q else []
+
+    elif cid.startswith('ivy_search_series_'):
+        # Search-only category mirrors for Loạt phim.
+        if q:
+            try:
+                idx=int(cid[len('ivy_search_series_'):])
+                rows=[x for x in items(home_rows()[idx]) if core.typ(x)=='series']
+            except:
+                rows=[]
+        else:
+            rows=[]
+
     elif cid.startswith('ivy_home_'):
+        # Real Home rows. They are also the category choices for Phim search.
         try:
             idx=int(cid[len('ivy_home_'):])
             rows=items(home_rows()[idx])
         except:
             rows=[]
-    # Compatibility with the temporary duplicated IDs from 1.11.0/1.11.1.
+        if q:
+            rows=[x for x in rows if core.typ(x)=='movie']
+
+    # Compatibility with temporary IDs from previous builds.
+    elif cid in ('ivy_search_all','ivy_all'):
+        rows=(all_items('movie')+all_items('series')) if q else []
     elif cid.startswith('ivy_all_'):
         kind='series' if cid.endswith('_series') else 'movie'
-        rows=all_items(kind)
+        rows=all_items(kind) if q else []
     elif cid.startswith('ivy_home_movie_') or cid.startswith('ivy_home_series_'):
         kind='movie' if cid.startswith('ivy_home_movie_') else 'series'
         prefix=f'ivy_home_{kind}_'
@@ -196,7 +234,8 @@ def catalog(cid,path=''):
             rows=items(home_rows()[idx])
         except:
             rows=[]
-        rows=[x for x in rows if core.typ(x)==kind]
+        rows=[x for x in rows if core.typ(x)==kind] if q else []
+
     rows=filter_rows(rows,e,None)
     try:sk=max(0,int(e.get('skip',0)))
     except:sk=0
@@ -205,6 +244,6 @@ def catalog(cid,path=''):
 core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.11.3','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.11.4','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.12.0','manifest':'/manifest.json'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.12.0','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
 app=core.app
