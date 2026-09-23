@@ -6,6 +6,7 @@ from flask import jsonify,request
 PAGE_SIZE=24
 SITEMAP_URL='https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/ivy_sitemap.json'
 _sitemap={'at':0,'data':None}
+_manifest_cache={'at':0,'data':None}
 FALLBACK_HOME_ROWS=['Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Thiên đường Phim Thái','Phim US-UK Mới','Phim Điện Ảnh Mới Cóng','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng','Mê Cung Phim Nhật','Phim Bộ Đã Hoàn Thành','Hành Động Nghẹt Thở','Trinh Thám & Bí Ẩn','Tinh Hoa Điện Ảnh Hồng Kông','Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay','Thế giới Anime','Cổ Trang Trung Quốc','Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng']
 SERIES_ROWS={'Phim Bộ Đã Hoàn Thành','Top 10 phim bộ hôm nay'}
 
@@ -83,15 +84,16 @@ def genre_options():
             if g and g not in out:out.append(g)
     return ['Tất cả thể loại']+sorted(out,key=lambda s:core.norm(s))
 
-def row_extras():return [{'name':'genre','isRequired':False,'options':genre_options()},{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
+def row_extras():return [{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
 
 def manifest_fast():
+    now=time.time()
+    if _manifest_cache['data'] is not None and now-_manifest_cache['at']<900:return _manifest_cache['data']
     cats=[]
     for i,label in enumerate(home_rows()):
-        # Keep every source section on the same Nuvio Home surface.
-        # Each returned meta still preserves its true movie/series type.
         cats.append({'type':'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
-    return {'id':'community.ivy.catalog','version':'1.10.4','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    d={'id':'community.ivy.catalog','version':'1.10.5','name':'Ivy❤️','description':'Ivy❤️ • source rows only • fast cached home catalogs','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
+    _manifest_cache.update(at=now,data=d);return d
 
 def extras(path=''):
     o={}
