@@ -1,10 +1,10 @@
 import os, re, json, time, html
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, urlunparse
 from urllib.request import Request, urlopen
 from xml.etree import ElementTree as ET
 from datetime import datetime, timezone
 
-BASE = "https://rophim.loan"
+BASE = os.environ.get("ROPHIM_BASE","https://rophims.team").rstrip("/")
 OUT = os.path.join(os.path.expanduser("~"), "Desktop", "rophim_catalog.json")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/146 Safari/537.36"
 
@@ -33,7 +33,9 @@ def abs_url(u, base=BASE):
     try:
         v = urljoin(base, html.unescape(u))
         p = urlparse(v)
-        if p.scheme in ("http","https") and p.hostname in ("rophim.loan","www.rophim.loan"):
+        if p.scheme in ("http","https") and p.hostname in ("rophims.team","www.rophims.team","rophim.loan","www.rophim.loan"):
+            if p.hostname in ("rophim.loan","www.rophim.loan"):
+                b=urlparse(BASE);v=urlunparse((b.scheme,b.netloc,p.path,p.params,p.query,""))
             return v.split("#",1)[0]
     except:
         pass
@@ -139,7 +141,7 @@ def parse_movie(url, page_html):
         "director": [],
         "quality": "",
         "type": "movie",
-        "source": "rophim.loan"
+        "source": "rophims.team"
     }
 
     if picked:
@@ -264,7 +266,7 @@ def main():
 
     for i,u in enumerate(candidates,1):
         p=urlparse(u)
-        if p.hostname not in ("rophim.loan","www.rophim.loan"):
+        if p.hostname not in ("rophims.team","www.rophims.team","rophim.loan","www.rophim.loan"):
             continue
         if re.search(r"\.(jpg|jpeg|png|webp|svg|css|js|ico|woff2?|ttf|zip|pdf)$", p.path, re.I):
             continue
