@@ -87,13 +87,10 @@ def genre_options():
 def row_extras():return [{'name':'skip','isRequired':False},{'name':'search','isRequired':False}]
 
 def manifest_fast():
-    now=time.time()
-    if _manifest_cache['data'] is not None and now-_manifest_cache['at']<900:return _manifest_cache['data']
-    cats=[]
+    cats=[{'type':'movie','id':'ivy_search_all','name':'❤️ Ivy • Tìm toàn bộ','extra':row_extras()}]
     for i,label in enumerate(home_rows()):
         cats.append({'type':'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
-    d={'id':'community.ivy.catalog','version':'1.10.5','name':'Ivy❤️','description':'Ivy❤️ • source rows only • fast cached home catalogs','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
-    _manifest_cache.update(at=now,data=d);return d
+    return {'id':'community.ivy.catalog','version':'1.10.4','name':'Ivy❤️','description':'Ivy❤️ • source rows + global search • exact source membership','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 def extras(path=''):
     o={}
@@ -105,28 +102,59 @@ def extras(path=''):
     return o
 
 def searchable_text(x):
-    vals=[x.get('title',''),x.get('description',''),x.get('slug',''),x.get('originalTitle','')]
+    vals=[x.get('title',''),x.get('originalTitle',''),x.get('slug',''),x.get('description','')]
     for k in ('genres','countries','sections'):vals.extend(core.tax(x,k))
     return core.norm(' '.join(str(v or '') for v in vals))
 
-def filter_rows(rows,e):
+def search_rank(x,q):
+    title=core.norm(x.get('title') or '')
+    original=core.norm(x.get('originalTitle') or '')
+    slug=core.norm(x.get('slug') or '')
+    if q==title or q==original:return 0
+    if title.startswith(q) or original.startswith(q):return 1
+    if q in title or q in original:return 2
+    if q in slug:return 3
+    return 4
+
+def filter_rows(rows,e,apply_search=True):
     genre=(e.get('genre') or '').strip()
     if genre and genre!='Tất cả thể loại':
         ng=core.norm(genre);rows=[x for x in rows if any(core.norm(g)==ng for g in core.tax(x,'genres'))]
     q=core.norm(e.get('search') or '')
-    if q:rows=[x for x in rows if q in searchable_text(x)]
+    if apply_search and q:rows=[x for x in rows if q in searchable_text(x)]
+    return rows
+
+def global_search(e):
+    q=core.norm(e.get('search') or '')
+    if not q:return []
+    rows=[];seen=set()
+    for x in core.load().get('movies',[]):
+        if q not in searchable_text(x):continue
+        k=core.canonical_movie_url(x.get('url'))
+        if k in seen:continue
+        seen.add(k);rows.append(x)
+    rows=filter_rows(rows,e,apply_search=False)
+    rows.sort(key=lambda x:(search_rank(x,q),core.norm(x.get('title') or x.get('slug') or '')))
     return rows
 
 def catalog(cid,path=''):
     e=extras(path);rows=[]
-    if cid.startswith('ivy_home_'):
-        token=cid[len('ivy_home_'):]
-        try:
-            label=home_rows()[int(token)]
-            rows=items(label)
-        except:
+    q=core.norm(e.get('search') or '')
+    if cid=='ivy_search_all':
+        rows=global_search(e)
+    elif cid.startswith('ivy_home_'):
+        # Nuvio sends the same search query to every catalog. During a search,
+        # only the dedicated global-search catalog responds, preventing duplicates.
+        if q:
             rows=[]
-        rows=filter_rows(rows,e)
+        else:
+            token=cid[len('ivy_home_'):]
+            try:
+                label=home_rows()[int(token)]
+                rows=items(label)
+            except:
+                rows=[]
+            rows=filter_rows(rows,e,apply_search=False)
     try:sk=max(0,int(e.get('skip',0)))
     except:sk=0
     return jsonify({'metas':[core.base_meta(x) for x in rows[sk:sk+PAGE_SIZE]]})
