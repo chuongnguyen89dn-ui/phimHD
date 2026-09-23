@@ -56,12 +56,24 @@ def norm(s):
 def fetch_text(u,ttl=300,referer=None):
     key=(u,referer or "");now=time.time(); c=_page_cache.get(key)
     if c and now-c[0]<ttl:return c[1]
+    headers={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,*/*;q=0.8","Accept-Language":"vi-VN,vi;q=0.9,en;q=0.8","Referer":referer or BASE+"/"}
+    # RoPhim intermittently rejects datacenter urllib/TLS fingerprints while still
+    # serving normal browsers. Prefer curl_cffi browser impersonation, then keep
+    # urllib as a lightweight fallback.
     try:
-        headers={"User-Agent":UA,"Accept":"text/html,application/xhtml+xml,*/*;q=0.8","Accept-Language":"vi-VN,vi;q=0.9,en;q=0.8","Referer":referer or BASE+"/"}
+        from curl_cffi import requests as curl_requests
+        r=curl_requests.get(u,headers=headers,timeout=18,impersonate="chrome",allow_redirects=True)
+        if r.status_code < 400 and r.text:
+            s=r.text.replace("\\/","/")
+            _page_cache[key]=(now,s);return s
+        print("[fetch_text curl]",u,r.status_code,(r.url or "")[:180],flush=True)
+    except Exception as e:
+        print("[fetch_text curl]",u,type(e).__name__,str(e)[:180],flush=True)
+    try:
         with urlopen(Request(u,headers=headers),timeout=18) as r:s=r.read().decode("utf-8","replace").replace("\\/","/")
         _page_cache[key]=(now,s);return s
     except Exception as e:
-        print("[fetch_text]",u,type(e).__name__,str(e)[:180],flush=True)
+        print("[fetch_text urllib]",u,type(e).__name__,str(e)[:180],flush=True)
         return ""
 
 def resolve_media_url(raw,referer=None,depth=0):
@@ -367,5 +379,20 @@ def stream(t,item_id):
             if media in seen:continue
             seen.add(media);streams.append(stream_obj(media,"Ivy❤️ • Phát" if not streams else f"Ivy❤️ • Nguồn {len(streams)+1}",ref))
     return jsonify({"streams":streams})
+
+@app.get("/diag/playback/<slug>.json")
+def playback_diag(slug):
+    u=BASE+"/phim/"+slug
+    h=fetch_text(u,0)
+    arr=extract_array_after(h,"var episodes =") or extract_array_after(h,"episodes =") or []
+    direct=list(dict.fromkeys(HLS_RE.findall(h)))
+    eps=[]
+    for srv in arr if isinstance(arr,list) else []:
+        if not isinstance(srv,dict):continue
+        for item in srv.get("server_data") or []:
+            if not isinstance(item,dict):continue
+            media=item.get("link_m3u8") or item.get("link_embed") or ""
+            if media:eps.append({"server":clean(srv.get("server_name") or "Nguồn"),"name":clean(item.get("name") or item.get("slug") or ""),"url":media})
+    return jsonify({"ok":bool(direct or eps),"url":u,"htmlBytes":len(h),"hasEpisodesVar":"var episodes =" in h or "episodes =" in h,"direct":direct[:8],"episodeSources":eps[:20]})
 
 if __name__=="__main__":app.run(host="0.0.0.0",port=int(os.environ.get("PORT","10000")))
