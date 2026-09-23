@@ -273,7 +273,10 @@ def episode_rows(x):
         u=urljoin(page_url,html.unescape(href));txt=clean(re.sub(r"<[^>]+>"," ",label))
         m=re.search(r"(?i)(?:tập|tap|episode)\s*[- ]?(\d+)",txt+" "+u)
         ep=int(m.group(1)) if m else (1 if "tap=" not in u.lower() else 0)
-        if ep:add(ep,txt or f"Tập {ep}","RoPhim",u,page_url)
+        # Only use the watch-page anchor as a fallback when this episode was not
+        # already populated from the source's real server_data. Otherwise the
+        # same episode is duplicated as an extra pseudo-source.
+        if ep and ep not in by:add(ep,txt or f"Tập {ep}","RoPhim",u,page_url)
     if not by and typ(x)=="series":
         # Last-resort episode 1 watch page; more episodes may be discovered on next metadata refresh.
         add(1,"Tập 1","RoPhim",source_watch_url(page_url,1),page_url)
@@ -380,8 +383,19 @@ def stream(t,item_id):
         src=family_seasons(x).get(season) or x;_,rows=episode_rows(src);row=next((r for r in rows if r["episode"]==ep),None)
         if not row:return jsonify({"streams":[]})
         for source in row["sources"]:
-            pairs=resolve_media_url(source.get("url"),source.get("referer") or src.get("url"))
-            if not pairs and ".m3u8" in str(source.get("url","")).lower():pairs=[(source["url"],source.get("referer") or src.get("url"))]
+            raw=source.get("url")
+            ref0=source.get("referer") or src.get("url")
+            # A direct HLS entry in server_data is already the exact stream for
+            # this episode/server. Do not re-scan the whole watch page because
+            # that page can contain HLS URLs for every episode in the season.
+            if ".m3u8" in str(raw or "").lower():
+                pairs=[(raw,ref0)]
+            else:
+                pairs=resolve_media_url(raw,ref0)
+                # Fallback watch pages may expose the full episodes array.
+                # Keep only the first resolved media for that source instead of
+                # turning every episode HLS found in the page into a stream.
+                if pairs:pairs=pairs[:1]
             for media,ref in pairs:
                 if media in seen:continue
                 seen.add(media);streams.append(stream_obj(media,f"Ivy❤️ • Mùa {season} • {row['title']} • {source['name']}",ref))
