@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request
 
 CATALOG=os.environ.get("IVY_CATALOG", os.environ.get("ROPHIM_CATALOG","rophim_catalog.json"))
 REMOTE_CATALOG=os.environ.get("IVY_REMOTE_CATALOG","https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json")
-BASE=os.environ.get("IVY_SOURCE_BASE","https://rophim.loan").rstrip("/")
+BASE=os.environ.get("IVY_SOURCE_BASE","https://rophims.team").rstrip("/")
 TMDB_API_KEY=os.environ.get("TMDB_API_KEY","").strip()
 TMDB_API="https://api.themoviedb.org/3"; TMDB_IMG="https://image.tmdb.org/t/p/"
 UA="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1"
@@ -223,10 +223,16 @@ def source_menu(kind):
 
 def source_watch_url(page_url,episode=None):
     u=str(page_url or "")
+    # Catalog IDs may still contain the retired rophim.loan host. Keep IDs stable,
+    # but always resolve playback against the current rophims.team source host.
+    try:
+        path=re.sub(r"^https?://[^/]+","",u)
+        if path.startswith("/"):u=BASE+path
+    except:pass
     if "/phim/" in u:u=u.replace("/phim/","/xem-phim/",1)
-    if episode and int(episode)>1:
-        sep="&" if "?" in u else "?"
-        u+=sep+"tap=tap-"+str(int(episode))+"&sv=0"
+    if episode:
+        u=u.split("?",1)[0]
+        u+="?tap=tap-"+str(max(1,int(episode)))+"&sv=0"
     return u
 
 def extract_array_after(h,marker):
@@ -404,9 +410,12 @@ def stream(t,item_id):
 @app.get("/diag/playback/<slug>.json")
 def playback_diag(slug):
     u=BASE+"/phim/"+slug
+    watch=source_watch_url(u,1)
     h=fetch_text(u,0)
-    arr=extract_array_after(h,"var episodes =") or extract_array_after(h,"episodes =") or []
-    direct=list(dict.fromkeys(HLS_RE.findall(h)))
+    wh=fetch_text(watch,0,u)
+    merged=h+"\n"+wh
+    arr=extract_array_after(merged,"var episodes =") or extract_array_after(merged,"episodes =") or []
+    direct=list(dict.fromkeys(HLS_RE.findall(merged)))
     eps=[]
     for srv in arr if isinstance(arr,list) else []:
         if not isinstance(srv,dict):continue
@@ -414,6 +423,6 @@ def playback_diag(slug):
             if not isinstance(item,dict):continue
             media=item.get("link_m3u8") or item.get("link_embed") or ""
             if media:eps.append({"server":clean(srv.get("server_name") or "Nguồn"),"name":clean(item.get("name") or item.get("slug") or ""),"url":media})
-    return jsonify({"ok":bool(direct or eps),"url":u,"htmlBytes":len(h),"hasEpisodesVar":"var episodes =" in h or "episodes =" in h,"direct":direct[:8],"episodeSources":eps[:20]})
+    return jsonify({"ok":bool(direct or eps),"url":u,"watchUrl":watch,"detailHtmlBytes":len(h),"watchHtmlBytes":len(wh),"hasEpisodesVar":"var episodes =" in merged or "episodes =" in merged,"direct":direct[:8],"episodeSources":eps[:20]})
 
 if __name__=="__main__":app.run(host="0.0.0.0",port=int(os.environ.get("PORT","10000")))
