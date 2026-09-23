@@ -7,17 +7,18 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from rophim_catalog_crawler import parse_movie
 
-BASE=os.environ.get('ROPHIM_BASE','https://rophim.loan').rstrip('/')
+BASE=os.environ.get('ROPHIM_BASE','https://rophims.team').rstrip('/')
 OUT=os.environ.get('ROPHIM_CATALOG','rophim_catalog.json')
 WORKERS=int(os.environ.get('ROPHIM_WORKERS','32'))
 UA='Mozilla/5.0 (compatible; IvyCatalog/5.4)'
 TAX_PREFIXES={'/the-loai/':'genres','/quoc-gia/':'countries','/phim-le':'sections','/phim-bo':'sections','/hoat-hinh':'sections','/tv-shows':'sections','/phim-chieu-rap':'sections','/lich-chieu':'schedules'}
 
 def norm(u):
- u=urljoin(BASE+'/',u);p=urlparse(u)
- if p.netloc!=urlparse(BASE).netloc:return ''
+ u=urljoin(BASE+'/',u);p=urlparse(u);b=urlparse(BASE)
+ if p.netloc in ('rophim.loan','www.rophim.loan','www.rophims.team'):p=p._replace(scheme=b.scheme,netloc=b.netloc)
+ if p.netloc!=b.netloc:return ''
  q=urlencode(sorted(parse_qsl(p.query,keep_blank_values=True)))
- return urlunparse((p.scheme,p.netloc,p.path.rstrip('/') or '/','',q,''))
+ return urlunparse((b.scheme,b.netloc,p.path.rstrip('/') or '/','',q,''))
 def fetch(u):
  r=urlopen(Request(u,headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Referer':BASE+'/'}),timeout=20)
  return r.geturl(),r.read().decode('utf-8','ignore')
@@ -86,7 +87,13 @@ def needs_refresh(x):return not isinstance(x,dict) or not x.get('poster') or not
 def parse_detail(u):
  final,h=fetch(u);x=parse_movie(final,h);x['url']=norm(x.get('url') or final);x['source']='ivy-source';return x
 def main():
- started=datetime.now(timezone.utc).isoformat();old=load_old();oldmap={norm(x.get('url','')):x for x in old.get('movies',[]) if isinstance(x,dict) and x.get('url')}
+ started=datetime.now(timezone.utc).isoformat();old=load_old();oldmap={}
+ for x in old.get('movies',[]):
+  if not isinstance(x,dict) or not x.get('url'):continue
+  k=norm(x.get('url',''))
+  if not k:continue
+  y=dict(x);y['url']=k
+  oldmap[k]=y
  mem,cats,errors=crawl_taxonomy();smap,serr=sitemap_movies();errors.extend(serr);urls=set(oldmap)|set(mem)|set(smap);new=set(urls)-set(oldmap);stale={u for u,x in oldmap.items() if needs_refresh(x)};todo=sorted(new|stale)
  print(f'[discover] cached={len(oldmap)} taxonomy={len(mem)} sitemap={len(smap)} new={len(new)} stale={len(stale)} detail={len(todo)}',flush=True)
  if todo:
