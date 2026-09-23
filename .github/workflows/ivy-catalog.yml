@@ -1,4 +1,5 @@
 name: Ivy catalog update
+# full rebuild retry: robust detail recovery
 on:
   workflow_dispatch:
     inputs:
