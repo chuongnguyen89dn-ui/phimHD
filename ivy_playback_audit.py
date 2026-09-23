@@ -47,26 +47,92 @@ def extract_array_after(h,marker):
                 except:return None
     return None
 
+def episode_no(item):
+    text=' '.join(str(item.get(k) or '') for k in ('slug','name','filename'))
+    m=re.search(r'(?i)(?:tập|tap|episode)[-_ ]*(\d+)',text)
+    if not m:m=re.search(r'\b(\d+)\b',text)
+    return int(m.group(1)) if m else None
+
+def collect_sources(arr,out):
+    if not isinstance(arr,list):return
+    seen={(x.get('server'),x.get('episode'),x.get('url')) for x in out}
+    for srv in arr:
+        if not isinstance(srv,dict):continue
+        sname=str(srv.get('server_name') or srv.get('name') or 'Nguồn')
+        for item in srv.get('server_data') or []:
+            if not isinstance(item,dict):continue
+            m3u8=item.get('link_m3u8') or ''
+            embed=item.get('link_embed') or ''
+            u=m3u8 or embed
+            if not u:continue
+            ep=episode_no(item)
+            row={
+                'server':sname,
+                'episode':ep,
+                'name':str(item.get('name') or item.get('slug') or item.get('filename') or ''),
+                'slug':str(item.get('slug') or ''),
+                'link_m3u8':m3u8,
+                'link_embed':embed,
+                'url':u
+            }
+            k=(row['server'],row['episode'],row['url'])
+            if k not in seen:
+                seen.add(k);out.append(row)
+
 def probe(x):
     detail_url=x.get('url','')
     detail=fetch(detail_url)
     path=re.sub(r'^https?://[^/]+','',detail_url)
-    watch_url='https://rophims.team'+path.replace('/phim/','/xem-phim/',1)
-    watch_url=watch_url.split('?',1)[0]+'?tap=tap-1&sv=0'
-    watch=fetch(watch_url)
-    h=detail+'\n'+watch
-    direct=list(dict.fromkeys(HLS_RE.findall(h)))
-    arr=extract_array_after(h,'var episodes =') or extract_array_after(h,'episodes =') or []
+    base_watch='https://rophims.team'+path.replace('/phim/','/xem-phim/',1)
+    first_watch=base_watch.split('?',1)[0]+'?tap=tap-1&sv=0'
+    watch=fetch(first_watch)
+
+    bodies=[detail,watch]
+    direct=[]
     sources=[]
-    if isinstance(arr,list):
-        for srv in arr:
-            if not isinstance(srv,dict):continue
-            sname=str(srv.get('server_name') or srv.get('name') or 'Nguồn')
-            for item in srv.get('server_data') or []:
-                if not isinstance(item,dict):continue
-                u=item.get('link_m3u8') or item.get('link_embed') or ''
-                if u:sources.append({'server':sname,'name':str(item.get('name') or item.get('slug') or ''),'url':u})
-    return {'direct':direct[:8],'episodeSources':sources[:100],'hasPlayback':bool(direct or sources),'fetchOk':bool(detail or watch),'watchUrl':watch_url}
+    for body in bodies:
+        for hls in HLS_RE.findall(body or ''):
+            if hls not in direct:direct.append(hls)
+        arr=extract_array_after(body or '','var episodes =') or extract_array_after(body or '','episodes =') or []
+        collect_sources(arr,sources)
+
+    watch_urls=[]
+    for href in re.findall(r'href=["\']([^"\']*?/xem-phim/[^"\']*)["\']',detail or '',re.I):
+        u=html.unescape(href).replace('\\/','/')
+        if u.startswith('/'):u='https://rophims.team'+u
+        elif not u.startswith('http'):u='https://rophims.team/'+u.lstrip('/')
+        if u not in watch_urls:watch_urls.append(u)
+    if first_watch not in watch_urls:watch_urls.insert(0,first_watch)
+
+    # If the source already exposed its full episode/server table, keep those
+    # exact links. Only fetch extra watch pages for episodes that still have no
+    # harvested source, avoiding thousands of redundant requests.
+    known_eps={s.get('episode') for s in sources if s.get('episode')}
+    missing=[]
+    for u in watch_urls:
+        m=re.search(r'(?i)(?:tap=)?tap[-_ ]?(\d+)',u)
+        ep=int(m.group(1)) if m else None
+        if ep and ep not in known_eps:missing.append((ep,u))
+    for ep,u in missing[:80]:
+        body=fetch(u)
+        for hls in HLS_RE.findall(body or ''):
+            if hls not in direct:direct.append(hls)
+        arr=extract_array_after(body or '','var episodes =') or extract_array_after(body or '','episodes =') or []
+        before=len(sources);collect_sources(arr,sources)
+        if len(sources)==before:
+            # Preserve the real watch URL as a source even if the player hides
+            # the final HLS behind its own embed JavaScript.
+            sources.append({'server':'RoPhim','episode':ep,'name':f'Tập {ep}','slug':f'tap-{ep}','link_m3u8':'','link_embed':u,'url':u})
+
+    return {
+        'direct':direct[:32],
+        'episodeSources':sources,
+        'watchUrls':watch_urls,
+        'hasPlayback':bool(direct or sources),
+        'fetchOk':bool(detail or watch),
+        'watchUrl':first_watch,
+        'harvestedFrom':'https://rophims.team'
+    }
 
 def main():
     with open(CATALOG,encoding='utf-8') as f:d=json.load(f)
@@ -87,7 +153,7 @@ def main():
             try:p=f.result()
             except Exception as e:p={'direct':[],'episodeSources':[],'hasPlayback':False,'fetchOk':False,'watchUrl':'','error':str(e)}
             results[u]=p
-            print(f"[playback] {done}/{len(targets)} {'OK' if p.get('hasPlayback') else 'NO-LINK'} {by[u].get('title','')}",flush=True)
+            print(f"[harvest] {done}/{len(targets)} {'OK' if p.get('hasPlayback') else 'NO-LINK'} {by[u].get('title','')}",flush=True)
     ok=0;bad=[]
     for u in targets:
         x=by[u];p=results.get(u) or {}
@@ -95,10 +161,11 @@ def main():
             x['playbackHints']={k:v for k,v in p.items() if k!='fetchOk'}
         if p.get('hasPlayback'):ok+=1
         else:bad.append({'title':x.get('title'),'url':u,'fetchOk':p.get('fetchOk',False),'error':p.get('error','')})
+    d['playbackHarvest']={'checked':len(targets),'withLinks':ok,'missing':len(bad),'workers':PLAYBACK_WORKERS,'missingItems':bad[:100]}
     d['playbackAudit']={'checked':len(targets),'playable':ok,'missing':len(bad),'workers':PLAYBACK_WORKERS,'missingItems':bad[:100]}
     tmp=CATALOG+'.tmp'
     with open(tmp,'w',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,indent=2)
     os.replace(tmp,CATALOG)
-    print('PLAYBACK_AUDIT',json.dumps(d['playbackAudit'],ensure_ascii=False),flush=True)
+    print('PLAYBACK_HARVEST',json.dumps(d['playbackHarvest'],ensure_ascii=False),flush=True)
 
 if __name__=='__main__':main()
