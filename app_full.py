@@ -76,6 +76,14 @@ def fetch_text(u,ttl=300,referer=None):
         print("[fetch_text urllib]",u,type(e).__name__,str(e)[:180],flush=True)
         return ""
 
+def decode_js_escapes(s):
+    s=str(s or "")
+    # Decode common JavaScript string escapes used by StreamVSMov players.
+    s=re.sub(r"\\x([0-9a-fA-F]{2})",lambda m:chr(int(m.group(1),16)),s)
+    s=re.sub(r"\\u([0-9a-fA-F]{4})",lambda m:chr(int(m.group(1),16)),s)
+    s=s.replace("\\/","/")
+    return html.unescape(s)
+
 def resolve_media_url(raw,referer=None,depth=0):
     raw=html.unescape(str(raw or "").replace("\\/","/")).strip()
     if not raw:return []
@@ -85,13 +93,17 @@ def resolve_media_url(raw,referer=None,depth=0):
     if c and now-c[0]<300:return c[1]
     if depth>2:return []
     page=fetch_text(u,120,referer or BASE+"/")
+    decoded=decode_js_escapes(page)
     out=[]
 
     # First trust only explicit HLS URLs found in the player HTML/JS.
-    for hls in HLS_RE.findall(page):
-        hls=html.unescape(hls.replace("\\/","/"))
-        pair=(urljoin(u,hls),u)
-        if pair not in out:out.append(pair)
+    # Scan both raw and JavaScript-decoded content because StreamVSMov often
+    # hides URLs behind \xNN / \uNNNN escapes.
+    for body in (page,decoded):
+        for hls in HLS_RE.findall(body):
+            hls=decode_js_escapes(hls)
+            pair=(urljoin(u,hls),u)
+            if pair not in out:out.append(pair)
 
     # streamvsmov pages contain many generic JS tokens called url/src/file.
     # Treating those as media recursively produced bogus analytics/assets URLs.
@@ -106,7 +118,7 @@ def resolve_media_url(raw,referer=None,depth=0):
                 if not v or any(ch in v for ch in (" ","{","}","(",")",";")):continue
                 absolute=urljoin(u,v)
                 if absolute!=u and absolute not in candidates:candidates.append(absolute)
-        for v in re.findall(r'<iframe[^>]+src=["\']([^"\']+)',page,re.I):
+        for v in re.findall(r'<iframe[^>]+src=["\']([^"\']+)',decoded,re.I):
             v=html.unescape(v).strip()
             if not v:continue
             absolute=urljoin(u,v)
