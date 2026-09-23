@@ -6,7 +6,7 @@ from flask import jsonify,request
 PAGE_SIZE=24
 SITEMAP_URL='https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/ivy_sitemap.json'
 _sitemap={'at':0,'data':None}
-HOME_ROWS=['Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Thiên đường Phim Thái','Phim US-UK Mới','Phim Điện Ảnh Mới Cóong','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng','Mê Cung Phim Nhật','Phim Bộ Đã Hoàn Thành','Hành Động Nghẹt Thở','Trinh Thám & Bí Ẩn','Tinh Hoa Điện Ảnh Hồng Kông','Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay','Thế giới Anime','Cổ Trang Trung Quốc','Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng']
+FALLBACK_HOME_ROWS=['Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Thiên đường Phim Thái','Phim US-UK Mới','Phim Điện Ảnh Mới Cóng','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng','Mê Cung Phim Nhật','Phim Bộ Đã Hoàn Thành','Hành Động Nghẹt Thở','Trinh Thám & Bí Ẩn','Tinh Hoa Điện Ảnh Hồng Kông','Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay','Thế giới Anime','Cổ Trang Trung Quốc','Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng']
 SERIES_ROWS={'Phim Bộ Đã Hoàn Thành','Top 10 phim bộ hôm nay'}
 
 def sitemap():
@@ -20,11 +20,15 @@ def sitemap():
     d={'sections':[]}
     try:
         src=core.source_home_sections()
-        for label in HOME_ROWS:
+        for label in FALLBACK_HOME_ROWS:
             info=src.get(label) or {};d['sections'].append({'label':label,'home':info.get('home') or [],'urls':info.get('home') or [],'pages':1,'listing':info.get('listing')})
     except Exception:
-        for label in HOME_ROWS:d['sections'].append({'label':label,'home':[],'urls':[],'pages':1})
+        for label in FALLBACK_HOME_ROWS:d['sections'].append({'label':label,'home':[],'urls':[],'pages':1})
     _sitemap.update(at=now,data=d);return d
+
+def home_rows():
+    rows=[s.get('label') for s in sitemap().get('sections',[]) if s.get('label')]
+    return rows or FALLBACK_HOME_ROWS
 
 def section(label):
     for s in sitemap().get('sections',[]):
@@ -45,7 +49,7 @@ def row_extras():return [{'name':'genre','isRequired':False,'options':genre_opti
 
 def manifest_fast():
     cats=[]
-    for i,label in enumerate(HOME_ROWS):cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
+    for i,label in enumerate(home_rows()):cats.append({'type':'series' if label in SERIES_ROWS else 'movie','id':f'ivy_home_{i}','name':f'❤️ Ivy • {label}','extra':row_extras()})
     return {'id':'community.ivy.catalog','version':'1.9.9','name':'Ivy❤️','description':'Ivy❤️ • source rows only • exact source membership • Nuvio search + genre filters','resources':['catalog','meta','stream'],'types':['movie','series'],'idPrefixes':['ivy_'],'behaviorHints':{'configurable':False},'catalogs':cats}
 
 def extras(path=''):
@@ -73,7 +77,7 @@ def filter_rows(rows,e):
 def catalog(cid,path=''):
     e=extras(path);rows=[]
     if cid.startswith('ivy_home_'):
-        try:rows=items(HOME_ROWS[int(cid.rsplit('_',1)[1])])
+        try:rows=items(home_rows()[int(cid.rsplit('_',1)[1])])
         except:rows=[]
         rows=filter_rows(rows,e)
     try:sk=max(0,int(e.get('skip',0)))
@@ -84,5 +88,5 @@ core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
 core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.9.9','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.9.9','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':HOME_ROWS,'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'source-row','searchFilters':['genre'],'playbackResolver':'recursive-hls'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.9.9','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'source-row','searchFilters':['genre'],'playbackResolver':'recursive-hls'})
 app=core.app
