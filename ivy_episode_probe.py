@@ -23,6 +23,13 @@ def probe(u):
  for m in re.finditer(r'(?i)(.{0,100}(?:episode|season|tập|mùa|playlist|m3u8).{0,220})',h):
   s=' '.join(m.group(1).split())
   if s not in scripts:scripts.append(s)
- return {'url':u,'hls':list(dict.fromkeys(HLS.findall(h))),'episodeLinks':links[:100],'signals':scripts[:100]}
+ watch=[]
+ for row in links[:3]:
+  try:
+   wh=fetch(row['url'].replace('&amp;','&'))
+   watch.append({'url':row['url'],'hls':list(dict.fromkeys(HLS.findall(wh)))[:8],'bytes':len(wh)})
+  except Exception as e:
+   watch.append({'url':row['url'],'error':type(e).__name__+': '+str(e)[:160]})
+ return {'url':u,'hls':list(dict.fromkeys(HLS.findall(h))),'episodeLinks':links[:100],'watchPages':watch,'signals':scripts[:100]}
 if __name__=='__main__':
  for u in sys.argv[1:]:print(json.dumps(probe(u),ensure_ascii=False,indent=2))
