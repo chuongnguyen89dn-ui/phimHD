@@ -40,6 +40,7 @@ jobs:
       - name: Update Ivy catalog from source web
         env:
           ROPHIM_CATALOG: rophim_catalog.json
+          ROPHIM_BASE: https://rophims.team
           ROPHIM_WORKERS: '32'
         run: python rophim_catalog_crawler_taxonomy_v5.py
 
@@ -82,6 +83,7 @@ jobs:
       - name: Crawl exact source sitemap and pagination
         env:
           IVY_SITEMAP_OUT: ivy_sitemap.json
+          IVY_SOURCE_BASE: https://rophims.team
         run: python ivy_sitemap_crawler.py
       - name: Verify whole-site count and exact section ordering
         env:
@@ -93,7 +95,7 @@ jobs:
       - name: Audit and cache playback sources
         env:
           ROPHIM_CATALOG: rophim_catalog.json
-          IVY_PLAYBACK_AUDIT_LIMIT: '0'
+          IVY_PLAYBACK_AUDIT_LIMIT: '100'
         run: python ivy_playback_audit.py
       - name: Publish catalog, sitemap and change history to data branch
         run: |
