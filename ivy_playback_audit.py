@@ -8,7 +8,7 @@ URL_RE=re.compile(r'https?://[^"\'<>\\\s]+',re.I)
 LIMIT=int(os.environ.get('IVY_PLAYBACK_AUDIT_LIMIT','0'))
 
 def fetch(u):
-    headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'vi-VN,vi;q=0.9,en;q=0.8','Referer':'https://rophim.loan/'}
+    headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'vi-VN,vi;q=0.9,en;q=0.8','Referer':'https://rophims.team/'}
     try:
         from curl_cffi import requests as curl_requests
         r=curl_requests.get(u,headers=headers,timeout=18,impersonate='chrome',allow_redirects=True)
@@ -46,7 +46,13 @@ def extract_array_after(h,marker):
     return None
 
 def probe(x):
-    h=fetch(x.get('url',''))
+    detail_url=x.get('url','')
+    detail=fetch(detail_url)
+    path=re.sub(r'^https?://[^/]+','',detail_url)
+    watch_url='https://rophims.team'+path.replace('/phim/','/xem-phim/',1)
+    watch_url=watch_url.split('?',1)[0]+'?tap=tap-1&sv=0'
+    watch=fetch(watch_url)
+    h=detail+'\n'+watch
     direct=list(dict.fromkeys(HLS_RE.findall(h)))
     arr=extract_array_after(h,'var episodes =') or extract_array_after(h,'episodes =') or []
     sources=[]
@@ -58,7 +64,7 @@ def probe(x):
                 if not isinstance(item,dict):continue
                 u=item.get('link_m3u8') or item.get('link_embed') or ''
                 if u:sources.append({'server':sname,'name':str(item.get('name') or item.get('slug') or ''),'url':u})
-    return {'direct':direct[:8],'episodeSources':sources[:100],'hasPlayback':bool(direct or sources),'fetchOk':bool(h)}
+    return {'direct':direct[:8],'episodeSources':sources[:100],'hasPlayback':bool(direct or sources),'fetchOk':bool(detail or watch),'watchUrl':watch_url}
 
 def main():
     with open(CATALOG,encoding='utf-8') as f:d=json.load(f)
