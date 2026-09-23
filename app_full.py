@@ -221,6 +221,14 @@ def source_menu(kind):
             if typ(x)==kind and x.get("url") not in seen:items.append(x);seen.add(x.get("url"))
     return dedupe_series(items) if kind=="series" else items
 
+def source_watch_url(page_url,episode=None):
+    u=str(page_url or "")
+    if "/phim/" in u:u=u.replace("/phim/","/xem-phim/",1)
+    if episode and int(episode)>1:
+        sep="&" if "?" in u else "?"
+        u+=sep+"tap=tap-"+str(int(episode))+"&sv=0"
+    return u
+
 def extract_array_after(h,marker):
     p=h.find(marker)
     if p<0:return None
@@ -244,14 +252,25 @@ def extract_array_after(h,marker):
     return None
 def episode_rows(x):
     page_url=x.get("url","");h=fetch_text(page_url,180);arr=extract_array_after(h,"var episodes =") or extract_array_after(h,"episodes =") or [];by={}
+    def add(ep,name,server,url,referer=page_url):
+        if not ep or not url:return
+        row=by.setdefault(ep,{"episode":ep,"title":name or f"Tập {ep}","sources":[]})
+        src={"name":clean(server or "Nguồn"),"url":html.unescape(str(url).replace("\\/","/")),"referer":referer}
+        if not any(s.get("url")==src["url"] for s in row["sources"]):row["sources"].append(src)
     for srv in arr if isinstance(arr,list) else []:
         for item in (srv.get("server_data") or []) if isinstance(srv,dict) else []:
             slug=str(item.get("slug") or "");name=clean(item.get("name") or item.get("filename") or slug);m=re.search(r"(\d+)",slug+" "+name)
             if not m:continue
-            ep=int(m.group(1));row=by.setdefault(ep,{"episode":ep,"title":name or f"Tập {ep}","sources":[]})
-            direct=item.get("link_m3u8") or "";embed=item.get("link_embed") or ""
-            if direct:row["sources"].append({"name":clean(srv.get("server_name") or "Nguồn"),"url":direct,"referer":page_url})
-            elif embed:row["sources"].append({"name":clean(srv.get("server_name") or "Nguồn"),"url":embed,"referer":page_url})
+            add(int(m.group(1)),name,srv.get("server_name"),item.get("link_m3u8") or item.get("link_embed"))
+    # Current RoPhim detail pages expose episode anchors but move media data to /xem-phim/.
+    for href,label in re.findall(r'<a[^>]+href=["\']([^"\']*?/xem-phim/[^"\']*)["\'][^>]*>(.*?)</a>',h,re.I|re.S):
+        u=urljoin(page_url,html.unescape(href));txt=clean(re.sub(r"<[^>]+>"," ",label))
+        m=re.search(r"(?i)(?:tập|tap|episode)\s*[- ]?(\d+)",txt+" "+u)
+        ep=int(m.group(1)) if m else (1 if "tap=" not in u.lower() else 0)
+        if ep:add(ep,txt or f"Tập {ep}","RoPhim",u,page_url)
+    if not by and typ(x)=="series":
+        # Last-resort episode 1 watch page; more episodes may be discovered on next metadata refresh.
+        add(1,"Tập 1","RoPhim",source_watch_url(page_url,1),page_url)
     return infer_season(x,h),[by[k] for k in sorted(by)]
 
 def tmdb_get(path,params=None,ttl=21600):
@@ -362,6 +381,8 @@ def stream(t,item_id):
                 seen.add(media);streams.append(stream_obj(media,f"Ivy❤️ • Mùa {season} • {row['title']} • {source['name']}",ref))
         return jsonify({"streams":streams})
     page_url=x.get("url","");page=fetch_text(page_url,120);candidates=[]
+    # Playback now lives on /xem-phim/ rather than the public /phim/ detail page.
+    candidates.append((source_watch_url(page_url,1),page_url))
     hints=x.get("playbackHints") or {}
     for v in hints.get("direct") or []:candidates.append((v,page_url))
     for v in HLS_RE.findall(page):candidates.append((v,page_url))
