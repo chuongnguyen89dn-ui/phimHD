@@ -86,24 +86,40 @@ def resolve_media_url(raw,referer=None,depth=0):
     if depth>2:return []
     page=fetch_text(u,120,referer or BASE+"/")
     out=[]
+
+    # First trust only explicit HLS URLs found in the player HTML/JS.
     for hls in HLS_RE.findall(page):
         hls=html.unescape(hls.replace("\\/","/"))
         pair=(urljoin(u,hls),u)
         if pair not in out:out.append(pair)
+
+    # streamvsmov pages contain many generic JS tokens called url/src/file.
+    # Treating those as media recursively produced bogus analytics/assets URLs.
+    # For this host, only follow real iframe/embed/player links when no HLS was
+    # found; never scan arbitrary generic JS URL variables.
+    is_streamvsmov="streamvsmov.com" in u.lower()
     if not out:
         candidates=[]
-        for v in MEDIA_SRC_RE.findall(page):
-            v=html.unescape(v.replace("\\/","/"));absolute=urljoin(u,v)
-            if absolute!=u and absolute not in candidates:candidates.append(absolute)
+        if not is_streamvsmov:
+            for v in MEDIA_SRC_RE.findall(page):
+                v=html.unescape(v.replace("\\/","/")).strip()
+                if not v or any(ch in v for ch in (" ","{","}","(",")",";")):continue
+                absolute=urljoin(u,v)
+                if absolute!=u and absolute not in candidates:candidates.append(absolute)
         for v in re.findall(r'<iframe[^>]+src=["\']([^"\']+)',page,re.I):
-            absolute=urljoin(u,html.unescape(v))
+            v=html.unescape(v).strip()
+            if not v:continue
+            absolute=urljoin(u,v)
             if absolute!=u and absolute not in candidates:candidates.append(absolute)
         for child in candidates[:8]:
-            if ".m3u8" in child.lower():out.append((child,u));continue
-            if depth<2 and ("embed" in child.lower() or "player" in child.lower() or child.startswith("http")):
+            low=child.lower()
+            if ".m3u8" in low:
+                out.append((child,u));continue
+            if depth<2 and ("embed" in low or "player" in low):
                 for pair in resolve_media_url(child,u,depth+1):
                     if pair not in out:out.append(pair)
             if len(out)>=8:break
+
     _resolve_cache[key]=(now,out);return out
 
 def stream_obj(url,title,referer=None):
