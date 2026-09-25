@@ -374,7 +374,16 @@ def apply_tmdb(x):
         names={norm(r.get("title")),norm(r.get("name")),norm(r.get("original_title")),norm(r.get("original_name"))};names.discard("")
         if not target.intersection(names):continue
         z=dict(x);z["tmdb"]={"voteAverage":r.get("vote_average"),"voteCount":r.get("vote_count"),"tmdbId":r.get("id")}
-        if r.get("poster_path"):z["poster"]=TMDB_IMG+"w780"+r["poster_path"]
+        if media=="tv":
+            # Keep seasons visually distinct. The TV search result poster is the
+            # show-level poster and would make every season card identical.
+            # Prefer the exact TMDB season poster; if it is missing, preserve
+            # the source-specific RoPhim poster already stored on this season.
+            season_no=infer_season(x)
+            sd=tmdb_get(f"/tv/{r.get('id')}/season/{season_no}",{"language":"vi-VN"}) or {}
+            if sd.get("poster_path"):z["poster"]=TMDB_IMG+"w780"+sd["poster_path"]
+        elif r.get("poster_path"):
+            z["poster"]=TMDB_IMG+"w780"+r["poster_path"]
         if r.get("backdrop_path"):z["backdrop"]=TMDB_IMG+"w1280"+r["backdrop_path"]
         return z
     return x
