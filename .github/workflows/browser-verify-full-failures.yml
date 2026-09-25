@@ -1,0 +1,95 @@
+name: Browser verify all resolver failures
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'browser_verify_full_failures.py'
+      - '.github/workflows/browser-verify-full-failures.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ivy-browser-full-verify
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Install Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Verify failed resolver titles in Chromium
+        env:
+          IVY_FULL_AUDIT_REPORT: full_playback_audit.json
+          IVY_BROWSER_FULL_OUT: browser_full_verify_part_${{ matrix.shard }}.json
+          IVY_BROWSER_SHARD_INDEX: ${{ matrix.shard }}
+          IVY_BROWSER_SHARD_TOTAL: '16'
+          IVY_BROWSER_WORKERS: '2'
+          IVY_BROWSER_PAGE_TIMEOUT: '45000'
+          IVY_BROWSER_WAIT_MS: '8500'
+        run: python browser_verify_full_failures.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: browser-full-verify-${{ matrix.shard }}
+          path: browser_full_verify_part_${{ matrix.shard }}.json
+          retention-days: 14
+
+  merge:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: browser-full-verify-*
+          merge-multiple: true
+          path: parts
+      - name: Merge browser reports
+        run: |
+          python - <<'PY'
+          import json,glob,time
+          rows=[]
+          for p in sorted(glob.glob('parts/browser_full_verify_part_*.json')):
+              rows.extend((json.load(open(p,encoding='utf-8')).get('results') or []))
+          ok=[x for x in rows if x.get('webPlayable')]
+          no=[x for x in rows if not x.get('webPlayable')]
+          out={
+            'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),
+            'checked':len(rows),
+            'webPlayableAddonFailed':len(ok),
+            'unconfirmed':len(no),
+            'confirmedResolverBugs':ok,
+            'unconfirmedCases':no
+          }
+          json.dump(out,open('browser_full_verification.json','w',encoding='utf-8'),ensure_ascii=False,indent=2)
+          print({k:out[k] for k in ('checked','webPlayableAddonFailed','unconfirmed')})
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: browser-full-verification-merged
+          path: browser_full_verification.json
+          retention-days: 14
+      - name: Publish merged browser report
+        run: |
+          git config user.name "ivy-playback-audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add browser_full_verification.json
+          git commit -m "Update full browser playback verification" || exit 0
+          git push origin HEAD:main
