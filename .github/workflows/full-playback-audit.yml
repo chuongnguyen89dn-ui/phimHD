@@ -1,0 +1,95 @@
+name: Full catalog playback audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'full_catalog_playback_audit.py'
+      - '.github/workflows/full-playback-audit.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ivy-full-playback-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7]
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Download current catalog
+        run: |
+          curl -fL --retry 3 --retry-delay 2 \
+            https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json \
+            -o rophim_catalog.json
+      - name: Audit shard
+        env:
+          ROPHIM_CATALOG: rophim_catalog.json
+          IVY_AUDIT_SHARD_INDEX: ${{ matrix.shard }}
+          IVY_AUDIT_SHARD_TOTAL: '8'
+          IVY_FULL_AUDIT_OUT: full_playback_audit_part_${{ matrix.shard }}.json
+        run: python full_catalog_playback_audit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-playback-audit-${{ matrix.shard }}
+          path: full_playback_audit_part_${{ matrix.shard }}.json
+          retention-days: 14
+
+  merge:
+    needs: audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: full-playback-audit-*
+          merge-multiple: true
+          path: parts
+      - name: Merge reports
+        run: |
+          python - <<'PY'
+          import json,glob,time
+          rows=[]; checked=failed=0
+          for p in sorted(glob.glob('parts/full_playback_audit_part_*.json')):
+              d=json.load(open(p,encoding='utf-8'))
+              checked+=d.get('checkedTitles',0)
+              failed+=d.get('failedTitles',0)
+              rows.extend(d.get('results') or [])
+          out={
+            'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),
+            'checkedTitles':checked,
+            'failedTitles':failed,
+            'failedSeriesEpisodes':sum(len(x.get('failedEpisodes') or []) for x in rows),
+            'results':rows,
+            'browserCandidates':[x for x in rows if not x.get('ok')]
+          }
+          json.dump(out,open('full_playback_audit.json','w',encoding='utf-8'),ensure_ascii=False,indent=2)
+          print({k:out[k] for k in ('checkedTitles','failedTitles','failedSeriesEpisodes')})
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-playback-audit-merged
+          path: full_playback_audit.json
+          retention-days: 14
+      - name: Publish merged report
+        run: |
+          git config user.name "ivy-playback-audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add full_playback_audit.json
+          git commit -m "Update full catalog playback audit" || exit 0
+          git push origin HEAD:main
