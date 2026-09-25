@@ -18,7 +18,7 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,14 +31,10 @@ jobs:
             https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json \
             -o rophim_catalog.json
 
-      - name: Scan real addon output and HLS
+      - name: Build local playback shortlist and poster report
         env:
           ROPHIM_CATALOG: rophim_catalog.json
-          IVY_ADDON_BASE: https://phimhd.onrender.com
           IVY_TARGETED_REPORT: targeted_playback_report.json
-          IVY_TARGETED_WORKERS: '24'
-          IVY_TARGETED_TIMEOUT: '12'
-          IVY_VALIDATE_HLS: '1'
         run: python targeted_playback_scan.py
 
       - name: Upload report artifact
