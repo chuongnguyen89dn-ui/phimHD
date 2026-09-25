@@ -1,0 +1,27 @@
+name: Diagnose Vikings source
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'diagnose_vikings_source.py'
+      - '.github/workflows/diagnose-vikings.yml'
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: pip install -r requirements.txt
+      - name: Download catalog
+        run: curl -fL --retry 3 https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json -o rophim_catalog.json
+      - name: Diagnose
+        env:
+          IVY_CATALOG: rophim_catalog.json
+          ROPHIM_CATALOG: rophim_catalog.json
+          IVY_REMOTE_CATALOG: http://127.0.0.1:9/disabled
+        run: python diagnose_vikings_source.py
