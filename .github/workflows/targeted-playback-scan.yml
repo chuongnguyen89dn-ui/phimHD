@@ -1,0 +1,61 @@
+name: Targeted playback scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/targeted-playback-scan.yml'
+      - 'targeted_playback_scan.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ivy-targeted-playback-scan
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Load current production catalog
+        run: |
+          curl -fL --retry 3 --retry-delay 2 \
+            https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json \
+            -o rophim_catalog.json
+
+      - name: Scan real addon output and HLS
+        env:
+          ROPHIM_CATALOG: rophim_catalog.json
+          IVY_ADDON_BASE: https://phimhd.onrender.com
+          IVY_TARGETED_REPORT: targeted_playback_report.json
+          IVY_TARGETED_WORKERS: '24'
+          IVY_TARGETED_TIMEOUT: '12'
+          IVY_VALIDATE_HLS: '1'
+        run: python targeted_playback_scan.py
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: targeted-playback-report
+          path: targeted_playback_report.json
+          retention-days: 14
+
+      - name: Publish latest report to main
+        run: |
+          git config user.name "ivy-playback-audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add targeted_playback_report.json
+          if git diff --cached --quiet; then
+            echo "Report unchanged"
+            exit 0
+          fi
+          git commit -m "Update targeted playback scan report"
+          git push origin HEAD:main
