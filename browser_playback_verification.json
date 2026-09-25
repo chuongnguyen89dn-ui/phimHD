@@ -1,0 +1,1779 @@
+{
+  "generatedAt": "2026-09-25T06:54:28Z",
+  "candidates": 104,
+  "webPlayableAddonSuspect": 25,
+  "webAlsoFailedOrUnconfirmed": 79,
+  "resolverBugCandidates": [
+    {
+      "kind": "series",
+      "title": "Biên Niên Sử Giáng Sinh: Phần Hai (2020) | RoPhim",
+      "url": "https://rophims.team/phim/bien-nien-su-giang-sinh-phan-hai",
+      "target": "https://rophims.team/xem-phim/bien-nien-su-giang-sinh-phan-hai",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v10.streamvsmov.com/stream/8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=343951775&e=pa&n=5071876358333249&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=18snli5vborq&i=1&lid=1mfvmgj1rm2b&lsa=set&mt=0&pbd=1&pbr=1&pgi=1vnt18p17irk&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=c3yevfvazb30&pp=hlsjs&prc=1&ps=3&pss=1&pt=The%20Christmas%20Chronicles%202&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv10.streamvsmov.com%2Fstream%2F8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790318981796",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=770249585&e=s&n=2239828728954669&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=18snli5vborq&i=1&lid=1mfvmgj1rm2b&lsa=set&mt=0&pbd=1&pbr=1&pgi=1vnt18p17irk&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=c3yevfvazb30&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Christmas%20Chronicles%202&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=350&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv10.streamvsmov.com%2Fstream%2F8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=350&tb=12&tt=0&vd=6919&vh=1024&vs=0&vw=1920&sa=1790318982155"
+      ],
+      "media": [
+        "https://v10.streamvsmov.com/stream/8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=343951775&e=pa&n=5071876358333249&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=18snli5vborq&i=1&lid=1mfvmgj1rm2b&lsa=set&mt=0&pbd=1&pbr=1&pgi=1vnt18p17irk&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=c3yevfvazb30&pp=hlsjs&prc=1&ps=3&pss=1&pt=The%20Christmas%20Chronicles%202&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv10.streamvsmov.com%2Fstream%2F8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790318981796",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=770249585&e=s&n=2239828728954669&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=18snli5vborq&i=1&lid=1mfvmgj1rm2b&lsa=set&mt=0&pbd=1&pbr=1&pgi=1vnt18p17irk&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=c3yevfvazb30&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Christmas%20Chronicles%202&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=350&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv10.streamvsmov.com%2Fstream%2F8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=350&tb=12&tt=0&vd=6919&vh=1024&vs=0&vw=1920&sa=1790318982155"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v10.streamvsmov.com/stream/8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=343951775&e=pa&n=5071876358333249&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=18snli5vborq&i=1&lid=1mfvmgj1rm2b&lsa=set&mt=0&pbd=1&pbr=1&pgi=1vnt18p17irk&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=c3yevfvazb30&pp=hlsjs&prc=1&ps=3&pss=1&pt=The%20Christmas%20Chronicles%202&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv10.streamvsmov.com%2Fstream%2F8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790318981796"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=770249585&e=s&n=2239828728954669&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=18snli5vborq&i=1&lid=1mfvmgj1rm2b&lsa=set&mt=0&pbd=1&pbr=1&pgi=1vnt18p17irk&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=c3yevfvazb30&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Christmas%20Chronicles%202&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=350&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv10.streamvsmov.com%2Fstream%2F8837a59a-be70-4cbd-8d2e-ea6cf1dc99ec%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=350&tb=12&tt=0&vd=6919&vh=1024&vs=0&vw=1920&sa=1790318982155"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chiến Tranh Giữa Các Vì Sao: Phần I - Hiểm Hoạ (1999) | RoPhim",
+      "url": "https://rophims.team/phim/chien-tranh-giua-cac-vi-sao-phan-i-hiem-hoa-bong-ma",
+      "target": "https://rophims.team/xem-phim/chien-tranh-giua-cac-vi-sao-phan-i-hiem-hoa-bong-ma",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v14.streamvsmov.com/stream/06dbce91-9e21-47cf-8ffa-6aa499a11004/master.m3u8"
+      ],
+      "media": [
+        "https://v14.streamvsmov.com/stream/06dbce91-9e21-47cf-8ffa-6aa499a11004/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v14.streamvsmov.com/stream/06dbce91-9e21-47cf-8ffa-6aa499a11004/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chiến Tranh Giữa Các Vì Sao: Phần III - Sự Trả (2005) | RoPhim",
+      "url": "https://rophims.team/phim/chien-tranh-giua-cac-vi-sao-phan-iii-su-tra-thu-cua-nguoi-sith",
+      "target": "https://rophims.team/xem-phim/chien-tranh-giua-cac-vi-sao-phan-iii-su-tra-thu-cua-nguoi-sith",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v14.streamvsmov.com/stream/6a0fae0d-50df-42db-8251-c1015c57105f/master.m3u8"
+      ],
+      "media": [
+        "https://v14.streamvsmov.com/stream/6a0fae0d-50df-42db-8251-c1015c57105f/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v14.streamvsmov.com/stream/6a0fae0d-50df-42db-8251-c1015c57105f/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chiến Tranh Giữa Các Vì Sao: Phần V - Đế Chế (1980) | RoPhim",
+      "url": "https://rophims.team/phim/chien-tranh-giua-cac-vi-sao-phan-v-de-che-phan-cong",
+      "target": "https://rophims.team/xem-phim/chien-tranh-giua-cac-vi-sao-phan-v-de-che-phan-cong",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v3.streamvsmov.com/stream/f5ab3e45-fa05-431c-a9b3-fc8bebab88db/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-371956274&e=pa&n=1705478609066384&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=yba7v724ujnp&i=1&lid=1bpsr7yjleaf&lsa=set&mt=0&pbd=1&pbr=1&pgi=89x9tb1u03se&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1h88zbl1jbo1&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=02.%20(Vietsub)%20Star.Wars.The.Empire.Strikes.Back.1980.1080p.MA.WEB-DL.H.264.DDP.5.1-NhanNguyen.mkv&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv3.streamvsmov.com%2Fstream%2Ff5ab3e45-fa05-431c-a9b3-fc8bebab88db%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=7642&vh=1080&vw=1920&sa=1790319005812",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1950314830&e=s&n=7177911815770354&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=yba7v724ujnp&i=1&lid=1bpsr7yjleaf&lsa=set&mt=0&pbd=1&pbr=1&pgi=89x9tb1u03se&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1h88zbl1jbo1&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=02.%20(Vietsub)%20Star.Wars.The.Empire.Strikes.Back.1980.1080p.MA.WEB-DL.H.264.DDP.5.1-NhanNguyen.mkv&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=40&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv3.streamvsmov.com%2Fstream%2Ff5ab3e45-fa05-431c-a9b3-fc8bebab88db%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=40&tb=6&tt=0&vd=7642&vh=1080&vs=0&vw=1920&sa=1790319005852"
+      ],
+      "media": [
+        "https://v3.streamvsmov.com/stream/f5ab3e45-fa05-431c-a9b3-fc8bebab88db/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-371956274&e=pa&n=1705478609066384&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=yba7v724ujnp&i=1&lid=1bpsr7yjleaf&lsa=set&mt=0&pbd=1&pbr=1&pgi=89x9tb1u03se&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1h88zbl1jbo1&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=02.%20(Vietsub)%20Star.Wars.The.Empire.Strikes.Back.1980.1080p.MA.WEB-DL.H.264.DDP.5.1-NhanNguyen.mkv&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv3.streamvsmov.com%2Fstream%2Ff5ab3e45-fa05-431c-a9b3-fc8bebab88db%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=7642&vh=1080&vw=1920&sa=1790319005812",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1950314830&e=s&n=7177911815770354&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=yba7v724ujnp&i=1&lid=1bpsr7yjleaf&lsa=set&mt=0&pbd=1&pbr=1&pgi=89x9tb1u03se&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1h88zbl1jbo1&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=02.%20(Vietsub)%20Star.Wars.The.Empire.Strikes.Back.1980.1080p.MA.WEB-DL.H.264.DDP.5.1-NhanNguyen.mkv&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=40&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv3.streamvsmov.com%2Fstream%2Ff5ab3e45-fa05-431c-a9b3-fc8bebab88db%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=40&tb=6&tt=0&vd=7642&vh=1080&vs=0&vw=1920&sa=1790319005852"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v3.streamvsmov.com/stream/f5ab3e45-fa05-431c-a9b3-fc8bebab88db/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-371956274&e=pa&n=1705478609066384&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=yba7v724ujnp&i=1&lid=1bpsr7yjleaf&lsa=set&mt=0&pbd=1&pbr=1&pgi=89x9tb1u03se&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1h88zbl1jbo1&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=02.%20(Vietsub)%20Star.Wars.The.Empire.Strikes.Back.1980.1080p.MA.WEB-DL.H.264.DDP.5.1-NhanNguyen.mkv&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv3.streamvsmov.com%2Fstream%2Ff5ab3e45-fa05-431c-a9b3-fc8bebab88db%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=7642&vh=1080&vw=1920&sa=1790319005812"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1950314830&e=s&n=7177911815770354&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=yba7v724ujnp&i=1&lid=1bpsr7yjleaf&lsa=set&mt=0&pbd=1&pbr=1&pgi=89x9tb1u03se&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1h88zbl1jbo1&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=02.%20(Vietsub)%20Star.Wars.The.Empire.Strikes.Back.1980.1080p.MA.WEB-DL.H.264.DDP.5.1-NhanNguyen.mkv&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=40&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv3.streamvsmov.com%2Fstream%2Ff5ab3e45-fa05-431c-a9b3-fc8bebab88db%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=40&tb=6&tt=0&vd=7642&vh=1080&vs=0&vw=1920&sa=1790319005852"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chiến Tranh Giữa Các Vì Sao: Phần VII - Thần Lực (2015) | RoPhim",
+      "url": "https://rophims.team/phim/chien-tranh-giua-cac-vi-sao-phan-vii-than-luc-thuc-tinh",
+      "target": "https://rophims.team/xem-phim/chien-tranh-giua-cac-vi-sao-phan-vii-than-luc-thuc-tinh",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v14.streamvsmov.com/stream/265b884b-7130-48fd-a60a-e451b7c2ea88/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-251538722&e=pa&n=9533685982568721&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=jcx2v1e6hyv6&i=1&lid=wctejvejphtq&lsa=set&mt=0&pbd=1&pbr=1&pgi=19kt0tmlgy8l&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=5x8h0q1nnmse&pp=hlsjs&prc=1&ps=3&pss=1&pt=Star.Wars.Episode.VII.The.Force.Awakens.2015.ViE.mHD.BluRay.DD5.1.x264-TRiM.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F265b884b-7130-48fd-a60a-e451b7c2ea88%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319008738",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1025861969&e=s&n=3790314043924873&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=jcx2v1e6hyv6&i=1&lid=wctejvejphtq&lsa=set&mt=0&pbd=1&pbr=1&pgi=19kt0tmlgy8l&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=5x8h0q1nnmse&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Star.Wars.Episode.VII.The.Force.Awakens.2015.ViE.mHD.BluRay.DD5.1.x264-TRiM.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=500&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=300&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F265b884b-7130-48fd-a60a-e451b7c2ea88%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=300&tb=12&tt=0&vd=8286&vh=534&vs=0&vw=1280&sa=1790319009040"
+      ],
+      "media": [
+        "https://v14.streamvsmov.com/stream/265b884b-7130-48fd-a60a-e451b7c2ea88/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-251538722&e=pa&n=9533685982568721&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=jcx2v1e6hyv6&i=1&lid=wctejvejphtq&lsa=set&mt=0&pbd=1&pbr=1&pgi=19kt0tmlgy8l&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=5x8h0q1nnmse&pp=hlsjs&prc=1&ps=3&pss=1&pt=Star.Wars.Episode.VII.The.Force.Awakens.2015.ViE.mHD.BluRay.DD5.1.x264-TRiM.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F265b884b-7130-48fd-a60a-e451b7c2ea88%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319008738",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1025861969&e=s&n=3790314043924873&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=jcx2v1e6hyv6&i=1&lid=wctejvejphtq&lsa=set&mt=0&pbd=1&pbr=1&pgi=19kt0tmlgy8l&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=5x8h0q1nnmse&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Star.Wars.Episode.VII.The.Force.Awakens.2015.ViE.mHD.BluRay.DD5.1.x264-TRiM.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=500&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=300&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F265b884b-7130-48fd-a60a-e451b7c2ea88%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=300&tb=12&tt=0&vd=8286&vh=534&vs=0&vw=1280&sa=1790319009040"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v14.streamvsmov.com/stream/265b884b-7130-48fd-a60a-e451b7c2ea88/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-251538722&e=pa&n=9533685982568721&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=jcx2v1e6hyv6&i=1&lid=wctejvejphtq&lsa=set&mt=0&pbd=1&pbr=1&pgi=19kt0tmlgy8l&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=5x8h0q1nnmse&pp=hlsjs&prc=1&ps=3&pss=1&pt=Star.Wars.Episode.VII.The.Force.Awakens.2015.ViE.mHD.BluRay.DD5.1.x264-TRiM.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F265b884b-7130-48fd-a60a-e451b7c2ea88%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319008738"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1025861969&e=s&n=3790314043924873&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=jcx2v1e6hyv6&i=1&lid=wctejvejphtq&lsa=set&mt=0&pbd=1&pbr=1&pgi=19kt0tmlgy8l&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=5x8h0q1nnmse&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Star.Wars.Episode.VII.The.Force.Awakens.2015.ViE.mHD.BluRay.DD5.1.x264-TRiM.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=500&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=300&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F265b884b-7130-48fd-a60a-e451b7c2ea88%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=300&tb=12&tt=0&vd=8286&vh=534&vs=0&vw=1280&sa=1790319009040"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chân Trời: Câu Chuyện Miền Tây Mỹ - Phần 1 (2024) | RoPhim",
+      "url": "https://rophims.team/phim/chan-troi-cau-chuyen-mien-tay-my-phan-1",
+      "target": "https://rophims.team/xem-phim/chan-troi-cau-chuyen-mien-tay-my-phan-1",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v4.streamvsmov.com/stream/9ffc619f-74e3-4803-97f0-8d67327d831a/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1826299153&e=pa&n=1445046315351973&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=2hvm2t1hrmhj&i=1&lid=13n8dbv1741s&lsa=set&mt=0&pbd=1&pbr=1&pgi=1dz8z7j3we0s&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=17etrji1we6t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Horizon.An.American.Saga.Chapter.1.2024.1080p.WEBRip.1600MB.DD5%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&bwe=4894&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9ffc619f-74e3-4803-97f0-8d67327d831a%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=10884&vh=1038&vw=1920&sa=1790319015095",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1113911419&e=s&n=9017130594550878&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=2hvm2t1hrmhj&i=1&lid=13n8dbv1741s&lsa=set&mt=0&pbd=1&pbr=1&pgi=1dz8z7j3we0s&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=17etrji1we6t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Horizon.An.American.Saga.Chapter.1.2024.1080p.WEBRip.1600MB.DD5%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&bwe=4894&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=40&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9ffc619f-74e3-4803-97f0-8d67327d831a%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=40&tb=6&tt=0&vd=10884&vh=1038&vs=0&vw=1920&sa=1790319015137"
+      ],
+      "media": [
+        "https://v4.streamvsmov.com/stream/9ffc619f-74e3-4803-97f0-8d67327d831a/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1826299153&e=pa&n=1445046315351973&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=2hvm2t1hrmhj&i=1&lid=13n8dbv1741s&lsa=set&mt=0&pbd=1&pbr=1&pgi=1dz8z7j3we0s&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=17etrji1we6t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Horizon.An.American.Saga.Chapter.1.2024.1080p.WEBRip.1600MB.DD5%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&bwe=4894&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9ffc619f-74e3-4803-97f0-8d67327d831a%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=10884&vh=1038&vw=1920&sa=1790319015095",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1113911419&e=s&n=9017130594550878&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=2hvm2t1hrmhj&i=1&lid=13n8dbv1741s&lsa=set&mt=0&pbd=1&pbr=1&pgi=1dz8z7j3we0s&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=17etrji1we6t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Horizon.An.American.Saga.Chapter.1.2024.1080p.WEBRip.1600MB.DD5%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&bwe=4894&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=40&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9ffc619f-74e3-4803-97f0-8d67327d831a%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=40&tb=6&tt=0&vd=10884&vh=1038&vs=0&vw=1920&sa=1790319015137"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v4.streamvsmov.com/stream/9ffc619f-74e3-4803-97f0-8d67327d831a/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1826299153&e=pa&n=1445046315351973&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=2hvm2t1hrmhj&i=1&lid=13n8dbv1741s&lsa=set&mt=0&pbd=1&pbr=1&pgi=1dz8z7j3we0s&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=17etrji1we6t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Horizon.An.American.Saga.Chapter.1.2024.1080p.WEBRip.1600MB.DD5%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&bwe=4894&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9ffc619f-74e3-4803-97f0-8d67327d831a%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=10884&vh=1038&vw=1920&sa=1790319015095"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1113911419&e=s&n=9017130594550878&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=2hvm2t1hrmhj&i=1&lid=13n8dbv1741s&lsa=set&mt=0&pbd=1&pbr=1&pgi=1dz8z7j3we0s&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=17etrji1we6t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Horizon.An.American.Saga.Chapter.1.2024.1080p.WEBRip.1600MB.DD5%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&bwe=4894&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=40&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9ffc619f-74e3-4803-97f0-8d67327d831a%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=40&tb=6&tt=0&vd=10884&vh=1038&vs=0&vw=1920&sa=1790319015137"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chạng Vạng: Hừng Đông - Phần 1 (2011) | RoPhim",
+      "url": "https://rophims.team/phim/chang-vang-hung-dong-phan-1",
+      "target": "https://rophims.team/xem-phim/chang-vang-hung-dong-phan-1",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v11.streamvsmov.com/stream/b75df55b-0f3a-498a-a521-7cdbaa214353/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=167013164&e=pa&n=0708907507316940&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=x2atp11x44le&i=1&lid=s4ga6gh13bc1&lsa=set&mt=0&pbd=1&pbr=1&pgi=1hmznw161jfn&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=vd904qg60wty&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2Fb75df55b-0f3a-498a-a521-7cdbaa214353%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=7028&vh=800&vw=1920&sa=1790319027740",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=85409522&e=s&n=0647095886631323&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=x2atp11x44le&i=1&lid=s4ga6gh13bc1&lsa=set&mt=0&pbd=1&pbr=1&pgi=1hmznw161jfn&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=vd904qg60wty&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=30&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2Fb75df55b-0f3a-498a-a521-7cdbaa214353%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=7028&vh=800&vs=0&vw=1920&sa=1790319027774"
+      ],
+      "media": [
+        "https://v11.streamvsmov.com/stream/b75df55b-0f3a-498a-a521-7cdbaa214353/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=167013164&e=pa&n=0708907507316940&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=x2atp11x44le&i=1&lid=s4ga6gh13bc1&lsa=set&mt=0&pbd=1&pbr=1&pgi=1hmznw161jfn&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=vd904qg60wty&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2Fb75df55b-0f3a-498a-a521-7cdbaa214353%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=7028&vh=800&vw=1920&sa=1790319027740",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=85409522&e=s&n=0647095886631323&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=x2atp11x44le&i=1&lid=s4ga6gh13bc1&lsa=set&mt=0&pbd=1&pbr=1&pgi=1hmznw161jfn&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=vd904qg60wty&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=30&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2Fb75df55b-0f3a-498a-a521-7cdbaa214353%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=7028&vh=800&vs=0&vw=1920&sa=1790319027774"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v11.streamvsmov.com/stream/b75df55b-0f3a-498a-a521-7cdbaa214353/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=167013164&e=pa&n=0708907507316940&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=x2atp11x44le&i=1&lid=s4ga6gh13bc1&lsa=set&mt=0&pbd=1&pbr=1&pgi=1hmznw161jfn&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=vd904qg60wty&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2Fb75df55b-0f3a-498a-a521-7cdbaa214353%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=7028&vh=800&vw=1920&sa=1790319027740"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=85409522&e=s&n=0647095886631323&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=x2atp11x44le&i=1&lid=s4ga6gh13bc1&lsa=set&mt=0&pbd=1&pbr=1&pgi=1hmznw161jfn&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=vd904qg60wty&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=30&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2Fb75df55b-0f3a-498a-a521-7cdbaa214353%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=7028&vh=800&vs=0&vw=1920&sa=1790319027774"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chạng Vạng: Hừng Đông - Phần 2 (2012) | RoPhim",
+      "url": "https://rophims.team/phim/chang-vang-hung-dong-phan-2",
+      "target": "https://rophims.team/xem-phim/chang-vang-hung-dong-phan-2",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1162652742&e=pa&n=3568548679056006&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1wj71qcjliuu&i=1&lid=10ngsxec4d86&lsa=set&mt=0&pbd=1&pbr=1&pgi=ebknbo5kwx1o&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=3ppomm1yrnx2&pp=hlsjs&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.97&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2F4a029d49-81dd-4415-91d3-c285b0224545%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319034067",
+        "https://v11.streamvsmov.com/stream/4a029d49-81dd-4415-91d3-c285b0224545/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=2127061478&e=s&n=9817149257584553&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1wj71qcjliuu&i=1&lid=10ngsxec4d86&lsa=set&mt=0&pbd=1&pbr=1&pgi=ebknbo5kwx1o&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=3ppomm1yrnx2&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=500&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=470&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2F4a029d49-81dd-4415-91d3-c285b0224545%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=470&tb=12&tt=0&vd=6912&vh=800&vs=0&vw=1920&sa=1790319034537"
+      ],
+      "media": [
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1162652742&e=pa&n=3568548679056006&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1wj71qcjliuu&i=1&lid=10ngsxec4d86&lsa=set&mt=0&pbd=1&pbr=1&pgi=ebknbo5kwx1o&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=3ppomm1yrnx2&pp=hlsjs&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.97&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2F4a029d49-81dd-4415-91d3-c285b0224545%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319034067",
+        "https://v11.streamvsmov.com/stream/4a029d49-81dd-4415-91d3-c285b0224545/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=2127061478&e=s&n=9817149257584553&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1wj71qcjliuu&i=1&lid=10ngsxec4d86&lsa=set&mt=0&pbd=1&pbr=1&pgi=ebknbo5kwx1o&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=3ppomm1yrnx2&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=500&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=470&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2F4a029d49-81dd-4415-91d3-c285b0224545%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=470&tb=12&tt=0&vd=6912&vh=800&vs=0&vw=1920&sa=1790319034537"
+      ],
+      "statusCodes": [
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1162652742&e=pa&n=3568548679056006&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1wj71qcjliuu&i=1&lid=10ngsxec4d86&lsa=set&mt=0&pbd=1&pbr=1&pgi=ebknbo5kwx1o&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=3ppomm1yrnx2&pp=hlsjs&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.97&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2F4a029d49-81dd-4415-91d3-c285b0224545%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319034067"
+        },
+        {
+          "status": 200,
+          "url": "https://v11.streamvsmov.com/stream/4a029d49-81dd-4415-91d3-c285b0224545/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=2127061478&e=s&n=9817149257584553&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1wj71qcjliuu&i=1&lid=10ngsxec4d86&lsa=set&mt=0&pbd=1&pbr=1&pgi=ebknbo5kwx1o&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=3ppomm1yrnx2&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=The%20Twilight%20Saga%3A%20Breaking%20Dawn&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=500&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=470&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv11.streamvsmov.com%2Fstream%2F4a029d49-81dd-4415-91d3-c285b0224545%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=470&tb=12&tt=0&vd=6912&vh=800&vs=0&vw=1920&sa=1790319034537"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Cổ Kiếm Kỳ Đàm: Phần Tịch Thiên Kiếp (古剑奇谭之焚寂天劫) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/co-kiem-ky-dam-phan-tich-thien-kiep",
+      "target": "https://rophims.team/xem-phim/co-kiem-ky-dam-phan-tich-thien-kiep",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v6.streamvsmov.com/stream/4d18a578-c365-4603-b09e-84943a406e5f/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1824150022&e=pa&n=9724828662127546&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1b84bij1ixik&i=1&lid=1bx87vlvx865&lsa=set&mt=0&pbd=1&pbr=1&pgi=7vpbmcl0o3pr&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1v869r41nzkl&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=C%E1%BB%95%20Ki%E1%BA%BFm%20K%E1%BB%B3%20%C4%90%C3%A0m%3A%20Ph%E1%BA%A7n%20T%E1%BB%8Bch%20Thi%C3%AAn%20Ki%E1%BA%BFp&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F4d18a578-c365-4603-b09e-84943a406e5f%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=360&sa=1790319036562",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=263628665&e=s&n=3700016143644804&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1b84bij1ixik&i=1&lid=1bx87vlvx865&lsa=set&mt=0&pbd=1&pbr=1&pgi=7vpbmcl0o3pr&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1v869r41nzkl&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=C%E1%BB%95%20Ki%E1%BA%BFm%20K%E1%BB%B3%20%C4%90%C3%A0m%3A%20Ph%E1%BA%A7n%20T%E1%BB%8Bch%20Thi%C3%AAn%20Ki%E1%BA%BFp&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=250&fsm=0&l=3&lng=vi&mk=hls&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F4d18a578-c365-4603-b09e-84943a406e5f%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=250&tb=5.9&tt=0&vd=360&vh=248&vs=0&vw=640&sa=1790319036814"
+      ],
+      "media": [
+        "https://v6.streamvsmov.com/stream/4d18a578-c365-4603-b09e-84943a406e5f/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1824150022&e=pa&n=9724828662127546&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1b84bij1ixik&i=1&lid=1bx87vlvx865&lsa=set&mt=0&pbd=1&pbr=1&pgi=7vpbmcl0o3pr&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1v869r41nzkl&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=C%E1%BB%95%20Ki%E1%BA%BFm%20K%E1%BB%B3%20%C4%90%C3%A0m%3A%20Ph%E1%BA%A7n%20T%E1%BB%8Bch%20Thi%C3%AAn%20Ki%E1%BA%BFp&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F4d18a578-c365-4603-b09e-84943a406e5f%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=360&sa=1790319036562",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=263628665&e=s&n=3700016143644804&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1b84bij1ixik&i=1&lid=1bx87vlvx865&lsa=set&mt=0&pbd=1&pbr=1&pgi=7vpbmcl0o3pr&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1v869r41nzkl&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=C%E1%BB%95%20Ki%E1%BA%BFm%20K%E1%BB%B3%20%C4%90%C3%A0m%3A%20Ph%E1%BA%A7n%20T%E1%BB%8Bch%20Thi%C3%AAn%20Ki%E1%BA%BFp&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=250&fsm=0&l=3&lng=vi&mk=hls&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F4d18a578-c365-4603-b09e-84943a406e5f%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=250&tb=5.9&tt=0&vd=360&vh=248&vs=0&vw=640&sa=1790319036814"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v6.streamvsmov.com/stream/4d18a578-c365-4603-b09e-84943a406e5f/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1824150022&e=pa&n=9724828662127546&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1b84bij1ixik&i=1&lid=1bx87vlvx865&lsa=set&mt=0&pbd=1&pbr=1&pgi=7vpbmcl0o3pr&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1v869r41nzkl&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=C%E1%BB%95%20Ki%E1%BA%BFm%20K%E1%BB%B3%20%C4%90%C3%A0m%3A%20Ph%E1%BA%A7n%20T%E1%BB%8Bch%20Thi%C3%AAn%20Ki%E1%BA%BFp&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F4d18a578-c365-4603-b09e-84943a406e5f%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=360&sa=1790319036562"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=263628665&e=s&n=3700016143644804&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1b84bij1ixik&i=1&lid=1bx87vlvx865&lsa=set&mt=0&pbd=1&pbr=1&pgi=7vpbmcl0o3pr&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1v869r41nzkl&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=C%E1%BB%95%20Ki%E1%BA%BFm%20K%E1%BB%B3%20%C4%90%C3%A0m%3A%20Ph%E1%BA%A7n%20T%E1%BB%8Bch%20Thi%C3%AAn%20Ki%E1%BA%BFp&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=250&fsm=0&l=3&lng=vi&mk=hls&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F4d18a578-c365-4603-b09e-84943a406e5f%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=250&tb=5.9&tt=0&vd=360&vh=248&vs=0&vw=640&sa=1790319036814"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Giai Điệu Dục Cảm (9 Songs) (2004) - Vietsub HD | RoPhim",
+      "url": "https://rophims.team/phim/giai-dieu-duc-cam",
+      "target": "https://rophims.team/xem-phim/giai-dieu-duc-cam",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v3.streamvsmov.com/stream/c82e753a-5a0c-443f-a08b-45883278b300/master.m3u8"
+      ],
+      "media": [
+        "https://v3.streamvsmov.com/stream/c82e753a-5a0c-443f-a08b-45883278b300/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v3.streamvsmov.com/stream/c82e753a-5a0c-443f-a08b-45883278b300/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Harry Potter và Bảo Bối Tử Thần: Phần 1 (2010) | RoPhim",
+      "url": "https://rophims.team/phim/harry-potter-va-bao-boi-tu-than-phan-1",
+      "target": "https://rophims.team/xem-phim/harry-potter-va-bao-boi-tu-than-phan-1",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v14.streamvsmov.com/stream/53f9be2d-197e-40c1-aafd-a47a168fb457/master.m3u8"
+      ],
+      "media": [
+        "https://v14.streamvsmov.com/stream/53f9be2d-197e-40c1-aafd-a47a168fb457/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v14.streamvsmov.com/stream/53f9be2d-197e-40c1-aafd-a47a168fb457/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Harry Potter và Bảo Bối Tử Thần: Phần 2 (2011) | RoPhim",
+      "url": "https://rophims.team/phim/harry-potter-va-bao-boi-tu-than-phan-2",
+      "target": "https://rophims.team/xem-phim/harry-potter-va-bao-boi-tu-than-phan-2",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v14.streamvsmov.com/stream/7e02b1e0-959b-4c22-85f4-f3c30a1f0f63/master.m3u8"
+      ],
+      "media": [
+        "https://v14.streamvsmov.com/stream/7e02b1e0-959b-4c22-85f4-f3c30a1f0f63/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v14.streamvsmov.com/stream/7e02b1e0-959b-4c22-85f4-f3c30a1f0f63/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Hành Tinh Cát: Phần Hai (Dune: Part Two) (2024) | RoPhim",
+      "url": "https://rophims.team/phim/hanh-tinh-cat-phan-hai",
+      "target": "https://rophims.team/xem-phim/hanh-tinh-cat-phan-hai",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v2.streamvsmov.com/stream/b160143c-3d7d-4e6c-a4d3-6bcdfd8a7376/master.m3u8?expires=1790322665&signature=0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=200578298&e=pa&n=4753866471346626&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=61ddmh1pywvl&i=1&lid=dvn3n81y1bxu&lsa=set&mt=0&pbd=1&pbr=1&pgi=1891hrwhc4ai&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1x1krvu8i5ba&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Dune.Part.Two.2024.ViE.mHD.BluRay.DD5.1.x264-c0kE.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb160143c-3d7d-4e6c-a4d3-6bcdfd8a7376%2Fmaster.m3u8%3Fexpires%3D1790322665%26signature%3D0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319067160",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=536365620&e=s&n=5828717249311983&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=61ddmh1pywvl&i=1&lid=dvn3n81y1bxu&lsa=set&mt=0&pbd=1&pbr=1&pgi=1891hrwhc4ai&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1x1krvu8i5ba&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Dune.Part.Two.2024.ViE.mHD.BluRay.DD5.1.x264-c0kE.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=530&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb160143c-3d7d-4e6c-a4d3-6bcdfd8a7376%2Fmaster.m3u8%3Fexpires%3D1790322665%26signature%3D0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=540&tb=12&tt=0&vd=9948&vh=536&vs=0&vw=1280&sa=1790319067697"
+      ],
+      "media": [
+        "https://v2.streamvsmov.com/stream/b160143c-3d7d-4e6c-a4d3-6bcdfd8a7376/master.m3u8?expires=1790322665&signature=0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=200578298&e=pa&n=4753866471346626&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=61ddmh1pywvl&i=1&lid=dvn3n81y1bxu&lsa=set&mt=0&pbd=1&pbr=1&pgi=1891hrwhc4ai&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1x1krvu8i5ba&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Dune.Part.Two.2024.ViE.mHD.BluRay.DD5.1.x264-c0kE.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb160143c-3d7d-4e6c-a4d3-6bcdfd8a7376%2Fmaster.m3u8%3Fexpires%3D1790322665%26signature%3D0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319067160",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=536365620&e=s&n=5828717249311983&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=61ddmh1pywvl&i=1&lid=dvn3n81y1bxu&lsa=set&mt=0&pbd=1&pbr=1&pgi=1891hrwhc4ai&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1x1krvu8i5ba&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Dune.Part.Two.2024.ViE.mHD.BluRay.DD5.1.x264-c0kE.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=530&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb160143c-3d7d-4e6c-a4d3-6bcdfd8a7376%2Fmaster.m3u8%3Fexpires%3D1790322665%26signature%3D0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=540&tb=12&tt=0&vd=9948&vh=536&vs=0&vw=1280&sa=1790319067697"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v2.streamvsmov.com/stream/b160143c-3d7d-4e6c-a4d3-6bcdfd8a7376/master.m3u8?expires=1790322665&signature=0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=200578298&e=pa&n=4753866471346626&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=61ddmh1pywvl&i=1&lid=dvn3n81y1bxu&lsa=set&mt=0&pbd=1&pbr=1&pgi=1891hrwhc4ai&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1x1krvu8i5ba&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Dune.Part.Two.2024.ViE.mHD.BluRay.DD5.1.x264-c0kE.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb160143c-3d7d-4e6c-a4d3-6bcdfd8a7376%2Fmaster.m3u8%3Fexpires%3D1790322665%26signature%3D0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319067160"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=536365620&e=s&n=5828717249311983&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=61ddmh1pywvl&i=1&lid=dvn3n81y1bxu&lsa=set&mt=0&pbd=1&pbr=1&pgi=1891hrwhc4ai&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=1x1krvu8i5ba&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Dune.Part.Two.2024.ViE.mHD.BluRay.DD5.1.x264-c0kE.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=530&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb160143c-3d7d-4e6c-a4d3-6bcdfd8a7376%2Fmaster.m3u8%3Fexpires%3D1790322665%26signature%3D0fd38bf6000a250b5ecb02e5f53f177b405c72948d6ea84b94ca8a18c88b1f5d&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=540&tb=12&tt=0&vd=9948&vh=536&vs=0&vw=1280&sa=1790319067697"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Nguời Dơi: Kỵ Sĩ Bóng Đêm Trở Lại - Phần 2 (2013) | RoPhim",
+      "url": "https://rophims.team/phim/nguoi-doi-ky-si-bong-dem-tro-lai-phan-2",
+      "target": "https://rophims.team/xem-phim/nguoi-doi-ky-si-bong-dem-tro-lai-phan-2",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v11.streamvsmov.com/stream/d5b372b4-9a7d-426e-8db6-862b778aab24/master.m3u8"
+      ],
+      "media": [
+        "https://v11.streamvsmov.com/stream/d5b372b4-9a7d-426e-8db6-862b778aab24/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v11.streamvsmov.com/stream/d5b372b4-9a7d-426e-8db6-862b778aab24/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Mouse Kẻ Săn Người (bản điện ảnh) (2021) | RoPhim",
+      "url": "https://rophims.team/phim/mouse-ke-san-nguoi-ban-dien-anh",
+      "target": "https://rophims.team/xem-phim/mouse-ke-san-nguoi-ban-dien-anh",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v2.streamvsmov.com/stream/21c4437f-bee1-4a52-8ef7-5b949f28f803/master.m3u8?expires=1790322709&signature=ae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1556188887&e=pa&n=1315729087581065&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=171nk63d0qe0&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2F21c4437f-bee1-4a52-8ef7-5b949f28f803%2Fmaster.m3u8%3Fexpires%3D1790322709%26signature%3Dae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319110876",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1689152613&e=s&n=8417988985582719&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=171nk63d0qe0&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=330&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2F21c4437f-bee1-4a52-8ef7-5b949f28f803%2Fmaster.m3u8%3Fexpires%3D1790322709%26signature%3Dae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=330&tb=2.4&tt=0&vd=7264&vh=816&vs=0&vw=1920&sa=1790319111205"
+      ],
+      "media": [
+        "https://v2.streamvsmov.com/stream/21c4437f-bee1-4a52-8ef7-5b949f28f803/master.m3u8?expires=1790322709&signature=ae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=779321569&e=cpt&n=8211119215768002&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=749&plc=1&pli=171nk63d0qe0&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=0&vi=0&vl=100&wd=1332&sa=1790319110230",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1556188887&e=pa&n=1315729087581065&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=171nk63d0qe0&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2F21c4437f-bee1-4a52-8ef7-5b949f28f803%2Fmaster.m3u8%3Fexpires%3D1790322709%26signature%3Dae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319110876",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1689152613&e=s&n=8417988985582719&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=171nk63d0qe0&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=330&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2F21c4437f-bee1-4a52-8ef7-5b949f28f803%2Fmaster.m3u8%3Fexpires%3D1790322709%26signature%3Dae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=330&tb=2.4&tt=0&vd=7264&vh=816&vs=0&vw=1920&sa=1790319111205"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v2.streamvsmov.com/stream/21c4437f-bee1-4a52-8ef7-5b949f28f803/master.m3u8?expires=1790322709&signature=ae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=779321569&e=cpt&n=8211119215768002&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=749&plc=1&pli=171nk63d0qe0&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=0&vi=0&vl=100&wd=1332&sa=1790319110230"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1556188887&e=pa&n=1315729087581065&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=171nk63d0qe0&pp=hlsjs&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2F21c4437f-bee1-4a52-8ef7-5b949f28f803%2Fmaster.m3u8%3Fexpires%3D1790322709%26signature%3Dae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e&pd=2&plng=vi&pni=0&pr=1&tb=0&vd=0&sa=1790319110876"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1689152613&e=s&n=8417988985582719&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1n51hwoze7j6&i=1&lid=o2o7231j6o7y&lsa=set&mt=0&pbd=1&pbr=1&pgi=lbprsy1ajrqw&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=171nk63d0qe0&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Mouse.K%E1%BA%BB.S%C4%83n.Ng%C6%B0%E1%BB%9Di.b%E1%BA%A3n.%C4%91i%E1%BB%87n.%E1%BA%A3nh.mp4&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=330&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2F21c4437f-bee1-4a52-8ef7-5b949f28f803%2Fmaster.m3u8%3Fexpires%3D1790322709%26signature%3Dae4e8bdc70f714d61cd01d82cbf76f7871731512e913196b573a7118a46aec2e&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=330&tb=2.4&tt=0&vd=7264&vh=816&vs=0&vw=1920&sa=1790319111205"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Người Đàn Bà Cuồng Dâm: Phần 1 (2013) | RoPhim",
+      "url": "https://rophims.team/phim/nguoi-dan-ba-cuong-dam-phan-1",
+      "target": "https://rophims.team/xem-phim/nguoi-dan-ba-cuong-dam-phan-1",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v11.streamvsmov.com/stream/3be97bc9-151e-4e74-baf3-4bb8be6e331e/master.m3u8"
+      ],
+      "media": [
+        "https://v11.streamvsmov.com/stream/3be97bc9-151e-4e74-baf3-4bb8be6e331e/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v11.streamvsmov.com/stream/3be97bc9-151e-4e74-baf3-4bb8be6e331e/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Người Dơi: Kỵ Sĩ Bóng Đêm Trở Lại - Phần 1 (2012) | RoPhim",
+      "url": "https://rophims.team/phim/nguoi-doi-ky-si-bong-dem-tro-lai-phan-1",
+      "target": "https://rophims.team/xem-phim/nguoi-doi-ky-si-bong-dem-tro-lai-phan-1",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v11.streamvsmov.com/stream/3c73c031-4164-4c98-bd66-abbfaf38d105/master.m3u8"
+      ],
+      "media": [
+        "https://v11.streamvsmov.com/stream/3c73c031-4164-4c98-bd66-abbfaf38d105/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v11.streamvsmov.com/stream/3c73c031-4164-4c98-bd66-abbfaf38d105/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Phố Fear phần 1: 1994 (Fear Street: 1994) (2021) | RoPhim",
+      "url": "https://rophims.team/phim/pho-fear-phan-1-1994",
+      "target": "https://rophims.team/xem-phim/pho-fear-phan-1-1994",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v4.streamvsmov.com/stream/9e6c5f65-2025-4e54-bf2b-2962d4023a28/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-643086787&e=pa&n=8983297505975304&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=ia5c4c1kll53&i=1&lid=1suxzhp15xx2&lsa=set&mt=0&pbd=1&pbr=1&pgi=5hg9ql7lop1f&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=mygdly18nes7&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Fear.Street.Part.1.1994.2021.ViE.1080p.WEB.H264-TIMECUT-Thuyetminh-Vietsub.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9e6c5f65-2025-4e54-bf2b-2962d4023a28%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=6436&vh=1080&vw=1920&sa=1790319150705",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-993699815&e=s&n=4468755259421580&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=ia5c4c1kll53&i=1&lid=1suxzhp15xx2&lsa=set&mt=0&pbd=1&pbr=1&pgi=5hg9ql7lop1f&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=mygdly18nes7&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Fear.Street.Part.1.1994.2021.ViE.1080p.WEB.H264-TIMECUT-Thuyetminh-Vietsub.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=30&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9e6c5f65-2025-4e54-bf2b-2962d4023a28%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=6436&vh=1080&vs=0&vw=1920&sa=1790319150737"
+      ],
+      "media": [
+        "https://v4.streamvsmov.com/stream/9e6c5f65-2025-4e54-bf2b-2962d4023a28/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-643086787&e=pa&n=8983297505975304&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=ia5c4c1kll53&i=1&lid=1suxzhp15xx2&lsa=set&mt=0&pbd=1&pbr=1&pgi=5hg9ql7lop1f&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=mygdly18nes7&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Fear.Street.Part.1.1994.2021.ViE.1080p.WEB.H264-TIMECUT-Thuyetminh-Vietsub.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9e6c5f65-2025-4e54-bf2b-2962d4023a28%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=6436&vh=1080&vw=1920&sa=1790319150705",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-993699815&e=s&n=4468755259421580&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=ia5c4c1kll53&i=1&lid=1suxzhp15xx2&lsa=set&mt=0&pbd=1&pbr=1&pgi=5hg9ql7lop1f&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=mygdly18nes7&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Fear.Street.Part.1.1994.2021.ViE.1080p.WEB.H264-TIMECUT-Thuyetminh-Vietsub.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=30&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9e6c5f65-2025-4e54-bf2b-2962d4023a28%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=6436&vh=1080&vs=0&vw=1920&sa=1790319150737"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v4.streamvsmov.com/stream/9e6c5f65-2025-4e54-bf2b-2962d4023a28/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-643086787&e=pa&n=8983297505975304&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=ia5c4c1kll53&i=1&lid=1suxzhp15xx2&lsa=set&mt=0&pbd=1&pbr=1&pgi=5hg9ql7lop1f&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=mygdly18nes7&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Fear.Street.Part.1.1994.2021.ViE.1080p.WEB.H264-TIMECUT-Thuyetminh-Vietsub.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9e6c5f65-2025-4e54-bf2b-2962d4023a28%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=6436&vh=1080&vw=1920&sa=1790319150705"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-993699815&e=s&n=4468755259421580&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=ia5c4c1kll53&i=1&lid=1suxzhp15xx2&lsa=set&mt=0&pbd=1&pbr=1&pgi=5hg9ql7lop1f&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=mygdly18nes7&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=Fear.Street.Part.1.1994.2021.ViE.1080p.WEB.H264-TIMECUT-Thuyetminh-Vietsub.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=30&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv4.streamvsmov.com%2Fstream%2F9e6c5f65-2025-4e54-bf2b-2962d4023a28%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=6436&vh=1080&vs=0&vw=1920&sa=1790319150737"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Rebel Moon – Phần một: Người con của lửa (2023) | RoPhim",
+      "url": "https://rophims.team/phim/rebel-moon-phan-mot-nguoi-con-cua-lua",
+      "target": "https://rophims.team/xem-phim/rebel-moon-phan-mot-nguoi-con-cua-lua",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v2.streamvsmov.com/stream/fcd8377e-d63e-46a9-869a-1a6c806def54/master.m3u8?expires=1790322752&signature=a864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=193388876&e=pa&n=6525072985153730&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1sddzfyd8dtd&i=1&lid=xvt2dk1arone&lsa=set&mt=0&pbd=1&pbr=1&pgi=8kxl41193lnx&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=uq65wk1uj8ww&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Rebel%20Moon%20-%20Part%20One%3A%20A%20Child%20of%20Fire&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffcd8377e-d63e-46a9-869a-1a6c806def54%2Fmaster.m3u8%3Fexpires%3D1790322752%26signature%3Da864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=8158&sa=1790319154684",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=969477192&e=s&n=3086426926471553&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1sddzfyd8dtd&i=1&lid=xvt2dk1arone&lsa=set&mt=0&pbd=1&pbr=1&pgi=8kxl41193lnx&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=uq65wk1uj8ww&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Rebel%20Moon%20-%20Part%20One%3A%20A%20Child%20of%20Fire&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=89149&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=160&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffcd8377e-d63e-46a9-869a-1a6c806def54%2Fmaster.m3u8%3Fexpires%3D1790322752%26signature%3Da864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=170&tb=6&tt=0&vd=8158&vh=800&vs=0&vw=1920&sa=1790319154851"
+      ],
+      "media": [
+        "https://v2.streamvsmov.com/stream/fcd8377e-d63e-46a9-869a-1a6c806def54/master.m3u8?expires=1790322752&signature=a864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=193388876&e=pa&n=6525072985153730&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1sddzfyd8dtd&i=1&lid=xvt2dk1arone&lsa=set&mt=0&pbd=1&pbr=1&pgi=8kxl41193lnx&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=uq65wk1uj8ww&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Rebel%20Moon%20-%20Part%20One%3A%20A%20Child%20of%20Fire&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffcd8377e-d63e-46a9-869a-1a6c806def54%2Fmaster.m3u8%3Fexpires%3D1790322752%26signature%3Da864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=8158&sa=1790319154684",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=969477192&e=s&n=3086426926471553&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1sddzfyd8dtd&i=1&lid=xvt2dk1arone&lsa=set&mt=0&pbd=1&pbr=1&pgi=8kxl41193lnx&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=uq65wk1uj8ww&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Rebel%20Moon%20-%20Part%20One%3A%20A%20Child%20of%20Fire&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=89149&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=160&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffcd8377e-d63e-46a9-869a-1a6c806def54%2Fmaster.m3u8%3Fexpires%3D1790322752%26signature%3Da864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=170&tb=6&tt=0&vd=8158&vh=800&vs=0&vw=1920&sa=1790319154851"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v2.streamvsmov.com/stream/fcd8377e-d63e-46a9-869a-1a6c806def54/master.m3u8?expires=1790322752&signature=a864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=193388876&e=pa&n=6525072985153730&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1sddzfyd8dtd&i=1&lid=xvt2dk1arone&lsa=set&mt=0&pbd=1&pbr=1&pgi=8kxl41193lnx&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=uq65wk1uj8ww&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Rebel%20Moon%20-%20Part%20One%3A%20A%20Child%20of%20Fire&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffcd8377e-d63e-46a9-869a-1a6c806def54%2Fmaster.m3u8%3Fexpires%3D1790322752%26signature%3Da864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=8158&sa=1790319154684"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=969477192&e=s&n=3086426926471553&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1sddzfyd8dtd&i=1&lid=xvt2dk1arone&lsa=set&mt=0&pbd=1&pbr=1&pgi=8kxl41193lnx&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=uq65wk1uj8ww&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Rebel%20Moon%20-%20Part%20One%3A%20A%20Child%20of%20Fire&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&bwe=89149&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=160&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffcd8377e-d63e-46a9-869a-1a6c806def54%2Fmaster.m3u8%3Fexpires%3D1790322752%26signature%3Da864308dee4c9f78be1807d76e90b450d70504b0cf151a4bffd86a1f743e7b7b&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=170&tb=6&tt=0&vd=8158&vh=800&vs=0&vw=1920&sa=1790319154851"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Sát Thủ John Wick: Phần 3 - Chuẩn Bị Chiến Tranh (2019) | RoPhim",
+      "url": "https://rophims.team/phim/sat-thu-john-wick-phan-3-chuan-bi-chien-tranh",
+      "target": "https://rophims.team/xem-phim/sat-thu-john-wick-phan-3-chuan-bi-chien-tranh",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v14.streamvsmov.com/stream/0b590828-4122-4aff-9eec-56e549ec5dda/master.m3u8"
+      ],
+      "media": [
+        "https://v14.streamvsmov.com/stream/0b590828-4122-4aff-9eec-56e549ec5dda/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v14.streamvsmov.com/stream/0b590828-4122-4aff-9eec-56e549ec5dda/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Sát Thủ John Wick: Phần 4 (John Wick: Chapter 4) (2023) | RoPhim",
+      "url": "https://rophims.team/phim/sat-thu-john-wick-phan-4",
+      "target": "https://rophims.team/xem-phim/sat-thu-john-wick-phan-4",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v2.streamvsmov.com/stream/fb143584-65d8-45b1-b70a-70f774462f12/master.m3u8?expires=1790322771&signature=1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1874414565&e=pa&n=9069941879970740&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1cz8yauybkee&i=1&lid=ygstuz12bfz7&lsa=set&mt=0&pbd=1&pbr=1&pgi=17ko7oex4pdv&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=j1op1eqfd4da&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20John%20Wick%20Chapter%204%202023%201080p%20HMAX%20WEB-DL%20DDP%205%201%20H%20265-PiRaTeS.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffb143584-65d8-45b1-b70a-70f774462f12%2Fmaster.m3u8%3Fexpires%3D1790322771%26signature%3D1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=10155&vh=818&vw=1920&sa=1790319173677",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1606387060&e=s&n=8640594508309405&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1cz8yauybkee&i=1&lid=ygstuz12bfz7&lsa=set&mt=0&pbd=1&pbr=1&pgi=17ko7oex4pdv&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=j1op1eqfd4da&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20John%20Wick%20Chapter%204%202023%201080p%20HMAX%20WEB-DL%20DDP%205%201%20H%20265-PiRaTeS.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=20&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffb143584-65d8-45b1-b70a-70f774462f12%2Fmaster.m3u8%3Fexpires%3D1790322771%26signature%3D1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=10155&vh=818&vs=0&vw=1920&sa=1790319173703"
+      ],
+      "media": [
+        "https://v2.streamvsmov.com/stream/fb143584-65d8-45b1-b70a-70f774462f12/master.m3u8?expires=1790322771&signature=1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1874414565&e=pa&n=9069941879970740&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1cz8yauybkee&i=1&lid=ygstuz12bfz7&lsa=set&mt=0&pbd=1&pbr=1&pgi=17ko7oex4pdv&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=j1op1eqfd4da&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20John%20Wick%20Chapter%204%202023%201080p%20HMAX%20WEB-DL%20DDP%205%201%20H%20265-PiRaTeS.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffb143584-65d8-45b1-b70a-70f774462f12%2Fmaster.m3u8%3Fexpires%3D1790322771%26signature%3D1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=10155&vh=818&vw=1920&sa=1790319173677",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1606387060&e=s&n=8640594508309405&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1cz8yauybkee&i=1&lid=ygstuz12bfz7&lsa=set&mt=0&pbd=1&pbr=1&pgi=17ko7oex4pdv&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=j1op1eqfd4da&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20John%20Wick%20Chapter%204%202023%201080p%20HMAX%20WEB-DL%20DDP%205%201%20H%20265-PiRaTeS.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=20&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffb143584-65d8-45b1-b70a-70f774462f12%2Fmaster.m3u8%3Fexpires%3D1790322771%26signature%3D1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=10155&vh=818&vs=0&vw=1920&sa=1790319173703"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v2.streamvsmov.com/stream/fb143584-65d8-45b1-b70a-70f774462f12/master.m3u8?expires=1790322771&signature=1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1874414565&e=pa&n=9069941879970740&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1cz8yauybkee&i=1&lid=ygstuz12bfz7&lsa=set&mt=0&pbd=1&pbr=1&pgi=17ko7oex4pdv&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=j1op1eqfd4da&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20John%20Wick%20Chapter%204%202023%201080p%20HMAX%20WEB-DL%20DDP%205%201%20H%20265-PiRaTeS.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffb143584-65d8-45b1-b70a-70f774462f12%2Fmaster.m3u8%3Fexpires%3D1790322771%26signature%3D1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=10155&vh=818&vw=1920&sa=1790319173677"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=1606387060&e=s&n=8640594508309405&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1cz8yauybkee&i=1&lid=ygstuz12bfz7&lsa=set&mt=0&pbd=1&pbr=1&pgi=17ko7oex4pdv&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=j1op1eqfd4da&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20John%20Wick%20Chapter%204%202023%201080p%20HMAX%20WEB-DL%20DDP%205%201%20H%20265-PiRaTeS.mkv%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=20&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Ffb143584-65d8-45b1-b70a-70f774462f12%2Fmaster.m3u8%3Fexpires%3D1790322771%26signature%3D1be3ab4dde37655c8c043172602b2467f8c072abbd93de8dd999ee6117e6c233&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=10155&vh=818&vs=0&vw=1920&sa=1790319173703"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thứ 6 Ngày 13 Phần 3 (Friday the 13th Part III) (1982) | RoPhim",
+      "url": "https://rophims.team/phim/thu-6-ngay-13-phan-3-17861293727832",
+      "target": "https://rophims.team/xem-phim/thu-6-ngay-13-phan-3-17861293727832",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v12.streamvsmov.com/stream/2341a245-0e03-453c-9abd-e62fdd7da93a/master.m3u8"
+      ],
+      "media": [
+        "https://v12.streamvsmov.com/stream/2341a245-0e03-453c-9abd-e62fdd7da93a/master.m3u8"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v12.streamvsmov.com/stream/2341a245-0e03-453c-9abd-e62fdd7da93a/master.m3u8"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Vùng Đất Câm Lặng: Phần II (2021) | RoPhim",
+      "url": "https://rophims.team/phim/vung-dat-cam-lang-phan-ii",
+      "target": "https://rophims.team/xem-phim/vung-dat-cam-lang-phan-ii",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v14.streamvsmov.com/stream/59ad33ff-1c98-4c33-9948-93ae5d2e48fe/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-118251157&e=pa&n=6162084664317620&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1d0vra818rjy&i=1&lid=i7q6y11214gi&lsa=set&mt=0&pbd=1&pbr=1&pgi=1u3c4oc1hbhd&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=lf0cv81h76lk&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=A%20Quiet%20Place%20Part%20II&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F59ad33ff-1c98-4c33-9948-93ae5d2e48fe%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=5820&vh=800&vw=1920&sa=1790319219184",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1621690858&e=s&n=6300994511499345&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1d0vra818rjy&i=1&lid=i7q6y11214gi&lsa=set&mt=0&pbd=1&pbr=1&pgi=1u3c4oc1hbhd&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=lf0cv81h76lk&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=A%20Quiet%20Place%20Part%20II&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=70&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F59ad33ff-1c98-4c33-9948-93ae5d2e48fe%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=70&tb=6&tt=0&vd=5820&vh=800&vs=0&vw=1920&sa=1790319219255"
+      ],
+      "media": [
+        "https://v14.streamvsmov.com/stream/59ad33ff-1c98-4c33-9948-93ae5d2e48fe/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-118251157&e=pa&n=6162084664317620&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1d0vra818rjy&i=1&lid=i7q6y11214gi&lsa=set&mt=0&pbd=1&pbr=1&pgi=1u3c4oc1hbhd&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=lf0cv81h76lk&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=A%20Quiet%20Place%20Part%20II&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F59ad33ff-1c98-4c33-9948-93ae5d2e48fe%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=5820&vh=800&vw=1920&sa=1790319219184",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1621690858&e=s&n=6300994511499345&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1d0vra818rjy&i=1&lid=i7q6y11214gi&lsa=set&mt=0&pbd=1&pbr=1&pgi=1u3c4oc1hbhd&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=lf0cv81h76lk&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=A%20Quiet%20Place%20Part%20II&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=70&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F59ad33ff-1c98-4c33-9948-93ae5d2e48fe%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=70&tb=6&tt=0&vd=5820&vh=800&vs=0&vw=1920&sa=1790319219255"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v14.streamvsmov.com/stream/59ad33ff-1c98-4c33-9948-93ae5d2e48fe/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-118251157&e=pa&n=6162084664317620&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1d0vra818rjy&i=1&lid=i7q6y11214gi&lsa=set&mt=0&pbd=1&pbr=1&pgi=1u3c4oc1hbhd&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=lf0cv81h76lk&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=A%20Quiet%20Place%20Part%20II&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&abm=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F59ad33ff-1c98-4c33-9948-93ae5d2e48fe%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&sbr=0&tb=6&vd=5820&vh=800&vw=1920&sa=1790319219184"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1621690858&e=s&n=6300994511499345&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1d0vra818rjy&i=1&lid=i7q6y11214gi&lsa=set&mt=0&pbd=1&pbr=1&pgi=1u3c4oc1hbhd&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=lf0cv81h76lk&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=A%20Quiet%20Place%20Part%20II&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=70&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv14.streamvsmov.com%2Fstream%2F59ad33ff-1c98-4c33-9948-93ae5d2e48fe%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=70&tb=6&tt=0&vd=5820&vh=800&vs=0&vw=1920&sa=1790319219255"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Wicked: Phần 2 (Wicked: For Good) (2025) - Vietsub HD | RoPhim",
+      "url": "https://rophims.team/phim/wicked-phan-2",
+      "target": "https://rophims.team/xem-phim/wicked-phan-2",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v2.streamvsmov.com/stream/b4106dbc-d6fc-4e95-bf74-6f001dbdedb1/master.m3u8?expires=1790322822&signature=4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1965451359&e=pa&n=9305043479662103&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1los15r1icgf&i=1&lid=1ev4s231lnhe&lsa=set&mt=0&pbd=1&pbr=1&pgi=wc0is9x8cwe1&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=6d9jsejcnp1t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Wicked%20For%20Good%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb4106dbc-d6fc-4e95-bf74-6f001dbdedb1%2Fmaster.m3u8%3Fexpires%3D1790322822%26signature%3D4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=8251&sa=1790319224736",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=2113586653&e=s&n=0365487497326750&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1los15r1icgf&i=1&lid=1ev4s231lnhe&lsa=set&mt=0&pbd=1&pbr=1&pgi=wc0is9x8cwe1&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=6d9jsejcnp1t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Wicked%20For%20Good%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=20&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb4106dbc-d6fc-4e95-bf74-6f001dbdedb1%2Fmaster.m3u8%3Fexpires%3D1790322822%26signature%3D4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=8251&vh=802&vs=0&vw=1918&sa=1790319224763"
+      ],
+      "media": [
+        "https://v2.streamvsmov.com/stream/b4106dbc-d6fc-4e95-bf74-6f001dbdedb1/master.m3u8?expires=1790322822&signature=4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1965451359&e=pa&n=9305043479662103&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1los15r1icgf&i=1&lid=1ev4s231lnhe&lsa=set&mt=0&pbd=1&pbr=1&pgi=wc0is9x8cwe1&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=6d9jsejcnp1t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Wicked%20For%20Good%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb4106dbc-d6fc-4e95-bf74-6f001dbdedb1%2Fmaster.m3u8%3Fexpires%3D1790322822%26signature%3D4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=8251&sa=1790319224736",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=2113586653&e=s&n=0365487497326750&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1los15r1icgf&i=1&lid=1ev4s231lnhe&lsa=set&mt=0&pbd=1&pbr=1&pgi=wc0is9x8cwe1&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=6d9jsejcnp1t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Wicked%20For%20Good%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=20&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb4106dbc-d6fc-4e95-bf74-6f001dbdedb1%2Fmaster.m3u8%3Fexpires%3D1790322822%26signature%3D4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=8251&vh=802&vs=0&vw=1918&sa=1790319224763"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v2.streamvsmov.com/stream/b4106dbc-d6fc-4e95-bf74-6f001dbdedb1/master.m3u8?expires=1790322822&signature=4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1965451359&e=pa&n=9305043479662103&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1los15r1icgf&i=1&lid=1ev4s231lnhe&lsa=set&mt=0&pbd=1&pbr=1&pgi=wc0is9x8cwe1&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=6d9jsejcnp1t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Wicked%20For%20Good%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb4106dbc-d6fc-4e95-bf74-6f001dbdedb1%2Fmaster.m3u8%3Fexpires%3D1790322822%26signature%3D4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=8251&sa=1790319224736"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=2113586653&e=s&n=0365487497326750&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=1los15r1icgf&i=1&lid=1ev4s231lnhe&lsa=set&mt=0&pbd=1&pbr=1&pgi=wc0is9x8cwe1&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=6d9jsejcnp1t&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=VSMOV.COM%20-%20Wicked%20For%20Good%20%5BVietsub%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=0.98&vl=100&wd=1325&abm=1&cae=0&cct=1&ch=2&cdid=player&drm=0&ff=20&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv2.streamvsmov.com%2Fstream%2Fb4106dbc-d6fc-4e95-bf74-6f001dbdedb1%2Fmaster.m3u8%3Fexpires%3D1790322822%26signature%3D4ae40d83d42b7ba73a2715ed7a8b4aaa761ca2a0ca6a81386ac0c9f51a3620b9&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=30&tb=6&tt=0&vd=8251&vh=802&vs=0&vw=1918&sa=1790319224763"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Đấu Trường Sinh Tử: Húng Nhại - Phần 1 (2014) | RoPhim",
+      "url": "https://rophims.team/phim/dau-truong-sinh-tu-hung-nhai-phan-1",
+      "target": "https://rophims.team/xem-phim/dau-truong-sinh-tu-hung-nhai-phan-1",
+      "episode": null,
+      "webPlayable": true,
+      "playlists": [
+        "https://v6.streamvsmov.com/stream/19460667-2dfa-40aa-9726-86bb71456e70/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1124816969&e=pa&n=5310718515229382&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=gu361a1ru4uw&i=1&lid=ozvf551yind9&lsa=set&mt=0&pbd=1&pbr=1&pgi=u9n9ia1gjws8&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=8mhkbqq547lq&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=%C4%90%E1%BA%A5u.Tr%C6%B0%E1%BB%9Dng.Sinh.T%E1%BB%AD.-.H%C3%BAng.Nh%E1%BA%A1i.-.Ph%E1%BA%A7n.1The.Hunger.Games.-.Mockingjay.Part.1.1080p.KPLS.WEB-DL.AAC2.0.H.264.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F19460667-2dfa-40aa-9726-86bb71456e70%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=7561&sa=1790319257817",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=817843902&e=s&n=5163793433917088&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=gu361a1ru4uw&i=1&lid=ozvf551yind9&lsa=set&mt=0&pbd=1&pbr=1&pgi=u9n9ia1gjws8&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=8mhkbqq547lq&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=%C4%90%E1%BA%A5u.Tr%C6%B0%E1%BB%9Dng.Sinh.T%E1%BB%AD.-.H%C3%BAng.Nh%E1%BA%A1i.-.Ph%E1%BA%A7n.1The.Hunger.Games.-.Mockingjay.Part.1.1080p.KPLS.WEB-DL.AAC2.0.H.264.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=0&ch=2&cdid=player&drm=0&ff=70&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F19460667-2dfa-40aa-9726-86bb71456e70%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=70&tb=6&tt=0&vd=7561&vh=1080&vs=0&vw=1920&sa=1790319257888"
+      ],
+      "media": [
+        "https://v6.streamvsmov.com/stream/19460667-2dfa-40aa-9726-86bb71456e70/master.m3u8",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1124816969&e=pa&n=5310718515229382&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=gu361a1ru4uw&i=1&lid=ozvf551yind9&lsa=set&mt=0&pbd=1&pbr=1&pgi=u9n9ia1gjws8&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=8mhkbqq547lq&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=%C4%90%E1%BA%A5u.Tr%C6%B0%E1%BB%9Dng.Sinh.T%E1%BB%AD.-.H%C3%BAng.Nh%E1%BA%A1i.-.Ph%E1%BA%A7n.1The.Hunger.Games.-.Mockingjay.Part.1.1080p.KPLS.WEB-DL.AAC2.0.H.264.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F19460667-2dfa-40aa-9726-86bb71456e70%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=7561&sa=1790319257817",
+        "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=817843902&e=s&n=5163793433917088&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=gu361a1ru4uw&i=1&lid=ozvf551yind9&lsa=set&mt=0&pbd=1&pbr=1&pgi=u9n9ia1gjws8&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=8mhkbqq547lq&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=%C4%90%E1%BA%A5u.Tr%C6%B0%E1%BB%9Dng.Sinh.T%E1%BB%AD.-.H%C3%BAng.Nh%E1%BA%A1i.-.Ph%E1%BA%A7n.1The.Hunger.Games.-.Mockingjay.Part.1.1080p.KPLS.WEB-DL.AAC2.0.H.264.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=0&ch=2&cdid=player&drm=0&ff=70&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F19460667-2dfa-40aa-9726-86bb71456e70%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=70&tb=6&tt=0&vd=7561&vh=1080&vs=0&vw=1920&sa=1790319257888"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://v6.streamvsmov.com/stream/19460667-2dfa-40aa-9726-86bb71456e70/master.m3u8"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=-1124816969&e=pa&n=5310718515229382&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=gu361a1ru4uw&i=1&lid=ozvf551yind9&lsa=set&mt=0&pbd=1&pbr=1&pgi=u9n9ia1gjws8&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=8mhkbqq547lq&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=%C4%90%E1%BA%A5u.Tr%C6%B0%E1%BB%9Dng.Sinh.T%E1%BB%AD.-.H%C3%BAng.Nh%E1%BA%A1i.-.Ph%E1%BA%A7n.1The.Hunger.Games.-.Mockingjay.Part.1.1080p.KPLS.WEB-DL.AAC2.0.H.264.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=0&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&ab=1&cme=0&flc=0&lng=vi&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F19460667-2dfa-40aa-9726-86bb71456e70%2Fmaster.m3u8&pd=2&plng=vi&pni=0&pr=1&tb=6&vd=7561&sa=1790319257817"
+        },
+        {
+          "status": 204,
+          "url": "https://prd.jwpltx.com/v1/jwplayer6/ping.gif?h=817843902&e=s&n=5163793433917088&aid=GCCG&amp=0&at=1&c=-1&ccp=0&cp=0&d=1&eb=0&ed=6&emi=gu361a1ru4uw&i=1&lid=ozvf551yind9&lsa=set&mt=0&pbd=1&pbr=1&pgi=u9n9ia1gjws8&ph=1&pid=KB5zFt7A&pii=0&pl=745&plc=1&pli=8mhkbqq547lq&pp=hlsjs&ppm=VOD&prc=1&ps=3&pss=1&pt=%C4%90%E1%BA%A5u.Tr%C6%B0%E1%BB%9Dng.Sinh.T%E1%BB%AD.-.H%C3%BAng.Nh%E1%BA%A1i.-.Ph%E1%BA%A7n.1The.Hunger.Games.-.Mockingjay.Part.1.1080p.KPLS.WEB-DL.AAC2.0.H.264.mkv%20%5BThuy%E1%BA%BFt%20minh%5D&pu=https%3A%2F%2Frophims.team%2F&pv=8.38.3&pyc=1&s=0&sdk=0&stc=1&stpe=0&tv=4.0.11&vb=1&vi=1&vl=100&wd=1325&abm=1&cae=0&cct=0&ch=2&cdid=player&drm=0&ff=70&fsm=0&l=4&lng=vi&mk=hls&mu=https%3A%2F%2Fv6.streamvsmov.com%2Fstream%2F19460667-2dfa-40aa-9726-86bb71456e70%2Fmaster.m3u8&pcp=0&pd=2&plng=vi&pni=0&pr=1&q=32&qcr=initial%20choice&sbr=0&sp=0&strt=70&tb=6&tt=0&vd=7561&vh=1080&vs=0&vw=1920&sa=1790319257888"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    }
+  ],
+  "webFailedOrUnconfirmed": [
+    {
+      "kind": "series",
+      "title": "Batman: Sự Sụp Đổ Của Hiệp Sĩ - Phần 1 (2026) | RoPhim",
+      "url": "https://rophims.team/phim/batman-su-sup-do-cua-hiep-si-phan-1",
+      "target": "https://rophims.team/xem-phim/batman-su-sup-do-cua-hiep-si-phan-1",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Bát Tiên! (All Wishes Come True!) (2026) - Vietsub CAM | RoPhim",
+      "url": "https://rophims.team/phim/bat-tien",
+      "target": "https://rophims.team/xem-phim/bat-tien",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "7 Viên Ngọc Rồng: Hành Trình Kỳ Diệu / Bảy Viên (1988) | RoPhim",
+      "url": "https://rophims.team/phim/7-vien-ngoc-rong-hanh-trinh-ky-dieu-bay-vien-ngoc-rong-cuoc-phieu-luu-huyen-bi",
+      "target": "https://rophims.team/xem-phim/7-vien-ngoc-rong-hanh-trinh-ky-dieu-bay-vien-ngoc-rong-cuoc-phieu-luu-huyen-bi",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thế Giới Đôi Khi (Vùng đất của những lúc) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/the-gioi-doi-khi-vung-dat-cua-nhung-luc",
+      "target": "https://rophims.team/xem-phim/the-gioi-doi-khi-vung-dat-cua-nhung-luc",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Batman: Hiệp Sĩ Suy Tàn (Phần 1) | RoPhim",
+      "url": "https://rophims.team/phim/batman-hiep-si-suy-tan-phan-1",
+      "target": "https://rophims.team/xem-phim/batman-hiep-si-suy-tan-phan-1",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Ben 10: Bí Mật Của Omnitrix (2007) | RoPhim",
+      "url": "https://rophims.team/phim/ben-10-bi-mat-cua-omnitrix",
+      "target": "https://rophims.team/xem-phim/ben-10-bi-mat-cua-omnitrix",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Biệt Đội Hải Cẩu (Seal Team) (2021) | RoPhim",
+      "url": "https://rophims.team/phim/biet-doi-hai-cau",
+      "target": "https://rophims.team/xem-phim/biet-doi-hai-cau",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Bộ Phim Đảo Ấu Trùng (Đảo Ấu Trùng: Bản Điện Ảnh) (2020) | RoPhim",
+      "url": "https://rophims.team/phim/bo-phim-dao-au-trung-dao-au-trung-ban-dien-anh",
+      "target": "https://rophims.team/xem-phim/bo-phim-dao-au-trung-dao-au-trung-ban-dien-anh",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chiến Binh Tàu Không Gian: Cuộc Xâm Lăng (Chiến (2012) | RoPhim",
+      "url": "https://rophims.team/phim/chien-binh-tau-khong-gian-cuoc-xam-lang-chien-doi-thien-ha-xam-luoc",
+      "target": "https://rophims.team/xem-phim/chien-binh-tau-khong-gian-cuoc-xam-lang-chien-doi-thien-ha-xam-luoc",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chiến Binh Ánh Sáng TEO (Ultraman Teo) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/chien-binh-anh-sang-teo",
+      "target": "https://rophims.team/xem-phim/chien-binh-anh-sang-teo",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chiến Tranh Giữa Các Vì Sao: Phần IV - Niềm Hy (1977) | RoPhim",
+      "url": "https://rophims.team/phim/chien-tranh-giua-cac-vi-sao-4k77",
+      "target": "https://rophims.team/xem-phim/chien-tranh-giua-cac-vi-sao-4k77",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chung Quỳ (Master Zhong (Zhong Kui)) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/chung-quy",
+      "target": "https://rophims.team/xem-phim/chung-quy",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chuyến Tàu Sao Hỏa (Sứ Mệnh Sao Hỏa) (2023) | RoPhim",
+      "url": "https://rophims.team/phim/chuyen-tau-sao-hoa-su-menh-sao-hoa",
+      "target": "https://rophims.team/xem-phim/chuyen-tau-sao-hoa-su-menh-sao-hoa",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chuyện Tình Tamako (Tamako Love Story) (2014) | RoPhim",
+      "url": "https://rophims.team/phim/chuyen-tinh-tamako",
+      "target": "https://rophims.team/xem-phim/chuyen-tinh-tamako",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chú Chuột Siêu Quậy 2 (Stuart Little 2) (2002) | RoPhim",
+      "url": "https://rophims.team/phim/chu-chuot-sieu-quay-2",
+      "target": "https://rophims.team/xem-phim/chu-chuot-sieu-quay-2",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chú Chó Anh Hùng (Sgt. Stubby: An American Hero) (2018) | RoPhim",
+      "url": "https://rophims.team/phim/chu-cho-anh-hung",
+      "target": "https://rophims.team/xem-phim/chu-cho-anh-hung",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Chúng Tôi Gặp Nhau Trong Thực Tế Ảo (2022) | RoPhim",
+      "url": "https://rophims.team/phim/chung-toi-gap-nhau-trong-thuc-te-ao",
+      "target": "https://rophims.team/xem-phim/chung-toi-gap-nhau-trong-thuc-te-ao",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Cẩm Lý Nhân Gian: Như Nguyện Dĩ Thường (2026) | RoPhim",
+      "url": "https://rophims.team/phim/cam-ly-nhan-gian-nhu-nguyen-di-thuong",
+      "target": "https://rophims.team/xem-phim/cam-ly-nhan-gian-nhu-nguyen-di-thuong",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Derek (Phần 1) (Derek (Season 1)) - Vietsub HD | RoPhim",
+      "url": "https://rophims.team/phim/derek-phan-1",
+      "target": "https://rophims.team/xem-phim/derek-phan-1",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Doraemon: Nobita Thám Hiểm Vùng Đất Mới – Peko (2014) | RoPhim",
+      "url": "https://rophims.team/phim/doraemon-nobita-tham-hiem-vung-dat-moi-peko-va-5-nha-tham-hiem",
+      "target": "https://rophims.team/xem-phim/doraemon-nobita-tham-hiem-vung-dat-moi-peko-va-5-nha-tham-hiem",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Doraemon: Nobita và Chuyến Thám Hiểm Nam Cực (2017) | RoPhim",
+      "url": "https://rophims.team/phim/doraemon-nobita-va-chuyen-tham-hiem-nam-cuc-kachi-kochi",
+      "target": "https://rophims.team/xem-phim/doraemon-nobita-va-chuyen-tham-hiem-nam-cuc-kachi-kochi",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Gintama The Movie 2026: Yoshiwara Trong Biển Lửa (2026) | RoPhim",
+      "url": "https://rophims.team/phim/gintama-the-movie-2026-yoshiwara-trong-bien-lua",
+      "target": "https://rophims.team/xem-phim/gintama-the-movie-2026-yoshiwara-trong-bien-lua",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Girls & Panzer: Motto Love Love Sakusen desu! | RoPhim",
+      "url": "https://rophims.team/phim/girls-panzer-motto-love-love-sakusen-desu",
+      "target": "https://rophims.team/xem-phim/girls-panzer-motto-love-love-sakusen-desu",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "GTO: Thầy giáo vĩ đại Onizuka (Phần 1) | RoPhim",
+      "url": "https://rophims.team/phim/gto-thay-giao-vi-dai-onizuka-phan-1",
+      "target": "https://rophims.team/xem-phim/gto-thay-giao-vi-dai-onizuka-phan-1",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Góc Khuất Của Thế Giới (2019) | RoPhim",
+      "url": "https://rophims.team/phim/goc-khuat-cua-the-gioi-2019",
+      "target": "https://rophims.team/xem-phim/goc-khuat-cua-the-gioi-2019",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Hùng Sư Thiếu Niên / Cậu Bé Sư Tử (2021) | RoPhim",
+      "url": "https://rophims.team/phim/hung-su-thieu-nien-cau-be-su-tu",
+      "target": "https://rophims.team/xem-phim/hung-su-thieu-nien-cau-be-su-tu",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Học Viện Anh Hùng (Phần 8) (My Hero Academia (Season 8)) | RoPhim",
+      "url": "https://rophims.team/phim/hoc-vien-anh-hung-phan-8",
+      "target": "https://rophims.team/xem-phim/hoc-vien-anh-hung-phan-8",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Invincible: Nguồn gốc Atom Eve (2023) | RoPhim",
+      "url": "https://rophims.team/phim/invincible-nguon-goc-atom-eve",
+      "target": "https://rophims.team/xem-phim/invincible-nguon-goc-atom-eve",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Kaina Của Biển Tuyết Vĩ Đại: Hiền Triết Sao (2023) | RoPhim",
+      "url": "https://rophims.team/phim/kaina-cua-bien-tuyet-vi-dai-hien-triet-sao",
+      "target": "https://rophims.team/xem-phim/kaina-cua-bien-tuyet-vi-dai-hien-triet-sao",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Luyện Khí Mười Vạn Năm: Dương Cực Thiên Hạ (2026) | RoPhim",
+      "url": "https://rophims.team/phim/luyen-khi-muoi-van-nam-duong-cuc-thien-ha",
+      "target": "https://rophims.team/xem-phim/luyen-khi-muoi-van-nam-duong-cuc-thien-ha",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Lò Đào Tạo Quái Vật (Monsters University) (2013) | RoPhim",
+      "url": "https://rophims.team/phim/lo-dao-tao-quai-vat",
+      "target": "https://rophims.team/xem-phim/lo-dao-tao-quai-vat",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Lúc Đó Tôi Chuyển Sinh Thành Slime: Nước Mắt Đại (2026) | RoPhim",
+      "url": "https://rophims.team/phim/luc-do-toi-chuyen-sinh-thanh-slime-nuoc-mat-dai-duong",
+      "target": "https://rophims.team/xem-phim/luc-do-toi-chuyen-sinh-thanh-slime-nuoc-mat-dai-duong",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Lạc Phàm Trần: Hậu Duệ Chức Nữ (2024) | RoPhim",
+      "url": "https://rophims.team/phim/lac-pham-tran-hau-due-chuc-nu",
+      "target": "https://rophims.team/xem-phim/lac-pham-tran-hau-due-chuc-nu",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Lịch Sử Đen Tối Của Nữ Phản Diện Tái Sinh (2025) | RoPhim",
+      "url": "https://rophims.team/phim/lich-su-den-toi-cua-nu-phan-dien-tai-sinh",
+      "target": "https://rophims.team/xem-phim/lich-su-den-toi-cua-nu-phan-dien-tai-sinh",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Lọ Lem (Cinderella) (1950) - Vietsub + Thuyết Minh FHD | RoPhim",
+      "url": "https://rophims.team/phim/lo-lem",
+      "target": "https://rophims.team/xem-phim/lo-lem",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Milky☆Subway Tàu Tốc Hành Thiên Hà (Bản Điện Ảnh) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/milkysubway-tau-toc-hanh-thien-ha-ban-dien-anh",
+      "target": "https://rophims.team/xem-phim/milkysubway-tau-toc-hanh-thien-ha-ban-dien-anh",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Minions & Quái Vật (Minions & Monsters) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/minions-quai-vat",
+      "target": "https://rophims.team/xem-phim/minions-quai-vat",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Mobile Suit Gundam: Tia Chớp Hathaway / Mobile (2026) | RoPhim",
+      "url": "https://rophims.team/phim/mobile-suit-gundam-tia-chop-hathaway-mobile-suit-gundam-hathaway-ma-thuat-nu-than-circe",
+      "target": "https://rophims.team/xem-phim/mobile-suit-gundam-tia-chop-hathaway-mobile-suit-gundam-hathaway-ma-thuat-nu-than-circe",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Ngày Hè Của Coo (Summer Days With Coo) (2007) | RoPhim",
+      "url": "https://rophims.team/phim/ngay-he-cua-coo",
+      "target": "https://rophims.team/xem-phim/ngay-he-cua-coo",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Người Đại Diện Thời Gian (Phần 1) | RoPhim",
+      "url": "https://rophims.team/phim/nguoi-dai-dien-thoi-gian-phan-1",
+      "target": "https://rophims.team/xem-phim/nguoi-dai-dien-thoi-gian-phan-1",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [
+        "https://www.googletagmanager.com/a?v=3&t=l&pid=627787469&rv=69n1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&u=AAAAAAAAAAAAACCA&h=Ag&gtm=45je69n1v9250824225za200zd9250824225xf1&ccid=250824225&cid=G-S2FDHZJ1L4&l=L1125.S17.Y3.B50.E57.I1518.TC16.HTC0.F1496.C2~gtm.init_consent.S4.V3.E52~gtm.init.S1.V1.TS5ogtautoevents.TI9.TE3.TS5ogt1pdatav2.TI11.TE1.TS5ccdgafirst.TI24.TE0.TS5setproductsettings.TI23.TE0.TS5ccdgaregscope.TI22.TE1.TS5ccdemdownload.TI21.TE1.TS5ccdemform.TI20.TE1.TS5ccdemoutboundclick.TI19.TE0.TS5ccdempageview.TI18.TE1.TS5ccdemscroll.TI17.TE0.TS5ccdemsitesearch.TI16.TE0.TS5ccdemvideo.TI15.TE0.TS5ccdconversionmarking.TI14.TE0.TS5ccdautoredact.TI13.TE0.TS5ccdgalast.TI12.TE0~gtm.js.S0.V0.TS5gct.TI7.TE1~gtm.dom.S0.V0.E5~gtm.load.S0.V0.E4~GA1146"
+      ],
+      "statusCodes": [
+        {
+          "status": 200,
+          "url": "https://www.googletagmanager.com/a?v=3&t=l&pid=627787469&rv=69n1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&u=AAAAAAAAAAAAACCA&h=Ag&gtm=45je69n1v9250824225za200zd9250824225xf1&ccid=250824225&cid=G-S2FDHZJ1L4&l=L1125.S17.Y3.B50.E57.I1518.TC16.HTC0.F1496.C2~gtm.init_consent.S4.V3.E52~gtm.init.S1.V1.TS5ogtautoevents.TI9.TE3.TS5ogt1pdatav2.TI11.TE1.TS5ccdgafirst.TI24.TE0.TS5setproductsettings.TI23.TE0.TS5ccdgaregscope.TI22.TE1.TS5ccdemdownload.TI21.TE1.TS5ccdemform.TI20.TE1.TS5ccdemoutboundclick.TI19.TE0.TS5ccdempageview.TI18.TE1.TS5ccdemscroll.TI17.TE0.TS5ccdemsitesearch.TI16.TE0.TS5ccdemvideo.TI15.TE0.TS5ccdconversionmarking.TI14.TE0.TS5ccdautoredact.TI13.TE0.TS5ccdgalast.TI12.TE0~gtm.js.S0.V0.TS5gct.TI7.TE1~gtm.dom.S0.V0.E5~gtm.load.S0.V0.E4~GA1146"
+        }
+      ],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Nhiệm Vụ Trông Trẻ (Fearless) (2020) | RoPhim",
+      "url": "https://rophims.team/phim/nhiem-vu-trong-tre",
+      "target": "https://rophims.team/xem-phim/nhiem-vu-trong-tre",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Nhật Ký Bí Mật (Secret Diary) (2026) - Vietsub FHD | RoPhim",
+      "url": "https://rophims.team/phim/nhat-ky-bi-mat",
+      "target": "https://rophims.team/xem-phim/nhat-ky-bi-mat",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Nàng Tiên Cá (The Little Mermaid) (1989) | RoPhim",
+      "url": "https://rophims.team/phim/nang-tien-ca",
+      "target": "https://rophims.team/xem-phim/nang-tien-ca",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Nô Lệ Công Sở Định Đoạt Chuyện Dị Giới | RoPhim",
+      "url": "https://rophims.team/phim/no-le-cong-so-dinh-doat-chuyen-di-gioi",
+      "target": "https://rophims.team/xem-phim/no-le-cong-so-dinh-doat-chuyen-di-gioi",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Nữ Hiệp Ruy Băng (THE RIBBON HERO) (2026) - Vietsub FHD | RoPhim",
+      "url": "https://rophims.team/phim/nu-hiep-ruy-bang",
+      "target": "https://rophims.team/xem-phim/nu-hiep-ruy-bang",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "One Piece: Nữ Hùng (One Piece: Heroines) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/one-piece-nu-hung",
+      "target": "https://rophims.team/xem-phim/one-piece-nu-hung",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Phi Vụ Động Trời 2 (Zootopia 2) (2025) | RoPhim",
+      "url": "https://rophims.team/phim/phi-vu-dong-troi-2",
+      "target": "https://rophims.team/xem-phim/phi-vu-dong-troi-2",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Phim Super Mario Thiên Hà (2026) | RoPhim",
+      "url": "https://rophims.team/phim/phim-super-mario-thien-ha",
+      "target": "https://rophims.team/xem-phim/phim-super-mario-thien-ha",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Phim Điện Ảnh - Lớp Học Ám Sát: Giờ Của Chúng Ta (2026) | RoPhim",
+      "url": "https://rophims.team/phim/phim-dien-anh-lop-hoc-am-sat-gio-cua-chung-ta",
+      "target": "https://rophims.team/xem-phim/phim-dien-anh-lop-hoc-am-sat-gio-cua-chung-ta",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Sesame Street Bão Đang Tới (2026) | RoPhim",
+      "url": "https://rophims.team/phim/sesame-street-bao-dang-toi",
+      "target": "https://rophims.team/xem-phim/sesame-street-bao-dang-toi",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Shin - Cậu Bé Bút Chì 16: Siêu Cơn Bão Hung Hăng (2008) | RoPhim",
+      "url": "https://rophims.team/phim/shin-cau-be-but-chi-16-sieu-con-bao-hung-hang-moi-goi-dung-si-kinpoko",
+      "target": "https://rophims.team/xem-phim/shin-cau-be-but-chi-16-sieu-con-bao-hung-hang-moi-goi-dung-si-kinpoko",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Shin - Cậu Bé Bút Chì 17: Gầm! Vương Quốc Hoang (2009) | RoPhim",
+      "url": "https://rophims.team/phim/shin-cau-be-but-chi-17-gam-vuong-quoc-hoang-da-kasukabe",
+      "target": "https://rophims.team/xem-phim/shin-cau-be-but-chi-17-gam-vuong-quoc-hoang-da-kasukabe",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Shin - Cậu Bé Bút Chì 26: Kungfu Boys ~ Mì Ramen (2018) | RoPhim",
+      "url": "https://rophims.team/phim/shin-cau-be-but-chi-26-kungfu-boys-mi-ramen-dai-chien",
+      "target": "https://rophims.team/xem-phim/shin-cau-be-but-chi-26-kungfu-boys-mi-ramen-dai-chien",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Suu-funkan no Yell wo (A Few Moments of Cheers) (2024) | RoPhim",
+      "url": "https://rophims.team/phim/suufunkan-no-yell-wo",
+      "target": "https://rophims.team/xem-phim/suufunkan-no-yell-wo",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Sân Golf Tình Yêu (Fairway of Love) (2026) - Vietsub HD | RoPhim",
+      "url": "https://rophims.team/phim/san-golf-tinh-yeu",
+      "target": "https://rophims.team/xem-phim/san-golf-tinh-yeu",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Tafiti và Hành Trình Xuyên Sa Mạc (2025) | RoPhim",
+      "url": "https://rophims.team/phim/tafiti-va-hanh-trinh-xuyen-sa-mac",
+      "target": "https://rophims.team/xem-phim/tafiti-va-hanh-trinh-xuyen-sa-mac",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành (2025) | RoPhim",
+      "url": "https://rophims.team/phim/thanh-guom-diet-quy-vo-han-thanh",
+      "target": "https://rophims.team/xem-phim/thanh-guom-diet-quy-vo-han-thanh",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan 15: 15 Phút Tĩnh Lặng (2011) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-15-15-phut-tinh-lang",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-15-15-phut-tinh-lang",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan 21: Bản Tình Ca Màu Đỏ (2017) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-21-ban-tinh-ca-mau-do-tham",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-21-ban-tinh-ca-mau-do-tham",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan 28: Dư Ảnh Của Độc Nhãn (2025) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-28-du-anh-cua-doc-nhan",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-28-du-anh-cua-doc-nhan",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan 4: Thủ Phạm Trong Đôi Mắt (2000) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-4-thu-pham-trong-doi-mat",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-4-thu-pham-trong-doi-mat",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan: Bóng Ma Đường Baker (2002) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-bong-ma-duong-baker",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-bong-ma-duong-baker",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan: Quả Bom Chọc Trời (1997) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-qua-bom-choc-troi",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-qua-bom-choc-troi",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan: Sát Thủ Bắn Tỉa Không (2014) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-sat-thu-ban-tia-khong-tuong",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-sat-thu-ban-tia-khong-tuong",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thám Tử Lừng Danh Conan: Thiên Thần Sa Ngã Trên (2026) | RoPhim",
+      "url": "https://rophims.team/phim/tham-tu-lung-danh-conan-thien-than-sa-nga-tren-xa-lo",
+      "target": "https://rophims.team/xem-phim/tham-tu-lung-danh-conan-thien-than-sa-nga-tren-xa-lo",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Thế Giới Hoàn Mỹ Movie: Cửu Kiếp Phần Thiên (2026) | RoPhim",
+      "url": "https://rophims.team/phim/the-gioi-hoan-my-movie-cuu-kiep-phan-thien",
+      "target": "https://rophims.team/xem-phim/the-gioi-hoan-my-movie-cuu-kiep-phan-thien",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Tuyển Thủ Dê: \"Mùi\" Vị Chiến Thắng (GOAT) (2026) | RoPhim",
+      "url": "https://rophims.team/phim/tuyen-thu-de-mui-vi-chien-thang",
+      "target": "https://rophims.team/xem-phim/tuyen-thu-de-mui-vi-chien-thang",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Từng Mảnh Ghép (Piece By Piece) (2024) - Vietsub FHD | RoPhim",
+      "url": "https://rophims.team/phim/tung-manh-ghep",
+      "target": "https://rophims.team/xem-phim/tung-manh-ghep",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Vụ Án Mạng Bí Ẩn Phần 1 (Vụ Án Mạng Bí Ẩn Phần 1) (2023) | RoPhim",
+      "url": "https://rophims.team/phim/vu-an-mang-bi-an-phan-1",
+      "target": "https://rophims.team/xem-phim/vu-an-mang-bi-an-phan-1",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Xác Ướp: Cuộc Phiêu Lưu Đến London (Mummies) (2023) | RoPhim",
+      "url": "https://rophims.team/phim/xac-uop-cuoc-phieu-luu-den-london",
+      "target": "https://rophims.team/xem-phim/xac-uop-cuoc-phieu-luu-den-london",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Youjo Senki II | RoPhim",
+      "url": "https://rophims.team/phim/youjo-senki-ii",
+      "target": "https://rophims.team/xem-phim/youjo-senki-ii",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Zombie Land Saga Movie: Thiên Đường Ngân Hà Mộng (2025) | RoPhim",
+      "url": "https://rophims.team/phim/zombie-land-saga-movie-thien-duong-ngan-ha-mong-tuong",
+      "target": "https://rophims.team/xem-phim/zombie-land-saga-movie-thien-duong-ngan-ha-mong-tuong",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Á Nhân (Phần 1) (AJIN: Demi-Human (Season 1)) (2016) | RoPhim",
+      "url": "https://rophims.team/phim/a-nhan-phan-1",
+      "target": "https://rophims.team/xem-phim/a-nhan-phan-1",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Ác Mộng Phố Elm Phần 2: Sự Trả Thù Của Freddy (1985) | RoPhim",
+      "url": "https://rophims.team/phim/ac-mong-pho-elm-phan-2-su-tra-thu-cua-freddy",
+      "target": "https://rophims.team/xem-phim/ac-mong-pho-elm-phan-2-su-tra-thu-cua-freddy",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Ánh sáng của thế giới (Light of the World) (2025) | RoPhim",
+      "url": "https://rophims.team/phim/anh-sang-cua-the-gioi",
+      "target": "https://rophims.team/xem-phim/anh-sang-cua-the-gioi",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Đó Là Siêu Bí Ngô, Charlie Brown (1966) | RoPhim",
+      "url": "https://rophims.team/phim/do-la-sieu-bi-ngo-charlie-brown",
+      "target": "https://rophims.team/xem-phim/do-la-sieu-bi-ngo-charlie-brown",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Đại Thoại Tây Du Phần II: Tiên Lý Kỳ Duyên (1995) | RoPhim",
+      "url": "https://rophims.team/phim/dai-thoai-tay-du-phan-ii-tien-ly-ky-duyen",
+      "target": "https://rophims.team/xem-phim/dai-thoai-tay-du-phan-ii-tien-ly-ky-duyen",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Đảo Hải Tặc 5: Lời Nguyền Thành Kiếm (2004) | RoPhim",
+      "url": "https://rophims.team/phim/dao-hai-tac-5-loi-nguyen-thanh-kiem",
+      "target": "https://rophims.team/xem-phim/dao-hai-tac-5-loi-nguyen-thanh-kiem",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    },
+    {
+      "kind": "series",
+      "title": "Đứa Con Của Thời Tiết (Weathering with You) (2019) | RoPhim",
+      "url": "https://rophims.team/phim/dua-con-cua-thoi-tiet",
+      "target": "https://rophims.team/xem-phim/dua-con-cua-thoi-tiet",
+      "episode": null,
+      "webPlayable": false,
+      "playlists": [],
+      "media": [],
+      "statusCodes": [],
+      "click": "[class*=\"play\" i]",
+      "error": ""
+    }
+  ]
+}
