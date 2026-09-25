@@ -89,6 +89,17 @@ def resolve_media_url(raw,referer=None,depth=0):
     if not raw:return []
     u=urljoin(referer or BASE+"/",raw)
     if ".m3u8" in u.lower():return [(u,referer or BASE+"/")]
+
+    # StreamVSMov exposes stable player URLs as /video/<uuid> (and sometimes
+    # /embed/<uuid>) while the actual HLS playlist lives at
+    # /stream/<uuid>/master.m3u8. RoPhim stores the player URL in playbackHints,
+    # so derive the playlist before fetching/parsing player JavaScript. This also
+    # avoids datacenter/player-page blocking and fixes both movies and series.
+    sm=re.match(r"^(https?://[^/]*streamvsmov\.com)/(?:video|embed)/([0-9a-f-]{16,})(?:[/?#].*)?$",u,re.I)
+    if sm:
+        hls=f"{sm.group(1)}/stream/{sm.group(2)}/master.m3u8"
+        return [(hls,u)]
+
     key=(u,referer or "");now=time.time();c=_resolve_cache.get(key)
     if c and now-c[0]<300:return c[1]
     if depth>2:return []
