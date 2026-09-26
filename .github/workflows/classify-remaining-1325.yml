@@ -1,0 +1,24 @@
+name: Classify remaining 1325
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'classify_remaining_1325.py'
+      - '.github/workflows/classify-remaining-1325.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  classify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - run: curl -fL https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json -o rophim_catalog.json
+      - run: python classify_remaining_1325.py
+      - run: |
+          git config user.name "ivy-classify"
+          git config user.email "actions@users.noreply.github.com"
+          git add remaining_1325_groups.json
+          git commit -m "Classify remaining playback failures" || exit 0
+          git push origin HEAD:main
