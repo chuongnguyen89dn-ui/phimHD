@@ -25,3 +25,4 @@ jobs:
           git add remaining_source_diagnostics.json
           git commit -m "Update remaining source diagnostics" || exit 0
           git push origin HEAD:main
+# rerun protocol extraction
