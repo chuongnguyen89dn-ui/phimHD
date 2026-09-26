@@ -95,3 +95,4 @@ jobs:
           git push origin HEAD:main
 
 # audit-rerun: 2026-09-26 resolver validation
+# audit-rerun: streamc-bootstrap-hls
