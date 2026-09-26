@@ -25,3 +25,5 @@ jobs:
           git add production_order_comparison.json
           git commit -m "Audit production addon ordering vs live RoPhim" || exit 0
           git push origin HEAD:main
+
+# verify production after live-order fix
