@@ -1,0 +1,30 @@
+name: Bulk repair 174 season poster groups
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bulk_repair_season_posters.py'
+      - '.github/workflows/bulk-repair-season-posters.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, path: main}
+      - uses: actions/checkout@v4
+        with: {ref: catalog-data, path: data, fetch-depth: 0}
+      - run: pip install curl-cffi
+      - run: cp main/poster_duplicate_audit.json .
+      - run: python main/bulk_repair_season_posters.py data/rophim_catalog.json poster_duplicate_audit.json
+      - name: Publish bulk season poster repair
+        working-directory: data
+        run: |
+          git config user.name "ivy-season-bulk-repair"
+          git config user.email "actions@users.noreply.github.com"
+          git add rophim_catalog.json
+          git commit -m "Bulk repair duplicated season posters" || exit 0
+          git push origin HEAD:catalog-data
