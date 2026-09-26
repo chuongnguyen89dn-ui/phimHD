@@ -27,3 +27,5 @@ jobs:
           git push origin HEAD:main
 
 # rerun after bulk season poster repair
+
+# rerun after residual repair
