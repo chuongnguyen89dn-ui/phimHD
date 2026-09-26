@@ -17,3 +17,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install -r requirements.txt
       - run: python test_streamc_resolver.py
+
+# rerun after full app restore
