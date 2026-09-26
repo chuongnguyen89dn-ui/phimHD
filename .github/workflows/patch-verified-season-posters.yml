@@ -1,0 +1,27 @@
+name: Patch final verified season posters
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'patch_verified_season_posters.py'
+      - '.github/workflows/patch-verified-season-posters.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, path: main}
+      - uses: actions/checkout@v4
+        with: {ref: catalog-data, path: data, fetch-depth: 0}
+      - run: python main/patch_verified_season_posters.py data/rophim_catalog.json
+      - name: Publish
+        working-directory: data
+        run: |
+          git config user.name "ivy-poster-fix"
+          git config user.email "actions@users.noreply.github.com"
+          git add rophim_catalog.json
+          git commit -m "Patch verified distinct season posters" || exit 0
+          git push origin HEAD:catalog-data
