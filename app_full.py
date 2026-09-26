@@ -297,6 +297,7 @@ def family_seasons(x):
     return out or {infer_season(x):x}
 
 SOURCE_SECTIONS=["Điện ảnh Hàn Quốc","Mọt phim Hoa Ngữ","Thiên đường Phim Thái","Phim US-UK Mới","Phim Điện Ảnh Mới Cóng","Dấu ấn điện ảnh Việt","Đêm Kinh Hoàng","Mê Cung Phim Nhật","Phim Bộ Đã Hoàn Thành","Hành Động Nghẹt Thở","Trinh Thám & Bí Ẩn","Tinh Hoa Điện Ảnh Hồng Kông","Top 10 phim bộ hôm nay","Top 10 phim lẻ hôm nay","Thế giới Anime","Cổ Trang Trung Quốc","Mãn Nhãn với Phim Chiếu Rạp","Sắp Lên Sóng"]
+SECTION_ALIASES={"Phim Điện Ảnh Mới Cóng":["Phim Điện Ảnh Mới Cóng","Phim Điện Ảnh Mới Cóong"]}
 SERIES_SECTIONS={"Phim Bộ Đã Hoàn Thành","Top 10 phim bộ hôm nay"}
 def _pos(h,label,start=0):
     ps=[h.find(v,start) for v in (label,html.escape(label,quote=False)) if h.find(v,start)>=0];return min(ps) if ps else -1
@@ -315,7 +316,10 @@ def source_home_sections():
     if _section_cache["data"] and now-_section_cache["at"]<600:return _section_cache["data"]
     h=fetch_text(BASE+"/phimhay",300);start=max(0,_pos(h,"Bạn đang quan tâm gì?"));ps=[]
     for i,label in enumerate(SOURCE_SECTIONS):
-        p=_pos(h,label,start)
+        aliases=SECTION_ALIASES.get(label,[label])
+        found=[_pos(h,v,start) for v in aliases]
+        found=[p for p in found if p>=0]
+        p=min(found) if found else -1
         if p>=0:ps.append((p,i,label))
     ps.sort();out={}
     for n,(p,i,label) in enumerate(ps):
