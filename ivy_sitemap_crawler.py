@@ -10,6 +10,7 @@ UAS=[
  'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1'
 ]
 SECTIONS=['Điện ảnh Hàn Quốc','Mọt phim Hoa Ngữ','Thiên đường Phim Thái','Phim US-UK Mới','Phim Điện Ảnh Mới Cóng','Dấu ấn điện ảnh Việt','Đêm Kinh Hoàng','Mê Cung Phim Nhật','Phim Bộ Đã Hoàn Thành','Hành Động Nghẹt Thở','Trinh Thám & Bí Ẩn','Tinh Hoa Điện Ảnh Hồng Kông','Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay','Thế giới Anime','Cổ Trang Trung Quốc','Mãn Nhãn với Phim Chiếu Rạp','Sắp Lên Sóng']
+SECTION_ALIASES={'Phim Điện Ảnh Mới Cóng':['Phim Điện Ảnh Mới Cóng','Phim Điện Ảnh Mới Cóong']}
 TOP10={'Top 10 phim bộ hôm nay','Top 10 phim lẻ hôm nay'}
 MAX_PAGES=180;BATCH=12
 
@@ -88,7 +89,10 @@ def main():
  if not home:raise SystemExit('cannot fetch source home after retries')
  start=max(0,pos(home,'Bạn đang quan tâm gì?'));found=[]
  for i,label in enumerate(SECTIONS):
-  p=pos(home,label,start)
+  aliases=SECTION_ALIASES.get(label,[label])
+  ps=[pos(home,v,start) for v in aliases]
+  ps=[p for p in ps if p>=0]
+  p=min(ps) if ps else -1
   if p>=0:found.append((p,i,label))
  found.sort();out={'source':BASE,'generatedAt':int(time.time()),'sections':[]}
  for idx,(p,i,label) in enumerate(found):
