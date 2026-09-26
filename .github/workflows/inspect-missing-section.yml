@@ -1,0 +1,15 @@
+name: Inspect missing movie section
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'inspect_missing_section.py'
+      - '.github/workflows/inspect-missing-section.yml'
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install curl-cffi
+      - run: python inspect_missing_section.py
