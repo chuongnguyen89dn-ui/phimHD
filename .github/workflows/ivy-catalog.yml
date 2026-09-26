@@ -56,6 +56,9 @@ jobs:
           fi
           python rophim_catalog_crawler_taxonomy_v5.py
 
+      - name: Repair duplicate season posters
+        run: python repair_duplicate_season_posters.py rophim_catalog.staging.json
+
       - name: Build catalog change report
         run: |
           python - <<'PY'
