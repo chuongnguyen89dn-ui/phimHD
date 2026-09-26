@@ -29,7 +29,10 @@ for u in targets:
             vids=(m.get("videos") or [])
             print("VIDEOS",len(vids),vids[:2])
             if vids:
-                rr=core.stream("series",vids[0]["id"]).get_json()
+                target_season=core.infer_season(x)
+                vv=next((v for v in vids if v.get("season")==target_season),vids[0])
+                print("TARGET_VIDEO",vv)
+                rr=core.stream("series",vv["id"]).get_json()
             else: rr={"streams":[]}
         else: rr=core.stream("movie",iid).get_json()
         print("STREAM",json.dumps(rr,ensure_ascii=False)[:6000])
