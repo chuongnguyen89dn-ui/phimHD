@@ -1,0 +1,17 @@
+name: Inspect Vikings posters
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'inspect_vikings_posters.py'
+      - '.github/workflows/inspect-vikings-posters.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl -fL https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json -o rophim_catalog.json
+      - run: python inspect_vikings_posters.py
