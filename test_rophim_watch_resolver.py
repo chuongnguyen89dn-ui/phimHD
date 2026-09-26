@@ -6,9 +6,9 @@ import app_full as core
 
 d=json.load(open("rophim_catalog.json",encoding="utf-8"))
 core._catalog_cache.update(at=time.time(),data=d)
-x=next(x for x in d.get("movies",[]) if "Giới Quý Tộc" in (x.get("title") or ""))
-iid=core.mid(x)
-with core.app.app_context():
-    data=core.stream("movie",iid).get_json()
-assert data.get("streams"), data
-print("ROPHIM_WATCH_RESOLVER_PASS",data["streams"][0]["url"])
+x=next(x for x in d.get("movies",[]) if (x.get("url") or "")=="https://rophims.team/phim/wicked-phan-2")
+watch=(x.get("playbackHints") or {}).get("watchUrl")
+pairs=core.resolve_media_url(watch,x.get("url"))
+assert pairs, (watch,pairs)
+assert "streamvsmov.com/stream/" in pairs[0][0] or "streamc.xyz" in pairs[0][0], pairs
+print("ROPHIM_WATCH_RESOLVER_PASS",pairs[0][0])
