@@ -1,0 +1,26 @@
+name: Probe TMDB season posters
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'probe_tmdb_posters.py'
+      - '.github/workflows/probe-tmdb-posters.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - run: pip install curl-cffi
+      - run: curl -fL https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json -o rophim_catalog.json
+      - run: python probe_tmdb_posters.py
+      - run: |
+          git config user.name "ivy-poster-probe"
+          git config user.email "actions@users.noreply.github.com"
+          git add poster_tmdb_probe.json
+          git commit -m "Update TMDB poster probe" || exit 0
+          git push origin HEAD:main
