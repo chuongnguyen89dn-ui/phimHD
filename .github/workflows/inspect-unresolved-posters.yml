@@ -1,0 +1,31 @@
+name: Inspect unresolved season posters
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'inspect_unresolved_posters.py'
+      - '.github/workflows/inspect-unresolved-posters.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, path: main, fetch-depth: 0}
+      - uses: actions/checkout@v4
+        with: {ref: catalog-data, path: data}
+      - run: pip install curl-cffi
+      - run: python main/inspect_unresolved_posters.py data/rophim_catalog.json
+      - uses: actions/upload-artifact@v4
+        with: {name: unresolved-poster-sources, path: unresolved_poster_sources.json}
+      - run: |
+          cp unresolved_poster_sources.json main/
+          cd main
+          git config user.name "ivy-poster-inspect"
+          git config user.email "actions@users.noreply.github.com"
+          git add unresolved_poster_sources.json
+          git commit -m "Update unresolved poster source inspection" || exit 0
+          git push origin HEAD:main
