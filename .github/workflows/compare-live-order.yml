@@ -1,0 +1,27 @@
+name: Compare addon order to RoPhim live
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'compare_live_order.py'
+      - '.github/workflows/compare-live-order.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - run: pip install curl-cffi
+      - run: python compare_live_order.py
+      - uses: actions/upload-artifact@v4
+        with: {name: production-order-comparison, path: production_order_comparison.json}
+      - run: |
+          git config user.name "ivy-order-audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add production_order_comparison.json
+          git commit -m "Audit production addon ordering vs live RoPhim" || exit 0
+          git push origin HEAD:main
