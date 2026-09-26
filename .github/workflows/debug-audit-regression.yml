@@ -1,0 +1,21 @@
+name: Debug full audit regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'debug_audit_regression.py'
+      - '.github/workflows/debug-audit-regression.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - run: pip install -r requirements.txt
+      - run: |
+          curl -fL https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json -o rophim_catalog.json
+      - run: python debug_audit_regression.py
