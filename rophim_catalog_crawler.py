@@ -119,6 +119,11 @@ def parse_movie(url, page_html):
 
     title = meta_content(page_html, "og:title")
     poster = meta_content(page_html, "og:image")
+    # RoPhim exposes a season-specific portrait poster separately from og:image.
+    # og:image / movieThumbUrl is often a shared landscape thumb across seasons.
+    pm = re.search(r'''var\s+moviePosterUrl\s*=\s*["']([^"']+)''', page_html, re.I)
+    if pm:
+        poster = html.unescape(pm.group(1)).strip()
     description = meta_content(page_html, "og:description") or meta_content(page_html, "description")
     canonical = ""
     m = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)', page_html, re.I)
@@ -218,102 +223,3 @@ def discover_sitemaps():
         sm = queue.pop(0)
         if sm in seen_maps:
             continue
-        seen_maps.add(sm)
-        try:
-            final, ct, body = fetch(sm)
-            if b"<urlset" not in body and b"<sitemapindex" not in body:
-                continue
-            urls, children = parse_sitemap_xml(final, body)
-            found_urls.update(urls)
-            for c in children:
-                if c not in seen_maps:
-                    queue.append(c)
-            print(f"[sitemap] {final}: +{len(urls)} urls, +{len(children)} child maps", flush=True)
-        except Exception as e:
-            print(f"[sitemap] {sm}: {e}", flush=True)
-    return found_urls, seen_maps
-
-def main():
-    started = datetime.now(timezone.utc).isoformat()
-    print("RoPhim catalog crawler", flush=True)
-    print("Output:", OUT, flush=True)
-
-    sitemap_urls, sitemap_files = discover_sitemaps()
-    discovered=set(sitemap_urls)
-    categories=set()
-    pages_scanned=0
-
-    seed_pages=[BASE+"/"] + [BASE+x for x in CATEGORY_HINTS]
-    for u in seed_pages:
-        try:
-            final, ct, body = fetch(u)
-            h = text(body)
-            pages_scanned += 1
-            links = anchors(h, final)
-            discovered.update(links)
-            for x in links:
-                path=urlparse(x).path
-                if path.count("/") <= 2 and not re.search(r"\.(jpg|jpeg|png|webp|svg|css|js|ico)$", path, re.I):
-                    categories.add(x)
-            print(f"[seed] {final}: {len(links)} links", flush=True)
-        except Exception as e:
-            print(f"[seed] {u}: {e}", flush=True)
-
-    candidates = sorted(discovered)
-    movies=[]
-    seen_movie_urls=set()
-    errors=[]
-
-    for i,u in enumerate(candidates,1):
-        p=urlparse(u)
-        if p.hostname not in ("rophims.team","www.rophims.team","rophim.loan","www.rophim.loan"):
-            continue
-        if re.search(r"\.(jpg|jpeg|png|webp|svg|css|js|ico|woff2?|ttf|zip|pdf)$", p.path, re.I):
-            continue
-        try:
-            final, ct, body = fetch(u)
-            if "text/html" not in ct and b"<html" not in body[:500].lower():
-                continue
-            h=text(body)
-            pages_scanned += 1
-            jlds=parse_jsonld(h)
-            if movie_like(final,h,jlds):
-                item=parse_movie(final,h)
-                if item["url"] not in seen_movie_urls:
-                    seen_movie_urls.add(item["url"])
-                    movies.append(item)
-                    print(f"[movie {len(movies)}] {item['title'] or item['slug']}", flush=True)
-            if p.path.count("/") <= 2:
-                for x in anchors(h, final):
-                    discovered.add(x)
-        except Exception as e:
-            errors.append({"url":u,"error":str(e)})
-        if i % 25 == 0:
-            print(f"[progress] {i}/{len(candidates)} candidates, movies={len(movies)}", flush=True)
-        time.sleep(0.08)
-
-    data={
-        "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "startedAt": started,
-        "baseUrl": BASE,
-        "sitemaps": sorted(sitemap_files),
-        "categories": sorted(categories),
-        "allDiscoveredUrls": sorted(discovered),
-        "stats": {
-            "sitemapUrlCount": len(sitemap_urls),
-            "discoveredUrlCount": len(discovered),
-            "pagesScanned": pages_scanned,
-            "movieCount": len(movies),
-            "errorCount": len(errors)
-        },
-        "movies": movies,
-        "errors": errors
-    }
-    with open(OUT,"w",encoding="utf-8") as f:
-        json.dump(data,f,ensure_ascii=False,indent=2)
-    print("\nDONE", flush=True)
-    print(json.dumps(data["stats"],ensure_ascii=False), flush=True)
-    print("Saved:", OUT, flush=True)
-
-if __name__=="__main__":
-    main()
