@@ -25,6 +25,7 @@
     "Mọt phim Hoa Ngữ",
     "Thiên đường Phim Thái",
     "Phim US-UK Mới",
+    "Phim Điện Ảnh Mới Cóng",
     "Dấu ấn điện ảnh Việt",
     "Đêm Kinh Hoàng",
     "Mê Cung Phim Nhật",
@@ -39,7 +40,7 @@
     "Mãn Nhãn với Phim Chiếu Rạp",
     "Sắp Lên Sóng"
   ],
-  "sectionOrderExact": false,
+  "sectionOrderExact": true,
   "rows": [
     {
       "label": "Điện ảnh Hàn Quốc",
@@ -172,8 +173,38 @@
       ]
     },
     {
-      "label": "Dấu ấn điện ảnh Việt",
+      "label": "Phim Điện Ảnh Mới Cóng",
       "catalogId": "ivy_home_4",
+      "type": "movie",
+      "sourceVisibleCount": 8,
+      "addonCount": 8,
+      "compared": 8,
+      "positionMatches": 8,
+      "exactPrefix": true,
+      "sourceFirst10": [
+        "/phim/nhung-dua-tre-cua-thien-duong",
+        "/phim/vu-an-mang-brigadier-j",
+        "/phim/nhung-doi-thu-cua-amziah-king",
+        "/phim/chuyen-bay-mot-chieu-den-hollywood-mo-uoc",
+        "/phim/chom-sao-bat-diet",
+        "/phim/ban-than-mai-mai",
+        "/phim/cu-soc",
+        "/phim/ma-xo"
+      ],
+      "addonFirst10": [
+        "/phim/nhung-dua-tre-cua-thien-duong",
+        "/phim/vu-an-mang-brigadier-j",
+        "/phim/nhung-doi-thu-cua-amziah-king",
+        "/phim/chuyen-bay-mot-chieu-den-hollywood-mo-uoc",
+        "/phim/chom-sao-bat-diet",
+        "/phim/ban-than-mai-mai",
+        "/phim/cu-soc",
+        "/phim/ma-xo"
+      ]
+    },
+    {
+      "label": "Dấu ấn điện ảnh Việt",
+      "catalogId": "ivy_home_5",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -205,7 +236,7 @@
     },
     {
       "label": "Đêm Kinh Hoàng",
-      "catalogId": "ivy_home_5",
+      "catalogId": "ivy_home_6",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -237,7 +268,7 @@
     },
     {
       "label": "Mê Cung Phim Nhật",
-      "catalogId": "ivy_home_6",
+      "catalogId": "ivy_home_7",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -269,7 +300,7 @@
     },
     {
       "label": "Phim Bộ Đã Hoàn Thành",
-      "catalogId": "ivy_home_7",
+      "catalogId": "ivy_home_8",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -301,7 +332,7 @@
     },
     {
       "label": "Hành Động Nghẹt Thở",
-      "catalogId": "ivy_home_8",
+      "catalogId": "ivy_home_9",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -333,7 +364,7 @@
     },
     {
       "label": "Trinh Thám & Bí Ẩn",
-      "catalogId": "ivy_home_9",
+      "catalogId": "ivy_home_10",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -365,7 +396,7 @@
     },
     {
       "label": "Tinh Hoa Điện Ảnh Hồng Kông",
-      "catalogId": "ivy_home_10",
+      "catalogId": "ivy_home_11",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -397,7 +428,7 @@
     },
     {
       "label": "Top 10 phim lẻ hôm nay",
-      "catalogId": "ivy_home_11",
+      "catalogId": "ivy_home_12",
       "type": "movie",
       "sourceVisibleCount": 10,
       "addonCount": 24,
@@ -431,7 +462,7 @@
     },
     {
       "label": "Thế giới Anime",
-      "catalogId": "ivy_home_12",
+      "catalogId": "ivy_home_13",
       "type": "movie",
       "sourceVisibleCount": 10,
       "addonCount": 24,
@@ -465,7 +496,7 @@
     },
     {
       "label": "Cổ Trang Trung Quốc",
-      "catalogId": "ivy_home_13",
+      "catalogId": "ivy_home_14",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
@@ -497,7 +528,7 @@
     },
     {
       "label": "Top 10 phim bộ hôm nay",
-      "catalogId": "ivy_home_14",
+      "catalogId": "ivy_home_15",
       "type": "movie",
       "sourceVisibleCount": 10,
       "addonCount": 24,
@@ -531,7 +562,7 @@
     },
     {
       "label": "Mãn Nhãn với Phim Chiếu Rạp",
-      "catalogId": "ivy_home_15",
+      "catalogId": "ivy_home_16",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 8,
@@ -561,7 +592,7 @@
     },
     {
       "label": "Sắp Lên Sóng",
-      "catalogId": "ivy_home_16",
+      "catalogId": "ivy_home_17",
       "type": "movie",
       "sourceVisibleCount": 8,
       "addonCount": 24,
