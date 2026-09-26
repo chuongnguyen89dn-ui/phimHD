@@ -80,8 +80,8 @@
       "sourceVisibleCount": 8,
       "addonCount": 24,
       "compared": 8,
-      "positionMatches": 0,
-      "exactPrefix": false,
+      "positionMatches": 8,
+      "exactPrefix": true,
       "sourceFirst10": [
         "/phim/thiep-von-chi-la-co-rac",
         "/phim/truong-sinh-khe",
@@ -93,16 +93,16 @@
         "/phim/nha-tu-dao-den"
       ],
       "addonFirst10": [
+        "/phim/thiep-von-chi-la-co-rac",
+        "/phim/truong-sinh-khe",
+        "/phim/vi-yeu-xung-danh",
+        "/phim/dung-thanh",
+        "/phim/doc-kiem-cuu-thien",
+        "/phim/giao-phong",
         "/phim/nguoi-tinh-mang-mat-na",
         "/phim/nha-tu-dao-den",
         "/phim/nhu-da-hen",
-        "/phim/phap-y-tan-minh-ke-troi-phat",
-        "/phim/tan-thuoc",
-        "/phim/thiep-von-chi-la-co-rac",
-        "/phim/vi-yeu-xung-danh",
-        "/phim/nguyet-lan-mat-an",
-        "/phim/luyen-khi-muoi-van-nam",
-        "/phim/pham-nhan-tu-tien"
+        "/phim/phap-y-tan-minh-ke-troi-phat"
       ]
     },
     {
@@ -144,8 +144,8 @@
       "sourceVisibleCount": 17,
       "addonCount": 24,
       "compared": 17,
-      "positionMatches": 12,
-      "exactPrefix": false,
+      "positionMatches": 17,
+      "exactPrefix": true,
       "sourceFirst10": [
         "/phim/vung-dat-quy-du",
         "/phim/quai-kiet-bom-thu",
@@ -173,7 +173,35 @@
     },
     {
       "label": "Dấu ấn điện ảnh Việt",
-      "error": "HTTP Error 502: "
+      "catalogId": "ivy_home_4",
+      "type": "movie",
+      "sourceVisibleCount": 8,
+      "addonCount": 24,
+      "compared": 8,
+      "positionMatches": 8,
+      "exactPrefix": true,
+      "sourceFirst10": [
+        "/phim/mua-he-nam-ay-2026",
+        "/phim/doi-bong-nu-lang-xuan",
+        "/phim/phu-sa",
+        "/phim/sinh-tu",
+        "/phim/song-hy-lam-nguy",
+        "/phim/con-ke-ba-nghe",
+        "/phim/nguoi-lang-nghe-loi-thi-tham",
+        "/phim/hen-em-ngay-nhat-thuc"
+      ],
+      "addonFirst10": [
+        "/phim/mua-he-nam-ay-2026",
+        "/phim/doi-bong-nu-lang-xuan",
+        "/phim/phu-sa",
+        "/phim/sinh-tu",
+        "/phim/song-hy-lam-nguy",
+        "/phim/con-ke-ba-nghe",
+        "/phim/nguoi-lang-nghe-loi-thi-tham",
+        "/phim/hen-em-ngay-nhat-thuc",
+        "/phim/ma-xo",
+        "/phim/vo-dien-sat-nhan"
+      ]
     },
     {
       "label": "Đêm Kinh Hoàng",
@@ -278,8 +306,8 @@
       "sourceVisibleCount": 8,
       "addonCount": 24,
       "compared": 8,
-      "positionMatches": 0,
-      "exactPrefix": false,
+      "positionMatches": 8,
+      "exactPrefix": true,
       "sourceFirst10": [
         "/phim/tan-thuoc",
         "/phim/hanh-tieu",
@@ -291,6 +319,7 @@
         "/phim/luc-luong-lanterns-phan-1"
       ],
       "addonFirst10": [
+        "/phim/tan-thuoc",
         "/phim/hanh-tieu",
         "/phim/dac-vu-xanh-phan-1",
         "/phim/hai-trai-tim",
@@ -299,8 +328,7 @@
         "/phim/hiep-si-mat-na-my-th",
         "/phim/luc-luong-lanterns-phan-1",
         "/phim/tho-san-giac-thu-omegahorn",
-        "/phim/luyen-khi-muoi-van-nam",
-        "/phim/pham-nhan-tu-tien"
+        "/phim/luyen-khi-muoi-van-nam"
       ]
     },
     {
@@ -310,8 +338,8 @@
       "sourceVisibleCount": 8,
       "addonCount": 24,
       "compared": 8,
-      "positionMatches": 0,
-      "exactPrefix": false,
+      "positionMatches": 8,
+      "exactPrefix": true,
       "sourceFirst10": [
         "/phim/dong-song-manh-liet",
         "/phim/phap-y-tan-minh-ke-troi-phat",
@@ -323,6 +351,8 @@
         "/phim/hien-tuong-sieu-nhien-3"
       ],
       "addonFirst10": [
+        "/phim/dong-song-manh-liet",
+        "/phim/phap-y-tan-minh-ke-troi-phat",
         "/phim/bon-cap-do-doi-dau",
         "/phim/doi-chung",
         "/phim/toi-khong-phai-la-dai-su-phan-1",
@@ -330,9 +360,7 @@
         "/phim/dia-nguc-doa-day",
         "/phim/hien-tuong-sieu-nhien-3",
         "/phim/vu-an-cuoi-cung-phan-1",
-        "/phim/khac-tinh-ma-ca-rong-phan-5",
-        "/phim/bay-phan-4",
-        "/phim/ngoc-minh-tra-cot"
+        "/phim/khac-tinh-ma-ca-rong-phan-5"
       ]
     },
     {
@@ -408,8 +436,8 @@
       "sourceVisibleCount": 10,
       "addonCount": 24,
       "compared": 10,
-      "positionMatches": 5,
-      "exactPrefix": false,
+      "positionMatches": 10,
+      "exactPrefix": true,
       "sourceFirst10": [
         "/phim/chien-binh-anh-sang-teo",
         "/phim/van-co-chi-ton-ly-van-tieu-truyen",
@@ -423,11 +451,11 @@
         "/phim/100-ngay-tro-thanh-vua"
       ],
       "addonFirst10": [
+        "/phim/chien-binh-anh-sang-teo",
+        "/phim/van-co-chi-ton-ly-van-tieu-truyen",
         "/phim/chon-ngay-phi-thang",
         "/phim/dai-thien-tieu-tran",
         "/phim/phap-su-tu-linh-ta-chinh-la-thien-tai",
-        "/phim/van-co-chi-ton-ly-van-tieu-truyen",
-        "/phim/chien-binh-anh-sang-teo",
         "/phim/thieu-chu-gioi-chay-tron-phan-2",
         "/phim/ve-xong-di-roi-hay-chet",
         "/phim/luc-do-toi-da-chuyen-sinh-thanh-slime-phan-4",
@@ -442,8 +470,8 @@
       "sourceVisibleCount": 8,
       "addonCount": 24,
       "compared": 8,
-      "positionMatches": 0,
-      "exactPrefix": false,
+      "positionMatches": 8,
+      "exactPrefix": true,
       "sourceFirst10": [
         "/phim/nhu-da-hen",
         "/phim/tan-bang-phong-than-phan-2",
@@ -455,16 +483,16 @@
         "/phim/vo-uu-do"
       ],
       "addonFirst10": [
+        "/phim/nhu-da-hen",
         "/phim/tan-bang-phong-than-phan-2",
+        "/phim/nguyet-lan-mat-an",
         "/phim/lan-huong-nhu-co",
         "/phim/van-tuoc-khieu-thien-luc",
-        "/phim/truong-sinh-khe",
         "/phim/hanh-tieu-phan-1",
         "/phim/tan-bang-phong-than-phan-1",
         "/phim/vo-uu-do",
-        "/phim/bao-thanh-thien-that-hiep-ngu-nghia",
-        "/phim/nguyet-lan-mat-an",
-        "/phim/hanh-tieu"
+        "/phim/truong-sinh-khe",
+        "/phim/bao-thanh-thien-that-hiep-ngu-nghia"
       ]
     },
     {
@@ -474,8 +502,8 @@
       "sourceVisibleCount": 10,
       "addonCount": 24,
       "compared": 10,
-      "positionMatches": 0,
-      "exactPrefix": false,
+      "positionMatches": 10,
+      "exactPrefix": true,
       "sourceFirst10": [
         "/phim/doa-hong-nguy-hiem",
         "/phim/toi-muon-gap-cau",
@@ -489,6 +517,7 @@
         "/phim/ban-gai-thien-tai"
       ],
       "addonFirst10": [
+        "/phim/doa-hong-nguy-hiem",
         "/phim/toi-muon-gap-cau",
         "/phim/star-trek-nhung-mien-dat-moi-phan-4",
         "/phim/bong-duoi-trang",
@@ -497,8 +526,7 @@
         "/phim/huan-luyen-vien-ted-lasso-phan-4",
         "/phim/muon-ngan-troi-may-ban-nhat",
         "/phim/yeu-lan-hai-phan-2",
-        "/phim/ban-gai-thien-tai",
-        "/phim/tinh-anh-em-phan-1"
+        "/phim/ban-gai-thien-tai"
       ]
     },
     {
