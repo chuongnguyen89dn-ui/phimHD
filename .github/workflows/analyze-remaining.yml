@@ -37,3 +37,5 @@ jobs:
           git add remaining_failure_analysis.json
           git commit -m "Update remaining failure analysis" || exit 0
           git push origin HEAD:main
+
+# rerun after streamc audit
