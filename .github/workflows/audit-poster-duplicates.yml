@@ -25,3 +25,5 @@ jobs:
           git add poster_duplicate_audit.json
           git commit -m "Update scientific poster duplicate audit" || exit 0
           git push origin HEAD:main
+
+# rerun after bulk season poster repair
