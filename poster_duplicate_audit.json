@@ -1,73 +1,23 @@
 {
   "catalogTotal": 7586,
   "withPoster": 7586,
-  "uniquePosterUrls": 7546,
-  "duplicatePosterUrlGroups": 34,
-  "recordsUsingDuplicatedPosterUrl": 74,
-  "duplicatePosterSameFamilyGroups": 25,
-  "duplicatePosterCrossFamilyGroups": 9,
-  "multiSeasonSamePosterGroups": 10,
-  "sameFamilyDifferentYearSamePosterGroups": 11,
+  "uniquePosterUrls": 7585,
+  "duplicatePosterUrlGroups": 1,
+  "recordsUsingDuplicatedPosterUrl": 2,
+  "duplicatePosterSameFamilyGroups": 0,
+  "duplicatePosterCrossFamilyGroups": 1,
+  "multiSeasonSamePosterGroups": 0,
+  "sameFamilyDifferentYearSamePosterGroups": 0,
   "likelyDuplicateRecordSets": 27,
   "topCrossFamilyPosterReuse": [
     {
-      "poster": "https://vsmov.com/storage/images/3GQKYh6Trm8pxd2AypovoYQf4Ay.jpg",
-      "count": 5,
-      "families": [
-        "thanh gươm diệt quỷ : chuyến tàu vô tận",
-        "thanh gươm diệt quỷ : kamado tanjiro lập",
-        "thanh gươm diệt quỷ : khu phố ăn chơi",
-        "thanh gươm diệt quỷ : làng thợ rèn",
-        "thanh gươm diệt quỷ : đại trụ đặc huấn"
-      ],
-      "items": [
-        {
-          "title": "Thanh Gươm Diệt Quỷ Phần 1: Kamado Tanjiro Lập (2019)",
-          "url": "https://rophims.team/phim/thanh-guom-diet-quy-phan-1-kamado-tanjiro-lap-chi",
-          "year": 2019,
-          "season": 1
-        },
-        {
-          "title": "Thanh gươm diệt quỷ Phần 2: Chuyến Tàu Vô Tận (2021)",
-          "url": "https://rophims.team/phim/thanh-guom-diet-quy-phan-2-chuyen-tau-vo-tan",
-          "year": 2021,
-          "season": 2
-        },
-        {
-          "title": "Thanh gươm diệt quỷ Phần 3: Khu phố ăn chơi (2021)",
-          "url": "https://rophims.team/phim/thanh-guom-diet-quy-phan-3-khu-pho-an-choi",
-          "year": 2021,
-          "season": 3
-        },
-        {
-          "title": "Thanh gươm diệt quỷ Phần 4: Làng Thợ Rèn (2023)",
-          "url": "https://rophims.team/phim/thanh-guom-diet-quy-phan-4-lang-tho-ren",
-          "year": 2023,
-          "season": 4
-        },
-        {
-          "title": "Thanh gươm diệt quỷ Phần 5: Đại Trụ Đặc Huấn (2024)",
-          "url": "https://rophims.team/phim/thanh-guom-diet-quy-phan-5-dai-tru-dac-huan",
-          "year": 2024,
-          "season": 5
-        }
-      ]
-    },
-    {
       "poster": "https://vsmov.com/storage/movies//-thumb.webp",
-      "count": 3,
+      "count": 2,
       "families": [
-        "na mỹ",
         "tuyệt địa xạ kích (tuyệt địa xạ kích",
         "tình yêu (tình yêu"
       ],
       "items": [
-        {
-          "title": "Na Mỹ (2016)",
-          "url": "https://rophims.team/phim/na-my",
-          "year": 2016,
-          "season": null
-        },
         {
           "title": "Tuyệt Địa Xạ Kích (Tuyệt Địa Xạ Kích) (2021)",
           "url": "https://rophims.team/phim/tuyet-dia-xa-kich",
@@ -81,1216 +31,11 @@
           "season": null
         }
       ]
-    },
-    {
-      "poster": "https://phim.nguonc.com/public/images/Film/eHKRUk1QENXXzrgKg3nLHJCQn4m.jpg",
-      "count": 2,
-      "families": [
-        "kaina và biển tuyết lớn: hiền giả tinh tú",
-        "ooyukiumi no kaina: hoshi no kenja"
-      ],
-      "items": [
-        {
-          "title": "Kaina và Biển Tuyết Lớn: Hiền Giả Tinh Tú",
-          "url": "https://rophims.team/phim/kaina-va-bien-tuyet-lon-hien-gia-tinh-tu",
-          "year": 2050,
-          "season": null
-        },
-        {
-          "title": "Ooyukiumi no Kaina: Hoshi no Kenja",
-          "url": "https://rophims.team/phim/ooyukiumi-no-kaina-hoshi-no-kenja",
-          "year": 2050,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/5cvnxEHT3e39DvT6ARw4GNCFrB0.jpg",
-      "count": 2,
-      "families": [
-        "arcane",
-        "arcane - mùa 2"
-      ],
-      "items": [
-        {
-          "title": "Arcane - Mùa 2 (Arcane - Season 2) (2024)",
-          "url": "https://rophims.team/phim/arcane-mua-2",
-          "year": 2024,
-          "season": 2
-        },
-        {
-          "title": "Arcane - Phần 1 (Arcane - Season 1) (2021)",
-          "url": "https://rophims.team/phim/arcane-p1",
-          "year": 2021,
-          "season": 1
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/euXJlfeYSyrdkOoFQ9gtUG8OOhH.jpg",
-      "count": 2,
-      "families": [
-        "ác mộng phố elm 5: chiến binh giấc mơ",
-        "ác mộng trên phố elm 3: chiến binh giấc mơ"
-      ],
-      "items": [
-        {
-          "title": "Ác Mộng Phố Elm 5: Chiến Binh Giấc Mơ (1987)",
-          "url": "https://rophims.team/phim/ac-mong-tren-pho-elm-3-chien-binh-giac-mo",
-          "year": 1987,
-          "season": null
-        },
-        {
-          "title": "Ác mộng trên phố Elm 3: Chiến Binh Giấc Mơ (1987)",
-          "url": "https://rophims.team/phim/ac-mong-tren-pho-elm-3-chien-binh-giac-mo-179008070581684",
-          "year": 1987,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/mVE1ULmLaYhCkBQPt3JC5xZC6T6.jpg",
-      "count": 2,
-      "families": [
-        "khuyển dạ xoa",
-        "khuyển dạ xoa (inuyasha - the final act"
-      ],
-      "items": [
-        {
-          "title": "Khuyển Dạ Xoa - Phần 1 (InuYasha - Season 1) (2000)",
-          "url": "https://rophims.team/phim/khuyen-da-xoa-phan-1",
-          "year": 2000,
-          "season": 1
-        },
-        {
-          "title": "Khuyển Dạ Xoa - Phần 2 (InuYasha - The Final Act) (2009)",
-          "url": "https://rophims.team/phim/khuyen-da-xoa-phan-2",
-          "year": 2009,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/oHodJ2vxaCwaZgTD9ZqXgt93f6L.jpg",
-      "count": 2,
-      "families": [
-        "vương giả vinh diệu - vinh diệu chi chương",
-        "vương giả vinh diệu - vinh diệu chi chương: mệnh"
-      ],
-      "items": [
-        {
-          "title": "Vương Giả Vinh Diệu - Vinh Diệu Chi Chương: (2024)",
-          "url": "https://rophims.team/phim/vuong-gia-vinh-dieu-vinh-dieu-chi-chuong-thanh-toai-nguyet",
-          "year": 2024,
-          "season": null
-        },
-        {
-          "title": "Vương Giả Vinh Diệu - Vinh Diệu Chi Chương: Mệnh (2025)",
-          "url": "https://rophims.team/phim/vuong-gia-vinh-dieu-vinh-dieu-chi-chuong-menh-van-thien",
-          "year": 2025,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/q5mJ4oKfGc6Cr9reIHFzD0pQzre.jpg",
-      "count": 2,
-      "families": [
-        "anh hùng yếu ớt (weak hero - class 1",
-        "anh hùng yếu ớt (weak hero - class 2"
-      ],
-      "items": [
-        {
-          "title": "Anh Hùng Yếu Ớt - Phần 1 (Weak Hero - Class 1) (2022)",
-          "url": "https://rophims.team/phim/anh-hung-yeu-ot-phan-1",
-          "year": 2022,
-          "season": 1
-        },
-        {
-          "title": "Anh Hùng Yếu Ớt - Phần 2 (Weak Hero - Class 2) (2025)",
-          "url": "https://rophims.team/phim/anh-hung-yeu-ot-phan-2",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/r5sLAaPcG0faL0AY9zzLQFb0EpP.jpg",
-      "count": 2,
-      "families": [
-        "cẩm tú phương hoa",
-        "quốc sắc phương hoa (flourished peony"
-      ],
-      "items": [
-        {
-          "title": "Cẩm Tú Phương Hoa (2025)",
-          "url": "https://rophims.team/phim/Cam-tu-phuong-hoa",
-          "year": 2025,
-          "season": null
-        },
-        {
-          "title": "Quốc Sắc Phương Hoa (Flourished Peony) (2025)",
-          "url": "https://rophims.team/phim/quoc-sac-phuong-hoa",
-          "year": 2025,
-          "season": null
-        }
-      ]
     }
   ],
-  "topSameFamilyPosterReuse": [
-    {
-      "poster": "https://vsmov.com/storage/images/sbgbFnkO4wuzo15zUKQEVUU6MQe.jpg",
-      "count": 4,
-      "families": [
-        "lực lượng phản ứng"
-      ],
-      "items": [
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 1 (1998)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-1",
-          "year": 1998,
-          "season": 1
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 2 (2000)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-2",
-          "year": 2000,
-          "season": 2
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 3 (2001)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-3",
-          "year": 2001,
-          "season": 3
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 4 (2004)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-4",
-          "year": 2004,
-          "season": 4
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/1RWLMyC9KcFfcaoViMiJGSSZzzr.jpg",
-      "count": 2,
-      "families": [
-        "captain america: chiến binh mùa đông"
-      ],
-      "items": [
-        {
-          "title": "Captain America: Chiến Binh Mùa Đông (2014)",
-          "url": "https://rophims.team/phim/captain-america-chien-binh-mua-dong-178548896509931",
-          "year": 2014,
-          "season": null
-        },
-        {
-          "title": "Captain America: Chiến Binh Mùa Đông (2014)",
-          "url": "https://rophims.team/phim/captain-america-chien-binh-mua-dong",
-          "year": 2014,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/1ybpRrDgtejMdAP04Qhtd52QwWT.jpg",
-      "count": 2,
-      "families": [
-        "phượng hoàng đài thượng (love & crown"
-      ],
-      "items": [
-        {
-          "title": "Phượng Hoàng Đài Thượng (Love & Crown) (2025)",
-          "url": "https://rophims.team/phim/phuong-hoang-dai-thuong-178560566456275",
-          "year": 2025,
-          "season": null
-        },
-        {
-          "title": "Phượng Hoàng Đài Thượng (Love & Crown) (2025)",
-          "url": "https://rophims.team/phim/phuong-hoang-dai-thuong",
-          "year": 2025,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/3J1FwvI0JiploGrwsIQ4MTKaW1s.jpg",
-      "count": 2,
-      "families": [
-        "cuộc đua tử thần 3: địa ngục"
-      ],
-      "items": [
-        {
-          "title": "Cuộc Đua Tử Thần 3: Địa Ngục (2013)",
-          "url": "https://rophims.team/phim/cuoc-dua-tu-than-3-dia-nguc-178681862641872",
-          "year": 2013,
-          "season": null
-        },
-        {
-          "title": "Cuộc Đua Tử Thần 3: Địa Ngục (2013)",
-          "url": "https://rophims.team/phim/cuoc-dua-tu-than-3-dia-nguc",
-          "year": 2013,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/4s9lGIpvvZ2K6rHsXQEt1KXlSky.jpg",
-      "count": 2,
-      "families": [
-        "satu: tín đồ"
-      ],
-      "items": [
-        {
-          "title": "Satu: Tín đồ - Phần 1 (The Believers - Season 1) (2024)",
-          "url": "https://rophims.team/phim/satu-tin-do-phan-1",
-          "year": 2024,
-          "season": 1
-        },
-        {
-          "title": "Satu: Tín đồ - Phần 2 (The Believers - Season 2) (2025)",
-          "url": "https://rophims.team/phim/satu-tin-do-phan-2",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/83H0C66AcvkwpG2738VCTHMY9uv.jpg",
-      "count": 2,
-      "families": [
-        "chiến binh báo đen: wakanda bất diệt"
-      ],
-      "items": [
-        {
-          "title": "Chiến Binh Báo Đen: Wakanda Bất Diệt (2022)",
-          "url": "https://rophims.team/phim/chien-binh-bao-den-wakanda-bat-diet-17854432445164",
-          "year": 2022,
-          "season": null
-        },
-        {
-          "title": "Chiến Binh Báo Đen: Wakanda Bất Diệt (2022)",
-          "url": "https://rophims.team/phim/chien-binh-bao-den-wakanda-bat-diet",
-          "year": 2022,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/VHiGsZVvdwoTY4QUozztsVsLVJ.jpg",
-      "count": 2,
-      "families": [
-        "nữ hoàng tin tức"
-      ],
-      "items": [
-        {
-          "title": "Nữ Hoàng Tin Tức - Phần 1 (2023)",
-          "url": "https://rophims.team/phim/nu-hoang-tin-tuc-phan-1",
-          "year": 2023,
-          "season": 1
-        },
-        {
-          "title": "Nữ Hoàng Tin Tức - Phần 2 (2025)",
-          "url": "https://rophims.team/phim/nu-hoang-tin-tuc-phan-2",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/cTCn2EO69SERNfhaezJMoqBom4G.jpg",
-      "count": 2,
-      "families": [
-        "đấu phá thương khung"
-      ],
-      "items": [
-        {
-          "title": "Đấu Phá Thương Khung - Phần 1 (2017)",
-          "url": "https://rophims.team/phim/dau-pha-thuong-khung-phan-1",
-          "year": 2017,
-          "season": 1
-        },
-        {
-          "title": "Đấu Phá Thương Khung - Phần 2 (2018)",
-          "url": "https://rophims.team/phim/dau-pha-thuong-khung-phan-2",
-          "year": 2018,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/d16l4tj30LoA88kFd3qZLdyRZhF.jpg",
-      "count": 2,
-      "families": [
-        "họa giang hồ chi bất lương nhân"
-      ],
-      "items": [
-        {
-          "title": "Họa giang hồ chi bất lương nhân - Phần 6 (2023)",
-          "url": "https://rophims.team/phim/hoa-giang-ho-chi-bat-luong-nhan-phan-6",
-          "year": 2023,
-          "season": 6
-        },
-        {
-          "title": "Họa giang hồ chi bất lương nhân - Phần 7 (2025)",
-          "url": "https://rophims.team/phim/hoa-giang-ho-chi-bat-luong-nhan-phan-7",
-          "year": 2025,
-          "season": 7
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/d8KLv5Z6cYdoeIGoGRt8Oo45zor.jpg",
-      "count": 2,
-      "families": [
-        "đưa ông xã quốc dân về nhà"
-      ],
-      "items": [
-        {
-          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 1 (2016)",
-          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-1",
-          "year": 2016,
-          "season": 1
-        },
-        {
-          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 4 (2018)",
-          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-4",
-          "year": 2018,
-          "season": 4
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/g3t6hM7UNVIpGLMxQa6twcPmtJu.jpg",
-      "count": 2,
-      "families": [
-        "tân bảng phong thần"
-      ],
-      "items": [
-        {
-          "title": "Tân Bảng Phong Thần - Phần 2 (2015)",
-          "url": "https://rophims.team/phim/tan-bang-phong-than-phan-2",
-          "year": 2015,
-          "season": 2
-        },
-        {
-          "title": "Tân Bảng Phong Thần - Phần 1 (2014)",
-          "url": "https://rophims.team/phim/tan-bang-phong-than-phan-1",
-          "year": 2014,
-          "season": 1
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/hgKkCRQT9HhHJ9NKPQKnF1N5eGL.jpg",
-      "count": 2,
-      "families": [
-        "tom và jerry: vùng đất người tuyết"
-      ],
-      "items": [
-        {
-          "title": "Tom và Jerry: Vùng Đất Người Tuyết (2022)",
-          "url": "https://rophims.team/phim/tom-va-jerry-vung-dat-nguoi-tuyet",
-          "year": 2022,
-          "season": null
-        },
-        {
-          "title": "Tom và Jerry: Vùng Đất Người Tuyết (2022)",
-          "url": "https://rophims.team/phim/tom-va-jerry-vung-dat-nguoi-tuyet-178984322646914",
-          "year": 2022,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/iYqSQaWDttQIQzsxg9xHyg0bttG.jpg",
-      "count": 2,
-      "families": [
-        "quái vật không gian: romulus (alien: romulus"
-      ],
-      "items": [
-        {
-          "title": "Quái Vật Không Gian: Romulus (Alien: Romulus) (2024)",
-          "url": "https://rophims.team/phim/quai-vat-khong-gian-romulus",
-          "year": 2024,
-          "season": null
-        },
-        {
-          "title": "Quái Vật Không Gian: Romulus (Alien: Romulus) (2024)",
-          "url": "https://rophims.team/phim/quai-vat-khong-gian-romulus-178946605390044",
-          "year": 2024,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/kIBK5SKwgqIIuRKhhWrJn3XkbPq.jpg",
-      "count": 2,
-      "families": [
-        "avengers 2: đế chế ultron"
-      ],
-      "items": [
-        {
-          "title": "Avengers 2: Đế Chế Ultron (2015)",
-          "url": "https://rophims.team/phim/avengers-2-de-che-ultron",
-          "year": 2015,
-          "season": null
-        },
-        {
-          "title": "Avengers 2: Đế Chế Ultron (2015)",
-          "url": "https://rophims.team/phim/avengers-2-de-che-ultron-178538559241368",
-          "year": 2015,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/kwNIQW7egAmI66sb0zIugMbpCfU.jpg",
-      "count": 2,
-      "families": [
-        "ranh giới tội ác (the rip"
-      ],
-      "items": [
-        {
-          "title": "Ranh giới tội ác (The Rip) (2026)",
-          "url": "https://rophims.team/phim/ranh-gioi-toi-ac",
-          "year": 2026,
-          "season": null
-        },
-        {
-          "title": "Ranh giới tội ác (The Rip) (2026)",
-          "url": "https://rophims.team/phim/ranh-gioi-toi-ac-17841287342457",
-          "year": 2026,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/lrbHBAxF9Ir83rxgeBrfmEJriLt.jpg",
-      "count": 2,
-      "families": [
-        "trang trại"
-      ],
-      "items": [
-        {
-          "title": "Trang Trại - Phần 5 (The Ranch - Season 5) (2018)",
-          "url": "https://rophims.team/phim/trang-trai-phan-5",
-          "year": 2018,
-          "season": 5
-        },
-        {
-          "title": "Trang Trại - Phần 7 (The Ranch - Season 7) (2019)",
-          "url": "https://rophims.team/phim/trang-trai-phan-7",
-          "year": 2019,
-          "season": 7
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/ltKI2mkb3GJzx4NNfK4uFDmucSX.jpg",
-      "count": 2,
-      "families": [
-        "tây du ký"
-      ],
-      "items": [
-        {
-          "title": "Tây Du Ký - Phần 1 (1996)",
-          "url": "https://rophims.team/phim/tay-du-ky-phan-1",
-          "year": 1996,
-          "season": 1
-        },
-        {
-          "title": "Tây Du Ký - Phần 2 (1998)",
-          "url": "https://rophims.team/phim/tay-du-ky-phan-2",
-          "year": 1998,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
-      "count": 2,
-      "families": [
-        "avengers 3: cuộc chiến vô cực"
-      ],
-      "items": [
-        {
-          "title": "Avengers 3: Cuộc Chiến Vô Cực (2018)",
-          "url": "https://rophims.team/phim/avengers-3-cuoc-chien-vo-cuc",
-          "year": 2018,
-          "season": null
-        },
-        {
-          "title": "Avengers 3: Cuộc Chiến Vô Cực (2018)",
-          "url": "https://rophims.team/phim/avengers-3-cuoc-chien-vo-cuc-178534959588547",
-          "year": 2018,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/o2wg8QiSCQrhj91tBfxunE3O5Ba.jpg",
-      "count": 2,
-      "families": [
-        "chúa tể những chiếc nhẫn: những chiếc nhẫn quyền"
-      ],
-      "items": [
-        {
-          "title": "Chúa Tể Những Chiếc Nhẫn: Những Chiếc Nhẫn Quyền (2022)",
-          "url": "https://rophims.team/phim/chua-te-nhung-chiec-nhan-nhung-chiec-nhan-quyen-nang-phan-1",
-          "year": 2022,
-          "season": null
-        },
-        {
-          "title": "Chúa Tể Những Chiếc Nhẫn: Những Chiếc Nhẫn Quyền (2024)",
-          "url": "https://rophims.team/phim/chua-te-nhung-chiec-nhan-nhung-chiec-nhan-quyen-nang-phan-2",
-          "year": 2024,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/oQSPp51Uv74civ9gv3wqJmqlJVX.jpg",
-      "count": 2,
-      "families": [
-        "wicked (wicked: for good"
-      ],
-      "items": [
-        {
-          "title": "Wicked: Phần 2 (Wicked: For Good) (2025)",
-          "url": "https://rophims.team/phim/wicked-phan-2",
-          "year": 2025,
-          "season": 2
-        },
-        {
-          "title": "Wicked: Phần 2 (Wicked: For Good) (2025)",
-          "url": "https://rophims.team/phim/wicked-phan-2-178974807758772",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/q5q8kXiPH0oOBfMXwXIC0koe3uV.jpg",
-      "count": 2,
-      "families": [
-        "loài ác độc 2 (species ii"
-      ],
-      "items": [
-        {
-          "title": "Loài Ác Độc 2 (Species II) (1998)",
-          "url": "https://rophims.team/phim/loai-ac-doc-2-178976040279138",
-          "year": 1998,
-          "season": null
-        },
-        {
-          "title": "Loài Ác Độc 2 (Species II) (1998)",
-          "url": "https://rophims.team/phim/loai-ac-doc-2-178974545919375",
-          "year": 1998,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/qxtksG8VHIs3D3iqGiMFRkHW3Fx.jpg",
-      "count": 2,
-      "families": [
-        "thời niên thiếu của bao thanh thiên"
-      ],
-      "items": [
-        {
-          "title": "Thời Niên Thiếu Của Bao Thanh Thiên - Phần 2 (2001)",
-          "url": "https://rophims.team/phim/thoi-nien-thieu-cua-bao-thanh-thien-phan-2",
-          "year": 2001,
-          "season": 2
-        },
-        {
-          "title": "Thời Niên Thiếu Của Bao Thanh Thiên - Phần 3 (2006)",
-          "url": "https://rophims.team/phim/thoi-nien-thieu-cua-bao-thanh-thien-phan-3",
-          "year": 2006,
-          "season": 3
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/u53UYu5XG2hNgWGvs3xGhAVzypl.jpg",
-      "count": 2,
-      "families": [
-        "hoppers: cú nhảy kỳ diệu (hoppers"
-      ],
-      "items": [
-        {
-          "title": "Hoppers: Cú Nhảy Kỳ Diệu (Hoppers) (2026)",
-          "url": "https://rophims.team/phim/hoppers-cu-nhay-ky-dieu-178407832415118",
-          "year": 2026,
-          "season": null
-        },
-        {
-          "title": "Hoppers: Cú Nhảy Kỳ Diệu (Hoppers) (2026)",
-          "url": "https://rophims.team/phim/hoppers-cu-nhay-ky-dieu",
-          "year": 2026,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/vamhMTvh9m9zFHDoR0v1nRtf6T4.jpg",
-      "count": 2,
-      "families": [
-        "người nhện: xa nhà (spider-man: far from home"
-      ],
-      "items": [
-        {
-          "title": "Người Nhện: Xa Nhà (Spider-Man: Far From Home) (2019)",
-          "url": "https://rophims.team/phim/nguoi-nhen-xa-nha-178544304554981",
-          "year": 2019,
-          "season": null
-        },
-        {
-          "title": "Người Nhện: Xa Nhà (Spider-Man: Far From Home) (2019)",
-          "url": "https://rophims.team/phim/nguoi-nhen-xa-nha",
-          "year": 2019,
-          "season": null
-        }
-      ]
-    },
-    {
-      "poster": "https://vsmov.com/storage/images/vwcfvPzYO3Gz975yRXp6DYSSbzo.jpg",
-      "count": 2,
-      "families": [
-        "cậu bé peter pan (peter pan"
-      ],
-      "items": [
-        {
-          "title": "Cậu Bé Peter Pan (Peter Pan) (1953)",
-          "url": "https://rophims.team/phim/cau-be-peter-pan",
-          "year": 1953,
-          "season": null
-        },
-        {
-          "title": "Cậu Bé Peter Pan (Peter Pan) (1953)",
-          "url": "https://rophims.team/phim/peter-pan-huyen-thoai",
-          "year": 1953,
-          "season": null
-        }
-      ]
-    }
-  ],
-  "multiSeasonSamePoster": [
-    {
-      "family": "lực lượng phản ứng",
-      "poster": "https://vsmov.com/storage/images/sbgbFnkO4wuzo15zUKQEVUU6MQe.jpg",
-      "seasons": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "count": 4,
-      "items": [
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 1 (1998)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-1",
-          "year": 1998,
-          "season": 1
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 2 (2000)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-2",
-          "year": 2000,
-          "season": 2
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 3 (2001)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-3",
-          "year": 2001,
-          "season": 3
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 4 (2004)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-4",
-          "year": 2004,
-          "season": 4
-        }
-      ]
-    },
-    {
-      "family": "họa giang hồ chi bất lương nhân",
-      "poster": "https://vsmov.com/storage/images/d16l4tj30LoA88kFd3qZLdyRZhF.jpg",
-      "seasons": [
-        6,
-        7
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Họa giang hồ chi bất lương nhân - Phần 6 (2023)",
-          "url": "https://rophims.team/phim/hoa-giang-ho-chi-bat-luong-nhan-phan-6",
-          "year": 2023,
-          "season": 6
-        },
-        {
-          "title": "Họa giang hồ chi bất lương nhân - Phần 7 (2025)",
-          "url": "https://rophims.team/phim/hoa-giang-ho-chi-bat-luong-nhan-phan-7",
-          "year": 2025,
-          "season": 7
-        }
-      ]
-    },
-    {
-      "family": "nữ hoàng tin tức",
-      "poster": "https://vsmov.com/storage/images/VHiGsZVvdwoTY4QUozztsVsLVJ.jpg",
-      "seasons": [
-        1,
-        2
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Nữ Hoàng Tin Tức - Phần 1 (2023)",
-          "url": "https://rophims.team/phim/nu-hoang-tin-tuc-phan-1",
-          "year": 2023,
-          "season": 1
-        },
-        {
-          "title": "Nữ Hoàng Tin Tức - Phần 2 (2025)",
-          "url": "https://rophims.team/phim/nu-hoang-tin-tuc-phan-2",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "family": "satu: tín đồ",
-      "poster": "https://vsmov.com/storage/images/4s9lGIpvvZ2K6rHsXQEt1KXlSky.jpg",
-      "seasons": [
-        1,
-        2
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Satu: Tín đồ - Phần 1 (The Believers - Season 1) (2024)",
-          "url": "https://rophims.team/phim/satu-tin-do-phan-1",
-          "year": 2024,
-          "season": 1
-        },
-        {
-          "title": "Satu: Tín đồ - Phần 2 (The Believers - Season 2) (2025)",
-          "url": "https://rophims.team/phim/satu-tin-do-phan-2",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "family": "thời niên thiếu của bao thanh thiên",
-      "poster": "https://vsmov.com/storage/images/qxtksG8VHIs3D3iqGiMFRkHW3Fx.jpg",
-      "seasons": [
-        2,
-        3
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Thời Niên Thiếu Của Bao Thanh Thiên - Phần 2 (2001)",
-          "url": "https://rophims.team/phim/thoi-nien-thieu-cua-bao-thanh-thien-phan-2",
-          "year": 2001,
-          "season": 2
-        },
-        {
-          "title": "Thời Niên Thiếu Của Bao Thanh Thiên - Phần 3 (2006)",
-          "url": "https://rophims.team/phim/thoi-nien-thieu-cua-bao-thanh-thien-phan-3",
-          "year": 2006,
-          "season": 3
-        }
-      ]
-    },
-    {
-      "family": "trang trại",
-      "poster": "https://vsmov.com/storage/images/lrbHBAxF9Ir83rxgeBrfmEJriLt.jpg",
-      "seasons": [
-        5,
-        7
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Trang Trại - Phần 5 (The Ranch - Season 5) (2018)",
-          "url": "https://rophims.team/phim/trang-trai-phan-5",
-          "year": 2018,
-          "season": 5
-        },
-        {
-          "title": "Trang Trại - Phần 7 (The Ranch - Season 7) (2019)",
-          "url": "https://rophims.team/phim/trang-trai-phan-7",
-          "year": 2019,
-          "season": 7
-        }
-      ]
-    },
-    {
-      "family": "tân bảng phong thần",
-      "poster": "https://vsmov.com/storage/images/g3t6hM7UNVIpGLMxQa6twcPmtJu.jpg",
-      "seasons": [
-        1,
-        2
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Tân Bảng Phong Thần - Phần 2 (2015)",
-          "url": "https://rophims.team/phim/tan-bang-phong-than-phan-2",
-          "year": 2015,
-          "season": 2
-        },
-        {
-          "title": "Tân Bảng Phong Thần - Phần 1 (2014)",
-          "url": "https://rophims.team/phim/tan-bang-phong-than-phan-1",
-          "year": 2014,
-          "season": 1
-        }
-      ]
-    },
-    {
-      "family": "tây du ký",
-      "poster": "https://vsmov.com/storage/images/ltKI2mkb3GJzx4NNfK4uFDmucSX.jpg",
-      "seasons": [
-        1,
-        2
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Tây Du Ký - Phần 1 (1996)",
-          "url": "https://rophims.team/phim/tay-du-ky-phan-1",
-          "year": 1996,
-          "season": 1
-        },
-        {
-          "title": "Tây Du Ký - Phần 2 (1998)",
-          "url": "https://rophims.team/phim/tay-du-ky-phan-2",
-          "year": 1998,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "family": "đưa ông xã quốc dân về nhà",
-      "poster": "https://vsmov.com/storage/images/d8KLv5Z6cYdoeIGoGRt8Oo45zor.jpg",
-      "seasons": [
-        1,
-        4
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 1 (2016)",
-          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-1",
-          "year": 2016,
-          "season": 1
-        },
-        {
-          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 4 (2018)",
-          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-4",
-          "year": 2018,
-          "season": 4
-        }
-      ]
-    },
-    {
-      "family": "đấu phá thương khung",
-      "poster": "https://vsmov.com/storage/images/cTCn2EO69SERNfhaezJMoqBom4G.jpg",
-      "seasons": [
-        1,
-        2
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Đấu Phá Thương Khung - Phần 1 (2017)",
-          "url": "https://rophims.team/phim/dau-pha-thuong-khung-phan-1",
-          "year": 2017,
-          "season": 1
-        },
-        {
-          "title": "Đấu Phá Thương Khung - Phần 2 (2018)",
-          "url": "https://rophims.team/phim/dau-pha-thuong-khung-phan-2",
-          "year": 2018,
-          "season": 2
-        }
-      ]
-    }
-  ],
-  "sameFamilyDifferentYearSamePoster": [
-    {
-      "family": "lực lượng phản ứng",
-      "poster": "https://vsmov.com/storage/images/sbgbFnkO4wuzo15zUKQEVUU6MQe.jpg",
-      "years": [
-        1998,
-        2000,
-        2001,
-        2004
-      ],
-      "count": 4,
-      "items": [
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 1 (1998)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-1",
-          "year": 1998,
-          "season": 1
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 2 (2000)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-2",
-          "year": 2000,
-          "season": 2
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 3 (2001)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-3",
-          "year": 2001,
-          "season": 3
-        },
-        {
-          "title": "Lực Lượng Phản Ứng - Phần 4 (2004)",
-          "url": "https://rophims.team/phim/luc-luong-phan-ung-phan-4",
-          "year": 2004,
-          "season": 4
-        }
-      ]
-    },
-    {
-      "family": "chúa tể những chiếc nhẫn: những chiếc nhẫn quyền",
-      "poster": "https://vsmov.com/storage/images/o2wg8QiSCQrhj91tBfxunE3O5Ba.jpg",
-      "years": [
-        2022,
-        2024
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Chúa Tể Những Chiếc Nhẫn: Những Chiếc Nhẫn Quyền (2022)",
-          "url": "https://rophims.team/phim/chua-te-nhung-chiec-nhan-nhung-chiec-nhan-quyen-nang-phan-1",
-          "year": 2022,
-          "season": null
-        },
-        {
-          "title": "Chúa Tể Những Chiếc Nhẫn: Những Chiếc Nhẫn Quyền (2024)",
-          "url": "https://rophims.team/phim/chua-te-nhung-chiec-nhan-nhung-chiec-nhan-quyen-nang-phan-2",
-          "year": 2024,
-          "season": null
-        }
-      ]
-    },
-    {
-      "family": "họa giang hồ chi bất lương nhân",
-      "poster": "https://vsmov.com/storage/images/d16l4tj30LoA88kFd3qZLdyRZhF.jpg",
-      "years": [
-        2023,
-        2025
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Họa giang hồ chi bất lương nhân - Phần 6 (2023)",
-          "url": "https://rophims.team/phim/hoa-giang-ho-chi-bat-luong-nhan-phan-6",
-          "year": 2023,
-          "season": 6
-        },
-        {
-          "title": "Họa giang hồ chi bất lương nhân - Phần 7 (2025)",
-          "url": "https://rophims.team/phim/hoa-giang-ho-chi-bat-luong-nhan-phan-7",
-          "year": 2025,
-          "season": 7
-        }
-      ]
-    },
-    {
-      "family": "nữ hoàng tin tức",
-      "poster": "https://vsmov.com/storage/images/VHiGsZVvdwoTY4QUozztsVsLVJ.jpg",
-      "years": [
-        2023,
-        2025
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Nữ Hoàng Tin Tức - Phần 1 (2023)",
-          "url": "https://rophims.team/phim/nu-hoang-tin-tuc-phan-1",
-          "year": 2023,
-          "season": 1
-        },
-        {
-          "title": "Nữ Hoàng Tin Tức - Phần 2 (2025)",
-          "url": "https://rophims.team/phim/nu-hoang-tin-tuc-phan-2",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "family": "satu: tín đồ",
-      "poster": "https://vsmov.com/storage/images/4s9lGIpvvZ2K6rHsXQEt1KXlSky.jpg",
-      "years": [
-        2024,
-        2025
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Satu: Tín đồ - Phần 1 (The Believers - Season 1) (2024)",
-          "url": "https://rophims.team/phim/satu-tin-do-phan-1",
-          "year": 2024,
-          "season": 1
-        },
-        {
-          "title": "Satu: Tín đồ - Phần 2 (The Believers - Season 2) (2025)",
-          "url": "https://rophims.team/phim/satu-tin-do-phan-2",
-          "year": 2025,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "family": "thời niên thiếu của bao thanh thiên",
-      "poster": "https://vsmov.com/storage/images/qxtksG8VHIs3D3iqGiMFRkHW3Fx.jpg",
-      "years": [
-        2001,
-        2006
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Thời Niên Thiếu Của Bao Thanh Thiên - Phần 2 (2001)",
-          "url": "https://rophims.team/phim/thoi-nien-thieu-cua-bao-thanh-thien-phan-2",
-          "year": 2001,
-          "season": 2
-        },
-        {
-          "title": "Thời Niên Thiếu Của Bao Thanh Thiên - Phần 3 (2006)",
-          "url": "https://rophims.team/phim/thoi-nien-thieu-cua-bao-thanh-thien-phan-3",
-          "year": 2006,
-          "season": 3
-        }
-      ]
-    },
-    {
-      "family": "trang trại",
-      "poster": "https://vsmov.com/storage/images/lrbHBAxF9Ir83rxgeBrfmEJriLt.jpg",
-      "years": [
-        2018,
-        2019
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Trang Trại - Phần 5 (The Ranch - Season 5) (2018)",
-          "url": "https://rophims.team/phim/trang-trai-phan-5",
-          "year": 2018,
-          "season": 5
-        },
-        {
-          "title": "Trang Trại - Phần 7 (The Ranch - Season 7) (2019)",
-          "url": "https://rophims.team/phim/trang-trai-phan-7",
-          "year": 2019,
-          "season": 7
-        }
-      ]
-    },
-    {
-      "family": "tân bảng phong thần",
-      "poster": "https://vsmov.com/storage/images/g3t6hM7UNVIpGLMxQa6twcPmtJu.jpg",
-      "years": [
-        2014,
-        2015
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Tân Bảng Phong Thần - Phần 2 (2015)",
-          "url": "https://rophims.team/phim/tan-bang-phong-than-phan-2",
-          "year": 2015,
-          "season": 2
-        },
-        {
-          "title": "Tân Bảng Phong Thần - Phần 1 (2014)",
-          "url": "https://rophims.team/phim/tan-bang-phong-than-phan-1",
-          "year": 2014,
-          "season": 1
-        }
-      ]
-    },
-    {
-      "family": "tây du ký",
-      "poster": "https://vsmov.com/storage/images/ltKI2mkb3GJzx4NNfK4uFDmucSX.jpg",
-      "years": [
-        1996,
-        1998
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Tây Du Ký - Phần 1 (1996)",
-          "url": "https://rophims.team/phim/tay-du-ky-phan-1",
-          "year": 1996,
-          "season": 1
-        },
-        {
-          "title": "Tây Du Ký - Phần 2 (1998)",
-          "url": "https://rophims.team/phim/tay-du-ky-phan-2",
-          "year": 1998,
-          "season": 2
-        }
-      ]
-    },
-    {
-      "family": "đưa ông xã quốc dân về nhà",
-      "poster": "https://vsmov.com/storage/images/d8KLv5Z6cYdoeIGoGRt8Oo45zor.jpg",
-      "years": [
-        2016,
-        2018
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 1 (2016)",
-          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-1",
-          "year": 2016,
-          "season": 1
-        },
-        {
-          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 4 (2018)",
-          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-4",
-          "year": 2018,
-          "season": 4
-        }
-      ]
-    },
-    {
-      "family": "đấu phá thương khung",
-      "poster": "https://vsmov.com/storage/images/cTCn2EO69SERNfhaezJMoqBom4G.jpg",
-      "years": [
-        2017,
-        2018
-      ],
-      "count": 2,
-      "items": [
-        {
-          "title": "Đấu Phá Thương Khung - Phần 1 (2017)",
-          "url": "https://rophims.team/phim/dau-pha-thuong-khung-phan-1",
-          "year": 2017,
-          "season": 1
-        },
-        {
-          "title": "Đấu Phá Thương Khung - Phần 2 (2018)",
-          "url": "https://rophims.team/phim/dau-pha-thuong-khung-phan-2",
-          "year": 2018,
-          "season": 2
-        }
-      ]
-    }
-  ],
+  "topSameFamilyPosterReuse": [],
+  "multiSeasonSamePoster": [],
+  "sameFamilyDifferentYearSamePoster": [],
   "likelyDuplicateRecords": [
     {
       "key": {
@@ -1303,12 +48,12 @@
         {
           "title": "Avengers 2: Đế Chế Ultron (2015)",
           "url": "https://rophims.team/phim/avengers-2-de-che-ultron",
-          "poster": "https://vsmov.com/storage/images/kIBK5SKwgqIIuRKhhWrJn3XkbPq.jpg"
+          "poster": "https://vsmov.com/storage/images/8j5ARDxYgeyuPjkwQIkcmMU8x7I.jpg"
         },
         {
           "title": "Avengers 2: Đế Chế Ultron (2015)",
           "url": "https://rophims.team/phim/avengers-2-de-che-ultron-178538559241368",
-          "poster": "https://vsmov.com/storage/images/kIBK5SKwgqIIuRKhhWrJn3XkbPq.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg"
         }
       ]
     },
@@ -1323,12 +68,12 @@
         {
           "title": "Avengers 3: Cuộc Chiến Vô Cực (2018)",
           "url": "https://rophims.team/phim/avengers-3-cuoc-chien-vo-cuc",
-          "poster": "https://vsmov.com/storage/images/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg"
+          "poster": "https://vsmov.com/storage/images/8gHc1cthgTOkmMiOREodCVZgJ7P.jpg"
         },
         {
           "title": "Avengers 3: Cuộc Chiến Vô Cực (2018)",
           "url": "https://rophims.team/phim/avengers-3-cuoc-chien-vo-cuc-178534959588547",
-          "poster": "https://vsmov.com/storage/images/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
         }
       ]
     },
@@ -1383,12 +128,12 @@
         {
           "title": "Captain America: Chiến Binh Mùa Đông (2014)",
           "url": "https://rophims.team/phim/captain-america-chien-binh-mua-dong-178548896509931",
-          "poster": "https://vsmov.com/storage/images/1RWLMyC9KcFfcaoViMiJGSSZzzr.jpg"
+          "poster": "https://vsmov.com/storage/images/tJYTF29bziPwmjjBVHWsvqvcehb.jpg"
         },
         {
           "title": "Captain America: Chiến Binh Mùa Đông (2014)",
           "url": "https://rophims.team/phim/captain-america-chien-binh-mua-dong",
-          "poster": "https://vsmov.com/storage/images/1RWLMyC9KcFfcaoViMiJGSSZzzr.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg"
         }
       ]
     },
@@ -1403,12 +148,12 @@
         {
           "title": "Chiến Binh Báo Đen: Wakanda Bất Diệt (2022)",
           "url": "https://rophims.team/phim/chien-binh-bao-den-wakanda-bat-diet-17854432445164",
-          "poster": "https://vsmov.com/storage/images/83H0C66AcvkwpG2738VCTHMY9uv.jpg"
+          "poster": "https://vsmov.com/storage/images/aHQCq7dRaDdMVT2ojKnpjpBp55Y.jpg"
         },
         {
           "title": "Chiến Binh Báo Đen: Wakanda Bất Diệt (2022)",
           "url": "https://rophims.team/phim/chien-binh-bao-den-wakanda-bat-diet",
-          "poster": "https://vsmov.com/storage/images/83H0C66AcvkwpG2738VCTHMY9uv.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/sv1xJUazXeYqALzczSZ3O6nkH75.jpg"
         }
       ]
     },
@@ -1423,12 +168,12 @@
         {
           "title": "Cuộc Đua Tử Thần 3: Địa Ngục (2013)",
           "url": "https://rophims.team/phim/cuoc-dua-tu-than-3-dia-nguc-178681862641872",
-          "poster": "https://vsmov.com/storage/images/3J1FwvI0JiploGrwsIQ4MTKaW1s.jpg"
+          "poster": "https://vsmov.com/storage/images/aRV4oC61nmBqypSaXtMXOk99dOM.jpg"
         },
         {
           "title": "Cuộc Đua Tử Thần 3: Địa Ngục (2013)",
           "url": "https://rophims.team/phim/cuoc-dua-tu-than-3-dia-nguc",
-          "poster": "https://vsmov.com/storage/images/3J1FwvI0JiploGrwsIQ4MTKaW1s.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/aRV4oC61nmBqypSaXtMXOk99dOM.jpg"
         }
       ]
     },
@@ -1443,12 +188,12 @@
         {
           "title": "Cậu Bé Peter Pan (Peter Pan) (1953)",
           "url": "https://rophims.team/phim/cau-be-peter-pan",
-          "poster": "https://vsmov.com/storage/images/vwcfvPzYO3Gz975yRXp6DYSSbzo.jpg"
+          "poster": "https://vsmov.com/storage/images/fJJOs1iyrhKfZceANxoPxPwNGF1.jpg"
         },
         {
           "title": "Cậu Bé Peter Pan (Peter Pan) (1953)",
           "url": "https://rophims.team/phim/peter-pan-huyen-thoai",
-          "poster": "https://vsmov.com/storage/images/vwcfvPzYO3Gz975yRXp6DYSSbzo.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/fJJOs1iyrhKfZceANxoPxPwNGF1.jpg"
         }
       ]
     },
@@ -1543,12 +288,12 @@
         {
           "title": "Hoppers: Cú Nhảy Kỳ Diệu (Hoppers) (2026)",
           "url": "https://rophims.team/phim/hoppers-cu-nhay-ky-dieu-178407832415118",
-          "poster": "https://vsmov.com/storage/images/u53UYu5XG2hNgWGvs3xGhAVzypl.jpg"
+          "poster": "https://vsmov.com/storage/images/1A7WxXAYddDCrO9dTCEdSzQKU9d.jpg"
         },
         {
           "title": "Hoppers: Cú Nhảy Kỳ Diệu (Hoppers) (2026)",
           "url": "https://rophims.team/phim/hoppers-cu-nhay-ky-dieu",
-          "poster": "https://vsmov.com/storage/images/u53UYu5XG2hNgWGvs3xGhAVzypl.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/xjtWQ2CL1mpmMNwuU5HeS4Iuwuu.jpg"
         }
       ]
     },
@@ -1563,12 +308,12 @@
         {
           "title": "Loài Ác Độc 2 (Species II) (1998)",
           "url": "https://rophims.team/phim/loai-ac-doc-2-178976040279138",
-          "poster": "https://vsmov.com/storage/images/q5q8kXiPH0oOBfMXwXIC0koe3uV.jpg"
+          "poster": "https://vsmov.com/storage/images/8LSBi0bHACZtIiVErUBQ2UXNYLA.jpg"
         },
         {
           "title": "Loài Ác Độc 2 (Species II) (1998)",
           "url": "https://rophims.team/phim/loai-ac-doc-2-178974545919375",
-          "poster": "https://vsmov.com/storage/images/q5q8kXiPH0oOBfMXwXIC0koe3uV.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/8LSBi0bHACZtIiVErUBQ2UXNYLA.jpg"
         }
       ]
     },
@@ -1603,12 +348,12 @@
         {
           "title": "Người Nhện: Xa Nhà (Spider-Man: Far From Home) (2019)",
           "url": "https://rophims.team/phim/nguoi-nhen-xa-nha-178544304554981",
-          "poster": "https://vsmov.com/storage/images/vamhMTvh9m9zFHDoR0v1nRtf6T4.jpg"
+          "poster": "https://vsmov.com/storage/images/pkUEHB1CYfPj5K8Td484TT9mBF1.jpg"
         },
         {
           "title": "Người Nhện: Xa Nhà (Spider-Man: Far From Home) (2019)",
           "url": "https://rophims.team/phim/nguoi-nhen-xa-nha",
-          "poster": "https://vsmov.com/storage/images/vamhMTvh9m9zFHDoR0v1nRtf6T4.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
         }
       ]
     },
@@ -1663,12 +408,12 @@
         {
           "title": "Phượng Hoàng Đài Thượng (Love & Crown) (2025)",
           "url": "https://rophims.team/phim/phuong-hoang-dai-thuong-178560566456275",
-          "poster": "https://vsmov.com/storage/images/1ybpRrDgtejMdAP04Qhtd52QwWT.jpg"
+          "poster": "https://vsmov.com/storage/images/hT25FLdNVr98uG5oLIzKTQls0Hi.jpg"
         },
         {
           "title": "Phượng Hoàng Đài Thượng (Love & Crown) (2025)",
           "url": "https://rophims.team/phim/phuong-hoang-dai-thuong",
-          "poster": "https://vsmov.com/storage/images/1ybpRrDgtejMdAP04Qhtd52QwWT.jpg"
+          "poster": "https://vsmov.com/storage/images/saPPw3qyKVvIlVTG94UrAjaCPA.jpg"
         }
       ]
     },
@@ -1683,12 +428,12 @@
         {
           "title": "Quái Vật Không Gian: Romulus (Alien: Romulus) (2024)",
           "url": "https://rophims.team/phim/quai-vat-khong-gian-romulus",
-          "poster": "https://vsmov.com/storage/images/iYqSQaWDttQIQzsxg9xHyg0bttG.jpg"
+          "poster": "https://vsmov.com/storage/images/fTKWAzKGgeEoAb5gv0LWjQmhDao.jpg"
         },
         {
           "title": "Quái Vật Không Gian: Romulus (Alien: Romulus) (2024)",
           "url": "https://rophims.team/phim/quai-vat-khong-gian-romulus-178946605390044",
-          "poster": "https://vsmov.com/storage/images/iYqSQaWDttQIQzsxg9xHyg0bttG.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/2uSWRTtCG336nuBiG8jOTEUKSy8.jpg"
         }
       ]
     },
@@ -1703,12 +448,12 @@
         {
           "title": "Ranh giới tội ác (The Rip) (2026)",
           "url": "https://rophims.team/phim/ranh-gioi-toi-ac",
-          "poster": "https://vsmov.com/storage/images/kwNIQW7egAmI66sb0zIugMbpCfU.jpg"
+          "poster": "https://vsmov.com/storage/images/6xL4Ei29kVIR8BXYyTAVMsggs87.jpg"
         },
         {
           "title": "Ranh giới tội ác (The Rip) (2026)",
           "url": "https://rophims.team/phim/ranh-gioi-toi-ac-17841287342457",
-          "poster": "https://vsmov.com/storage/images/kwNIQW7egAmI66sb0zIugMbpCfU.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/4wsYWH73Hb1B6noGIFaRQSAkuXj.jpg"
         }
       ]
     },
@@ -1783,12 +528,12 @@
         {
           "title": "Tom và Jerry: Vùng Đất Người Tuyết (2022)",
           "url": "https://rophims.team/phim/tom-va-jerry-vung-dat-nguoi-tuyet",
-          "poster": "https://vsmov.com/storage/images/hgKkCRQT9HhHJ9NKPQKnF1N5eGL.jpg"
+          "poster": "https://vsmov.com/storage/images/memqWrs4zmLgMBfzTfebrOXbytG.jpg"
         },
         {
           "title": "Tom và Jerry: Vùng Đất Người Tuyết (2022)",
           "url": "https://rophims.team/phim/tom-va-jerry-vung-dat-nguoi-tuyet-178984322646914",
-          "poster": "https://vsmov.com/storage/images/hgKkCRQT9HhHJ9NKPQKnF1N5eGL.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/memqWrs4zmLgMBfzTfebrOXbytG.jpg"
         }
       ]
     },
@@ -1828,7 +573,7 @@
         {
           "title": "Wicked: Phần 2 (Wicked: For Good) (2025)",
           "url": "https://rophims.team/phim/wicked-phan-2-178974807758772",
-          "poster": "https://vsmov.com/storage/images/oQSPp51Uv74civ9gv3wqJmqlJVX.jpg"
+          "poster": "https://image.tmdb.org/t/p/original/si9tolnefLSUKaqQEGz1bWArOaL.jpg"
         }
       ]
     }
