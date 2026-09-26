@@ -1,0 +1,29 @@
+name: Fix Vikings season posters
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'fix_vikings_posters.py'
+      - '.github/workflows/fix-vikings-posters.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, path: main}
+      - uses: actions/checkout@v4
+        with: {ref: catalog-data, path: data, fetch-depth: 0}
+      - run: pip install curl-cffi
+      - run: python main/fix_vikings_posters.py data/rophim_catalog.json
+      - name: Publish Vikings posters
+        working-directory: data
+        run: |
+          git config user.name "ivy-vikings-poster-fix"
+          git config user.email "actions@users.noreply.github.com"
+          git add rophim_catalog.json
+          git commit -m "Fix Vikings season-specific posters"
+          git push origin HEAD:catalog-data
