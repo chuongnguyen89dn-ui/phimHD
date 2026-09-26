@@ -96,3 +96,5 @@ jobs:
 
 # audit-rerun: 2026-09-26 resolver validation
 # audit-rerun: streamc-bootstrap-hls
+
+# audit-rerun: restored-full-app-streamc-valid
