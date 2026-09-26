@@ -2,7 +2,7 @@ import re,html
 from curl_cffi import requests
 from urllib.parse import urljoin
 u="https://rophims.team/phimhay"
-r=requests.get(u,headers={"User-Agent":"Mozilla/5.0","Accept-Language":"vi-VN,vi;q=0.9"},timeout=30,impersonate="chrome")
+r=requests.get(u,headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/146 Safari/537.36","Accept-Language":"vi-VN,vi;q=0.9","Referer":"https://rophims.team/"},timeout=30,impersonate="chrome")
 r.raise_for_status()
 h=r.text.replace("\\/","/")
 label="Phim Điện Ảnh Mới Cóng"
