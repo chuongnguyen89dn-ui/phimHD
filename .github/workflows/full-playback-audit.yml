@@ -93,3 +93,5 @@ jobs:
           git add full_playback_audit.json
           git commit -m "Update full catalog playback audit" || exit 0
           git push origin HEAD:main
+
+# audit-rerun: 2026-09-26 resolver validation
