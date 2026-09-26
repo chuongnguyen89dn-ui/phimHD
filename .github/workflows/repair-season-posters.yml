@@ -1,0 +1,34 @@
+name: Repair season posters
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'repair_season_posters.py'
+      - '.github/workflows/repair-season-posters.yml'
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+      - uses: actions/checkout@v4
+        with:
+          ref: catalog-data
+          path: data
+          fetch-depth: 0
+      - run: pip install -r main/requirements.txt
+      - run: python main/repair_season_posters.py data/rophim_catalog.json
+      - name: Publish repaired catalog
+        working-directory: data
+        run: |
+          git config user.name "ivy-poster-repair"
+          git config user.email "actions@users.noreply.github.com"
+          git add rophim_catalog.json
+          git commit -m "Repair season-specific posters" || exit 0
+          git push origin HEAD:catalog-data
