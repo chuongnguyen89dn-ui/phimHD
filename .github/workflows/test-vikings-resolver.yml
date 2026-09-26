@@ -26,3 +26,5 @@ jobs:
           ROPHIM_CATALOG: rophim_catalog.json
           IVY_REMOTE_CATALOG: http://127.0.0.1:9/disabled
         run: python test_vikings_resolver.py
+
+# rerun after full app restore
