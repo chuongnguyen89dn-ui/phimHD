@@ -1,0 +1,19 @@
+name: Test StreamC resolver
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app_full.py'
+      - 'test_streamc_resolver.py'
+      - '.github/workflows/test-streamc-resolver.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -r requirements.txt
+      - run: python test_streamc_resolver.py
