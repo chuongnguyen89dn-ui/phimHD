@@ -146,6 +146,33 @@ def resolve_media_url(raw,referer=None,depth=0):
     decoded=decode_js_escapes(page)
     out=[]
 
+    # Current RoPhim /xem-phim/ pages often keep the real player URL only
+    # inside the JavaScript episodes array. Resolve those sources directly
+    # instead of treating the watch page itself as a media/player URL.
+    if "rophims.team/xem-phim/" in u.lower() or "rophim.loan/xem-phim/" in u.lower():
+        try:
+            arr=extract_array_after(page,"var episodes =") or extract_array_after(page,"episodes =") or []
+            watch_sources=[]
+            for srv in arr if isinstance(arr,list) else []:
+                for item in (srv.get("server_data") or []) if isinstance(srv,dict) else []:
+                    media=item.get("link_m3u8") or item.get("link_embed")
+                    if not media: continue
+                    media=html.unescape(str(media).replace("\\/","/")).strip()
+                    if media and media not in watch_sources: watch_sources.append(media)
+            for media in watch_sources[:12]:
+                if ".m3u8" in media.lower():
+                    pair=(urljoin(u,media),u)
+                    if pair not in out: out.append(pair)
+                elif depth<2:
+                    for pair in resolve_media_url(media,u,depth+1):
+                        if pair not in out: out.append(pair)
+                if len(out)>=8: break
+            if out:
+                _resolve_cache[(u,referer or "")]=(time.time(),out)
+                return out
+        except Exception as e:
+            print("[rophim watch resolve]",u,type(e).__name__,str(e)[:180],flush=True)
+
     # First trust only explicit HLS URLs found in the player HTML/JS.
     # Scan both raw and JavaScript-decoded content because StreamVSMov often
     # hides URLs behind \xNN / \uNNNN escapes.
