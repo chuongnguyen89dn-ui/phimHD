@@ -1,0 +1,27 @@
+name: Scientific poster duplicate audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'audit_poster_duplicates.py'
+      - '.github/workflows/audit-poster-duplicates.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - run: curl -fL https://raw.githubusercontent.com/chuongnguyen89dn-ui/phimHD/catalog-data/rophim_catalog.json -o rophim_catalog.json
+      - run: python audit_poster_duplicates.py rophim_catalog.json
+      - uses: actions/upload-artifact@v4
+        with: {name: poster-duplicate-audit, path: poster_duplicate_audit.json}
+      - run: |
+          git config user.name "ivy-poster-audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add poster_duplicate_audit.json
+          git commit -m "Update scientific poster duplicate audit" || exit 0
+          git push origin HEAD:main
