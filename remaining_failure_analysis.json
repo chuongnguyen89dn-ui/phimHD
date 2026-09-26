@@ -1,0 +1,840 @@
+{
+  "audit": {
+    "checkedTitles": 7586,
+    "failedTitles": 1328,
+    "failedSeriesEpisodes": 9252
+  },
+  "remainingByKind": {
+    "movie": 978,
+    "series": 350
+  },
+  "remainingReasons": [
+    [
+      "empty_stream",
+      978
+    ],
+    [
+      "series_episode_failures",
+      350
+    ]
+  ],
+  "sourceHosts": [
+    [
+      "embed1.streamc.xyz",
+      4932
+    ],
+    [
+      "embed14.streamc.xyz",
+      3112
+    ],
+    [
+      "embed18.streamc.xyz",
+      2828
+    ],
+    [
+      "embed15.streamc.xyz",
+      2798
+    ],
+    [
+      "rophims.team",
+      2066
+    ],
+    [
+      "embed13.streamc.xyz",
+      2028
+    ],
+    [
+      "embed11.streamc.xyz",
+      1906
+    ],
+    [
+      "embed12.streamc.xyz",
+      1754
+    ],
+    [
+      "s5.phim1280.tv",
+      668
+    ],
+    [
+      "v7.kkphimplayer7.com",
+      538
+    ],
+    [
+      "embed10.streamc.xyz",
+      314
+    ],
+    [
+      "s6.kkphimplayer6.com",
+      222
+    ],
+    [
+      "embed2.streamc.xyz",
+      192
+    ],
+    [
+      "s2.streamvsmov.com",
+      148
+    ],
+    [
+      "s1.streamvsmov.com",
+      130
+    ],
+    [
+      "embed4.streamc.xyz",
+      106
+    ],
+    [
+      "v9.streamvsmov.com",
+      88
+    ],
+    [
+      "embed17.streamc.xyz",
+      78
+    ],
+    [
+      "embed5.streamc.xyz",
+      52
+    ],
+    [
+      "embed.streamc.xyz",
+      44
+    ],
+    [
+      "s4.phim1280.tv",
+      20
+    ],
+    [
+      "a.kvp726.com",
+      19
+    ],
+    [
+      "v2.streamvsmov.com",
+      16
+    ],
+    [
+      "v1.streamvsmov.com",
+      2
+    ],
+    [
+      "embed3.streamc.xyz",
+      2
+    ]
+  ],
+  "sourceShapes": [
+    [
+      "other_url",
+      20146
+    ],
+    [
+      "rophim_watch",
+      2066
+    ],
+    [
+      "direct_m3u8",
+      1467
+    ],
+    [
+      "streamvsmov_video",
+      318
+    ],
+    [
+      "streamvsmov_hls",
+      66
+    ]
+  ],
+  "sourceExamples": {
+    "rophim_watch": [
+      {
+        "title": "Giới Quý Tộc (The Aristocrats) (2005) - Vietsub HD | RoPhim",
+        "url": "https://rophims.team/xem-phim/gioi-quy-toc?tap=tap-1&sv=0"
+      },
+      {
+        "title": "Giới Quý Tộc (The Aristocrats) (2005) - Vietsub HD | RoPhim",
+        "url": "https://rophims.team/xem-phim/gioi-quy-toc?tap=tap-1&sv=0"
+      },
+      {
+        "title": "Cảm Ơn Người Đã Thức Cùng Tôi (2026) | RoPhim",
+        "url": "https://rophims.team/xem-phim/cam-on-nguoi-da-thuc-cung-toi?tap=tap-1&sv=0"
+      },
+      {
+        "title": "Cảm Ơn Người Đã Thức Cùng Tôi (2026) | RoPhim",
+        "url": "https://rophims.team/xem-phim/cam-on-nguoi-da-thuc-cung-toi?tap=tap-1&sv=0"
+      },
+      {
+        "title": "100 nỗi sợ của tôi (Jumping from High Places) | RoPhim",
+        "url": "https://rophims.team/xem-phim/100-noi-so-cua-toi?tap=tap-1&sv=0"
+      },
+      {
+        "title": "100 nỗi sợ của tôi (Jumping from High Places) | RoPhim",
+        "url": "https://rophims.team/xem-phim/100-noi-so-cua-toi?tap=tap-1&sv=0"
+      },
+      {
+        "title": "A Culpa é da Mãe (A Culpa é da Mãe) (2025) - Vietsub HD | RoPhim",
+        "url": "https://rophims.team/xem-phim/a-culpa-e-da-mae?tap=tap-1&sv=0"
+      },
+      {
+        "title": "A Culpa é da Mãe (A Culpa é da Mãe) (2025) - Vietsub HD | RoPhim",
+        "url": "https://rophims.team/xem-phim/a-culpa-e-da-mae?tap=tap-1&sv=0"
+      }
+    ],
+    "other_url": [
+      {
+        "title": "JoJo no Kimyou na Bouken Part 7: Steel Ball Run | RoPhim",
+        "url": "https://embed13.streamc.xyz/embed.php?hash=7d16a34b60bd28dee122fa48cf872573"
+      },
+      {
+        "title": "JoJo no Kimyou na Bouken Part 7: Steel Ball Run | RoPhim",
+        "url": "https://embed13.streamc.xyz/embed.php?hash=7d16a34b60bd28dee122fa48cf872573"
+      },
+      {
+        "title": "JoJo no Kimyou na Bouken Part 7: Steel Ball Run | RoPhim",
+        "url": "https://embed12.streamc.xyz/embed.php?hash=6103585670eed354ab555cd0014a6d59"
+      },
+      {
+        "title": "JoJo no Kimyou na Bouken Part 7: Steel Ball Run | RoPhim",
+        "url": "https://embed12.streamc.xyz/embed.php?hash=6103585670eed354ab555cd0014a6d59"
+      },
+      {
+        "title": "100 nỗi sợ của tôi (Jumping from High Places) | RoPhim",
+        "url": "https://embed14.streamc.xyz/embed.php?hash=b898a6c0d2a800adf5065595f1ae9ea3"
+      },
+      {
+        "title": "100 nỗi sợ của tôi (Jumping from High Places) | RoPhim",
+        "url": "https://embed14.streamc.xyz/embed.php?hash=b898a6c0d2a800adf5065595f1ae9ea3"
+      },
+      {
+        "title": "Berlin, Berlin: Cô dâu tháo chạy | RoPhim",
+        "url": "https://embed13.streamc.xyz/embed.php?hash=e82089e1bb4fe0f591972139841b3e21"
+      },
+      {
+        "title": "Berlin, Berlin: Cô dâu tháo chạy | RoPhim",
+        "url": "https://embed13.streamc.xyz/embed.php?hash=e82089e1bb4fe0f591972139841b3e21"
+      }
+    ],
+    "streamvsmov_video": [
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s1.streamvsmov.com/video/f43c0a3e-3d81-452e-9196-1131ca18b647"
+      },
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s1.streamvsmov.com/video/f43c0a3e-3d81-452e-9196-1131ca18b647"
+      },
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s2.streamvsmov.com/video/945e4d70-04a0-4e21-b590-e7c1d18ba131"
+      },
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s2.streamvsmov.com/video/945e4d70-04a0-4e21-b590-e7c1d18ba131"
+      },
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s1.streamvsmov.com/video/71afc69f-17d6-4da0-9410-4a01e69d68b3"
+      },
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s1.streamvsmov.com/video/71afc69f-17d6-4da0-9410-4a01e69d68b3"
+      },
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s2.streamvsmov.com/video/767f7460-011a-48fa-9918-d63abc5d23ee"
+      },
+      {
+        "title": "BẤT KHẢ CHIẾN BẠI ( Phần 2 ) (2023) | RoPhim",
+        "url": "https://s2.streamvsmov.com/video/767f7460-011a-48fa-9918-d63abc5d23ee"
+      }
+    ],
+    "direct_m3u8": [
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260715/4bI3WaIR/index.m3u8"
+      },
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260720/C1kwe3Dg/index.m3u8"
+      },
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260729/I741AqKF/index.m3u8"
+      },
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260810/93H9AuN7/index.m3u8"
+      },
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260810/pscXz6YG/index.m3u8"
+      },
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260819/fKQ2BPzr/index.m3u8"
+      },
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260829/zUz24o1N/index.m3u8"
+      },
+      {
+        "title": "Hanaori-san wa Tensei shitemo Kenka ga Shitai (2026) | RoPhim",
+        "url": "https://v7.kkphimplayer7.com/20260901/dcnoMVlJ/index.m3u8"
+      }
+    ],
+    "streamvsmov_hls": [
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/63057fe3-098d-4fdd-b90c-7f34ec1ad200/master.m3u8"
+      },
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/9026a048-2e2f-4e4d-b093-585ec7ff0fcf/master.m3u8"
+      },
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/25462658-92f7-4464-91f2-ab7a6325fdda/master.m3u8"
+      },
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/447aba58-7c37-4421-b7f4-ef97ed928347/master.m3u8"
+      },
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/fb217f89-2d0e-41ff-a4e9-4fc7a7b90b40/master.m3u8"
+      },
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/2ae169bd-bdca-42c4-bca8-cb1a6a27d5ce/master.m3u8"
+      },
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/b23a5fd5-7b61-4c80-b90b-32f4dc4b080d/master.m3u8"
+      },
+      {
+        "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+        "url": "https://v9.streamvsmov.com/stream/3fd58426-4391-432f-8c5a-35fded1d53e6/master.m3u8"
+      }
+    ]
+  },
+  "duplicatePosterFamilies": 30,
+  "duplicatePosterExamples": [
+    {
+      "family": "30 rock (2012) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "30 Rock - Phần 6 (30 Rock - Season 6) (2012) | RoPhim",
+          "url": "https://rophims.team/phim/30-rock-phan-6",
+          "poster": "https://vsmov.com/storage/images/cK5AbLFBY2JDoqEdVXk0697e2SV.jpg"
+        },
+        {
+          "title": "30 Rock - Phần 7 (30 Rock - Season 7) (2012) | RoPhim",
+          "url": "https://rophims.team/phim/30-rock-phan-7",
+          "poster": "https://vsmov.com/storage/images/cK5AbLFBY2JDoqEdVXk0697e2SV.jpg"
+        }
+      ]
+    },
+    {
+      "family": "bác sĩ tài ba (2021) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Bác Sĩ Tài Ba - Phần 3 (New Amsterdam - Season 3) (2021) | RoPhim",
+          "url": "https://rophims.team/phim/bac-si-tai-ba-phan-3",
+          "poster": "https://vsmov.com/storage/images/9hfA9zMsyckwZ8WLMVQYKG8YSwY.jpg"
+        },
+        {
+          "title": "Bác Sĩ Tài Ba - Phần 4 (New Amsterdam - Season 4) (2021) | RoPhim",
+          "url": "https://rophims.team/phim/bac-si-tai-ba-phan-4",
+          "poster": "https://vsmov.com/storage/images/9hfA9zMsyckwZ8WLMVQYKG8YSwY.jpg"
+        }
+      ]
+    },
+    {
+      "family": "ca phẫu thuật của grey (2005) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Ca Phẫu Thuật Của Grey - Phần 1 (2005) | RoPhim",
+          "url": "https://rophims.team/phim/ca-phau-thuat-cua-grey-phan-1",
+          "poster": "https://vsmov.com/storage/images/jP0Rhj9OTPDAwQlHQwOLFDdeE8t.jpg"
+        },
+        {
+          "title": "Ca Phẫu Thuật Của Grey - Phần 2 (2005) | RoPhim",
+          "url": "https://rophims.team/phim/ca-phau-thuat-cua-grey-phan-2",
+          "poster": "https://vsmov.com/storage/images/jP0Rhj9OTPDAwQlHQwOLFDdeE8t.jpg"
+        }
+      ]
+    },
+    {
+      "family": "chúa tể địa ngục (2016) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Chúa Tể Địa Ngục - Phần 1 (Lucifer - Season 1) (2016) | RoPhim",
+          "url": "https://rophims.team/phim/chua-te-dia-nguc-phan-1",
+          "poster": "https://vsmov.com/storage/images/ta5oblpMlEcIPIS2YGcq9XEkWK2.jpg"
+        },
+        {
+          "title": "Chúa Tể Địa Ngục - Phần 2 (Lucifer - Season 2) (2016) | RoPhim",
+          "url": "https://rophims.team/phim/chua-te-dia-nguc-phan-2",
+          "poster": "https://vsmov.com/storage/images/ta5oblpMlEcIPIS2YGcq9XEkWK2.jpg"
+        }
+      ]
+    },
+    {
+      "family": "cuộc chiến của nô lệ (2013) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Cuộc Chiến Của Nô Lệ - Phần 3 (2013) | RoPhim",
+          "url": "https://rophims.team/phim/cuoc-chien-cua-no-le-phan-3",
+          "poster": "https://vsmov.com/storage/images/zbfXS4o6UykeXsD8djFTyV7Cj4N.jpg"
+        },
+        {
+          "title": "Cuộc Chiến Của Nô Lệ - Phần 4 (2013) | RoPhim",
+          "url": "https://rophims.team/phim/cuoc-chien-cua-no-le-phan-4",
+          "poster": "https://vsmov.com/storage/images/zbfXS4o6UykeXsD8djFTyV7Cj4N.jpg"
+        }
+      ]
+    },
+    {
+      "family": "danh sách đen (2019) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Danh Sách Đen - Phần 6 (The Blacklist - Season 6) (2019) | RoPhim",
+          "url": "https://rophims.team/phim/danh-sach-den-phan-6",
+          "poster": "https://vsmov.com/storage/images/2eIlCirgcvEwmCSYh2wDfz5Sxvz.jpg"
+        },
+        {
+          "title": "Danh Sách Đen - Phần 7 (The Blacklist - Season 7) (2019) | RoPhim",
+          "url": "https://rophims.team/phim/danh-sach-den-phan-7",
+          "poster": "https://vsmov.com/storage/images/2eIlCirgcvEwmCSYh2wDfz5Sxvz.jpg"
+        }
+      ]
+    },
+    {
+      "family": "kung fu panda: hiệp sĩ rồng (2023) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Kung Fu Panda: Hiệp Sĩ Rồng - Phần 2 (2023) | RoPhim",
+          "url": "https://rophims.team/phim/kung-fu-panda-hiep-si-rong-phan-2",
+          "poster": "https://vsmov.com/storage/images/j7FL6KfjEjrGSXt6peQw7U3VL0R.jpg"
+        },
+        {
+          "title": "Kung Fu Panda: Hiệp Sĩ Rồng - Phần 3 (2023) | RoPhim",
+          "url": "https://rophims.team/phim/kung-fu-panda-hiep-si-rong-phan-3",
+          "poster": "https://vsmov.com/storage/images/j7FL6KfjEjrGSXt6peQw7U3VL0R.jpg"
+        }
+      ]
+    },
+    {
+      "family": "làm cha mẹ (2010) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Làm Cha Mẹ - Phần 1 (Parenthood - Season 1) (2010) | RoPhim",
+          "url": "https://rophims.team/phim/lam-cha-me-phan-1",
+          "poster": "https://vsmov.com/storage/images/72zLfNDaL8JpfLDwmQ2b8DPbeHc.jpg"
+        },
+        {
+          "title": "Làm Cha Mẹ - Phần 2 (Parenthood - Season 2) (2010) | RoPhim",
+          "url": "https://rophims.team/phim/lam-cha-me-phan-2",
+          "poster": "https://vsmov.com/storage/images/72zLfNDaL8JpfLDwmQ2b8DPbeHc.jpg"
+        }
+      ]
+    },
+    {
+      "family": "lính mới (2021) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Lính Mới - Phần 3 (The Rookie - Season 3) (2021) | RoPhim",
+          "url": "https://rophims.team/phim/linh-moi-phan-3",
+          "poster": "https://vsmov.com/storage/images/6iNWfGVCEfASDdlNb05TP5nG0ll.jpg"
+        },
+        {
+          "title": "Lính Mới - Phần 4 (The Rookie - Season 4) (2021) | RoPhim",
+          "url": "https://rophims.team/phim/linh-moi-phan-4",
+          "poster": "https://vsmov.com/storage/images/6iNWfGVCEfASDdlNb05TP5nG0ll.jpg"
+        }
+      ]
+    },
+    {
+      "family": "mặt dày (2016) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Mặt Dày - Phần 6 (Shameless - Season 6) (2016) | RoPhim",
+          "url": "https://rophims.team/phim/mat-day-phan-6",
+          "poster": "https://vsmov.com/storage/images/5s9XHTB9SLPdg3mNU6BlSLnZ9Qq.jpg"
+        },
+        {
+          "title": "Mặt Dày - Phần 7 (Shameless - Season 7) (2016) | RoPhim",
+          "url": "https://rophims.team/phim/mat-day-phan-7",
+          "poster": "https://vsmov.com/storage/images/5s9XHTB9SLPdg3mNU6BlSLnZ9Qq.jpg"
+        }
+      ]
+    },
+    {
+      "family": "người hùng tia chớp (2021) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Người Hùng Tia Chớp - Phần 7 (2021) | RoPhim",
+          "url": "https://rophims.team/phim/nguoi-hung-tia-chop-phan-7",
+          "poster": "https://vsmov.com/storage/images/gFkHcIh7iE5G0oVOgpmY8ONQjhl.jpg"
+        },
+        {
+          "title": "Người Hùng Tia Chớp - Phần 8 (2021) | RoPhim",
+          "url": "https://rophims.team/phim/nguoi-hung-tia-chop-phan-8",
+          "poster": "https://vsmov.com/storage/images/gFkHcIh7iE5G0oVOgpmY8ONQjhl.jpg"
+        }
+      ]
+    },
+    {
+      "family": "người hầu phòng bí ẩn (2022) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Người Hầu Phòng Bí Ẩn - Phần 1 (2022) | RoPhim",
+          "url": "https://rophims.team/phim/nguoi-hau-phong-bi-an-phan-1",
+          "poster": "https://vsmov.com/storage/images/eVGaiNUPhwKyiuWH6LfNa60JFyQ.jpg"
+        },
+        {
+          "title": "Người Hầu Phòng Bí Ẩn - Phần 2 (2022) | RoPhim",
+          "url": "https://rophims.team/phim/nguoi-hau-phong-bi-an-phan-2",
+          "poster": "https://vsmov.com/storage/images/eVGaiNUPhwKyiuWH6LfNa60JFyQ.jpg"
+        }
+      ]
+    },
+    {
+      "family": "những điệp viên hết thời (2022) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Những Điệp Viên Hết Thời - Phần 1 (2022) | RoPhim",
+          "url": "https://rophims.team/phim/nhung-diep-vien-het-thoi-phan-1",
+          "poster": "https://vsmov.com/storage/images/xpSxYoqTyz0Fb8Wn2S3bp0NIqVc.jpg"
+        },
+        {
+          "title": "Những Điệp Viên Hết Thời - Phần 2 (2022) | RoPhim",
+          "url": "https://rophims.team/phim/nhung-diep-vien-het-thoi-phan-2",
+          "poster": "https://vsmov.com/storage/images/xpSxYoqTyz0Fb8Wn2S3bp0NIqVc.jpg"
+        }
+      ]
+    },
+    {
+      "family": "phụ tá (2019) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Phụ Tá - Phần 1 (Chief of Staff - Season 1) (2019) | RoPhim",
+          "url": "https://rophims.team/phim/phu-ta-phan-1",
+          "poster": "https://vsmov.com/storage/images/fBs74YPiZFQGAR2knbzQFq9UDUR.jpg"
+        },
+        {
+          "title": "Phụ Tá - Phần 2 (Chief of Staff - Season 2) (2019) | RoPhim",
+          "url": "https://rophims.team/phim/phu-ta-phan-2",
+          "poster": "https://vsmov.com/storage/images/fBs74YPiZFQGAR2knbzQFq9UDUR.jpg"
+        }
+      ]
+    },
+    {
+      "family": "quân sư liên minh (2017) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Quân Sư Liên Minh - Phần 1 (2017) | RoPhim",
+          "url": "https://rophims.team/phim/quan-su-lien-minh-phan-1",
+          "poster": "https://vsmov.com/storage/images/sJWR25Jfk9IYBC4iOiOXFoTjs0V.jpg"
+        },
+        {
+          "title": "Quân Sư Liên Minh - Phần 2 (2017) | RoPhim",
+          "url": "https://rophims.team/phim/quan-su-lien-minh-phan-2",
+          "poster": "https://vsmov.com/storage/images/sJWR25Jfk9IYBC4iOiOXFoTjs0V.jpg"
+        }
+      ]
+    },
+    {
+      "family": "thăng cấp một mình (2024) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Thăng Cấp Một Mình - Phần 1 (2024) | RoPhim",
+          "url": "https://rophims.team/phim/thang-cap-mot-minh-phan-1",
+          "poster": "https://vsmov.com/storage/images/xMNH87maNLt9n2bMDYeI6db5VFm.jpg"
+        },
+        {
+          "title": "Thăng Cấp Một Mình - Phần 2 (2024) | RoPhim",
+          "url": "https://rophims.team/phim/thang-cap-mot-minh-phan-2",
+          "poster": "https://vsmov.com/storage/images/xMNH87maNLt9n2bMDYeI6db5VFm.jpg"
+        }
+      ]
+    },
+    {
+      "family": "thế giới khủng long: trại kỷ phấn trắng (2021) | rophim",
+      "count": 3,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Thế Giới Khủng Long: Trại Kỷ Phấn Trắng - Phần 2 (2021) | RoPhim",
+          "url": "https://rophims.team/phim/the-gioi-khung-long-trai-ky-phan-trang-phan-2",
+          "poster": "https://vsmov.com/storage/images/4WIglfr4lDFVjCEcXzCeu6cJsOh.jpg"
+        },
+        {
+          "title": "Thế Giới Khủng Long: Trại Kỷ Phấn Trắng - Phần 3 (2021) | RoPhim",
+          "url": "https://rophims.team/phim/the-gioi-khung-long-trai-ky-phan-trang-phan-3",
+          "poster": "https://vsmov.com/storage/images/4WIglfr4lDFVjCEcXzCeu6cJsOh.jpg"
+        },
+        {
+          "title": "Thế Giới Khủng Long: Trại Kỷ Phấn Trắng - Phần 4 (2021) | RoPhim",
+          "url": "https://rophims.team/phim/the-gioi-khung-long-trai-ky-phan-trang-phan-4",
+          "poster": "https://vsmov.com/storage/images/4WIglfr4lDFVjCEcXzCeu6cJsOh.jpg"
+        }
+      ]
+    },
+    {
+      "family": "thị trấn riverdale (2017) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Thị Trấn Riverdale - Phần 1 (2017) | RoPhim",
+          "url": "https://rophims.team/phim/thi-tran-riverdale-phan-1",
+          "poster": "https://vsmov.com/storage/images/kb9XvtEnDhBVVit4eeKygqll4EA.jpg"
+        },
+        {
+          "title": "Thị Trấn Riverdale - Phần 2 (2017) | RoPhim",
+          "url": "https://rophims.team/phim/thi-tran-riverdale-phan-2",
+          "poster": "https://vsmov.com/storage/images/kb9XvtEnDhBVVit4eeKygqll4EA.jpg"
+        }
+      ]
+    },
+    {
+      "family": "thị trấn riverdale (2021) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Thị Trấn Riverdale - Phần 5 (2021) | RoPhim",
+          "url": "https://rophims.team/phim/thi-tran-riverdale-phan-5",
+          "poster": "https://vsmov.com/storage/images/kb9XvtEnDhBVVit4eeKygqll4EA.jpg"
+        },
+        {
+          "title": "Thị Trấn Riverdale - Phần 6 (2021) | RoPhim",
+          "url": "https://rophims.team/phim/thi-tran-riverdale-phan-6",
+          "poster": "https://vsmov.com/storage/images/kb9XvtEnDhBVVit4eeKygqll4EA.jpg"
+        }
+      ]
+    },
+    {
+      "family": "thợ săn yêu tinh (2016) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Thợ Săn Yêu Tinh - Phần 1 (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tho-san-yeu-tinh-phan-1",
+          "poster": "https://vsmov.com/storage/images/oyi9AeavhrKTbISf4tZ83S7xp29.jpg"
+        },
+        {
+          "title": "Thợ Săn Yêu Tinh - Phần 2 (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tho-san-yeu-tinh-phan-2",
+          "poster": "https://vsmov.com/storage/images/oyi9AeavhrKTbISf4tZ83S7xp29.jpg"
+        }
+      ]
+    },
+    {
+      "family": "tia chớp đen (2018) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Tia Chớp Đen - Phần 1 (2018) | RoPhim",
+          "url": "https://rophims.team/phim/tia-chop-den-phan-1",
+          "poster": "https://vsmov.com/storage/images/kv0vCJOoGyWQdDPK9vFnyvqqDHt.jpg"
+        },
+        {
+          "title": "Tia Chớp Đen - Phần 2 (2018) | RoPhim",
+          "url": "https://rophims.team/phim/tia-chop-den-phan-2",
+          "poster": "https://vsmov.com/storage/images/kv0vCJOoGyWQdDPK9vFnyvqqDHt.jpg"
+        }
+      ]
+    },
+    {
+      "family": "trang trại (2017) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Trang Trại - Phần 2 (The Ranch - Season 2) (2017) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-2",
+          "poster": "https://vsmov.com/storage/images/rIycDdkLET20EVW2LPytLNuyOp3.jpg"
+        },
+        {
+          "title": "Trang Trại - Phần 4 (The Ranch - Season 4) (2017) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-4",
+          "poster": "https://vsmov.com/storage/images/rIycDdkLET20EVW2LPytLNuyOp3.jpg"
+        }
+      ]
+    },
+    {
+      "family": "trang trại (2018) | rophim",
+      "count": 3,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Trang Trại - Phần 3 (The Ranch - Season 3) (2018) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-3",
+          "poster": "https://vsmov.com/storage/images/rIycDdkLET20EVW2LPytLNuyOp3.jpg"
+        },
+        {
+          "title": "Trang Trại - Phần 5 (The Ranch - Season 5) (2018) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-5",
+          "poster": "https://vsmov.com/storage/images/rIycDdkLET20EVW2LPytLNuyOp3.jpg"
+        },
+        {
+          "title": "Trang Trại - Phần 6 (The Ranch - Season 6) (2018) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-6",
+          "poster": "https://vsmov.com/storage/images/rIycDdkLET20EVW2LPytLNuyOp3.jpg"
+        }
+      ]
+    },
+    {
+      "family": "trang trại (2019) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Trang Trại - Phần 7 (The Ranch - Season 7) (2019) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-7",
+          "poster": "https://vsmov.com/storage/images/rIycDdkLET20EVW2LPytLNuyOp3.jpg"
+        },
+        {
+          "title": "Trang Trại - Phần 8 (The Ranch - Season 8) (2019) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-8",
+          "poster": "https://vsmov.com/storage/images/rIycDdkLET20EVW2LPytLNuyOp3.jpg"
+        }
+      ]
+    },
+    {
+      "family": "tru tiên: thanh vân chí (2016) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Tru Tiên: Thanh Vân Chí - Phần 1 (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tru-tien-thanh-van-chi-phan-1",
+          "poster": "https://vsmov.com/storage/images/xW1JGlpnBINUZaWJAMP9cB9HUKO.jpg"
+        },
+        {
+          "title": "Tru Tiên: Thanh Vân Chí - Phần 2 (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tru-tien-thanh-van-chi-phan-2",
+          "poster": "https://vsmov.com/storage/images/xW1JGlpnBINUZaWJAMP9cB9HUKO.jpg"
+        }
+      ]
+    },
+    {
+      "family": "trở lại tuổi 26 (2016) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Trở Lại Tuổi 26 - Phần 2 (Younger - Season 2) (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tro-lai-tuoi-26-phan-2",
+          "poster": "https://vsmov.com/storage/images/wCdhtaLMNtQ37j4OEch4dSKXyoE.jpg"
+        },
+        {
+          "title": "Trở Lại Tuổi 26 - Phần 3 (Younger - Season 3) (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tro-lai-tuoi-26-phan-3",
+          "poster": "https://vsmov.com/storage/images/wCdhtaLMNtQ37j4OEch4dSKXyoE.jpg"
+        }
+      ]
+    },
+    {
+      "family": "wicked (wicked: for good) (2025) - vietsub hd | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Wicked: Phần 2 (Wicked: For Good) (2025) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/wicked-phan-2",
+          "poster": "https://vsmov.com/storage/images/cGbPBHKSFO7hSIjxkb3KOaGdOep.jpg"
+        },
+        {
+          "title": "Wicked: Phần 2 (Wicked: For Good) (2025) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/wicked-phan-2-178974807758772",
+          "poster": "https://vsmov.com/storage/images/cGbPBHKSFO7hSIjxkb3KOaGdOep.jpg"
+        }
+      ]
+    },
+    {
+      "family": "đưa ông xã quốc dân về nhà (2017) | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 2 (2017) | RoPhim",
+          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-2",
+          "poster": "https://vsmov.com/storage/images/d8KLv5Z6cYdoeIGoGRt8Oo45zor.jpg"
+        },
+        {
+          "title": "Đưa Ông Xã Quốc Dân Về Nhà - Phần 3 (2017) | RoPhim",
+          "url": "https://rophims.team/phim/dua-ong-xa-quoc-dan-ve-nha-phan-3",
+          "poster": "https://vsmov.com/storage/images/d8KLv5Z6cYdoeIGoGRt8Oo45zor.jpg"
+        }
+      ]
+    },
+    {
+      "family": "đố kị (2025) - vietsub hd | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Đố kị - Phần 2 (Envious - Season 2) (2025) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/do-ki-phan-2",
+          "poster": "https://vsmov.com/storage/images/raxf7xkf1ZwddzQSIl4hdakr8YR.jpg"
+        },
+        {
+          "title": "Đố kị - Phần 3 (Envious - Season 3) (2025) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/do-ki-phan-3",
+          "poster": "https://vsmov.com/storage/images/raxf7xkf1ZwddzQSIl4hdakr8YR.jpg"
+        }
+      ]
+    },
+    {
+      "family": "ưu tú (2022) - vietsub hd | rophim",
+      "count": 2,
+      "uniquePosters": 1,
+      "seasons": [
+        {
+          "title": "Ưu Tú - Phần 5 (Elite - Season 5) (2022) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/uu-tu-phan-5",
+          "poster": "https://vsmov.com/storage/images/1qOA3kMtQO8bjnW8M2smjA8tp10.jpg"
+        },
+        {
+          "title": "Ưu Tú - Phần 6 (Elite - Season 6) (2022) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/uu-tu-phan-6",
+          "poster": "https://vsmov.com/storage/images/1qOA3kMtQO8bjnW8M2smjA8tp10.jpg"
+        }
+      ]
+    }
+  ]
+}
