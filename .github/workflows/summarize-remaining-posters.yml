@@ -1,0 +1,23 @@
+name: Summarize remaining poster groups
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'summarize_remaining_posters.py'
+      - '.github/workflows/summarize-remaining-posters.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - run: python summarize_remaining_posters.py
+      - run: |
+          git config user.name "ivy-poster-summary"
+          git config user.email "actions@users.noreply.github.com"
+          git add remaining_poster_groups.json
+          git commit -m "Summarize remaining poster groups" || exit 0
+          git push origin HEAD:main
