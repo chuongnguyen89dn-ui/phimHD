@@ -1,0 +1,124 @@
+{
+  "families": [
+    {
+      "family": "thợ săn yêu tinh (2016) | rophim",
+      "rows": [
+        {
+          "title": "Thợ Săn Yêu Tinh - Phần 1 (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tho-san-yeu-tinh-phan-1",
+          "season": 1,
+          "poster": "https://vsmov.com/storage/images/gF03zm8x9B10QyPZyzc8Vgc8lqx.jpg",
+          "tmdbData": {
+            "id": 68267,
+            "type": "tv",
+            "season": null,
+            "vote_average": 8.5
+          },
+          "tmdbPageStatus": 200,
+          "tmdbPosterUrls": [
+            "https://image.tmdb.org/t/p/original/b2aHl6I3AaDru4hgnhvqlu4aFtr.jpg"
+          ],
+          "tmdbPageLen": 139357
+        },
+        {
+          "title": "Thợ Săn Yêu Tinh - Phần 2 (2016) | RoPhim",
+          "url": "https://rophims.team/phim/tho-san-yeu-tinh-phan-2",
+          "season": 2,
+          "poster": "https://vsmov.com/storage/images/gF03zm8x9B10QyPZyzc8Vgc8lqx.jpg",
+          "tmdbData": {
+            "id": 68267,
+            "type": "tv",
+            "season": null,
+            "vote_average": 8.5
+          },
+          "tmdbPageStatus": 200,
+          "tmdbPosterUrls": [
+            "https://image.tmdb.org/t/p/original/zG0shLBaHHpiwAtuRKJO4dPsBOM.jpg"
+          ],
+          "tmdbPageLen": 135607
+        }
+      ]
+    },
+    {
+      "family": "trang trại (2018) | rophim",
+      "rows": [
+        {
+          "title": "Trang Trại - Phần 3 (The Ranch - Season 3) (2018) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-3",
+          "season": 3,
+          "poster": "https://vsmov.com/storage/images/eq4BbGS5LiVxzgBKtuoQy14ShF7.jpg",
+          "tmdbData": {
+            "id": 65493,
+            "type": "tv",
+            "season": 3,
+            "vote_average": 7.9
+          },
+          "tmdbPageStatus": 200,
+          "tmdbPosterUrls": [
+            "https://image.tmdb.org/t/p/original/eq4BbGS5LiVxzgBKtuoQy14ShF7.jpg"
+          ],
+          "tmdbPageLen": 128227
+        },
+        {
+          "title": "Trang Trại - Phần 5 (The Ranch - Season 5) (2018) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-5",
+          "season": 5,
+          "poster": "https://vsmov.com/storage/images/lrbHBAxF9Ir83rxgeBrfmEJriLt.jpg",
+          "tmdbData": {
+            "id": 65493,
+            "type": "tv",
+            "season": 5,
+            "vote_average": 7.4
+          },
+          "tmdbPageStatus": 404,
+          "tmdbPosterUrls": [],
+          "tmdbPageLen": 87469
+        },
+        {
+          "title": "Trang Trại - Phần 6 (The Ranch - Season 6) (2018) | RoPhim",
+          "url": "https://rophims.team/phim/trang-trai-phan-6",
+          "season": 6,
+          "poster": "https://vsmov.com/storage/images/eq4BbGS5LiVxzgBKtuoQy14ShF7.jpg",
+          "tmdbData": {
+            "id": 65493,
+            "type": "tv",
+            "season": 3,
+            "vote_average": 7.9
+          },
+          "tmdbPageStatus": 404,
+          "tmdbPosterUrls": [],
+          "tmdbPageLen": 87469
+        }
+      ]
+    },
+    {
+      "family": "wicked (wicked: for good) (2025) - vietsub hd | rophim",
+      "rows": [
+        {
+          "title": "Wicked: Phần 2 (Wicked: For Good) (2025) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/wicked-phan-2",
+          "season": 2,
+          "poster": "https://vsmov.com/storage/images/oQSPp51Uv74civ9gv3wqJmqlJVX.jpg",
+          "tmdbData": {
+            "id": 967941,
+            "type": "movie",
+            "season": null,
+            "vote_average": 6.6
+          }
+        },
+        {
+          "title": "Wicked: Phần 2 (Wicked: For Good) (2025) - Vietsub HD | RoPhim",
+          "url": "https://rophims.team/phim/wicked-phan-2-178974807758772",
+          "season": 2,
+          "poster": "https://vsmov.com/storage/images/oQSPp51Uv74civ9gv3wqJmqlJVX.jpg",
+          "tmdbData": {
+            "id": 967941,
+            "type": "movie",
+            "season": null,
+            "vote_average": 6.6
+          }
+        }
+      ]
+    }
+  ]
+}
