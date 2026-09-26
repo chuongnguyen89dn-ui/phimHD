@@ -28,6 +28,16 @@ def sitemap():
     _sitemap.update(at=now,data=d);return d
 
 def home_rows():
+    # The live /phimhay page is the authority for Home row order.
+    # core.source_home_sections() is cached for 10 minutes, so this stays fast
+    # while following RoPhim changes during the day instead of waiting for the
+    # scheduled sitemap snapshot.
+    try:
+        live=list((core.source_home_sections() or {}).keys())
+        if len(live)>=15:
+            return live
+    except Exception:
+        pass
     rows=[s.get('label') for s in sitemap().get('sections',[]) if s.get('label')]
     return rows or FALLBACK_HOME_ROWS
 
@@ -53,7 +63,20 @@ def materialize_urls(urls,label):
 
 def items(label):
     s=section(label)
-    urls=list(s.get('urls') or s.get('home') or [])
+    # Always put the current live /phimhay row first. The sitemap snapshot is
+    # only used to extend pagination after that live prefix.
+    urls=[]
+    try:
+        live_info=(core.source_home_sections() or {}).get(label) or {}
+        for u in live_info.get('home') or []:
+            if u and u not in urls: urls.append(u)
+    except Exception:
+        pass
+    for u in list(s.get('urls') or s.get('home') or []):
+        if u and u not in urls: urls.append(u)
+
+    # If this is a newly-added source row that is not in the last sitemap yet,
+    # keep its live Home items instead of silently dropping the whole row.
     # Never crawl dozens of source pages during a Nuvio catalog request.
     # Keep the live Home Top 10 first, then extend instantly from the already
     # downloaded catalog snapshot when the sitemap has not yet published the
