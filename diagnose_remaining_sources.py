@@ -47,7 +47,7 @@ def scan(name,u):
                     js.append({"url":su,"status":rr.status_code,"length":len(body),"m3u8":hits[:10],"clues":clues,
                                "snippets":[body[max(0,m.start()-120):m.start()+300] for m in list(re.finditer(r"m3u8|ajax|api|hash|playlist",body,re.I))[:8]]})
             except Exception as e: js.append({"url":su,"error":repr(e)})
-        out["scriptInspection"]=js[:12]
+        out["scriptInspection"]=js[:12]\n        if "streamc.xyz" in str(r.url):\n            proto=[]\n            for j in js:\n                for sn in j.get("snippets",[]):\n                    if any(k in sn for k in ["request_grant","bootstrap_format","fetch(","playlist_format","grant","bootstrap"]): proto.append(sn)\n            out["protocolContexts"]=proto[:40]
     except Exception as e: out["error"]=repr(e)
     return out
 json.dump({"results":[scan(n,u) for n,u in SAMPLES]},open("remaining_source_diagnostics.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
