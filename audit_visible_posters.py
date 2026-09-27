@@ -6,9 +6,18 @@ PROD="https://phimhd-upos.onrender.com"
 UA="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 Version/18.5 Mobile/15E148 Safari/604.1"
 
 def get_json(u):
-    r=requests.get(u,headers={"User-Agent":UA,"Accept":"application/json"},timeout=30,impersonate="chrome",allow_redirects=True)
-    r.raise_for_status()
-    return r.json()
+    last=None
+    for i in range(5):
+        try:
+            r=requests.get(u,headers={"User-Agent":UA,"Accept":"application/json","Cache-Control":"no-cache"},timeout=30,impersonate="chrome",allow_redirects=True)
+            if r.status_code<500:
+                r.raise_for_status()
+                return r.json()
+            last=RuntimeError(f"HTTP {r.status_code}")
+        except Exception as e:
+            last=e
+        import time; time.sleep(2*(i+1))
+    raise last
 
 man=get_json(PROD+"/manifest.json")
 cats=[c for c in man.get("catalogs",[]) if str(c.get("id","")).startswith("ivy_home_")]
