@@ -1,12 +1,13 @@
 import re
 from curl_cffi import requests
-u='https://rophims.team/phim/loi-tinh-doi-lua-phan-1'
-r=requests.get(u,impersonate='chrome',timeout=30)
-print('HTTP',r.status_code,'LEN',len(r.text))
-h=r.text.replace('\\/','/')
-for pat in [r'datePublished',r'year',r'release',r'tmdbData',r'moviePosterUrl',r'2050',r'2026']:
-    print('\nPATTERN',pat)
-    ms=list(re.finditer(pat,h,re.I))
-    print('COUNT',len(ms))
-    for m in ms[:20]:
-        print(h[max(0,m.start()-180):m.end()+260].replace('\n',' '))
+for slug in ['loi-tinh-doi-lua-phan-1','nguoi-thu-ba']:
+    u='https://rophims.team/phim/'+slug
+    r=requests.get(u,impersonate='chrome',timeout=30)
+    h=r.text.replace('\\/','/')
+    pm=re.search(r'''var\s+moviePosterUrl\s*=\s*["']([^"']+)''',h,re.I)
+    tm=re.search(r'''var\s+movieThumbUrl\s*=\s*["']([^"']+)''',h,re.I)
+    title=re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\']([^"\']+)',h,re.I)
+    print(slug,'HTTP',r.status_code)
+    print('TITLE',title.group(1) if title else None)
+    print('POSTER',pm.group(1) if pm else None)
+    print('THUMB',tm.group(1) if tm else None)
