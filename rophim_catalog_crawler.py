@@ -29,6 +29,9 @@ def clean(s):
     s = html.unescape(re.sub(r"<[^>]+>", " ", str(s or "")))
     return re.sub(r"\s+", " ", s).strip()
 
+def media_url(v):
+    return html.unescape(str(v or "")).replace("\\/","/").strip()
+
 def abs_url(u, base=BASE):
     try:
         v = urljoin(base, html.unescape(u))
@@ -118,12 +121,12 @@ def parse_movie(url, page_html):
                 break
 
     title = meta_content(page_html, "og:title")
-    poster = meta_content(page_html, "og:image")
+    poster = media_url(meta_content(page_html, "og:image"))
     # RoPhim exposes a season-specific portrait poster separately from og:image.
     # og:image / movieThumbUrl is often a shared landscape thumb across seasons.
     pm = re.search(r'''var\s+moviePosterUrl\s*=\s*["']([^"']+)''', page_html, re.I)
     if pm:
-        poster = html.unescape(pm.group(1)).strip()
+        poster = media_url(pm.group(1))
     description = meta_content(page_html, "og:description") or meta_content(page_html, "description")
     canonical = ""
     m = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)', page_html, re.I)
@@ -136,7 +139,7 @@ def parse_movie(url, page_html):
         "title": clean(title),
         "originalTitle": "",
         "poster": poster,
-        "backdrop": meta_content(page_html, "og:image"),
+        "backdrop": media_url(meta_content(page_html, "og:image")),
         "description": clean(description),
         "year": None,
         "duration": "",
@@ -160,7 +163,7 @@ def parse_movie(url, page_html):
         # Keep RoPhim's dedicated portrait moviePosterUrl when present.
         # JSON-LD image / og:image is often a shared backdrop or show-level image.
         if image and not item.get("poster"):
-            item["poster"] = str(image)
+            item["poster"] = media_url(image)
         dur = picked.get("duration")
         if dur:
             item["durationRaw"] = str(dur)
