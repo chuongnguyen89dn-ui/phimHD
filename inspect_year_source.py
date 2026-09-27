@@ -1,6 +1,6 @@
 import re
 from curl_cffi import requests
-for slug in ['loi-tinh-doi-lua-phan-1','nguoi-thu-ba']:
+for slug in ['loi-tinh-doi-lua-phan-1','nguoi-thu-ba-2026']:
     u='https://rophims.team/phim/'+slug
     r=requests.get(u,impersonate='chrome',timeout=30)
     h=r.text.replace('\\/','/')
