@@ -157,7 +157,7 @@ def manifest_fast():
 
     return {
         'id':'community.ivy.catalog',
-        'version':'1.12.0',
+        'version':'1.12.1',
         'name':'Ivy❤️',
         'description':'Ivy❤️ • Search: Phim/Loạt phim → Danh mục → Thể loại',
         'resources':['catalog','meta','stream'],
@@ -267,6 +267,6 @@ def catalog(cid,path=''):
 core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.12.0','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.12.0','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.12.1','manifest':'/manifest.json'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.12.1','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
 app=core.app
