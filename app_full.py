@@ -44,10 +44,12 @@ def typ(x):
     text=" ".join([str(x.get("title","")),str(x.get("duration",""))]+tax(x,"sections")+tax(x,"genres")).lower()
     return "series" if x.get("type")=="series" or any(k in text for k in ["phim bộ","tv shows","/tập","m/tập","season ","phần "]) else "movie"
 def year(x):
-    ys=re.findall(r"(?<!\d)((?:19|20)\d{2})(?!\d)",clean(x.get("title","")))
-    if ys:return int(ys[-1])
+    current=time.gmtime().tm_year
+    ys=[int(v) for v in re.findall(r"(?<!\d)((?:19|20)\d{2})(?!\d)",clean(x.get("title","")))]
+    ys=[v for v in ys if 1900<=v<=current+1]
+    if ys:return ys[-1]
     y=x.get("year"); y=int(y) if str(y).isdigit() else 0
-    return y if 1900<=y<=2100 and y!=2026 else None
+    return y if 1900<=y<=current+1 else None
 def norm(s):
     s=unicodedata.normalize("NFKD",str(s or "")); s="".join(c for c in s if not unicodedata.combining(c)).lower()
     s=re.sub(r"\([^)]*(?:19|20)\d{2}[^)]*\)"," ",s); s=re.sub(r"\b(?:phan|season)\s*\d+\b"," ",s)
