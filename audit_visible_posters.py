@@ -23,11 +23,11 @@ import time
 man=None
 for attempt in range(24):
     man=get_json(PROD+"/manifest.json")
-    if str(man.get("version"))=="1.12.2":break
+    if str(man.get("version"))=="1.12.3":break
     print("WAIT_PRODUCTION_VERSION",man.get("version"),"attempt",attempt+1,flush=True)
     time.sleep(15)
-if str((man or {}).get("version"))!="1.12.2":
-    raise RuntimeError(f"production version did not reach 1.12.2: {(man or {}).get('version')}")
+if str((man or {}).get("version"))!="1.12.3":
+    raise RuntimeError(f"production version did not reach 1.12.3: {(man or {}).get('version')}")
 cats=[c for c in man.get("catalogs",[]) if str(c.get("id","")).startswith("ivy_home_")]
 cards=[]
 for c in cats:
@@ -55,4 +55,4 @@ json.dump(report,open("visible_poster_health.json","w",encoding="utf-8"),ensure_
 print(json.dumps({"productionVersion":report["productionVersion"],"cardsChecked":report["cardsChecked"],"healthy":report["healthy"],"unhealthy":report["unhealthy"]},ensure_ascii=False))
 for x in bad[:100]:
     print("BAD",x["catalog"],x["index"],x["title"],x["status"],x["reason"],x["poster"])
-# rerun after catalog reload 1.12.2
+# rerun after catalog reload 1.12.3
