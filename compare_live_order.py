@@ -7,10 +7,19 @@ PROD="https://phimhd-upos.onrender.com"
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/146 Safari/537.36"
 
 def get(u):
-    r=requests.get(u,headers={"User-Agent":UA,"Accept":"application/json,text/html,*/*","Referer":"https://rophims.team/"},timeout=30,impersonate="chrome",allow_redirects=True)
-    print("GET",u,r.status_code,len(r.text),flush=True)
-    r.raise_for_status()
-    return r.text
+    import time
+    last=None
+    for i in range(6):
+        try:
+            r=requests.get(u,headers={"User-Agent":UA,"Accept":"application/json,text/html,*/*","Referer":"https://rophims.team/","Cache-Control":"no-cache"},timeout=30,impersonate="chrome",allow_redirects=True)
+            print("GET",u,r.status_code,len(r.text),"attempt",i+1,flush=True)
+            if r.status_code<500:
+                r.raise_for_status()
+                return r.text
+            last=RuntimeError(f"HTTP {r.status_code}")
+        except Exception as e:last=e
+        time.sleep(2*(i+1))
+    raise last
 
 def canon(u):
     if not u:return ""
