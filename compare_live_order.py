@@ -89,3 +89,4 @@ print(json.dumps({
  "rows":[{k:r.get(k) for k in ("label","compared","positionMatches","exactPrefix","sourceVisibleCount","addonCount","error")} for r in report["rows"]]
 },ensure_ascii=False,indent=2))
 # production recheck 2026-09-27
+# final verify 1.12.3
