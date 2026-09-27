@@ -1,0 +1,55 @@
+name: Fast Home metadata repair
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fast-home-repair.yml'
+      - 'repair_home_cards.py'
+      - 'rophim_catalog_crawler.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r requirements.txt
+      - name: Load current production catalog data
+        run: |
+          git fetch origin catalog-data
+          git show origin/catalog-data:rophim_catalog.json > rophim_catalog.staging.json
+          git show origin/catalog-data:ivy_sitemap.json > ivy_sitemap.staging.json
+      - name: Repair visible cards and impossible years
+        env:
+          ROPHIM_BASE: https://rophims.team
+        run: python repair_home_cards.py rophim_catalog.staging.json ivy_sitemap.staging.json 24
+      - name: Validate repaired data
+        run: |
+          python - <<'PY'
+          import json,datetime,sys
+          d=json.load(open('rophim_catalog.staging.json',encoding='utf-8'))
+          now=datetime.datetime.now(datetime.timezone.utc).year
+          bad=[]
+          for x in d.get('movies') or []:
+              y=x.get('year')
+              try:
+                  if y not in (None,'') and not (1900<=int(y)<=now+1):bad.append((x.get('title'),y,x.get('url')))
+              except:bad.append((x.get('title'),y,x.get('url')))
+          print('IMPOSSIBLE_YEARS',len(bad))
+          print('HOME_REPAIR',json.dumps(d.get('homeCardRepair') or {},ensure_ascii=False))
+          if bad:sys.exit(1)
+          PY
+      - name: Publish repaired catalog
+        run: |
+          git config user.name "ivy-home-repair"
+          git config user.email "actions@users.noreply.github.com"
+          cp rophim_catalog.staging.json rophim_catalog.json
+          cp ivy_sitemap.staging.json ivy_sitemap.json
+          git add rophim_catalog.json ivy_sitemap.json
+          git commit -m "Repair visible Home metadata and impossible years" || exit 0
+          git push --force origin HEAD:catalog-data
