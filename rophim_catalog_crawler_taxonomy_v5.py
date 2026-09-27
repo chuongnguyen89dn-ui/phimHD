@@ -32,12 +32,12 @@ def fetch_detail(u, attempts=4):
    from curl_cffi import requests as curl_requests
    r=curl_requests.get(u,headers=headers,timeout=20,impersonate='chrome',allow_redirects=True)
    if r.status_code < 400 and r.text:
-    return r.url,r.text
+    return r.url,r.text.replace('\\/','/')
    last=RuntimeError(f'HTTP {r.status_code}')
   except Exception as e:last=e
   try:
    r=urlopen(Request(u,headers=headers),timeout=20)
-   body=r.read().decode('utf-8','ignore')
+   body=r.read().decode('utf-8','ignore').replace('\\/','/')
    if body:return r.geturl(),body
   except Exception as e:last=e
   time.sleep((i+1)*0.8 + random.random()*0.4)
