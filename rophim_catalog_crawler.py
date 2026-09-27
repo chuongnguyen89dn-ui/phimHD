@@ -157,7 +157,9 @@ def parse_movie(url, page_html):
             image = image.get("url")
         if isinstance(image, list) and image:
             image = image[0]
-        if image:
+        # Keep RoPhim's dedicated portrait moviePosterUrl when present.
+        # JSON-LD image / og:image is often a shared backdrop or show-level image.
+        if image and not item.get("poster"):
             item["poster"] = str(image)
         dur = picked.get("duration")
         if dur:
@@ -178,9 +180,17 @@ def parse_movie(url, page_html):
 
     visible = clean(page_html)
     if not item["year"]:
-        y = re.search(r"\b(19|20)\d{2}\b", visible)
+        # Never take the first arbitrary 4-digit number from the whole page:
+        # footer/copyright/related cards can contain unrelated future years.
+        # Prefer a year embedded in this movie's own title.
+        y = re.findall(r"(?<!\d)((?:19|20)\d{2})(?!\d)", clean(item.get("title")))
         if y:
-            item["year"] = int(y.group(0))
+            item["year"] = int(y[-1])
+    if not item["year"]:
+        # Fallback only to explicitly labelled release-year text.
+        m = re.search(r"(?i)(?:năm\s*(?:phát\s*hành)?|release\s*year)\s*[:\-]?\s*((?:19|20)\d{2})", visible)
+        if m:
+            item["year"] = int(m.group(1))
     if not item["duration"]:
         m = re.search(r"\b(\d{1,2})h\s*(\d{1,2})m(?:/tập)?\b", visible, re.I)
         if m:
