@@ -33,6 +33,18 @@ def copy_fresh(old,fresh):
 cat=json.load(open(CAT,encoding="utf-8"))
 sm=json.load(open(SITEMAP,encoding="utf-8"))
 rows=cat.get("movies") or []
+
+# Normalize JSON/JS escaped media URLs already present in historical snapshots.
+normalized_media_urls=0
+for x in rows:
+    if not isinstance(x,dict):continue
+    for key in ("poster","backdrop"):
+        v=x.get(key)
+        if isinstance(v,str):
+            nv=v.replace("\\/","/").strip()
+            if nv!=v:
+                x[key]=nv; normalized_media_urls+=1
+
 by={norm(x.get("url") or ""):x for x in rows if isinstance(x,dict) and x.get("url")}
 
 targets=[]
@@ -91,6 +103,7 @@ cat["homeCardRepair"]={
     "refreshed":refreshed,
     "changed":changed,
     "futureYearsCleared":future_cleared,
+    "normalizedMediaUrls":normalized_media_urls,
     "failed":failed[:50]
 }
 json.dump(cat,open(CAT,"w",encoding="utf-8"),ensure_ascii=False,indent=2)
