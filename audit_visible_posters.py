@@ -19,7 +19,15 @@ def get_json(u):
         import time; time.sleep(2*(i+1))
     raise last
 
-man=get_json(PROD+"/manifest.json")
+import time
+man=None
+for attempt in range(24):
+    man=get_json(PROD+"/manifest.json")
+    if str(man.get("version"))=="1.12.2":break
+    print("WAIT_PRODUCTION_VERSION",man.get("version"),"attempt",attempt+1,flush=True)
+    time.sleep(15)
+if str((man or {}).get("version"))!="1.12.2":
+    raise RuntimeError(f"production version did not reach 1.12.2: {(man or {}).get('version')}")
 cats=[c for c in man.get("catalogs",[]) if str(c.get("id","")).startswith("ivy_home_")]
 cards=[]
 for c in cats:
