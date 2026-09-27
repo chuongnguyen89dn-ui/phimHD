@@ -104,7 +104,14 @@ def load_old():
  try:
   with open(OUT,'r',encoding='utf-8') as f:return json.load(f)
  except:return {'movies':[]}
-def needs_refresh(x):return not isinstance(x,dict) or not x.get('poster') or not x.get('description') or x.get('year') in (None,'')
+def needs_refresh(x):
+ if not isinstance(x,dict):return True
+ if not x.get('poster') or not x.get('description') or x.get('year') in (None,''):return True
+ try:
+  y=int(x.get('year'))
+  if y<1900 or y>datetime.now(timezone.utc).year+1:return True
+ except:return True
+ return False
 def parse_detail(u):
  final,h=fetch_detail(u);x=parse_movie(final,h);x['url']=norm(x.get('url') or final);x['source']='ivy-source';return x
 def dedupe_movies(rows):
