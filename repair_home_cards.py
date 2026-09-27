@@ -52,8 +52,23 @@ seen=set()
 for sec in sm.get("sections") or []:
     for u in (sec.get("urls") or sec.get("home") or [])[:LIMIT]:
         k=norm(u)
-        if k and k not in seen and k in by:
+        if k and k not in seen:
             seen.add(k);targets.append(k)
+
+# Hydrate source-listing cards that are absent from the catalog snapshot.
+# Without this, app_fast falls back to title-only stubs (blank poster/year).
+missing_targets=[k for k in targets if k not in by]
+missing_added=0
+missing_failed=[]
+for i,k in enumerate(missing_targets,1):
+    try:
+        fresh=parse_detail(k)
+        if bad_year(fresh):fresh["year"]=None
+        rows.append(fresh);by[k]=fresh;missing_added+=1
+        print(f"[missing {i}/{len(missing_targets)}] ADD {k} poster={fresh.get('poster')}",flush=True)
+    except Exception as e:
+        missing_failed.append({"url":k,"error":str(e)})
+        print(f"[missing {i}/{len(missing_targets)}] FAIL {k} {e}",flush=True)
 
 poster_groups=defaultdict(list)
 for k in targets:
@@ -98,6 +113,9 @@ for x in rows:
 cat["homeCardRepair"]={
     "generatedAt":datetime.now(timezone.utc).isoformat(),
     "visibleTargets":len(targets),
+    "missingTargets":len(missing_targets),
+    "missingAdded":missing_added,
+    "missingFailed":missing_failed[:50],
     "suspectTargets":len(suspect),
     "duplicatePosterTargets":len(dup_targets),
     "refreshed":refreshed,
