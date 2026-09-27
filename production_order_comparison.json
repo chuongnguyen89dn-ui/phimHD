@@ -1,5 +1,5 @@
 {
-  "productionVersion": "1.12.0",
+  "productionVersion": "1.12.1",
   "sourceSectionOrder": [
     "Điện ảnh Hàn Quốc",
     "Mọt phim Hoa Ngữ",
@@ -52,26 +52,26 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
+        "/phim/chim-vao-mat-em",
+        "/phim/tiem-banh-gao-vu-tru",
+        "/phim/bon-ban-tay-hai-ban-sonata",
         "/phim/ngay-he",
         "/phim/duoc-roi-chung-ta-ly-hon-thoi",
         "/phim/trung-so-doc-dac-van-phai-di-lam",
         "/phim/huong-vi-cua-bien-mua-3",
-        "/phim/tan-binh-phan-4",
-        "/phim/yeu-mot-nguoi-khac-yeu-mot-nguoi-khac-khong-phai-em",
-        "/phim/tai-phiet-va-canh-sat-phan-2",
-        "/phim/thuc-don-tinh-yeu"
+        "/phim/tan-binh-phan-4"
       ],
       "addonFirst10": [
+        "/phim/chim-vao-mat-em",
+        "/phim/tiem-banh-gao-vu-tru",
+        "/phim/bon-ban-tay-hai-ban-sonata",
         "/phim/ngay-he",
         "/phim/duoc-roi-chung-ta-ly-hon-thoi",
         "/phim/trung-so-doc-dac-van-phai-di-lam",
         "/phim/huong-vi-cua-bien-mua-3",
         "/phim/tan-binh-phan-4",
         "/phim/yeu-mot-nguoi-khac-yeu-mot-nguoi-khac-khong-phai-em",
-        "/phim/tai-phiet-va-canh-sat-phan-2",
-        "/phim/thuc-don-tinh-yeu",
-        "/phim/anh-trai-say-xe",
-        "/phim/chuyen-canh-xuyen-khong"
+        "/phim/trai-tim-mua-thu"
       ]
     },
     {
@@ -84,26 +84,26 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
-        "/phim/thiep-von-chi-la-co-rac",
-        "/phim/truong-sinh-khe",
-        "/phim/vi-yeu-xung-danh",
+        "/phim/hanh-tieu",
         "/phim/dung-thanh",
-        "/phim/doc-kiem-cuu-thien",
-        "/phim/giao-phong",
-        "/phim/nguoi-tinh-mang-mat-na",
-        "/phim/nha-tu-dao-den"
-      ],
-      "addonFirst10": [
-        "/phim/thiep-von-chi-la-co-rac",
-        "/phim/truong-sinh-khe",
-        "/phim/vi-yeu-xung-danh",
-        "/phim/dung-thanh",
-        "/phim/doc-kiem-cuu-thien",
-        "/phim/giao-phong",
-        "/phim/nguoi-tinh-mang-mat-na",
         "/phim/nha-tu-dao-den",
+        "/phim/truong-sinh-khe",
+        "/phim/giao-phong",
+        "/phim/nguoi-tinh-mang-mat-na",
         "/phim/nhu-da-hen",
         "/phim/phap-y-tan-minh-ke-troi-phat"
+      ],
+      "addonFirst10": [
+        "/phim/hanh-tieu",
+        "/phim/dung-thanh",
+        "/phim/nha-tu-dao-den",
+        "/phim/truong-sinh-khe",
+        "/phim/giao-phong",
+        "/phim/nguoi-tinh-mang-mat-na",
+        "/phim/nhu-da-hen",
+        "/phim/phap-y-tan-minh-ke-troi-phat",
+        "/phim/lan-huong-nhu-co",
+        "/phim/nguyet-lan-mat-an"
       ]
     },
     {
@@ -116,58 +116,58 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
-        "/phim/hoi-qua-den",
-        "/phim/yeu-duoc-khong",
-        "/phim/lang-nghe-thanh-am",
-        "/phim/trai-tim-cua-ke-ky-sinh",
-        "/phim/nguoi-yeu-xui-xeo",
-        "/phim/chuyen-tinh-dao-thien-duong",
-        "/phim/oan-linh-duc-vong",
-        "/phim/ao-tuong-sat-nhan"
+        "/phim/loi-tinh-doi-lua-phan-1",
+        "/phim/nguoi-thu-ba-2026",
+        "/phim/canh-sat-biet-yeu",
+        "/phim/dien-tinh-2026",
+        "/phim/ky-tuc-xa-d",
+        "/phim/gelboys-phan-2",
+        "/phim/yeu-het-long-chang-fanboy",
+        "/phim/cap-doi-juliet"
       ],
       "addonFirst10": [
-        "/phim/hoi-qua-den",
-        "/phim/yeu-duoc-khong",
-        "/phim/lang-nghe-thanh-am",
-        "/phim/trai-tim-cua-ke-ky-sinh",
-        "/phim/nguoi-yeu-xui-xeo",
-        "/phim/chuyen-tinh-dao-thien-duong",
-        "/phim/oan-linh-duc-vong",
-        "/phim/ao-tuong-sat-nhan",
-        "/phim/ao-tuong-sat-nhan-phan-1",
-        "/phim/loi-tinh-doi-lua-phan-1"
+        "/phim/loi-tinh-doi-lua-phan-1",
+        "/phim/nguoi-thu-ba-2026",
+        "/phim/canh-sat-biet-yeu",
+        "/phim/dien-tinh-2026",
+        "/phim/ky-tuc-xa-d",
+        "/phim/gelboys-phan-2",
+        "/phim/yeu-het-long-chang-fanboy",
+        "/phim/cap-doi-juliet",
+        "/phim/dien-tinh",
+        "/phim/hoi-qua-den"
       ]
     },
     {
       "label": "Phim US-UK Mới",
       "catalogId": "ivy_home_3",
       "type": "movie",
-      "sourceVisibleCount": 17,
+      "sourceVisibleCount": 25,
       "addonCount": 24,
-      "compared": 17,
-      "positionMatches": 17,
+      "compared": 24,
+      "positionMatches": 24,
       "exactPrefix": true,
       "sourceFirst10": [
+        "/phim/truyen-kinh-di-my-phan-13-179042057119039",
+        "/phim/dau-vo-sinh-tu-2026",
         "/phim/vung-dat-quy-du",
         "/phim/quai-kiet-bom-thu",
         "/phim/nhung-diep-vien-het-thoi-phan-6",
         "/phim/lanh-dia-tu-chien-phan-2",
         "/phim/mot-the-gioi-khac-biet",
         "/phim/gary",
-        "/phim/stuart-cuu-khong-noi-vu-tru-phan-1",
-        "/phim/marty-cuoc-doi-ngan-lam",
         "/phim/bat-tien",
         "/phim/de-che-dai-han-phan-2"
       ],
       "addonFirst10": [
+        "/phim/truyen-kinh-di-my-phan-13-179042057119039",
+        "/phim/dau-vo-sinh-tu-2026",
         "/phim/vung-dat-quy-du",
         "/phim/quai-kiet-bom-thu",
         "/phim/nhung-diep-vien-het-thoi-phan-6",
         "/phim/lanh-dia-tu-chien-phan-2",
         "/phim/mot-the-gioi-khac-biet",
         "/phim/gary",
-        "/phim/stuart-cuu-khong-noi-vu-tru-phan-1",
-        "/phim/marty-cuoc-doi-ngan-lam",
         "/phim/bat-tien",
         "/phim/de-che-dai-han-phan-2"
       ]
@@ -177,29 +177,31 @@
       "catalogId": "ivy_home_4",
       "type": "movie",
       "sourceVisibleCount": 8,
-      "addonCount": 8,
+      "addonCount": 24,
       "compared": 8,
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
         "/phim/nhung-dua-tre-cua-thien-duong",
         "/phim/vu-an-mang-brigadier-j",
+        "/phim/marty-cuoc-doi-ngan-lam",
         "/phim/nhung-doi-thu-cua-amziah-king",
         "/phim/chuyen-bay-mot-chieu-den-hollywood-mo-uoc",
         "/phim/chom-sao-bat-diet",
         "/phim/ban-than-mai-mai",
-        "/phim/cu-soc",
-        "/phim/ma-xo"
+        "/phim/cu-soc"
       ],
       "addonFirst10": [
         "/phim/nhung-dua-tre-cua-thien-duong",
         "/phim/vu-an-mang-brigadier-j",
+        "/phim/marty-cuoc-doi-ngan-lam",
         "/phim/nhung-doi-thu-cua-amziah-king",
         "/phim/chuyen-bay-mot-chieu-den-hollywood-mo-uoc",
         "/phim/chom-sao-bat-diet",
         "/phim/ban-than-mai-mai",
         "/phim/cu-soc",
-        "/phim/ma-xo"
+        "/phim/am-anh-2026",
+        "/phim/vu-an-tien-gia-ultra-30"
       ]
     },
     {
@@ -215,23 +217,23 @@
         "/phim/mua-he-nam-ay-2026",
         "/phim/doi-bong-nu-lang-xuan",
         "/phim/phu-sa",
+        "/phim/ma-xo",
         "/phim/sinh-tu",
         "/phim/song-hy-lam-nguy",
         "/phim/con-ke-ba-nghe",
-        "/phim/nguoi-lang-nghe-loi-thi-tham",
-        "/phim/hen-em-ngay-nhat-thuc"
+        "/phim/nguoi-lang-nghe-loi-thi-tham"
       ],
       "addonFirst10": [
         "/phim/mua-he-nam-ay-2026",
         "/phim/doi-bong-nu-lang-xuan",
         "/phim/phu-sa",
+        "/phim/ma-xo",
         "/phim/sinh-tu",
         "/phim/song-hy-lam-nguy",
         "/phim/con-ke-ba-nghe",
         "/phim/nguoi-lang-nghe-loi-thi-tham",
-        "/phim/hen-em-ngay-nhat-thuc",
-        "/phim/ma-xo",
-        "/phim/vo-dien-sat-nhan"
+        "/phim/vo-dien-sat-nhan",
+        "/phim/hen-em-ngay-nhat-thuc"
       ]
     },
     {
@@ -244,24 +246,24 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
+        "/phim/lang-nghe-thanh-am",
         "/phim/truyen-kinh-di-my-phan-13",
+        "/phim/oan-linh-duc-vong",
         "/phim/tinh-duc-tuoi-teen-va-cai-chet-tai-trai-miasma",
         "/phim/ca-map-cuong-no",
         "/phim/chat",
         "/phim/cham-vao-toi",
-        "/phim/nguoi-tuyet",
-        "/phim/tieng-noi-cua-me",
-        "/phim/sat-nhan-giau-mat-chuong-3"
+        "/phim/nguoi-tuyet"
       ],
       "addonFirst10": [
+        "/phim/lang-nghe-thanh-am",
         "/phim/truyen-kinh-di-my-phan-13",
+        "/phim/oan-linh-duc-vong",
         "/phim/tinh-duc-tuoi-teen-va-cai-chet-tai-trai-miasma",
         "/phim/ca-map-cuong-no",
         "/phim/chat",
         "/phim/cham-vao-toi",
         "/phim/nguoi-tuyet",
-        "/phim/tieng-noi-cua-me",
-        "/phim/sat-nhan-giau-mat-chuong-3",
         "/phim/am-anh-2026",
         "/phim/luoi-hai-tu-than-huyet-thong"
       ]
@@ -276,16 +278,17 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
+        "/phim/chim-vao-mat-em-phan-1",
         "/phim/khoi-dau-cua-bien-ca-noi-bien-bat-dau",
         "/phim/loi-thu-nhan-bi-mat-25-nam",
         "/phim/con-duong-mua-xuan-phan-2",
         "/phim/dao-bep-va-ot-sung-xanh-phan-2",
         "/phim/hay-la-minh-yeu-nhau-nhe",
         "/phim/hiep-si-hoang-dao",
-        "/phim/thu-doan-hac-am-luat-su-thao-tung-cong-ly",
-        "/phim/anh-hoang-hon-tren-con-duong"
+        "/phim/thu-doan-hac-am-luat-su-thao-tung-cong-ly"
       ],
       "addonFirst10": [
+        "/phim/chim-vao-mat-em-phan-1",
         "/phim/khoi-dau-cua-bien-ca-noi-bien-bat-dau",
         "/phim/loi-thu-nhan-bi-mat-25-nam",
         "/phim/con-duong-mua-xuan-phan-2",
@@ -293,9 +296,8 @@
         "/phim/hay-la-minh-yeu-nhau-nhe",
         "/phim/hiep-si-hoang-dao",
         "/phim/thu-doan-hac-am-luat-su-thao-tung-cong-ly",
-        "/phim/anh-hoang-hon-tren-con-duong",
-        "/phim/thieu-chu-gioi-chay-tron-phan-2",
-        "/phim/su-menh-than-chet-phan-1"
+        "/phim/tham-tu-lung-danh-conan",
+        "/phim/vao-ma-gioi-roi-day-irumakun-phan-4"
       ]
     },
     {
@@ -308,26 +310,26 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
-        "/phim/di-san-vay-mau-phan-2",
         "/phim/vu-an-cuoi-cung",
         "/phim/nhung-chang-trai-nam-ay-phan-3",
         "/phim/truy-tim-cong-ly-2026",
         "/phim/shaque-dung-tin-ai",
         "/phim/bong-ma-buon-ba",
+        "/phim/ao-tuong-sat-nhan",
         "/phim/trat-bao-than",
         "/phim/tinh-yeu-bat-diet-2026"
       ],
       "addonFirst10": [
-        "/phim/di-san-vay-mau-phan-2",
         "/phim/vu-an-cuoi-cung",
         "/phim/nhung-chang-trai-nam-ay-phan-3",
         "/phim/truy-tim-cong-ly-2026",
         "/phim/shaque-dung-tin-ai",
         "/phim/bong-ma-buon-ba",
+        "/phim/ao-tuong-sat-nhan",
         "/phim/trat-bao-than",
         "/phim/tinh-yeu-bat-diet-2026",
-        "/phim/ham-silo-phan-1",
-        "/phim/luyen-khi-muoi-van-nam"
+        "/phim/di-san-vay-mau-phan-2",
+        "/phim/lam-giang-tien"
       ]
     },
     {
@@ -341,25 +343,25 @@
       "exactPrefix": true,
       "sourceFirst10": [
         "/phim/tan-thuoc",
-        "/phim/hanh-tieu",
         "/phim/dac-vu-xanh-phan-1",
         "/phim/hai-trai-tim",
         "/phim/phi-vu-sua-sai",
         "/phim/jackass-choi-lon-lan-cuoi",
+        "/phim/tai-phiet-va-canh-sat-phan-2",
         "/phim/hiep-si-mat-na-my-th",
         "/phim/luc-luong-lanterns-phan-1"
       ],
       "addonFirst10": [
         "/phim/tan-thuoc",
-        "/phim/hanh-tieu",
         "/phim/dac-vu-xanh-phan-1",
         "/phim/hai-trai-tim",
         "/phim/phi-vu-sua-sai",
         "/phim/jackass-choi-lon-lan-cuoi",
+        "/phim/tai-phiet-va-canh-sat-phan-2",
         "/phim/hiep-si-mat-na-my-th",
         "/phim/luc-luong-lanterns-phan-1",
-        "/phim/tho-san-giac-thu-omegahorn",
-        "/phim/luyen-khi-muoi-van-nam"
+        "/phim/quai-thu-vo-hinh-vung-dat-chet-choc",
+        "/phim/avengers-2-de-che-ultron"
       ]
     },
     {
@@ -372,26 +374,26 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
-        "/phim/dong-song-manh-liet",
-        "/phim/phap-y-tan-minh-ke-troi-phat",
-        "/phim/bon-cap-do-doi-dau",
-        "/phim/doi-chung",
-        "/phim/toi-khong-phai-la-dai-su-phan-1",
-        "/phim/toi-khong-phai-la-dai-su",
-        "/phim/dia-nguc-doa-day",
-        "/phim/hien-tuong-sieu-nhien-3"
+        "/phim/sieu-nhien-phan-3",
+        "/phim/pinocchio-cuoc-tan-sat-cua-con-roi",
+        "/phim/ai-la-hung-thu",
+        "/phim/am-sat-hieu-truong-trung-hoc",
+        "/phim/a-mach-tong-quan",
+        "/phim/ban-tay-ma-thuat",
+        "/phim/ban-cau-co-1986",
+        "/phim/toi-khong-phai-la-dai-su-phan-1"
       ],
       "addonFirst10": [
-        "/phim/dong-song-manh-liet",
-        "/phim/phap-y-tan-minh-ke-troi-phat",
-        "/phim/bon-cap-do-doi-dau",
-        "/phim/doi-chung",
+        "/phim/sieu-nhien-phan-3",
+        "/phim/pinocchio-cuoc-tan-sat-cua-con-roi",
+        "/phim/ai-la-hung-thu",
+        "/phim/am-sat-hieu-truong-trung-hoc",
+        "/phim/a-mach-tong-quan",
+        "/phim/ban-tay-ma-thuat",
+        "/phim/ban-cau-co-1986",
         "/phim/toi-khong-phai-la-dai-su-phan-1",
-        "/phim/toi-khong-phai-la-dai-su",
-        "/phim/dia-nguc-doa-day",
-        "/phim/hien-tuong-sieu-nhien-3",
-        "/phim/vu-an-cuoi-cung-phan-1",
-        "/phim/khac-tinh-ma-ca-rong-phan-5"
+        "/phim/ba-chi-em-nhung-co-gai-nho-be",
+        "/phim/anh-cung-la-con-nguoi"
       ]
     },
     {
@@ -405,23 +407,23 @@
       "exactPrefix": true,
       "sourceFirst10": [
         "/phim/tro-choi-sat-thu",
+        "/phim/doi-chung",
         "/phim/nhuc-bo-doan-2-ngoc-nu-tam-kinh",
         "/phim/truyen-thuyet-chien-than",
         "/phim/thuyen-nhan-17903235929625",
         "/phim/anh-hung-thanh-trai",
         "/phim/tam-trang-khi-yeu-179015598088149",
-        "/phim/lat-thu-than-tham",
-        "/phim/van-co-hon-nhan"
+        "/phim/lat-thu-than-tham"
       ],
       "addonFirst10": [
         "/phim/tro-choi-sat-thu",
+        "/phim/doi-chung",
         "/phim/nhuc-bo-doan-2-ngoc-nu-tam-kinh",
         "/phim/truyen-thuyet-chien-than",
         "/phim/thuyen-nhan-17903235929625",
         "/phim/anh-hung-thanh-trai",
         "/phim/tam-trang-khi-yeu-179015598088149",
         "/phim/lat-thu-than-tham",
-        "/phim/van-co-hon-nhan",
         "/phim/cuu-long-thanh-trai-vay-thanh",
         "/phim/lara-croft-ke-cuop-lang-mo-cai-noi-cua-su-song"
       ]
@@ -470,28 +472,28 @@
       "positionMatches": 10,
       "exactPrefix": true,
       "sourceFirst10": [
-        "/phim/chien-binh-anh-sang-teo",
-        "/phim/van-co-chi-ton-ly-van-tieu-truyen",
-        "/phim/chon-ngay-phi-thang",
-        "/phim/dai-thien-tieu-tran",
-        "/phim/phap-su-tu-linh-ta-chinh-la-thien-tai",
-        "/phim/thieu-chu-gioi-chay-tron-phan-2",
-        "/phim/ve-xong-di-roi-hay-chet",
-        "/phim/luc-do-toi-da-chuyen-sinh-thanh-slime-phan-4",
-        "/phim/cuoc-phieu-luu-ki-la-cua-jojo-phan-6",
-        "/phim/100-ngay-tro-thanh-vua"
+        "/phim/linh-canh-hanh-gia-ngoai-truyen",
+        "/phim/thai-co-than-ton",
+        "/phim/rap-xiec-hoa-huong-duong",
+        "/phim/song-menh-coi-hoang-tuyen",
+        "/phim/tham-tu-lung-danh-conan-vu-an-tien-gia-ultra-30",
+        "/phim/hell-mode-game-thu-xuat-chung-tung-hoanh-chon-di-gioi-hon-nguyen-phan-2",
+        "/phim/me-ke-chi-ke-khong-he-khat-khe",
+        "/phim/vao-ma-gioi-roi-day-irumakun-phan-4",
+        "/phim/co-nang-mot-sach",
+        "/phim/chien-binh-anh-sang-teo"
       ],
       "addonFirst10": [
-        "/phim/chien-binh-anh-sang-teo",
-        "/phim/van-co-chi-ton-ly-van-tieu-truyen",
-        "/phim/chon-ngay-phi-thang",
-        "/phim/dai-thien-tieu-tran",
-        "/phim/phap-su-tu-linh-ta-chinh-la-thien-tai",
-        "/phim/thieu-chu-gioi-chay-tron-phan-2",
-        "/phim/ve-xong-di-roi-hay-chet",
-        "/phim/luc-do-toi-da-chuyen-sinh-thanh-slime-phan-4",
-        "/phim/cuoc-phieu-luu-ki-la-cua-jojo-phan-6",
-        "/phim/100-ngay-tro-thanh-vua"
+        "/phim/linh-canh-hanh-gia-ngoai-truyen",
+        "/phim/thai-co-than-ton",
+        "/phim/rap-xiec-hoa-huong-duong",
+        "/phim/song-menh-coi-hoang-tuyen",
+        "/phim/tham-tu-lung-danh-conan-vu-an-tien-gia-ultra-30",
+        "/phim/hell-mode-game-thu-xuat-chung-tung-hoanh-chon-di-gioi-hon-nguyen-phan-2",
+        "/phim/me-ke-chi-ke-khong-he-khat-khe",
+        "/phim/vao-ma-gioi-roi-day-irumakun-phan-4",
+        "/phim/co-nang-mot-sach",
+        "/phim/chien-binh-anh-sang-teo"
       ]
     },
     {
@@ -504,26 +506,26 @@
       "positionMatches": 8,
       "exactPrefix": true,
       "sourceFirst10": [
-        "/phim/nhu-da-hen",
-        "/phim/tan-bang-phong-than-phan-2",
-        "/phim/nguyet-lan-mat-an",
-        "/phim/lan-huong-nhu-co",
         "/phim/van-tuoc-khieu-thien-luc",
         "/phim/hanh-tieu-phan-1",
+        "/phim/lang-quan-100-ngay",
+        "/phim/khai-phong-phu-truyen-ky",
+        "/phim/thong-thien-dich-nhan-kiet",
+        "/phim/tan-bang-phong-than-phan-2",
         "/phim/tan-bang-phong-than-phan-1",
         "/phim/vo-uu-do"
       ],
       "addonFirst10": [
-        "/phim/nhu-da-hen",
-        "/phim/tan-bang-phong-than-phan-2",
-        "/phim/nguyet-lan-mat-an",
-        "/phim/lan-huong-nhu-co",
         "/phim/van-tuoc-khieu-thien-luc",
         "/phim/hanh-tieu-phan-1",
+        "/phim/lang-quan-100-ngay",
+        "/phim/khai-phong-phu-truyen-ky",
+        "/phim/thong-thien-dich-nhan-kiet",
+        "/phim/tan-bang-phong-than-phan-2",
         "/phim/tan-bang-phong-than-phan-1",
         "/phim/vo-uu-do",
-        "/phim/truong-sinh-khe",
-        "/phim/bao-thanh-thien-that-hiep-ngu-nghia"
+        "/phim/bao-thanh-thien-that-hiep-ngu-nghia",
+        "/phim/thoi-nien-thieu-cua-bao-thanh-thien-phan-4"
       ]
     },
     {
@@ -537,27 +539,27 @@
       "exactPrefix": true,
       "sourceFirst10": [
         "/phim/doa-hong-nguy-hiem",
+        "/phim/hoi-qua-den",
+        "/phim/yeu-duoc-khong",
+        "/phim/trai-tim-cua-ke-ky-sinh",
+        "/phim/stuart-cuu-khong-noi-vu-tru-phan-1",
+        "/phim/nguoi-yeu-xui-xeo",
+        "/phim/chuyen-tinh-dao-thien-duong",
         "/phim/toi-muon-gap-cau",
         "/phim/star-trek-nhung-mien-dat-moi-phan-4",
-        "/phim/bong-duoi-trang",
-        "/phim/nguoi-thu-ba-2026",
-        "/phim/loi-nguyen-bi-an-2026",
-        "/phim/huan-luyen-vien-ted-lasso-phan-4",
-        "/phim/muon-ngan-troi-may-ban-nhat",
-        "/phim/yeu-lan-hai-phan-2",
-        "/phim/ban-gai-thien-tai"
+        "/phim/bong-duoi-trang"
       ],
       "addonFirst10": [
         "/phim/doa-hong-nguy-hiem",
+        "/phim/hoi-qua-den",
+        "/phim/yeu-duoc-khong",
+        "/phim/trai-tim-cua-ke-ky-sinh",
+        "/phim/stuart-cuu-khong-noi-vu-tru-phan-1",
+        "/phim/nguoi-yeu-xui-xeo",
+        "/phim/chuyen-tinh-dao-thien-duong",
         "/phim/toi-muon-gap-cau",
         "/phim/star-trek-nhung-mien-dat-moi-phan-4",
-        "/phim/bong-duoi-trang",
-        "/phim/nguoi-thu-ba-2026",
-        "/phim/loi-nguyen-bi-an-2026",
-        "/phim/huan-luyen-vien-ted-lasso-phan-4",
-        "/phim/muon-ngan-troi-may-ban-nhat",
-        "/phim/yeu-lan-hai-phan-2",
-        "/phim/ban-gai-thien-tai"
+        "/phim/bong-duoi-trang"
       ]
     },
     {
@@ -604,8 +606,8 @@
         "/phim/avatar-ky-nguyen-moi-phien-ban-dac-biet-2020",
         "/phim/sundutan",
         "/phim/nha-ma-xo",
-        "/phim/ke-ac-luon-co-ten-loi-nguyen-resident-evil",
         "/phim/cam-on-nguoi-da-thuc-cung-toi",
+        "/phim/ke-ac-luon-co-ten-loi-nguyen-resident-evil",
         "/phim/cai-ma",
         "/phim/bay-tien"
       ],
@@ -614,8 +616,8 @@
         "/phim/avatar-ky-nguyen-moi-phien-ban-dac-biet-2020",
         "/phim/sundutan",
         "/phim/nha-ma-xo",
-        "/phim/ke-ac-luon-co-ten-loi-nguyen-resident-evil",
         "/phim/cam-on-nguoi-da-thuc-cung-toi",
+        "/phim/ke-ac-luon-co-ten-loi-nguyen-resident-evil",
         "/phim/cai-ma",
         "/phim/bay-tien",
         "/phim/bai-dien-van-cua-nha-vua",
