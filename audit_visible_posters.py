@@ -47,3 +47,4 @@ json.dump(report,open("visible_poster_health.json","w",encoding="utf-8"),ensure_
 print(json.dumps({"productionVersion":report["productionVersion"],"cardsChecked":report["cardsChecked"],"healthy":report["healthy"],"unhealthy":report["unhealthy"]},ensure_ascii=False))
 for x in bad[:100]:
     print("BAD",x["catalog"],x["index"],x["title"],x["status"],x["reason"],x["poster"])
+# rerun after catalog reload 1.12.2
