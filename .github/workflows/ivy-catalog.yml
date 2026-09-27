@@ -13,6 +13,8 @@ on:
     paths:
       - '.github/workflows/ivy-catalog.yml'
       - 'rophim_catalog_crawler_taxonomy_v5.py'
+      - 'rophim_catalog_crawler.py'
+      - 'repair_home_cards.py'
       - 'ivy_sitemap_crawler.py'
       - 'ivy_playback_audit.py'
       - 'ivy_sitewide_verify.py'
@@ -100,6 +102,10 @@ jobs:
           IVY_SITEMAP_OUT: ivy_sitemap.staging.json
           IVY_SOURCE_BASE: https://rophims.team
         run: python ivy_sitemap_crawler.py
+
+      - name: Repair visible Home card metadata
+        run: python repair_home_cards.py rophim_catalog.staging.json ivy_sitemap.staging.json 24
+
       - name: Verify whole-site count and exact section ordering
         env:
           IVY_SOURCE_BASE: https://rophims.team
