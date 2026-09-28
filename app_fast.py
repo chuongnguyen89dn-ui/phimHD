@@ -28,16 +28,8 @@ def sitemap():
     _sitemap.update(at=now,data=d);return d
 
 def home_rows():
-    # The live /phimhay page is the authority for Home row order.
-    # core.source_home_sections() is cached for 10 minutes, so this stays fast
-    # while following RoPhim changes during the day instead of waiting for the
-    # scheduled sitemap snapshot.
-    try:
-        live=list((core.source_home_sections() or {}).keys())
-        if len(live)>=15:
-            return live
-    except Exception:
-        pass
+    # Runtime must never wait on RoPhim. The scheduled crawler is responsible
+    # for mirroring live row order into ivy_sitemap.json.
     rows=[s.get('label') for s in sitemap().get('sections',[]) if s.get('label')]
     return rows or FALLBACK_HOME_ROWS
 
@@ -49,37 +41,9 @@ def section(label):
 def _stub(u,label):
     slug=str(u or '').rstrip('/').split('/')[-1]
     name=slug.replace('-',' ').strip().title() or 'Ivy❤️'
-    x={'url':u,'slug':slug,'title':name,'type':'series' if label in SERIES_ROWS else 'movie','source':'runtime-fallback'}
-    # A listing can occasionally contain a title that has not reached the large
-    # catalog snapshot yet. Hydrate that one card from its source page instead
-    # of returning a permanent blank-poster stub.
-    try:
-        h=core.fetch_text(u,ttl=3600)
-        def meta(prop):
-            pats=[
-                rf'<meta[^>]+property=["\\\']{re.escape(prop)}["\\\'][^>]+content=["\\\']([^"\\\']+)',
-                rf'<meta[^>]+content=["\\\']([^"\\\']+)["\\\'][^>]+property=["\\\']{re.escape(prop)}["\\\']'
-            ]
-            for p in pats:
-                m=re.search(p,h,re.I)
-                if m:return html.unescape(m.group(1)).replace('\\\\/','/').strip()
-            return ''
-        pm=re.search(r'''var\\s+moviePosterUrl\\s*=\\s*["']([^"']+)''',h,re.I)
-        poster=html.unescape(pm.group(1)).replace('\\\\/','/').strip() if pm else meta('og:image')
-        title=meta('og:title')
-        if title:x['title']=title
-        if poster:x['poster']=poster
-        bg=meta('og:image')
-        if bg:x['backdrop']=bg
-        desc=meta('og:description')
-        if desc:x['description']=desc
-        ys=[int(v) for v in re.findall(r'(?<!\\d)((?:19|20)\\d{2})(?!\\d)',x.get('title',''))]
-        now=time.gmtime().tm_year
-        ys=[v for v in ys if 1900<=v<=now+1]
-        if ys:x['year']=ys[-1]
-    except Exception:
-        pass
-    return x
+    # Do not hydrate from RoPhim in a user request. The next crawler pass will
+    # materialize full metadata; a missing record must not stall the whole row.
+    return {'url':u,'slug':slug,'title':name,'type':'series' if label in SERIES_ROWS else 'movie','source':'runtime-fallback'}
 
 def materialize_urls(urls,label):
     urls=[u for u in (urls or []) if u]
@@ -93,15 +57,9 @@ def materialize_urls(urls,label):
 
 def items(label):
     s=section(label)
-    # Always put the current live /phimhay row first. The sitemap snapshot is
-    # only used to extend pagination after that live prefix.
+    # Runtime serves the already-crawled snapshot only. Never fetch /phimhay
+    # synchronously from a Nuvio catalog request.
     urls=[]
-    try:
-        live_info=(core.source_home_sections() or {}).get(label) or {}
-        for u in live_info.get('home') or []:
-            if u and u not in urls: urls.append(u)
-    except Exception:
-        pass
     for u in list(s.get('urls') or s.get('home') or []):
         if u and u not in urls: urls.append(u)
 
@@ -187,7 +145,7 @@ def manifest_fast():
 
     return {
         'id':'community.ivy.catalog',
-        'version':'1.12.3',
+        'version':'1.12.4',
         'name':'Ivy❤️',
         'description':'Ivy❤️ • Search: Phim/Loạt phim → Danh mục → Thể loại',
         'resources':['catalog','meta','stream'],
@@ -297,6 +255,6 @@ def catalog(cid,path=''):
 core.app.view_functions['manifest']=lambda:jsonify(manifest_fast())
 core.app.view_functions['cp']=lambda t,cid:catalog(cid)
 core.app.view_functions['ce']=lambda t,cid,p:catalog(cid,p)
-core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.12.3','manifest':'/manifest.json'})
-core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.12.3','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
+core.app.view_functions['root']=lambda:jsonify({'ok':True,'service':'Ivy❤️','version':'1.12.4','manifest':'/manifest.json'})
+core.app.view_functions['health']=lambda:jsonify({'ok':True,'version':'1.12.4','movies':len(core.load().get('movies',[])),'pageSize':PAGE_SIZE,'homeRows':home_rows(),'sitemapSections':len(sitemap().get('sections',[])),'rowSearchScope':'selected-type-category-genre','searchFilters':['type','category','genre'],'playbackResolver':'recursive-hls'})
 app=core.app
