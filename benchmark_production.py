@@ -11,7 +11,13 @@ def hit(path):
   return {"ms":round(dt,1),"status":r.status_code,"bytes":len(r.content)}
  except Exception as e:return {"ms":round((time.perf_counter()-t)*1000,1),"status":"ERR","error":repr(e)}
 man=hit("/manifest.json");print("MANIFEST",man,flush=True)
-m=S.get(BASE+"/manifest.json",headers={"User-Agent":UA},timeout=90,impersonate="chrome").json()
+m=None
+for attempt in range(24):
+    m=S.get(BASE+"/manifest.json",headers={"User-Agent":UA,"Cache-Control":"no-cache"},timeout=90,impersonate="chrome").json()
+    if str(m.get("version"))=="1.12.4": break
+    print("WAIT_VERSION",m.get("version"),attempt+1,flush=True);time.sleep(15)
+if str((m or {}).get("version"))!="1.12.4":
+    raise RuntimeError("production did not reach 1.12.4")
 cats=m.get("catalogs") or []
 home=next((c for c in cats if str(c.get("id","")).startswith("ivy_home_")),None)
 paths=[
