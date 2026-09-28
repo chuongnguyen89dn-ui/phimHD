@@ -30,3 +30,4 @@ for name,path in paths:
  out[name]={"path":path,"runs":vals,"medianMs":round(statistics.median(ok),1) if ok else None,"minMs":min(ok) if ok else None,"maxMs":max(ok) if ok else None}
 json.dump(out,open("benchmark_production.json","w"),indent=2)
 print("SUMMARY",json.dumps({k:{q:v[q] for q in ("medianMs","minMs","maxMs")} for k,v in out.items()}),flush=True)
+# trigger benchmark after workflow registration
