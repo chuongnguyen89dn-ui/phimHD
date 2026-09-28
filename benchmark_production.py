@@ -17,9 +17,9 @@ home=next((c for c in cats if str(c.get("id","")).startswith("ivy_home_")),None)
 paths=[
  ("manifest","/manifest.json"),
  ("home_first",f"/catalog/{home.get('type','movie')}/{home['id']}.json" if home else "/manifest.json"),
- ("search_conan","/catalog/movie/ivy_search/search=conan.json"),
- ("search_tinh","/catalog/movie/ivy_search/search=tinh.json"),
- ("search_none","/catalog/movie/ivy_search/search=zzzzzzzzzz.json"),
+ ("search_conan","/catalog/movie/ivy_search_movie_all/search=conan.json"),
+ ("search_tinh","/catalog/movie/ivy_search_movie_all/search=tinh.json"),
+ ("search_none","/catalog/movie/ivy_search_movie_all/search=zzzzzzzzzz.json"),
 ]
 out={}
 for name,path in paths:
@@ -31,3 +31,4 @@ for name,path in paths:
 json.dump(out,open("benchmark_production.json","w"),indent=2)
 print("SUMMARY",json.dumps({k:{q:v[q] for q in ("medianMs","minMs","maxMs")} for k,v in out.items()}),flush=True)
 # trigger benchmark after workflow registration
+# benchmark optimized runtime
