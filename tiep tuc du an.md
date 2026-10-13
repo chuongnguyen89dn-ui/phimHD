@@ -228,3 +228,10 @@ Không được coi run fail hoặc nguồn không lấy được là “không 
   - thay đổi section.
 - Định kỳ kiểm tra Render auto-deploy có thực sự bám commit `main`.
 - Nếu RoPhim đổi HTML/server schema, ưu tiên kiểm tra bằng browser-harness local và network thực trước khi thay resolver.
+
+
+## 14. Checkpoint 13/10/2026
+- User request: Cloudflare phimhd-ivy is production; replenish GitHub-fed data, reschedule full recrawl and validate against source before publishing.
+- Cloudflare Worker phimhd-ivy has no cron schedules (Cloudflare API GET schedules returned empty). Version 4 deployed 2026-10-12T12:21:51Z.
+- GitHub ivy-catalog.yml declares 0 0,8,16 * * * UTC, writes to catalog-data. Latest catalog_changes_latest.json generatedAt 2026-10-03T00:25:05Z; 7755 movies, 118 removed. GitHub Actions run outcomes not yet verified.
+- No crawler started, no deployment or catalog changed. Next: verify active Worker code and catalog source; inspect Actions run logs; stage full rebuild and validate against RoPhim; publish only after validation; restore schedule at actual crawler execution site.
