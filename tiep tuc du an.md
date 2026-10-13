@@ -235,3 +235,5 @@ Không được coi run fail hoặc nguồn không lấy được là “không 
 - Cloudflare Worker phimhd-ivy has no cron schedules (Cloudflare API GET schedules returned empty). Version 4 deployed 2026-10-12T12:21:51Z.
 - GitHub ivy-catalog.yml declares 0 0,8,16 * * * UTC, writes to catalog-data. Latest catalog_changes_latest.json generatedAt 2026-10-03T00:25:05Z; 7755 movies, 118 removed. GitHub Actions run outcomes not yet verified.
 - No crawler started, no deployment or catalog changed. Next: verify active Worker code and catalog source; inspect Actions run logs; stage full rebuild and validate against RoPhim; publish only after validation; restore schedule at actual crawler execution site.
+
+- 13/10/2026: updated `.github/workflows/ivy-catalog.yml` cron from `0 0,8,16 * * *` to `10 0,8,16 * * *` UTC (07:10/15:10/23:10 VN), commit `0f21237e5b4e12300e8254fab4893877ec82fd24`. Push event matches workflow path filter, but Actions run status, crawler output and production refresh remain unverified. No Cloudflare cron added, no full rebuild dispatched.
