@@ -95,7 +95,10 @@ def main():
    ps=[pos(candidate,v,start) for v in aliases]
    ps=[p for p in ps if p>=0]
    if ps:matches.append((min(ps),i,label))
-  # Safe diagnostic: report response shape without dumping cookies or HTML content.\n  title_match=re.search(r'<title[^>]*>(.*?)</title>',candidate,re.I|re.S)\n  title=html.unescape(re.sub(r'<[^>]+>','',title_match.group(1))).strip()[:120] if title_match else '(none)'\n  print('homepage probe',home_path,'sections=',len(matches),'bytes=',len(candidate.encode('utf-8')),'sha256=',hashlib.sha256(candidate.encode('utf-8')).hexdigest()[:16],'title=',repr(title),'movieLinks=',len(movie_urls(candidate)),'nextData=',('__NEXT_DATA__' in candidate),'challenge=',bool(re.search(r'cloudflare|just a moment|captcha|access denied',candidate,re.I)),flush=True)
+  # Safe diagnostic: report response shape without dumping cookies or HTML content.
+  title_match=re.search(r'<title[^>]*>(.*?)</title>',candidate,re.I|re.S)
+  title=html.unescape(re.sub(r'<[^>]+>','',title_match.group(1))).strip()[:120] if title_match else '(none)'
+  print('homepage probe',home_path,'sections=',len(matches),'bytes=',len(candidate.encode('utf-8')),'sha256=',hashlib.sha256(candidate.encode('utf-8')).hexdigest()[:16],'title=',repr(title),'movieLinks=',len(movie_urls(candidate)),'nextData=',('__NEXT_DATA__' in candidate),'challenge=',bool(re.search(r'cloudflare|just a moment|captcha|access denied',candidate,re.I)),flush=True)
   if len(matches)>len(found):home,found=candidate,matches
   if len(found)>=15:break
  if len(found)<15:
