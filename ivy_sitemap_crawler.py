@@ -83,17 +83,23 @@ def crawl_listing(seed):
  return urls,last_good
 
 def main():
- home=fetch(BASE+'/phimhay')
- if not home:
-  print('phimhay unavailable; trying source root',flush=True);home=fetch(BASE+'/')
- if not home:raise SystemExit('cannot fetch source home after retries')
- start=max(0,pos(home,'Bạn đang quan tâm gì?'));found=[]
- for i,label in enumerate(SECTIONS):
-  aliases=SECTION_ALIASES.get(label,[label])
-  ps=[pos(home,v,start) for v in aliases]
-  ps=[p for p in ps if p>=0]
-  p=min(ps) if ps else -1
-  if p>=0:found.append((p,i,label))
+ home='';found=[]
+ # The site may return a nonempty challenge/rate-limit page with no real sections.
+ # Never treat that response as a valid empty homepage.
+ for home_path in ('/phimhay','/'):
+  candidate=fetch(BASE+home_path)
+  if not candidate:continue
+  start=max(0,pos(candidate,'Bạn đang quan tâm gì?'));matches=[]
+  for i,label in enumerate(SECTIONS):
+   aliases=SECTION_ALIASES.get(label,[label])
+   ps=[pos(candidate,v,start) for v in aliases]
+   ps=[p for p in ps if p>=0]
+   if ps:matches.append((min(ps),i,label))
+  print('homepage probe',home_path,'sections=',len(matches),flush=True)
+  if len(matches)>len(found):home,found=candidate,matches
+  if len(found)>=15:break
+ if len(found)<15:
+  raise SystemExit(f'source homepage incomplete: {len(found)}/18 sections; refusing empty sitemap publication')
  found.sort();out={'source':BASE,'generatedAt':int(time.time()),'sections':[]}
  for idx,(p,i,label) in enumerate(found):
   end=found[idx+1][0] if idx+1<len(found) else len(home);seg=home[p:end];home_urls=movie_urls(seg);listing=listing_link(seg,label)
